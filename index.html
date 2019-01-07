@@ -14,17 +14,6 @@
     <!-- Start Chromapose -->
     <div id="screen"></div>
     <div id="content">
-      <!-- <div class="label">Left-Right Rotation (Y Axis): <span class="value lr"></span>&deg;</div>
-      <div class="meter" id="lr"></div>
-
-      <div class="label">Front-Back Rotation (X Axis): <span class="value fb"></span>&deg;</div>
-      <div class="meter" id="fb"></div>
-
-      <div class="label">Alpha Rotation (Z axis): <span class="value rotdeg"></span>&deg;</div>
-      <div class="meter" id="rotdeg"></div>
-
-      <br/>-->
-
       <div>Hue: <span id="hue" class="value"></span></div>
       <div>Saturation: <span id="saturation" class="value"></span>%</div>
       <div>Lightness: <span id="lightness" class="value"></span>%</div>
@@ -36,6 +25,7 @@
 
       var rotDeg, leftRight, frontBack;
       var hue, saturation, lightness;
+      saturation = 50; // temporary
       var targetHue, targetSaturation, targetLightness; // unused
 
       // Map value from one range onto another
@@ -44,23 +34,13 @@
         // Clamp
         if (value < xMin) {
           return yMin;
-        } else if (result > yMax) {
+        } else if (value > yMax) {
           return yMax;
         } else {
           var result = (value - xMin) * ((yMax - yMin)/(xMax - xMin)) + yMin;
           return result;
         }
       }
-
-      // Generates a target color
-      // Unused
-      /*function generateTargetColor() {
-        targetHue = Math.floor(Math.random() * 255);
-        targetSaturation = Math.floor(Math.random() * 100);
-        targetLightness = Math.floor(Math.random() * 100);
-        $('#screen').css('border-color', 'hsl(' + targetHue + ', ' + targetSaturation + '%, ' + targetLightness + '%)');
-      }
-      generateTargetColor();*/
 
       // Detect if browser supports orientation
       if (typeof window.orientation !== 'undefined') { 
@@ -85,12 +65,12 @@
               $('span.value.fb').text(frontBack.toFixed(2));
               $('#fb').width(frontBack + 180);
 
-                  // Alpha rotation (around Z-axis)
-                  $('span.value.rotdeg').text(rotDeg.toFixed(2));
-                  $('#rotdeg').width(rotDeg);
+              // Alpha rotation (around Z-axis)
+              $('span.value.rotdeg').text(rotDeg.toFixed(2));
+              $('#rotdeg').width(rotDeg);
 
               // X = saturation
-              saturation = Math.floor(map(leftRight, -90, 90, 0, 100));
+              //saturation = Math.floor(map(leftRight, -90, 90, 0, 100));
 
               // Y = lightness
               lightness = Math.floor(map(frontBack, -180, 180, 0, 100));
