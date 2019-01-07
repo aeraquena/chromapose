@@ -17,7 +17,6 @@
       <div>Hue: <span id="hue" class="value"></span></div>
       <div id="saturationDiv">Saturation: <span id="saturation" class="value"></span>%</div>
       <div>Lightness: <span id="lightness" class="value"></span>%</div>
-      <div id="match">MATCH</div>
       <br/>
       <div>Target Hue: <span id="targetHue" class="value"></span></div>
       <div id="saturationDiv">Saturation: <span id="saturation" class="value"></span>%</div>
@@ -47,6 +46,24 @@
           var result = (value - xMin) * ((yMax - yMin)/(xMax - xMin)) + yMin;
           return result;
         }
+      }
+
+      // Checks match between target and user color
+      function checkMatch(hue, lightness) {
+            // TODO: store values on the server
+            var targetHue = Math.floor(map(doubloon.x, 0, 2400, 0, 255));
+            var targetLightness = Math.floor(map(doubloon.y, 0, 2400, 0, 100));
+
+            // Log target and user colors
+            console.log('--');
+            console.log('Target: ' + targetHue + ', ' + targetLightness);
+            console.log('User: ' + hue + ', ' + lightness);
+
+            if (targetHue == hue && targetLightness == lightness) {
+                $('#match').show();
+              } else {
+                $('#match').hide();
+              }
       }
 
       // Detect if browser supports orientation
@@ -93,20 +110,7 @@
               // Change background color
               $('#screen').css('background-color', 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)');
 
-              // TODO: store values on the server
-              var targetHue = Math.floor(map(doubloon.x, 0, 2400, 0, 255));
-              var targetLightness = Math.floor(map(doubloon.y, 0, 2400, 0, 100));
-
-              // Log target and user colors
-              console.log('--');
-              console.log('Target: ' + targetHue + ', ' + targetLightness);
-              console.log('User: ' + hue + ', ' + lightness);
-
-              if (targetHue == hue && targetLightness == lightness) {
-                $('#match').show();
-              } else {
-                $('#match').hide();
-              }
+              checkMatch(hue, lightness);
             }, true);
         }
       } else {
@@ -131,20 +135,7 @@
             // Change background color
             $('#screen').css('background-color', 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)');
 
-            // TODO: store values on the server
-            var targetHue = Math.floor(map(doubloon.x, 0, 2400, 0, 255));
-            var targetLightness = Math.floor(map(doubloon.y, 0, 2400, 0, 100));
-
-            // Log target and user colors
-            console.log('--');
-            console.log('Target: ' + targetHue + ', ' + targetLightness);
-            console.log('User: ' + hue + ', ' + lightness);
-
-            if (targetHue == hue && targetLightness == lightness) {
-                $('#match').show();
-              } else {
-                $('#match').hide();
-              }
+            checkMatch(hue, lightness);
         })
         var e = window.event;
       }

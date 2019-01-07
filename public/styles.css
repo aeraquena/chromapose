@@ -73,4 +73,5 @@ span.value {
 
 #match {
   display: none;
+  font-weight: bold;
 }
