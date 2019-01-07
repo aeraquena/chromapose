@@ -17,6 +17,7 @@
       <div>Hue: <span id="hue" class="value"></span></div>
       <div id="saturationDiv">Saturation: <span id="saturation" class="value"></span>%</div>
       <div>Lightness: <span id="lightness" class="value"></span>%</div>
+      <div id="match">MATCH</div>
 
     </div>
     <script type="text/javascript">
@@ -86,10 +87,20 @@
               // Change background color
               $('#screen').css('background-color', 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)');
 
+              // TODO: store values on the server
+              var targetHue = Math.floor(map(doubloon.x, 0, 2400, 0, 255));
+              var targetLightness = Math.floor(map(doubloon.y, 0, 2400, 0, 100));
+
               // Log target and user colors
               console.log('--');
-              console.log('Target: ' + $('#screen').css('border-color'));
-              console.log('User: ' + $('#screen').css('background-color'));
+              console.log('Target: ' + targetHue + ', ' + targetLightness);
+              console.log('User: ' + hue + ', ' + lightness);
+
+              if (targetHue == hue && targetLightness == lightness) {
+                $('#match').show();
+              } else {
+                $('#match').hide();
+              }
             }, true);
         }
       } else {
@@ -122,6 +133,12 @@
             console.log('--');
             console.log('Target: ' + targetHue + ', ' + targetLightness);
             console.log('User: ' + hue + ', ' + lightness);
+
+            if (targetHue == hue && targetLightness == lightness) {
+                $('#match').show();
+              } else {
+                $('#match').hide();
+              }
         })
         var e = window.event;
       }

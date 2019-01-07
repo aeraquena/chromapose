@@ -70,3 +70,7 @@ span.value {
 #saturationDiv {
   display: none;
 }
+
+#match {
+  display: none;
+}
