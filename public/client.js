@@ -70,6 +70,11 @@
       ctx.strokeStyle = '#003300';
       ctx.stroke();
 
+      // Change target border color
+      var targetHue = map(doubloon.x, 0, 2400, 0, 255);
+      var targetLightness = map(doubloon.y, 0, 2400, 0, 100);
+      $('#screen').css('border-color', 'hsl(' + targetHue + ', 50%, ' + targetLightness + '%)');
+
       drawPlayers(players)
     }
 

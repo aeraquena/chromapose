@@ -7,7 +7,14 @@ const playerSize = 100; // (downscaled to 20x20)
 const doubloonSize = 50
 const maxAccel = 10
 
+// the changing target color. hardcoded to red for now
+var targetColor = {
+  'hue': 0, 
+  'saturation': 50, 
+  'lightness': 50};
+
 function checkCollision(obj1, obj2) {
+  // TODO: Check whether color is in range of target color? or just listen for TRUE from client?
   return(Math.abs(obj1.x - obj2.x) <= playerSize && Math.abs(obj1.y - obj2.y) <= playerSize)
 }
 
@@ -39,6 +46,7 @@ function isValidPosition(newPosition, playerId) {
   return true
 }
 
+// Update target color
 function shuffleDoubloon() {
   var posX = Math.floor(Math.random() * Number(gameSize) - 100) + 10
   var posY = Math.floor(Math.random() * Number(gameSize) - 100) + 10
@@ -47,6 +55,10 @@ function shuffleDoubloon() {
     posX = Math.floor(Math.random() * Number(gameSize) - 100) + 10
     posY = Math.floor(Math.random() * Number(gameSize) - 100) + 10
   }
+
+  console.log('-- shuffle doubloon --');
+  console.log(posX);
+  console.log(posY);
 
   doubloon.x = posX
   doubloon.y = posY

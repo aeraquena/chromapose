@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Pirates!</title>
+    <title>chromapose</title>
     <link rel="stylesheet" href='./styles.css'>
     <!--<meta 
          name='viewport' 
@@ -54,13 +54,13 @@
 
       // Generates a target color
       // Unused
-      function generateTargetColor() {
+      /*function generateTargetColor() {
         targetHue = Math.floor(Math.random() * 255);
         targetSaturation = Math.floor(Math.random() * 100);
         targetLightness = Math.floor(Math.random() * 100);
         $('#screen').css('border-color', 'hsl(' + targetHue + ', ' + targetSaturation + '%, ' + targetLightness + '%)');
       }
-      generateTargetColor();
+      generateTargetColor();*/
 
       // Detect if browser supports orientation
       if (typeof window.orientation !== 'undefined') { 
@@ -97,7 +97,7 @@
 
               // Z = hue
               hue = Math.floor(map(rotDeg, 0, 360, 0, 255));
-        
+
               // Change color
               $('#hue').text(hue);
               $('#saturation').text(saturation);
@@ -117,7 +117,7 @@
         saturation = 50;
 
         $("body").mousemove(function(e) {
-            console.log(e.pageX + ', ' + e.pageY);
+            //console.log(e.pageX + ', ' + e.pageY);
 
             hue = Math.floor(map(e.pageX, 0, bodyWidth, 0, 255));
             lightness = Math.floor(map(e.pageY, 0, bodyHeight, 0, 100));
