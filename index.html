@@ -56,8 +56,8 @@
 
             var bound = 5; // constant
 
-            if (hue < targetHue - bound && hue > targetHue + bound &&
-              lightness < targetLightness - bound && lightness > targetLightness + bound) {
+            if (hue > (targetHue - bound) && hue < (targetHue + bound) &&
+              lightness > (targetLightness - bound) && lightness < (targetLightness + bound)) {
                 $('#match').show();
               } else {
                 $('#match').hide();
