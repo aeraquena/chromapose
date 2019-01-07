@@ -29,7 +29,6 @@
       <div>Saturation: <span id="saturation" class="value"></span>%</div>
       <div>Lightness: <span id="lightness" class="value"></span>%</div>
 
-      <div id='playerCount'></div>
     </div>
     <script type="text/javascript">
 
@@ -37,7 +36,7 @@
 
       var rotDeg, leftRight, frontBack;
       var hue, saturation, lightness;
-      var targetHue, targetSaturation, targetLightness;
+      var targetHue, targetSaturation, targetLightness; // unused
 
       // Map value from one range onto another
       function map(value, xMin, xMax, yMin, yMax) {
@@ -116,6 +115,7 @@
     <!-- End Chromapose -->
 
     <div class='sidebar'>
+      <div id='playerCount'></div>
       <div id='scores'></div>
     </div>
     <canvas id="game" width="500" height="500"></canvas>
