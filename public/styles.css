@@ -69,4 +69,5 @@ button {
   right: 0;
   border-width: 40px;
   border-style: solid;
+  z-index: -1; /* temporary */
 }
