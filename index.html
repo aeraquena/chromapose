@@ -34,6 +34,11 @@
       saturation = 50; // temporary
       var targetHue, targetSaturation, targetLightness; // unused
 
+      var hueOffset = Math.floor(Math.random() * 255);
+      var lightnessOffset = Math.floor(Math.random() * 100);
+      console.log('hue offset: ' + hueOffset);
+      console.log('lightness offset: ' + lightnessOffset);
+
       // Map value from one range onto another
       function map(value, xMin, xMax, yMin, yMax) {
 
@@ -95,10 +100,11 @@
               //saturation = Math.floor(map(leftRight, -90, 90, 0, 100));
 
               // Y = lightness
-              lightness = Math.floor(map(frontBack, -180, 180, 0, 100));
+              // (Map front-back to lightness) + (Random 0-100) % 100
+              lightness = (Math.floor(map(frontBack, -180, 180, 0, 100)) + hueOffset) % 100;
 
               // Z = hue
-              hue = Math.floor(map(rotDeg, 0, 360, 0, 255));
+              hue = (Math.floor(map(rotDeg, 0, 360, 0, 255)) + lightnessOffset) % 255;
 
               // Change color
               $('#hue').text(hue);
@@ -123,8 +129,8 @@
 
         $("body").mousemove(function(e) {
 
-            hue = Math.floor(map(e.pageX, 0, bodyWidth, 0, 255));
-            lightness = Math.floor(map(e.pageY, 0, bodyHeight, 0, 100));
+            hue = (Math.floor(map(e.pageX, 0, bodyWidth, 0, 255)) + hueOffset) % 255;
+            lightness = (Math.floor(map(e.pageY, 0, bodyHeight, 0, 100)) + lightnessOffset) % 100;
 
             // Change color
             $('#hue').text(hue);
