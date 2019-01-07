@@ -109,6 +109,22 @@
       } else {
         // Desktop
         console.log('Desktop');
+
+        $("body").mousemove(function(e) {
+            console.log(e.pageX + ', ' + e.pageY);
+            //document.Form1.posx.value = e.pageX;
+            //document.Form1.posy.value = e.pageY;
+        })
+        var e = window.event;
+
+        // X = saturation
+            /*saturation = Math.floor(map(leftRight, -90, 90, 0, 100));
+
+            // Y = lightness
+            lightness = Math.floor(map(frontBack, -180, 180, 0, 100));
+
+            // Z = hue
+            hue = Math.floor(map(rotDeg, 0, 360, 0, 255));*/
       }
 
     </script>
