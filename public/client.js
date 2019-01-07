@@ -76,6 +76,14 @@
       $('#screen').css('border-color', 'hsl(' + targetHue + ', 50%, ' + targetLightness + '%)');
 
       drawPlayers(players)
+
+      // Check for match
+      console.log('---');
+      console.log('Target: ' + $('#screen').css('border-color'));
+      console.log('User: ' + $('#screen').css('background-color'));
+      if ($('#screen').css('border-color') == $('#screen').css('background-color')) {
+        console.log('MATCH');
+      }
     }
 
     // key handling
@@ -99,13 +107,6 @@
         localDirection = 'right'
       }
     })
-
-    console.log('---');
-    console.log('Target: ' + $('#screen').css('border-color'));
-    console.log('User: ' + $('#screen').css('background-color'));
-    if ($('#screen').css('border-color') == $('#screen').css('background-color')) {
-      console.log('MATCH');
-    }
 
     function gameLoop() {
       // update game
