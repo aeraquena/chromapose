@@ -37,3 +37,37 @@ body {
   text-align: center;
   font-size: xx-large;
 }
+
+/* Chromapose */
+
+body {
+  font-family: helvetica, arial, sans serif;
+}
+.meter {
+  background: black;
+  height: 20px;
+  margin-bottom: 10px;
+}
+
+span.value {
+  font-weight: bold;
+}
+
+button {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#content {
+  display: none;
+}
+
+#screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-width: 40px;
+  border-style: solid;
+}

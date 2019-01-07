@@ -23,8 +23,6 @@ function pirateName() {
   return names[Math.floor(Math.random()*names.length)]
 }
 
-// TODO: extract below
-
 function gameLoop() {
   // move everyone around
   Object.keys(engine.players).forEach((playerId) => {
