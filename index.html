@@ -78,25 +78,26 @@
                 frontBack = event.beta;
 
                 // Left right rotation (around X-axis)
-            $('span.value.lr').text(leftRight.toFixed(2));
-            $('#lr').width(leftRight + 90);
+              $('span.value.lr').text(leftRight.toFixed(2));
+              $('#lr').width(leftRight + 90);
 
-            // Front back rotation (around Y-axis)
-            $('span.value.fb').text(frontBack.toFixed(2));
-            $('#fb').width(frontBack + 180);
+              // Front back rotation (around Y-axis)
+              $('span.value.fb').text(frontBack.toFixed(2));
+              $('#fb').width(frontBack + 180);
 
-                // Alpha rotation (around Z-axis)
-                $('span.value.rotdeg').text(rotDeg.toFixed(2));
-                $('#rotdeg').width(rotDeg);
+                  // Alpha rotation (around Z-axis)
+                  $('span.value.rotdeg').text(rotDeg.toFixed(2));
+                  $('#rotdeg').width(rotDeg);
 
-            // X = saturation
-            saturation = Math.floor(map(leftRight, -90, 90, 0, 100));
+              // X = saturation
+              saturation = Math.floor(map(leftRight, -90, 90, 0, 100));
 
-            // Y = lightness
-            lightness = Math.floor(map(frontBack, -180, 180, 0, 100));
+              // Y = lightness
+              lightness = Math.floor(map(frontBack, -180, 180, 0, 100));
 
-            // Z = hue
-            hue = Math.floor(map(rotDeg, 0, 360, 0, 255));
+              // Z = hue
+              hue = Math.floor(map(rotDeg, 0, 360, 0, 255));
+            }, true);
         }
       } else {
         // Desktop
@@ -115,15 +116,14 @@
         })
         var e = window.event;
       }
-      
+
+      // Change color
       $('#hue').text(hue);
       $('#saturation').text(saturation);
       $('#lightness').text(lightness);
 
       // Change background color
       $('#screen').css('background-color', 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)');
-      }, true);
-
     </script>
     <!-- End Chromapose -->
 
