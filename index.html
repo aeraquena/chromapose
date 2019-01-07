@@ -114,10 +114,14 @@
             // Change background color
             $('#screen').css('background-color', 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)');
 
+            // TODO: store values on the server
+            var targetHue = map(doubloon.x, 0, 2400, 0, 255);
+            var targetLightness = map(doubloon.y, 0, 2400, 0, 100);
+
             // Log target and user colors
             console.log('--');
-            console.log('Target: ' + $('#screen').css('border-color'));
-            console.log('User: ' + $('#screen').css('background-color'));
+            console.log('Target: ' + targetHue ', ' + targetLightness);
+            console.log('User: ' + hue ', ' + lightness);
         })
         var e = window.event;
       }
