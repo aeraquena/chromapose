@@ -41,19 +41,16 @@ body {
 
 body {
   font-family: helvetica, arial, sans serif;
+  font-size: 36px;
 }
-.meter {
+
+/*.meter {
   background: black;
   height: 20px;
   margin-bottom: 10px;
-}
+}*/
 
 span.value {
-  font-weight: bold;
-}
-
-button {
-  font-size: 18px;
   font-weight: bold;
 }
 
