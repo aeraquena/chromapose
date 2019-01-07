@@ -55,7 +55,8 @@ span.value {
   z-index: -1; /* temporary */
 }
 
-#playerCount {  position: absolute;
+#playerCount {  
+  position: absolute;
   bottom: 20px;
   left: 20px;
   background-image: url('./player.png');
@@ -63,4 +64,5 @@ span.value {
   padding-left: 80px;
   background-repeat: no-repeat;
   background-position: 0 2px;
+  font-size: 72px;
 }
