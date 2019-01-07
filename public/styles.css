@@ -57,10 +57,6 @@ button {
   font-weight: bold;
 }
 
-#content {
-  display: none;
-}
-
 #screen {
   position: absolute;
   top: 0;
