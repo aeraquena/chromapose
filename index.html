@@ -15,7 +15,7 @@
     <div id="screen"></div>
     <div id="content">
       <div>Hue: <span id="hue" class="value"></span></div>
-      <div>Saturation: <span id="saturation" class="value"></span>%</div>
+      <div id="saturationDiv">Saturation: <span id="saturation" class="value"></span>%</div>
       <div>Lightness: <span id="lightness" class="value"></span>%</div>
 
     </div>
@@ -85,6 +85,11 @@
 
               // Change background color
               $('#screen').css('background-color', 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)');
+
+              // Log target and user colors
+              console.log('--');
+              console.log('Target: ' + $('#screen').css('border-color'));
+              console.log('User: ' + $('#screen').css('background-color'));
             }, true);
         }
       } else {
@@ -97,9 +102,6 @@
         saturation = 50;
 
         $("body").mousemove(function(e) {
-            console.log('---');
-            console.log(e.pageX + ', ' + e.pageY);
-            console.log(bodyWidth + ', ' + bodyHeight);
 
             hue = Math.floor(map(e.pageX, 0, bodyWidth, 0, 255));
             lightness = Math.floor(map(e.pageY, 0, bodyHeight, 0, 100));
@@ -111,6 +113,11 @@
 
             // Change background color
             $('#screen').css('background-color', 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)');
+
+            // Log target and user colors
+            console.log('--');
+            console.log('Target: ' + $('#screen').css('border-color'));
+            console.log('User: ' + $('#screen').css('background-color'));
         })
         var e = window.event;
       }

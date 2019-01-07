@@ -66,3 +66,7 @@ span.value {
   background-position: 0 2px;
   font-size: 72px;
 }
+
+#saturationDiv {
+  display: none;
+}
