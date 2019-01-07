@@ -99,6 +99,14 @@
               hue = Math.floor(map(rotDeg, 0, 360, 0, 255));
             }, true);
         }
+        
+        // Change color
+        $('#hue').text(hue);
+        $('#saturation').text(saturation);
+        $('#lightness').text(lightness);
+
+        // Change background color
+        $('#screen').css('background-color', 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)');
       } else {
         // Desktop
         console.log('Desktop');
@@ -113,17 +121,18 @@
 
             hue = Math.floor(map(e.pageX, 0, bodyWidth, 0, 255));
             lightness = Math.floor(map(e.pageY, 0, bodyHeight, 0, 100));
+
+            // Change color
+            $('#hue').text(hue);
+            $('#saturation').text(saturation);
+            $('#lightness').text(lightness);
+
+            // Change background color
+            $('#screen').css('background-color', 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)');
         })
         var e = window.event;
       }
 
-      // Change color
-      $('#hue').text(hue);
-      $('#saturation').text(saturation);
-      $('#lightness').text(lightness);
-
-      // Change background color
-      $('#screen').css('background-color', 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)');
     </script>
     <!-- End Chromapose -->
 
