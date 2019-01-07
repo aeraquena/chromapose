@@ -97,35 +97,32 @@
 
             // Z = hue
             hue = Math.floor(map(rotDeg, 0, 360, 0, 255));
-
-            $('#hue').text(hue);
-            $('#saturation').text(saturation);
-            $('#lightness').text(lightness);
-
-            // Change background color
-            $('#screen').css('background-color', 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)');
-            }, true);
         }
       } else {
         // Desktop
         console.log('Desktop');
 
+        var bodyWidth = $('body').width();
+        var bodyHeight = $('body').height();
+
+        saturation = 50;
+
         $("body").mousemove(function(e) {
             console.log(e.pageX + ', ' + e.pageY);
-            //document.Form1.posx.value = e.pageX;
-            //document.Form1.posy.value = e.pageY;
+
+            hue = Math.floor(map(e.pageX, 0, bodyWidth, 0, 255));
+            lightness = Math.floor(map(e.pageY, 0, bodyHeight, 0, 100));
         })
         var e = window.event;
-
-        // X = saturation
-            /*saturation = Math.floor(map(leftRight, -90, 90, 0, 100));
-
-            // Y = lightness
-            lightness = Math.floor(map(frontBack, -180, 180, 0, 100));
-
-            // Z = hue
-            hue = Math.floor(map(rotDeg, 0, 360, 0, 255));*/
       }
+      
+      $('#hue').text(hue);
+      $('#saturation').text(saturation);
+      $('#lightness').text(lightness);
+
+      // Change background color
+      $('#screen').css('background-color', 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)');
+      }, true);
 
     </script>
     <!-- End Chromapose -->
