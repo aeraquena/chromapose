@@ -34,7 +34,7 @@
         // Clamp
         if (value < xMin) {
           return yMin;
-        } else if (value > yMax) {
+        } else if (value > xMax) {
           return yMax;
         } else {
           var result = (value - xMin) * ((yMax - yMin)/(xMax - xMin)) + yMin;
@@ -85,15 +85,6 @@
 
               // Change background color
               $('#screen').css('background-color', 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)');
-
-              // Check for match
-              /*console.log('---');
-              console.log('Target: ' + $('#screen').css('border-color'));
-              console.log('User: ' + $('#screen').css('background-color'));*/
-              
-              /*if ($('#screen').css('border-color') == $('#screen').css('background-color')) {
-                console.log('MATCH'); 
-              }*/
             }, true);
         }
       } else {
@@ -106,7 +97,9 @@
         saturation = 50;
 
         $("body").mousemove(function(e) {
-            //console.log(e.pageX + ', ' + e.pageY);
+            console.log('---');
+            console.log(e.pageX + ', ' + e.pageY);
+            console.log(bodyWidth + ', ' + bodyHeight);
 
             hue = Math.floor(map(e.pageX, 0, bodyWidth, 0, 255));
             lightness = Math.floor(map(e.pageY, 0, bodyHeight, 0, 100));
@@ -118,11 +111,6 @@
 
             // Change background color
             $('#screen').css('background-color', 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)');
-
-            // Check for match
-            /*console.log('---');
-            console.log('Target: ' + $('#screen').css('border-color'));
-            console.log('User: ' + $('#screen').css('background-color'));*/
         })
         var e = window.event;
       }
