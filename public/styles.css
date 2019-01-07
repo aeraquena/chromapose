@@ -30,18 +30,11 @@ body {
   margin
 }
 
-#header {
-  position: fixed;
-  width: 100%;
-  text-align: center;
-  font-size: xx-large;
-}
-
 /* Chromapose */
 
 body {
   font-family: helvetica, arial, sans serif;
-  font-size: 36px;
+  font-size: x-large;
 }
 
 /*.meter {
