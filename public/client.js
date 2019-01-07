@@ -79,6 +79,7 @@
     }
 
     // key handling
+    // TODO: change to emit MATCH when match is found -- or "right" hehe
     $('html').keydown(function(e) {
       if (e.key == "ArrowDown") {
         socket.emit('down', players);
@@ -98,6 +99,13 @@
         localDirection = 'right'
       }
     })
+
+    console.log('---');
+    console.log('Target: ' + $('#screen').css('border-color'));
+    console.log('User: ' + $('#screen').css('background-color'));
+    if ($('#screen').css('border-color') == $('#screen').css('background-color')) {
+      console.log('MATCH');
+    }
 
     function gameLoop() {
       // update game
