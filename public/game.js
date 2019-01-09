@@ -69,6 +69,12 @@ function shuffleDoubloon() {
 
   doubloon.x = posX
   doubloon.y = posY
+
+  // Change target color
+  //targetColor.hue = Math.floor(map(doubloon.x, 0, 2400, 0, 255));
+  //targetColor.lightness = Math.floor(map(doubloon.y, 0, 2400, 0, 100));
+  targetColor.hue = Math.floor(Math.random() * 255);
+  targetColor.lightness = Math.floor(Math.random() * 100);
 }
 
 function movePlayer(id) {

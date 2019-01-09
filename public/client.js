@@ -69,13 +69,9 @@
       ctx.lineWidth = 2;
       ctx.strokeStyle = '#003300';
       ctx.stroke();
-
-      // Move this to when doubloon scored
-
-      // Change target border color
-      //var targetHue = Math.floor(map(doubloon.x, 0, 2400, 0, 255));
-      //var targetLightness = Math.floor(map(doubloon.y, 0, 2400, 0, 100));
       
+      // Change target border color
+
       $('#screen').css('border-color', 'hsl(' + targetColor.hue + ', 100%, ' + targetColor.lightness + '%)');
       $('#targetHue').text(targetColor.hue);
       $('#targetLightness').text(targetColor.lightness);
