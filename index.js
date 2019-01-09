@@ -6,30 +6,13 @@ var engine = require('./public/game')
 
 var gameInterval, updateInterval
 
-function pirateName() {
-  var names = [
-    'Blackbeard',
-    'Jimmy',
-    'Roger',
-    'Carlos',
-    'Juanita',
-    'Sophie',
-    'Boris',
-    'Jenny',
-    'Doris',
-    'Philippe',
-    'Jack'
-  ]
-  return names[Math.floor(Math.random()*names.length)]
-}
-
 function gameLoop() {
   // move everyone around
   // can comment this out
-  Object.keys(engine.players).forEach((playerId) => {
+  /*Object.keys(engine.players).forEach((playerId) => {
     let player = engine.players[playerId]
     engine.movePlayer(playerId)
-  })
+  })*/
 }
 
 // ----------------------------------------
@@ -42,8 +25,6 @@ app.use(express.static('public'))
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
-
-
 
 function emitUpdates() {
   // tell everyone what's up
@@ -82,7 +63,7 @@ io.on('connection', function(socket){
     y: posY,
   	colour: engine.stringToColour(socket.id),
   	score: 0,
-    name: pirateName(),
+    name: "Claire",
     matching: false // the only one we'll keep
   }
 
@@ -119,20 +100,13 @@ io.on('connection', function(socket){
 
   // On match
   socket.on('match', function(msg){
-    console.log('/// SOCKET MATCH ///')
 
     engine.players[socket.id].matching = true;
-
-
-    //engine.shuffleDoubloon() // pass in socket.id
 
     var allMatching = true;
 
     // Update list of matching clients
     Object.keys(engine.players).forEach((playerId) => {
-      //let player = engine.players[playerId]
-      //engine.movePlayer(playerId)
-
       // Check if all players are matching. If one is not, exit early
       if (engine.players[playerId].matching == false) {
         allMatching = false;
@@ -143,9 +117,6 @@ io.on('connection', function(socket){
     if (allMatching) {
       engine.shuffleDoubloon();
     }
-
-    // Check whether all is matching. If so, 
-    //engine.shuffleDoubloon()
   });
 
   // On match

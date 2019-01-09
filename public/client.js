@@ -56,7 +56,6 @@
 
       // set score info
       var playerCount = Object.keys(players).length
-      var scores = ''
       var matchingPlayers = 0;
       Object.values(players).sort((a,b) => (b.score - a.score)).forEach((player, index) => {      
         if (player.matching) {
