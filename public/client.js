@@ -242,10 +242,10 @@
             // Y = lightness
             // (Map front-back to lightness) + (Random 0-100) % 100
             // 20-80
-            lightness = ((Math.floor(map(frontBack, -180, 180, 0, 80)) + hueOffset) % 80) + 20;
+            lightness = ((Math.floor(map(frontBack, -180, 180, 0, 80))) % 80) + 20;
 
             // Z = hue
-            hue = (Math.floor(map(rotDeg, 0, 360, 0, 255)) + lightnessOffset) % 255;
+            hue = (Math.floor(map(rotDeg, 0, 360, 0, 255))) % 255;
 
             // Change color
             $('#hue').text(hue);
@@ -268,20 +268,17 @@
       var bodyWidth = $('body').width();
       var bodyHeight = $('body').height();
 
-      saturation = 50;
-
       $("body").mousemove(function(e) {
 
-          hue = (Math.floor(map(e.pageX, 0, bodyWidth, 0, 255)) + hueOffset) % 255;
-          lightness = ((Math.floor(map(e.pageY, 0, bodyHeight, 0, 80)) + lightnessOffset) % 80) + 20;
+          hue = (Math.floor(map(e.pageX, 0, bodyWidth, 0, 255))) % 255;
+          lightness = Math.floor(map(e.pageY, 0, bodyHeight, 0, 100)) % 100;
 
           // Change color
           $('#hue').text(hue);
-          $('#saturation').text(saturation);
           $('#lightness').text(lightness);
 
           // Change background color
-          $('#screen').css('background-color', 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)');
+          $('#screen').css('background-color', 'hsl(' + hue + ', 50%, ' + lightness + '%)');
 
           if (!matchFound) {
             checkMatch(hue, lightness);
