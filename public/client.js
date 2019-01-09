@@ -56,13 +56,18 @@
 
       // set score info
       var playerCount = Object.keys(players).length
-      document.getElementById('playerCount').innerHTML = String(matchingPlayers) + " / " + String(playerCount)
       var scores = ''
+      var matchingPlayers = 0;
       Object.values(players).sort((a,b) => (b.score - a.score)).forEach((player, index) => {
         scores += "<p><span style='border-bottom: 1px solid " + player.colour + ";'>" + player.name + "</span> matching: " + player.matching + "</p>"
       
+        if (player.matching) {
+          matchingPlayers++;
+        }
       })
       document.getElementById('scores').innerHTML = scores
+
+      document.getElementById('playerCount').innerHTML = String(matchingPlayers) + " / " + String(playerCount)
 
       // draw doubloon
       ctx.beginPath();
