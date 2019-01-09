@@ -147,15 +147,15 @@
     // Checks match between target and user color
     function checkMatch() {
       // TODO: store values on the server
-      var targetHue = Math.floor(map(doubloon.x, 0, 2400, 0, 255));
-      var targetLightness = Math.floor(map(doubloon.y, 0, 2400, 0, 100));
+      /*var targetHue = Math.floor(map(doubloon.x, 0, 2400, 0, 255));
+      var targetLightness = Math.floor(map(doubloon.y, 0, 2400, 0, 100));*/
 
       var bound = 20; // constant
 
-      if (hue > (targetHue - bound) && hue < (targetHue + bound) &&
-        lightness > (targetLightness - bound) && lightness < (targetLightness + bound)) {
+      if (hue > (targetColor.hue - bound) && hue < (targetColor.hue + bound) &&
+        lightness > (targetColor.lightness - bound) && lightness < (targetColor.lightness + bound)) {
 
-          if (!matchState) {
+          if (matchState == false) {
             console.log('///// CLIENT MATCH /////');
             matchState = true;
             socket.emit('match', players);
