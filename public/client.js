@@ -3,6 +3,20 @@
 
     socket.on('gameStateUpdate', updateGameState);
 
+    function drawPlayers(players) {
+      // draw players
+      // the game world is 500x500, but we're downscaling 5x to smooth accel out
+      Object.keys(players).forEach((playerId) => {
+        let player = players[playerId]
+        var direction
+
+        if (playerId == socket.id) {
+        } else {
+          direction = player.direction
+        }
+      })
+    }
+
     function updateGameState(gameState) {
       // update local state to match state on server
       players = gameState.players
@@ -28,6 +42,8 @@
       $('#screen').css('border-color', 'hsl(' + targetColor.hue + ', 100%, ' + targetColor.lightness + '%)');
       $('#targetHue').text(targetColor.hue);
       $('#targetLightness').text(targetColor.lightness);
+
+      drawPlayers(players)
     }
 
     function gameLoop() {
@@ -175,6 +191,7 @@
 
     function drawGame() {
       // draw stuff
+      drawPlayers(players)
       requestAnimationFrame(drawGame)
     }
 
