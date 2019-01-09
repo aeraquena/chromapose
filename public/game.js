@@ -96,6 +96,7 @@ function movePlayer(id) {
     player.accel.y = 0
   }
 
+  // Change shuffleDoubloon to be called when player reaches MATCH
   if (checkCollision(player, doubloon)) {
     player.score += 1
     shuffleDoubloon()

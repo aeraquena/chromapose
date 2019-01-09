@@ -44,13 +44,17 @@ span.value {
   font-size: 72px;
 }
 
+#content #color-info {
+  display: none;
+}
+
 #screen {
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  border-width: 40px;
+  border-width: 20%;
   border-style: solid;
   z-index: -1; /* temporary */
 }
