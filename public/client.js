@@ -22,10 +22,7 @@
       document.getElementById('playerCount').innerHTML = String(matchingPlayers) + " / " + String(playerCount)
 
       // Change target border color
-
       $('#screen').css('border-color', 'hsl(' + targetColor.hue + ', 100%, ' + targetColor.lightness + '%)');
-      $('#targetHue').text(targetColor.hue);
-      $('#targetLightness').text(targetColor.lightness);
     }
 
     function gameLoop() {
@@ -46,9 +43,7 @@
 
     // Local variables specific to player's device
     var rotDeg, leftRight, frontBack;
-    var hue, saturation, lightness;
-    saturation = 50; // temporary
-    var targetHue, targetSaturation, targetLightness; // unused
+    var hue, lightness;
 
     var prevIsMatching = false;
 
@@ -124,9 +119,6 @@
             $('span.value.rotdeg').text(rotDeg.toFixed(2));
             $('#rotdeg').width(rotDeg);
 
-            // X = saturation
-            //saturation = Math.floor(map(leftRight, -90, 90, 0, 100));
-
             // Y = lightness
             // (Map front-back to lightness) + (Random 0-100) % 100
             // 20-80
@@ -135,13 +127,8 @@
             // Z = hue
             hue = (Math.floor(map(rotDeg, 0, 360, 0, 255))) % 255;
 
-            // Change color
-            $('#hue').text(hue);
-            $('#saturation').text(saturation);
-            $('#lightness').text(lightness);
-
             // Change background color
-            $('#screen').css('background-color', 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)');
+            $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
 
             checkMatch(hue, lightness);
           }, true);
@@ -163,7 +150,7 @@
           $('#lightness').text(lightness);
 
           // Change background color
-          $('#screen').css('background-color', 'hsl(' + hue + ', 50%, ' + lightness + '%)');
+          $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
 
           checkMatch(hue, lightness);
       })
