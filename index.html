@@ -66,6 +66,7 @@
 
         if (hue > (targetHue - bound) && hue < (targetHue + bound) &&
           lightness > (targetLightness - bound) && lightness < (targetLightness + bound)) {
+          console.log('///// CLIENT MATCH /////');
             $('#match').show();
             //shuffleDoubloon();
             socket.emit('match', players);
