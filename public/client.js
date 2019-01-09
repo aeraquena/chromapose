@@ -271,7 +271,7 @@
       $("body").mousemove(function(e) {
 
           hue = (Math.floor(map(e.pageX, 0, bodyWidth, 0, 255))) % 255;
-          lightness = Math.floor(map(e.pageY, 0, bodyHeight, 0, 100)) % 100;
+          lightness = Math.floor(map(e.pageY, 0, bodyHeight, 0, 80)) % 80;
 
           // Change color
           $('#hue').text(hue);
