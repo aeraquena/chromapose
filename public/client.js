@@ -48,6 +48,7 @@
       // update local state to match state on server
       players = gameState.players
       doubloon = gameState.doubloon
+      targetColor = gameState.targetColor
       // draw stuff
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -103,7 +104,7 @@
 
     function gameLoop() {
       // update game
-      updateGameState({players: players, doubloon: doubloon})
+      updateGameState({players: players, doubloon: doubloon, targetColor: targetColor})
       // move everyone around
       Object.keys(players).forEach((playerId) => {
         let player = players[playerId]

@@ -150,6 +150,7 @@ if (!this.navigator) { // super hacky thing to determine whether this is a node 
     gameSize: gameSize,
     isValidPosition: isValidPosition,
     doubloon: doubloon,
-    shuffleDoubloon: shuffleDoubloon
+    shuffleDoubloon: shuffleDoubloon,
+    targetColor: targetColor
   }
 }

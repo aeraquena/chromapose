@@ -46,7 +46,7 @@ app.get('/', function(req, res){
 
 function emitUpdates() {
   // tell everyone what's up
-  io.emit('gameStateUpdate', { players: engine.players, doubloon: engine.doubloon });
+  io.emit('gameStateUpdate', { players: engine.players, doubloon: engine.doubloon, targetColor: engine.targetColor });
 }
 
 io.on('connection', function(socket){
