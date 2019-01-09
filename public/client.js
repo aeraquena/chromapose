@@ -249,7 +249,9 @@
           // Change background color
           $('#screen').css('background-color', 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)');
 
-          checkMatch(hue, lightness);
+          if (!matchFound) {
+            checkMatch(hue, lightness);
+          }
       })
       var e = window.event;
     }
