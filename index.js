@@ -107,6 +107,12 @@ io.on('connection', function(socket){
   socket.on('right', function(msg) {
     engine.accelPlayer(socket.id, 1, 0)
   })
+
+  // On match
+  socket.on('match', function(msg){
+    console.log('/// SOCKET MATCH ///')
+    engine.shuffleDoubloon()
+  });
 });
 
 http.listen(process.env.PORT || 8080, function(){

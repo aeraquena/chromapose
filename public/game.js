@@ -64,8 +64,8 @@ function shuffleDoubloon() {
   }
 
   console.log('-- shuffle doubloon --');
-  console.log(posX);
-  console.log(posY);
+  //console.log(posX);
+  //console.log(posY);
 
   doubloon.x = posX
   doubloon.y = posY
