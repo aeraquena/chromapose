@@ -146,33 +146,23 @@
 
     // Checks match between target and user color
     function checkMatch() {
-      // TODO: store values on the server
-      /*var targetHue = Math.floor(map(doubloon.x, 0, 2400, 0, 255));
-      var targetLightness = Math.floor(map(doubloon.y, 0, 2400, 0, 100));*/
-
-      var bound = 20; // constant
+      var bound = 20; // TODO: make global constant
 
       if (hue > (targetColor.hue - bound) && hue < (targetColor.hue + bound) &&
         lightness > (targetColor.lightness - bound) && lightness < (targetColor.lightness + bound)) {
 
-          if (matchState == false) {
+          //if (matchState == false) {
             console.log('///// CLIENT MATCH /////');
-            matchState = true;
+            //matchState = true;
             socket.emit('match', players);
             //matchState = false;
-          } // once emitting is done, then safe to not match again...
+          //} // once emitting is done, then safe to not match again...
 
-          $('#match').show();
-          //shuffleDoubloon();
-          //socket.emit('match', players);
+          //$('#match').show();
 
-          // If match state changed from false to true!
-          // Match
-          //socket.emit('match', players);
-
-        } else {
+        }/* else {
           $('#match').hide();
-        }
+        }*/
     }
 
     // Detect if browser supports orientation
