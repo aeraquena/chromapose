@@ -58,14 +58,11 @@
       var playerCount = Object.keys(players).length
       var scores = ''
       var matchingPlayers = 0;
-      Object.values(players).sort((a,b) => (b.score - a.score)).forEach((player, index) => {
-        scores += "<p><span style='border-bottom: 1px solid " + player.colour + ";'>" + player.name + "</span> matching: " + player.matching + "</p>"
-      
+      Object.values(players).sort((a,b) => (b.score - a.score)).forEach((player, index) => {      
         if (player.matching) {
           matchingPlayers++;
         }
       })
-      document.getElementById('scores').innerHTML = scores
 
       document.getElementById('playerCount').innerHTML = String(matchingPlayers) + " / " + String(playerCount)
 
