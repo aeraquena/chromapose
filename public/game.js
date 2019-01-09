@@ -1,7 +1,7 @@
 var players = {}
 var matchingPlayers = 0;
 
-// the changing target color. hardcoded to red for now
+// the changing target color - starts as black
 var targetColor = {
   'hue': 0, 
   'lightness': 0
@@ -118,24 +118,9 @@ function accelPlayer(id, x, y) {
   }
 }
 
-// thanks SO
-function stringToColour(str) {
-  var hash = 0;
-  for (var i = 0; i < str.length; i++) {
-    hash = str.charCodeAt(i) + ((hash << 5) - hash);
-  }
-  var colour = '#';
-  for (var i = 0; i < 3; i++) {
-    var value = (hash >> (i * 8)) & 0xFF;
-    colour += ('00' + value.toString(16)).substr(-2);
-  }
-  return colour;
-}
-
 if (!this.navigator) { // determine whether this is a node module or inlined via script tag
   module.exports = {
     players: players,
-    stringToColour: stringToColour,
     accelPlayer: accelPlayer,
     movePlayer: movePlayer,
     playerSize: playerSize,

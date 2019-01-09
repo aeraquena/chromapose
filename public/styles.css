@@ -13,7 +13,7 @@ body {
   left: 0;
   bottom: 0;
   right: 0;
-  border-width: 150px;
+  border-width: 75px;
   border-style: solid;
   z-index: -1;
 }

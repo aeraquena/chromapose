@@ -53,7 +53,6 @@ io.on('connection', function(socket){
     y: posY,
   	colour: engine.stringToColour(socket.id),
   	score: 0,
-    name: "Claire",
     matching: false // the only one we'll keep
   }
 
