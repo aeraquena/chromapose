@@ -73,11 +73,12 @@
       // Move this to when doubloon scored
 
       // Change target border color
-      var targetHue = Math.floor(map(doubloon.x, 0, 2400, 0, 255));
-      var targetLightness = Math.floor(map(doubloon.y, 0, 2400, 0, 100));
-      $('#screen').css('border-color', 'hsl(' + targetHue + ', 50%, ' + targetLightness + '%)');
-      $('#targetHue').text(targetHue);
-      $('#targetLightness').text(targetLightness);
+      //var targetHue = Math.floor(map(doubloon.x, 0, 2400, 0, 255));
+      //var targetLightness = Math.floor(map(doubloon.y, 0, 2400, 0, 100));
+      
+      $('#screen').css('border-color', 'hsl(' + targetColor.hue + ', 50%, ' + targetColor.lightness + '%)');
+      $('#targetHue').text(targetColor.hue);
+      $('#targetLightness').text(targetColor.lightness);
 
       drawPlayers(players)
     }

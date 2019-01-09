@@ -10,8 +10,8 @@ const maxAccel = 10
 // the changing target color. hardcoded to red for now
 var targetColor = {
   'hue': 0, 
-  'saturation': 50, 
-  'lightness': 50};
+  'lightness': 50
+};
 
 function checkCollision(obj1, obj2) {
   // TODO: Check whether color is in range of target color? or just listen for TRUE from client?
