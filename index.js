@@ -123,7 +123,6 @@ io.on('connection', function(socket){
 
     engine.players[socket.id].matching = true;
 
-
     //engine.shuffleDoubloon() // pass in socket.id
 
     // Update list of matching clients
@@ -137,6 +136,8 @@ io.on('connection', function(socket){
     // If all are matching, shuffle target color
     if (engine.matchingPlayers == engine.players.length) {
       engine.shuffleDoubloon();
+      // reset matching players
+      engine.matchingPlayers = 0;
     }
   });
 
