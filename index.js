@@ -21,7 +21,6 @@ function emitUpdates() {
   // tell everyone what's up
   io.emit('gameStateUpdate', { 
     players: engine.players, 
-    doubloon: engine.doubloon, // remove
     targetColor: engine.targetColor,
     matchingPlayers: engine.matchingPlayers });
 }
@@ -35,23 +34,8 @@ io.on('connection', function(socket){
     updateInterval = setInterval(emitUpdates, 40)
 	}
 
-  // get open position
-  var posX = 0
-  var posY = 0
-  while (!engine.isValidPosition({ x: posX, y: posY }, socket.id)) {
-    posX = Math.floor(Math.random() * Number(engine.gameSize) - 100) + 10
-    posY = Math.floor(Math.random() * Number(engine.gameSize) - 100) + 10
-  }
-
   // add player to engine.players obj
   engine.players[socket.id] = {
-  	accel: {
-  		x: 0,
-  		y: 0
-  	},
-  	x: posX,
-    y: posY,
-  	score: 0,
     matching: false // the only one we'll keep
   }
 

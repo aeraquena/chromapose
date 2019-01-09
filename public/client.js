@@ -12,7 +12,7 @@
       // Calculate matching players
       var playerCount = Object.keys(players).length
       var matchingPlayers = 0;
-      Object.values(players).sort((a,b) => (b.score - a.score)).forEach((player, index) => {      
+      Object.values(players).forEach((player, index) => {      
         if (player.matching) {
           matchingPlayers++;
         }
@@ -31,11 +31,6 @@
         players: players, 
         targetColor: targetColor,
         matchingPlayers: matchingPlayers})
-      // move everyone around
-      Object.keys(players).forEach((playerId) => {
-        let player = players[playerId]
-        movePlayer(playerId)
-      })
     }
 
     // Begin Chromapose
