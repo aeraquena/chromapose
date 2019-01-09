@@ -112,13 +112,16 @@
       })
     }
 
-    // dump all my index shit
+    // Begin Chromapose
     // MOVEMENT
 
+    // Local variables specific to player's device
     var rotDeg, leftRight, frontBack;
     var hue, saturation, lightness;
     saturation = 50; // temporary
     var targetHue, targetSaturation, targetLightness; // unused
+
+    var matchState = false;
 
     //var hueOffset = Math.floor(Math.random() * 255);
     //var lightnessOffset = Math.floor(Math.random() * 100);
@@ -151,11 +154,19 @@
 
       if (hue > (targetHue - bound) && hue < (targetHue + bound) &&
         lightness > (targetLightness - bound) && lightness < (targetLightness + bound)) {
-        console.log('///// CLIENT MATCH /////');
+
+          if (!matchState) {
+            console.log('///// CLIENT MATCH /////');
+            matchState = true;
+            socket.emit('match', players);
+            //matchState = false;
+          } // once emitting is done, then safe to not match again...
+
           $('#match').show();
           //shuffleDoubloon();
           //socket.emit('match', players);
 
+          // If match state changed from false to true!
           // Match
           //socket.emit('match', players);
 
