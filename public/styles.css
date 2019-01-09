@@ -1,6 +1,6 @@
 body {
   background: #000;
-  height: 95vh; /* necessary for desktop body height to not be 0 */
+  height: 95vh;
 }
 
 .sidebar {

@@ -271,14 +271,14 @@
       $("body").mousemove(function(e) {
 
           hue = (Math.floor(map(e.pageX, 0, bodyWidth, 0, 255))) % 255;
-          lightness = Math.floor(map(e.pageY, 0, bodyHeight, 0, 80)) % 80;
+          lightness = Math.floor(map(e.pageY, 0, bodyHeight, 0, 100)) % 100;
 
           // Change color
           $('#hue').text(hue);
           $('#lightness').text(lightness);
 
           // Change background color
-          $('#screen').css('background-color', 'hsl(' + hue + ', 50%, ' + lightness + '%)'); 
+          $('#screen').css('background-color', 'hsl(' + hue + ', 50%, ' + lightness + '%)');
 
           if (!matchFound) {
             checkMatch(hue, lightness);
