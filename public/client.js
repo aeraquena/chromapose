@@ -58,7 +58,8 @@
       document.getElementById('playerCount').innerHTML = String(playerCount)
       var scores = ''
       Object.values(players).sort((a,b) => (b.score - a.score)).forEach((player, index) => {
-        scores += "<p><span style='border-bottom: 1px solid " + player.colour + ";'>" + player.name + "</span> has " + player.score + " doubloons</p>"
+        scores += "<p><span style='border-bottom: 1px solid " + player.colour + ";'>" + player.name + "</span> matching: " + player.matching + "</p>"
+      
       })
       document.getElementById('scores').innerHTML = scores
 
@@ -180,8 +181,6 @@
         }
 
         prevIsMatching = isMatching;
-
-        console.log(gameState.players);
       }
 
       /*if (hue > (targetColor.hue - bound) && hue < (targetColor.hue + bound) &&
