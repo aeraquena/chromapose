@@ -131,6 +131,7 @@
     //console.log('lightness offset: ' + lightnessOffset);
 
     var matchFound = false;
+    var matchTimeout;
 
     // Map value from one range onto another
     function map(value, xMin, xMax, yMin, yMax) {
@@ -158,10 +159,12 @@
             //matchState = true;
             matchFound = true;
             socket.emit('match', players);
-            setTimeout(function() {
+            
+            clearTimeout(matchTimeout);
+            matchTimeout = setTimeout(function() {
               console.log('///// CLIENT UNMATCH /////')
               matchFound = false;
-            }, 100);
+            }, 250);
             //matchState = false;
           //} // once emitting is done, then safe to not match again...
 
