@@ -47,7 +47,11 @@ app.get('/', function(req, res){
 
 function emitUpdates() {
   // tell everyone what's up
-  io.emit('gameStateUpdate', { players: engine.players, doubloon: engine.doubloon, targetColor: engine.targetColor });
+  io.emit('gameStateUpdate', { 
+    players: engine.players, 
+    doubloon: engine.doubloon, 
+    targetColor: engine.targetColor,
+    matchingPlayers: engine.matchingPlayers });
 }
 
 // On new player connect
@@ -122,26 +126,18 @@ io.on('connection', function(socket){
 
     //engine.shuffleDoubloon() // pass in socket.id
 
-    var allMatching = true;
-
     // Update list of matching clients
     Object.keys(engine.players).forEach((playerId) => {
-      //let player = engine.players[playerId]
-      //engine.movePlayer(playerId)
-
-      // Check if all players are matching. If one is not, exit early
-      if (engine.players[playerId].matching == false) {
-        allMatching = false;
-        return false;
+      // Count matching players
+      if (engine.players[playerId].matching) {
+        engine.matchingPlayers++;
       }
     })
 
-    if (allMatching) {
+    // If all are matching, shuffle target color
+    if (engine.matchingPlayers == engine.players.length) {
       engine.shuffleDoubloon();
     }
-
-    // Check whether all is matching. If so, 
-    //engine.shuffleDoubloon()
   });
 
   // On match
@@ -150,6 +146,14 @@ io.on('connection', function(socket){
     // Update list of matching clients
 
     engine.players[socket.id].matching = false;
+
+    Object.keys(engine.players).forEach((playerId) => {
+      // Count matching players
+      if (engine.players[playerId].matching) {
+        engine.matchingPlayers++;
+      }
+    })
+
   });
 });
 

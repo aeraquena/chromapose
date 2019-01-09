@@ -49,13 +49,14 @@
       players = gameState.players
       doubloon = gameState.doubloon
       targetColor = gameState.targetColor
+      matchingPlayers = gameState.matchingPlayers
       // draw stuff
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // set score info
       var playerCount = Object.keys(players).length
-      document.getElementById('playerCount').innerHTML = String(playerCount)
+      document.getElementById('playerCount').innerHTML = String(matchingPlayers) + " / " + String(playerCount)
       var scores = ''
       Object.values(players).sort((a,b) => (b.score - a.score)).forEach((player, index) => {
         scores += "<p><span style='border-bottom: 1px solid " + player.colour + ";'>" + player.name + "</span> matching: " + player.matching + "</p>"
@@ -105,7 +106,11 @@
 
     function gameLoop() {
       // update game
-      updateGameState({players: players, doubloon: doubloon, targetColor: targetColor})
+      updateGameState({
+        players: players, 
+        doubloon: doubloon, 
+        targetColor: targetColor,
+        matchingPlayers: matchingPlayers})
       // move everyone around
       Object.keys(players).forEach((playerId) => {
         let player = players[playerId]

@@ -1,17 +1,20 @@
 var players = {}
-var doubloon = {} // the thing everyone's chasing
-
-const gameSize = 2500; // will be downscaled 5x to 500x500 when we draw
-
-const playerSize = 100; // (downscaled to 20x20)
-const doubloonSize = 50
-const maxAccel = 10
+var matchingPlayers = 0;
 
 // the changing target color. hardcoded to red for now
 var targetColor = {
   'hue': 0, 
   'lightness': 0
 };
+
+// remove below this
+var doubloon = {} // the thing everyone's chasing // unused
+
+const gameSize = 2500; // will be downscaled 5x to 500x500 when we draw
+
+const playerSize = 100; // (downscaled to 20x20)
+const doubloonSize = 50
+const maxAccel = 10
 
 function checkCollision(obj1, obj2) {
   // TODO: Check whether color is in range of target color? or just listen for TRUE from client?
@@ -146,6 +149,7 @@ if (!this.navigator) { // super hacky thing to determine whether this is a node 
     isValidPosition: isValidPosition,
     doubloon: doubloon,
     shuffleDoubloon: shuffleDoubloon,
-    targetColor: targetColor
+    targetColor: targetColor,
+    matchingPlayers: matchingPlayers
   }
 }
