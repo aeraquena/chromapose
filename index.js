@@ -6,15 +6,6 @@ var engine = require('./public/game')
 
 var gameInterval, updateInterval
 
-function gameLoop() {
-  // move everyone around
-  // can comment this out
-  /*Object.keys(engine.players).forEach((playerId) => {
-    let player = engine.players[playerId]
-    engine.movePlayer(playerId)
-  })*/
-}
-
 // ----------------------------------------
 // Main server code
 // ----------------------------------------
@@ -41,7 +32,6 @@ io.on('connection', function(socket){
   // start game if this is the first player
   if (Object.keys(engine.players).length == 0) {
     engine.shuffleDoubloon()
-  	gameInterval = setInterval(gameLoop, 25)
     updateInterval = setInterval(emitUpdates, 40)
 	}
 
