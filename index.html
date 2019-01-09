@@ -67,7 +67,7 @@
         if (hue > (targetHue - bound) && hue < (targetHue + bound) &&
           lightness > (targetLightness - bound) && lightness < (targetLightness + bound)) {
             $('#match').show();
-            engine.shuffleDoubloon();
+            shuffleDoubloon();
           } else {
             $('#match').hide();
           }
