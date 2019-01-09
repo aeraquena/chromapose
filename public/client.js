@@ -1,7 +1,5 @@
   $(function () {
     var socket = io();
-    var canvas = document.getElementById('game');
-    var ctx = canvas.getContext('2d');
     // var players = {}; // this is magically defined in game.js
 
     var localDirection // used to display accel direction
@@ -15,31 +13,10 @@
         let player = players[playerId]
         var direction
 
-        ctx.fillStyle = player.colour;
-        ctx.fillRect(player.x/5, player.y/5, playerSize/5, playerSize/5);
-
         if (playerId == socket.id) {
           direction = localDirection
         } else {
           direction = player.direction
-        }
-        // draw accel direction for current player based on local variable
-        // the idea here is to give players instant feedback when they hit a key
-        // to mask the server lag
-        ctx.fillStyle = 'black';
-        let accelWidth = 3
-        switch(direction) {
-          case 'up':
-            ctx.fillRect(player.x/5, player.y/5 - accelWidth, playerSize/5, accelWidth);
-            break
-          case 'down':
-            ctx.fillRect(player.x/5, player.y/5  + playerSize/5, playerSize/5, accelWidth);
-            break
-          case 'left':
-            ctx.fillRect(player.x/5 - accelWidth, player.y/5, accelWidth, playerSize/5);
-            break
-          case 'right':
-            ctx.fillRect(player.x/5 + playerSize/5, player.y/5, accelWidth, playerSize/5);
         }
       })
     }
@@ -52,7 +29,6 @@
       matchingPlayers = gameState.matchingPlayers
       // draw stuff
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // set score info
       var playerCount = Object.keys(players).length
@@ -65,15 +41,6 @@
 
       document.getElementById('playerCount').innerHTML = String(matchingPlayers) + " / " + String(playerCount)
 
-      // draw doubloon
-      ctx.beginPath();
-      ctx.arc((doubloon.x + doubloonSize/2)/5, (doubloon.y + doubloonSize/2)/5, doubloonSize/5, 0, 2 * Math.PI, false);
-      ctx.fillStyle = 'gold';
-      ctx.fill();
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = '#003300';
-      ctx.stroke();
-      
       // Change target border color
 
       $('#screen').css('border-color', 'hsl(' + targetColor.hue + ', 100%, ' + targetColor.lightness + '%)');
