@@ -158,12 +158,14 @@
             console.log('///// CLIENT MATCH /////');
             //matchState = true;
             matchFound = true;
-            socket.emit('match', players);
+            $('#screen').addClass('match');
+            //socket.emit('match', players);
 
             clearTimeout(matchTimeout);
             matchTimeout = setTimeout(function() {
               console.log('///// CLIENT UNMATCH /////')
               matchFound = false;
+              //$('#screen').removeClass('match');
             }, 250);
             //matchState = false;
           //} // once emitting is done, then safe to not match again...

@@ -55,10 +55,10 @@ span.value {
   border-width: 150px;
   border-style: solid;
   z-index: -1; /* temporary */
-  animation: pulse 1s infinite;
 }
 
 #screen.match {
+  animation: pulse 1s infinite;
 }
 
 @keyframes pulse {

@@ -111,7 +111,7 @@ io.on('connection', function(socket){
   // On match
   socket.on('match', function(msg){
     console.log('/// SOCKET MATCH ///')
-    engine.shuffleDoubloon()
+    engine.shuffleDoubloon() // pass in socket.id
   });
 });
 
