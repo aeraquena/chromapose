@@ -130,6 +130,8 @@
     //console.log('hue offset: ' + hueOffset);
     //console.log('lightness offset: ' + lightnessOffset);
 
+    var matchFound = false;
+
     // Map value from one range onto another
     function map(value, xMin, xMax, yMin, yMax) {
 
@@ -154,7 +156,12 @@
           //if (matchState == false) {
             console.log('///// CLIENT MATCH /////');
             //matchState = true;
+            matchFound = true;
             socket.emit('match', players);
+            setTimeout(function() {
+              console.log('///// CLIENT UNMATCH /////')
+              matchFound = false;
+            }, 100);
             //matchState = false;
           //} // once emitting is done, then safe to not match again...
 
@@ -211,7 +218,9 @@
             // Change background color
             $('#screen').css('background-color', 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)');
 
-            checkMatch(hue, lightness);
+            if (!matchFound) {
+              checkMatch(hue, lightness);
+            }
           }, true);
       }
     } else {
