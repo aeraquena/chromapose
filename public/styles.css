@@ -5,11 +5,6 @@ body {
 }
 
 .sidebar {
-  display: flex;
-  flex-direction: column;
-  width: 200px;
-  margin-top: auto;
-  margin-bottom: auto;
 }
 
 #game {
@@ -44,9 +39,14 @@ span.value {
   font-size: 72px;
 }
 
-/*#content #color-info {
+#content #color-info {
   display: none;
-}*/
+}
+
+/* pirate game */
+#game {
+  display: none;
+}
 
 #screen {
   position: absolute;
