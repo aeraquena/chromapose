@@ -149,7 +149,7 @@
 
     // Checks match between target and user color
     function checkMatch() {
-      var bound = 20; // TODO: make global constant
+      var bound = 5; // TODO: make global constant
 
       if (hue > (targetColor.hue - bound) && hue < (targetColor.hue + bound) &&
         lightness > (targetColor.lightness - bound) && lightness < (targetColor.lightness + bound)) {
@@ -159,7 +159,7 @@
             //matchState = true;
             matchFound = true;
             socket.emit('match', players);
-            
+
             clearTimeout(matchTimeout);
             matchTimeout = setTimeout(function() {
               console.log('///// CLIENT UNMATCH /////')
