@@ -60,18 +60,12 @@ function changeTargetColor() {
     posY = Math.floor(Math.random() * Number(gameSize) - 100) + 10
   }
 
-  console.log('-- shuffle doubloon --');
-  //console.log(posX);
-  //console.log(posY);
-
   doubloon.x = posX
   doubloon.y = posY
 
   // Change target color
-  //targetColor.hue = Math.floor(map(doubloon.x, 0, 2400, 0, 255));
-  //targetColor.lightness = Math.floor(map(doubloon.y, 0, 2400, 0, 100));
   targetColor.hue = Math.floor(Math.random() * 255);
-  targetColor.lightness = Math.floor(Math.random() * 80) + 20; // 20-80
+  targetColor.lightness = Math.floor(Math.random() * 80) + 20; // 20-80% range
 }
 
 function movePlayer(id) {

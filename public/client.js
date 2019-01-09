@@ -1,7 +1,7 @@
   $(function () {
     var socket = io();
-    // var players = {}; // this is magically defined in game.js
 
+    // remove
     var localDirection // used to display accel direction
 
     socket.on('gameStateUpdate', updateGameState);
@@ -97,13 +97,6 @@
 
     var prevIsMatching = false;
 
-    //var hueOffset = Math.floor(Math.random() * 255);
-    //var lightnessOffset = Math.floor(Math.random() * 100);
-    var hueOffset = 0;
-    var lightnessOffset = 0;
-    //console.log('hue offset: ' + hueOffset);
-    //console.log('lightness offset: ' + lightnessOffset);
-
     var matchFound = false;
     var matchTimeout;
 
@@ -134,8 +127,6 @@
         if (isMatching) {
             // Client has changed to match colors
 
-            console.log('///// CLIENT MATCH /////');
-
             // Add visual match indicator
             $('#screen').addClass('match');
 
@@ -143,8 +134,6 @@
             socket.emit('match', players);
         } else {
           // Client has changed to not match colors
-
-          console.log('///// CLIENT UNMATCH /////');
           
           // Remove visual match indicator
           $('#screen').removeClass('match');
@@ -155,38 +144,11 @@
 
         prevIsMatching = isMatching;
       }
-
-      /*if (hue > (targetColor.hue - bound) && hue < (targetColor.hue + bound) &&
-        lightness > (targetColor.lightness - bound) && lightness < (targetColor.lightness + bound)) {*/
-
-
-          /*if (matchState != prevMatchState) {
-            console.log('///// CLIENT MATCH /////');
-            //matchState = true;
-            matchFound = true;
-            $('#screen').addClass('match');
-            //socket.emit('match', players);
-
-            clearTimeout(matchTimeout);
-            matchTimeout = setTimeout(function() {
-              console.log('///// CLIENT UNMATCH /////')
-              matchFound = false;
-              //$('#screen').removeClass('match');
-            }, 250);*/
-            //matchState = false;
-          //} // once emitting is done, then safe to not match again...
-
-          //$('#match').show();
-
-        /*} else {
-          $('#match').hide();
-        }*/
     }
 
     // Detect if browser supports orientation
     if (typeof window.orientation !== 'undefined') { 
       // Mobile
-      console.log('Mobile');
 
       // Device orientation
       if (window.DeviceOrientationEvent) {
@@ -236,7 +198,6 @@
       }
     } else {
       // Desktop
-      console.log('Desktop');
       $('#content').css('font-size', '18px');
 
       var bodyWidth = $('body').width();

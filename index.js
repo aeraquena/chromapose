@@ -111,7 +111,6 @@ io.on('connection', function(socket){
 
   // On match
   socket.on('unmatch', function(msg){
-    console.log('/// SOCKET UNMATCH ///')
     // Update list of matching clients
 
     engine.players[socket.id].matching = false;
