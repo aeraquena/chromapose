@@ -23,10 +23,8 @@
       doubloon = gameState.doubloon
       targetColor = gameState.targetColor
       matchingPlayers = gameState.matchingPlayers
-      // draw stuff
 
-
-      // set score info
+      // Show score
       var playerCount = Object.keys(players).length
       var matchingPlayers = 0;
       Object.values(players).sort((a,b) => (b.score - a.score)).forEach((player, index) => {      
@@ -43,7 +41,7 @@
       $('#targetHue').text(targetColor.hue);
       $('#targetLightness').text(targetColor.lightness);
 
-      drawPlayers(players)
+      //drawPlayers(players)
     }
 
     function gameLoop() {
