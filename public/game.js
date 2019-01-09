@@ -132,7 +132,7 @@ function stringToColour(str) {
   return colour;
 }
 
-if (!this.navigator) { // super hacky thing to determine whether this is a node module or inlined via script tag
+if (!this.navigator) { // determine whether this is a node module or inlined via script tag
   module.exports = {
     players: players,
     stringToColour: stringToColour,
