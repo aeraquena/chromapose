@@ -70,22 +70,6 @@ io.on('connection', function(socket){
   	}
   })
 
-  socket.on('up', function(msg){
-    engine.accelPlayer(socket.id, 0, -1)
-  });
-
-  socket.on('down', function(msg) {
-    engine.accelPlayer(socket.id, 0, 1)
-  })
-
-  socket.on('left', function(msg){
-    engine.accelPlayer(socket.id, -1, 0)
-  });
-
-  socket.on('right', function(msg) {
-    engine.accelPlayer(socket.id, 1, 0)
-  })
-
   // On match
   socket.on('match', function(msg){
 

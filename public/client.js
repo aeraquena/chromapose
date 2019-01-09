@@ -50,28 +50,6 @@
       drawPlayers(players)
     }
 
-    // key handling
-    // TODO: change to emit MATCH when match is found -- or "right" hehe
-    $('html').keydown(function(e) {
-      if (e.key == "ArrowDown") {
-        socket.emit('down', players);
-        accelPlayer(socket.id, 0, 1)
-        localDirection = 'down'
-      } else if (e.key == "ArrowUp") {
-        socket.emit('up', players);
-        accelPlayer(socket.id, 0, -1)
-        localDirection = 'up'
-      } else if (e.key == "ArrowLeft") {
-        socket.emit('left', players);
-        accelPlayer(socket.id, -1, 0)
-        localDirection = 'left'
-      } else if (e.key == "ArrowRight") {
-        socket.emit('right', players);
-        accelPlayer(socket.id, 1, 0)
-        localDirection = 'right'
-      }
-    })
-
     function gameLoop() {
       // update game
       updateGameState({
@@ -96,9 +74,6 @@
     var targetHue, targetSaturation, targetLightness; // unused
 
     var prevIsMatching = false;
-
-    var matchFound = false;
-    var matchTimeout;
 
     // Map value from one range onto another
     function map(value, xMin, xMax, yMin, yMax) {
@@ -191,9 +166,7 @@
             // Change background color
             $('#screen').css('background-color', 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)');
 
-            if (!matchFound) {
-              checkMatch(hue, lightness);
-            }
+            checkMatch(hue, lightness);
           }, true);
       }
     } else {
@@ -215,9 +188,7 @@
           // Change background color
           $('#screen').css('background-color', 'hsl(' + hue + ', 50%, ' + lightness + '%)');
 
-          if (!matchFound) {
-            checkMatch(hue, lightness);
-          }
+          checkMatch(hue, lightness);
       })
       var e = window.event;
     }
