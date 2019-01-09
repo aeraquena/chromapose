@@ -119,8 +119,6 @@ io.on('connection', function(socket){
 
     engine.players[socket.id].matching = true;
 
-    console.log(engine.players);
-
     //engine.shuffleDoubloon() // pass in socket.id
 
     // Update list of matching clients
@@ -135,8 +133,6 @@ io.on('connection', function(socket){
     // Update list of matching clients
 
     engine.players[socket.id].matching = false;
-
-    console.log(engine.players);
   });
 });
 

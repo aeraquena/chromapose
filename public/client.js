@@ -180,6 +180,8 @@
         }
 
         prevIsMatching = isMatching;
+
+        console.log(gameState.players);
       }
 
       /*if (hue > (targetColor.hue - bound) && hue < (targetColor.hue + bound) &&
