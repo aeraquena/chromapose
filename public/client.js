@@ -6,11 +6,10 @@
     function updateGameState(gameState) {
       // update local state to match state on server
       players = gameState.players
-      doubloon = gameState.doubloon
       targetColor = gameState.targetColor
       matchingPlayers = gameState.matchingPlayers
 
-      // Show score
+      // Calculate matching players
       var playerCount = Object.keys(players).length
       var matchingPlayers = 0;
       Object.values(players).sort((a,b) => (b.score - a.score)).forEach((player, index) => {      
@@ -19,6 +18,7 @@
         }
       })
 
+      // Show matching players and total players
       document.getElementById('playerCount').innerHTML = String(matchingPlayers) + " / " + String(playerCount)
 
       // Change target border color
@@ -32,7 +32,6 @@
       // update game
       updateGameState({
         players: players, 
-        doubloon: doubloon, 
         targetColor: targetColor,
         matchingPlayers: matchingPlayers})
       // move everyone around
@@ -178,5 +177,4 @@
 
     setInterval(gameLoop, 25)
     requestAnimationFrame(drawGame)
-
   });
