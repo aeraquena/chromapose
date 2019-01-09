@@ -207,7 +207,8 @@
 
             // Y = lightness
             // (Map front-back to lightness) + (Random 0-100) % 100
-            lightness = (Math.floor(map(frontBack, -180, 180, 0, 100)) + hueOffset) % 100;
+            // 20-80
+            lightness = ((Math.floor(map(frontBack, -180, 180, 0, 80)) + hueOffset) % 80) + 20;
 
             // Z = hue
             hue = (Math.floor(map(rotDeg, 0, 360, 0, 255)) + lightnessOffset) % 255;
@@ -236,7 +237,7 @@
       $("body").mousemove(function(e) {
 
           hue = (Math.floor(map(e.pageX, 0, bodyWidth, 0, 255)) + hueOffset) % 255;
-          lightness = (Math.floor(map(e.pageY, 0, bodyHeight, 0, 100)) + lightnessOffset) % 100;
+          lightness = ((Math.floor(map(e.pageY, 0, bodyHeight, 0, 80)) + lightnessOffset) % 80) + 20;
 
           // Change color
           $('#hue').text(hue);
