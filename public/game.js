@@ -50,7 +50,7 @@ function isValidPosition(newPosition, playerId) {
 }
 
 // Update target color
-function shuffleDoubloon() {
+function changeTargetColor() {
 
   var posX = Math.floor(Math.random() * Number(gameSize) - 100) + 10
   var posY = Math.floor(Math.random() * Number(gameSize) - 100) + 10
@@ -93,10 +93,10 @@ function movePlayer(id) {
     player.accel.y = 0
   }
 
-  // Change shuffleDoubloon to be called when player reaches MATCH
+  // Change changeTargetColor to be called when player reaches MATCH
   if (checkCollision(player, doubloon)) {
     player.score += 1
-    shuffleDoubloon()
+    changeTargetColor()
   }
 }
 
@@ -148,7 +148,7 @@ if (!this.navigator) { // super hacky thing to determine whether this is a node 
     gameSize: gameSize,
     isValidPosition: isValidPosition,
     doubloon: doubloon,
-    shuffleDoubloon: shuffleDoubloon,
+    changeTargetColor: changeTargetColor,
     targetColor: targetColor,
     matchingPlayers: matchingPlayers
   }

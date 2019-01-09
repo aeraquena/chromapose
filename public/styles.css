@@ -3,42 +3,10 @@ body {
   height: 100vh;
 }
 
-.sidebar {
-}
-
-#game {
-  border: 2px solid black;
-  margin: auto;
-  margin-left: 50px;
-}
-
 /* Chromapose */
 
 body {
   font-family: helvetica, arial, sans serif;
-}
-
-/*.meter {
-  background: black;
-  height: 20px;
-  margin-bottom: 10px;
-}*/
-
-span.value {
-  font-weight: bold;
-}
-
-#content {
-  font-size: 72px;
-}
-
-#content #color-info {
-  display: none;
-}
-
-/* pirate game */
-#game {
-  display: none;
 }
 
 #screen {
@@ -49,7 +17,7 @@ span.value {
   right: 0;
   border-width: 150px;
   border-style: solid;
-  z-index: -1; /* temporary */
+  z-index: -1;
 }
 
 #screen.match {
@@ -87,13 +55,4 @@ span.value {
   background-repeat: no-repeat;
   background-position: 0 2px;
   font-size: 72px;
-}
-
-#saturationDiv {
-  display: none;
-}
-
-#match {
-  display: none;
-  font-weight: bold;
 }

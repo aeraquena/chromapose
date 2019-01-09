@@ -21,7 +21,7 @@ function emitUpdates() {
   // tell everyone what's up
   io.emit('gameStateUpdate', { 
     players: engine.players, 
-    doubloon: engine.doubloon, 
+    doubloon: engine.doubloon, // remove
     targetColor: engine.targetColor,
     matchingPlayers: engine.matchingPlayers });
 }
@@ -31,7 +31,7 @@ io.on('connection', function(socket){
   console.log('User connected: ', socket.id)
   // start game if this is the first player
   if (Object.keys(engine.players).length == 0) {
-    engine.shuffleDoubloon()
+    engine.changeTargetColor()
     updateInterval = setInterval(emitUpdates, 40)
 	}
 
@@ -105,7 +105,7 @@ io.on('connection', function(socket){
     })
 
     if (allMatching) {
-      engine.shuffleDoubloon();
+      engine.changeTargetColor();
     }
   });
 
