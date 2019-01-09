@@ -149,7 +149,7 @@
 
     // Checks match between target and user color
     function checkMatch() {
-      var bound = 15; // TODO: make global constant
+      var bound = 12; // TODO: make global constant
 
       if (hue > (targetColor.hue - bound) && hue < (targetColor.hue + bound) &&
         lightness > (targetColor.lightness - bound) && lightness < (targetColor.lightness + bound)) {
