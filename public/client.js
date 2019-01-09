@@ -121,7 +121,7 @@
     saturation = 50; // temporary
     var targetHue, targetSaturation, targetLightness; // unused
 
-    var matchState = false;
+    var prevIsMatching = false;
 
     //var hueOffset = Math.floor(Math.random() * 255);
     //var lightnessOffset = Math.floor(Math.random() * 100);
@@ -151,10 +151,42 @@
     function checkMatch() {
       var bound = 12; // TODO: make global constant
 
-      if (hue > (targetColor.hue - bound) && hue < (targetColor.hue + bound) &&
-        lightness > (targetColor.lightness - bound) && lightness < (targetColor.lightness + bound)) {
+      // Is player within the target color bounds?
+      var isMatching = hue > (targetColor.hue - bound) && hue < (targetColor.hue + bound) &&
+        lightness > (targetColor.lightness - bound) && lightness < (targetColor.lightness + bound);
 
-          //if (matchState == false) {
+        // Only send a socket signal + change screen state if match state has changed
+      if (isMatching != prevIsMatching) {
+        if (isMatching) {
+            // Client has changed to match colors
+
+            console.log('///// CLIENT MATCH /////');
+
+            // Add visual match indicator
+            $('#screen').addClass('match');
+
+            // Send match to socket
+            //socket.emit('match', players);
+        } else {
+          // Client has changed to not match colors
+
+          console.log('///// CLIENT UNMATCH /////');
+          
+          // Remove visual match indicator
+          $('#screen').removeClass('match');
+
+          // Send unmatch to socket
+          //socket.emit('unmatch', players);
+        }
+
+        prevIsMatching = isMatching;
+      }
+
+      /*if (hue > (targetColor.hue - bound) && hue < (targetColor.hue + bound) &&
+        lightness > (targetColor.lightness - bound) && lightness < (targetColor.lightness + bound)) {*/
+
+
+          /*if (matchState != prevMatchState) {
             console.log('///// CLIENT MATCH /////');
             //matchState = true;
             matchFound = true;
@@ -166,13 +198,13 @@
               console.log('///// CLIENT UNMATCH /////')
               matchFound = false;
               //$('#screen').removeClass('match');
-            }, 250);
+            }, 250);*/
             //matchState = false;
           //} // once emitting is done, then safe to not match again...
 
           //$('#match').show();
 
-        }/* else {
+        /*} else {
           $('#match').hide();
         }*/
     }

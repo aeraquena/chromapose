@@ -29,7 +29,7 @@ function isValidPosition(newPosition, playerId) {
   // collision check
   var hasCollided = false
 
-
+  // For each player, check if they have collided with the doubloon
   Object.keys(players).forEach((key) => {
     if (key == playerId) { return } // ignore current player in collision check
     player = players[key]

@@ -25,6 +25,7 @@ function pirateName() {
 
 function gameLoop() {
   // move everyone around
+  // can comment this out
   Object.keys(engine.players).forEach((playerId) => {
     let player = engine.players[playerId]
     engine.movePlayer(playerId)
