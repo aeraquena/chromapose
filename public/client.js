@@ -33,8 +33,7 @@
         matchingPlayers: matchingPlayers})
     }
 
-    // Begin Chromapose
-    // MOVEMENT
+    /* Movement */
 
     // Local variables specific to player's device
     var rotDeg, leftRight, frontBack;
@@ -44,7 +43,6 @@
 
     // Map value from one range onto another
     function map(value, xMin, xMax, yMin, yMax) {
-
       // Clamp
       if (value < xMin) {
         return yMin;
@@ -64,7 +62,7 @@
       var isMatching = hue > (targetColor.hue - bound) && hue < (targetColor.hue + bound) &&
         lightness > (targetColor.lightness - bound) && lightness < (targetColor.lightness + bound);
 
-        // Only send a socket signal + change screen state if match state has changed
+      // Only send a socket signal + change screen state if match state has changed
       if (isMatching != prevIsMatching) {
         if (isMatching) {
             // Client has changed to match colors

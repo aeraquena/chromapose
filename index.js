@@ -22,7 +22,8 @@ function emitUpdates() {
   io.emit('gameStateUpdate', { 
     players: engine.players, 
     targetColor: engine.targetColor,
-    matchingPlayers: engine.matchingPlayers });
+    matchingPlayers: engine.matchingPlayers 
+  });
 }
 
 // On new player connect
