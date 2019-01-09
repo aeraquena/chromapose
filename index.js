@@ -119,9 +119,26 @@ io.on('connection', function(socket){
 
     engine.players[socket.id].matching = true;
 
+
     //engine.shuffleDoubloon() // pass in socket.id
 
+    var allMatching = true;
+
     // Update list of matching clients
+    Object.keys(engine.players).forEach((playerId) => {
+      //let player = engine.players[playerId]
+      //engine.movePlayer(playerId)
+
+      // Check if all players are matching. If one is not, exit early
+      if (engine.players[playerId].matching == false) {
+        allMatching = false;
+        return false;
+      }
+    })
+
+    if (allMatching) {
+      engine.shuffleDoubloon();
+    }
 
     // Check whether all is matching. If so, 
     //engine.shuffleDoubloon()

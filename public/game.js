@@ -49,12 +49,6 @@ function isValidPosition(newPosition, playerId) {
 // Update target color
 function shuffleDoubloon() {
 
-  // Generates a target color
-  /* targetHue = Math.floor(Math.random() * 255);
-  targetSaturation = Math.floor(Math.random() * 100);
-  targetLightness = Math.floor(Math.random() * 100);
-  */
-
   var posX = Math.floor(Math.random() * Number(gameSize) - 100) + 10
   var posY = Math.floor(Math.random() * Number(gameSize) - 100) + 10
 
