@@ -99,6 +99,10 @@
         socket.emit('right', players);
         accelPlayer(socket.id, 1, 0)
         localDirection = 'right'
+      
+        // Match
+        console.log('/// RIGHT MATCH ///');
+        socket.emit('match', players);
       }
     })
 
