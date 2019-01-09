@@ -166,7 +166,7 @@
             $('#screen').addClass('match');
 
             // Send match to socket
-            //socket.emit('match', players);
+            socket.emit('match', players);
         } else {
           // Client has changed to not match colors
 
@@ -176,7 +176,7 @@
           $('#screen').removeClass('match');
 
           // Send unmatch to socket
-          //socket.emit('unmatch', players);
+          socket.emit('unmatch', players);
         }
 
         prevIsMatching = isMatching;
