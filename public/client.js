@@ -278,7 +278,7 @@
           $('#lightness').text(lightness);
 
           // Change background color
-          $('#screen').css('background-color', 'hsl(' + hue + ', 50%, ' + lightness + '%)');
+          $('#screen').css('background-color', 'hsl(' + hue + ', 50%, ' + lightness + '%)'); 
 
           if (!matchFound) {
             checkMatch(hue, lightness);
