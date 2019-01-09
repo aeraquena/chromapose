@@ -10,7 +10,7 @@ const maxAccel = 10
 // the changing target color. hardcoded to red for now
 var targetColor = {
   'hue': 0, 
-  'lightness': 50
+  'lightness': 0
 };
 
 function checkCollision(obj1, obj2) {
