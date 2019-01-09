@@ -50,6 +50,7 @@ function emitUpdates() {
   io.emit('gameStateUpdate', { players: engine.players, doubloon: engine.doubloon, targetColor: engine.targetColor });
 }
 
+// On new player connect
 io.on('connection', function(socket){
   console.log('User connected: ', socket.id)
   // start game if this is the first player
@@ -77,12 +78,15 @@ io.on('connection', function(socket){
     y: posY,
   	colour: engine.stringToColour(socket.id),
   	score: 0,
-    name: pirateName()
+    name: pirateName(),
+    matching: false // the only one we'll keep
   }
 
   // set socket listeners
 
+  // On player disconnect
   socket.on('disconnect', function() {
+    // Remove player from players
   	delete engine.players[socket.id]
   	// end game if there are no engine.players left
   	if (Object.keys(engine.players).length > 0) {
@@ -112,7 +116,27 @@ io.on('connection', function(socket){
   // On match
   socket.on('match', function(msg){
     console.log('/// SOCKET MATCH ///')
-    engine.shuffleDoubloon() // pass in socket.id
+
+    engine.players[socket.id].matching = true;
+
+    console.log(engine.players);
+
+    //engine.shuffleDoubloon() // pass in socket.id
+
+    // Update list of matching clients
+
+    // Check whether all is matching. If so, 
+    //engine.shuffleDoubloon()
+  });
+
+  // On match
+  socket.on('unmatch', function(msg){
+    console.log('/// SOCKET UNMATCH ///')
+    // Update list of matching clients
+
+    engine.players[socket.id].matching = false;
+
+    console.log(engine.players);
   });
 });
 
