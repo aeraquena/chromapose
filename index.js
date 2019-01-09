@@ -51,7 +51,6 @@ io.on('connection', function(socket){
   	},
   	x: posX,
     y: posY,
-  	colour: engine.stringToColour(socket.id),
   	score: 0,
     matching: false // the only one we'll keep
   }
@@ -116,6 +115,7 @@ io.on('connection', function(socket){
   });
 });
 
-http.listen(process.env.PORT || 8080, function(){
-  console.log('listening on *:8080', process.env.PORT);
+var port = process.env.PORT || 8000;
+http.listen(port, function(){
+  console.log('listening on *:8000', process.env.PORT);
 });
