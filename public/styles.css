@@ -65,7 +65,7 @@ body {
 }
 
 #instructions {
-  margin: 80px;
+  margin: 60px 80px;
   font-size: 1em;
   display: none;
   position: fixed;
