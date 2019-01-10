@@ -49,18 +49,18 @@ body {
 #bottom #playerCount {  
   position: fixed;
   bottom: 0;
-  left: 5px;
+  left: 10px;
   background-image: url('./player.png');
   background-size: 50px;
   padding-left: 50px;
   background-repeat: no-repeat;
-  background-position: 0 -3px;
+  background-position: 0 11px;
 }
 
 #bottom #instructionsLink {
   position: fixed;
   bottom: 0;
-  right: 5px;
+  right: 10px;
 }
 
 #instructions {
