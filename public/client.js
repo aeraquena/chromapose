@@ -19,7 +19,7 @@
       })
 
       // Show matching players and total players
-      document.getElementById('playerCount').innerHTML = String(matchingPlayers) + " / " + String(playerCount)
+      document.getElementById('playerCount').innerHTML = String(matchingPlayers) + "/" + String(playerCount)
 
       // Change target border color
       $('#screen').css('border-color', 'hsl(' + targetColor.hue + ', 100%, ' + targetColor.lightness + '%)');
