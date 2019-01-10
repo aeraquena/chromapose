@@ -55,7 +55,7 @@ io.on('connection', function(socket){
 
   // On match
   socket.on('match', function(msg){
-    io.emit('colorChanged');
+    //io.emit('colorChanged');
     engine.changeTargetColor();
   });
 });

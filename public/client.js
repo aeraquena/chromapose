@@ -3,7 +3,6 @@
 
     socket.on('gameStateUpdate', updateGameState);
 
-
     function updateGameState(gameState) {
       // update local state to match state on server
       players = gameState.players
@@ -26,17 +25,6 @@
         targetColor: targetColor
       })
     }
-
-    // Animation when color changes
-    var matchAnimationTimeout;
-    socket.on('colorChanged', function() {
-      clearTimeout(matchAnimationTimeout)
-      // Win state
-      $('#screen').addClass('match');
-      matchAnimationTimeout = setTimeout(function() {
-        $('#screen').removeClass('match');
-      }, 500);
-    });
 
     /* Movement */
 
@@ -75,10 +63,14 @@
         if (isMatching) {
             // Client has changed to match colors
 
+            clearTimeout(scoreTimeout);
             // Update local score
             score++;
+            // Win state
+            $('#screen').addClass('match');
             $('#score').text(score).addClass('scored');
             scoreTimeout = setTimeout(function() {
+              $('#screen').removeClass('match');
               $('#score').removeClass('scored');
             }, 500);
 
