@@ -17,6 +17,22 @@ body {
   border-style: solid;
 }
 
+#screen.lose {
+  animation: lose .5s;
+}
+
+@keyframes lose {
+  0% {
+    border-width: 60px;
+  }
+  50% {
+    border-width: 0;
+  }
+  100% {
+    border-width: 60px;
+  }
+}
+
 #screen.match {
   animation: pulse .5s;
 }

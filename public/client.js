@@ -26,6 +26,15 @@
       })
     }
 
+    var borderTimeout;
+    socket.on('colorChanged', function() {
+      clearTimeout(borderTimeout);
+      $('#screen').addClass('lose');
+      borderTimeout = setTimeout(function() {
+        $('#screen').removeClass('lose');
+      }, 500);
+    });
+    
     /* Movement */
 
     // Local variables specific to player's device
