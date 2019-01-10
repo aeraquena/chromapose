@@ -56,5 +56,19 @@ body {
 }
 
 #instructions {
-  font-size: 25px;
+  margin: 10px;
+  font-size: 20px;
+}
+
+#instructions li {
+  margin: 5px 0;
+}
+
+p.centered {
+  text-align: center;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
 }
