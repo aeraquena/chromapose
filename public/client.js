@@ -8,9 +8,6 @@
       players = gameState.players
       targetColor = gameState.targetColor
 
-      // Show score
-      document.getElementById('score').innerHTML = String(playerCount)
-
       // Calculate matching players
       var playerCount = Object.keys(players).length
       
@@ -35,7 +32,7 @@
     var hue, lightness;
 
     var prevIsMatching = false;
-    var score = 0;
+    //var score = 0;
 
     // Map value from one range onto another
     function map(value, xMin, xMax, yMin, yMax) {
