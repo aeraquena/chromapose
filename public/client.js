@@ -123,7 +123,7 @@
             lightness = ((Math.floor(map(frontBack, -180, 180, 0, 60))) % 60) + 20;
 
             // Z = hue
-            hue = (Math.floor(map(rotDeg, 360, 0, 0, 255))) % 255;
+            hue = (Math.floor(map(rotDeg, 0, 360, 255, 0))) % 255;
 
             // Change background color
             $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
