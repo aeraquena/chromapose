@@ -56,7 +56,7 @@
 
     // Checks match between target and user color
     function checkMatch() {
-      var bound = 12; // TODO: make global constant
+      var bound = 15; // TODO: make global constant
 
       // Is player within the target color bounds?
       var isMatching = hue > (targetColor.hue - bound) && hue < (targetColor.hue + bound) &&
@@ -115,7 +115,7 @@
             // Y = lightness
             // (Map front-back to lightness) + (Random 0-100) % 100
             // 20-80
-            lightness = ((Math.floor(map(frontBack, -180, 180, 0, 80))) % 80) + 20;
+            lightness = ((Math.floor(map(frontBack, -180, 180, 0, 60))) % 60) + 20;
 
             // Z = hue
             hue = (Math.floor(map(rotDeg, 0, 360, 0, 255))) % 255;
