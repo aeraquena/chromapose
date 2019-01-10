@@ -1,8 +1,6 @@
 body {
   background: #000;
   height: 100vh;
-  font-family: "Monaco"
-  color: #fff;
 }
 
 #screen {
@@ -51,4 +49,6 @@ body {
   background-repeat: no-repeat;
   background-position: 0 -2px;
   font-size: 50px;
+  font-family: "Monaco"
+  color: #fff;
 }
