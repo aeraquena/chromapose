@@ -3,6 +3,10 @@
 
     socket.on('gameStateUpdate', updateGameState);
 
+    socket.on('colorChanged', function() {
+      console.log('color changed');
+    });
+
     function updateGameState(gameState) {
       // update local state to match state on server
       players = gameState.players
