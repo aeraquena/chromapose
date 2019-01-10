@@ -7,19 +7,15 @@
       // update local state to match state on server
       players = gameState.players
       targetColor = gameState.targetColor
-      matchingPlayers = gameState.matchingPlayers
+
+      // Show score
+      document.getElementById('score').innerHTML = String(playerCount)
 
       // Calculate matching players
       var playerCount = Object.keys(players).length
-      var matchingPlayers = 0;
-      Object.values(players).forEach((player, index) => {      
-        if (player.matching) {
-          matchingPlayers++;
-        }
-      })
-
-      // Show matching players and total players
-      document.getElementById('playerCount').innerHTML = String(matchingPlayers) + "/" + String(playerCount)
+      
+      // Show total players
+      document.getElementById('playerCount').innerHTML = String(playerCount)
 
       // Change target border color
       $('#screen').css('border-color', 'hsl(' + targetColor.hue + ', 100%, ' + targetColor.lightness + '%)');
@@ -29,8 +25,7 @@
       // update game
       updateGameState({
         players: players, 
-        targetColor: targetColor,
-        matchingPlayers: matchingPlayers})
+        targetColor: targetColor})
     }
 
     /* Movement */
@@ -40,6 +35,7 @@
     var hue, lightness;
 
     var prevIsMatching = false;
+    var score = 0;
 
     // Map value from one range onto another
     function map(value, xMin, xMax, yMin, yMax) {
@@ -67,20 +63,15 @@
         if (isMatching) {
             // Client has changed to match colors
 
-            // Add visual match indicator
-            //$('#screen').addClass('match');
+            // Update local score
+            score++;
+            $('#score').text(score);
 
             // Send match to socket
             socket.emit('match', players);
-        } /*else {
-          // Client has changed to not match colors
-          
-          // Remove visual match indicator
-          $('#screen').removeClass('match');
 
-          // Send unmatch to socket
-          socket.emit('unmatch', players);
-        }*/
+
+        }
 
         prevIsMatching = isMatching;
       }

@@ -1,5 +1,4 @@
 var players = {}
-var matchingPlayers = 0;
 
 // the changing target color - starts as black
 var targetColor = {
@@ -18,7 +17,6 @@ if (!this.navigator) { // determine whether this is a node module or inlined via
   module.exports = {
     players: players,
     changeTargetColor: changeTargetColor,
-    targetColor: targetColor,
-    matchingPlayers: matchingPlayers
+    targetColor: targetColor
   }
 }

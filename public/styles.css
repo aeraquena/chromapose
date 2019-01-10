@@ -42,7 +42,7 @@ body {
   }
 }
 
-#bottom {
+.info {
   font-size: 50px;
   font-weight: bold;
 }
@@ -58,9 +58,9 @@ body {
   background-position: 0 11px;
 }
 
-#bottom #instructionsLink {
+#top #instructionsLink {
   position: fixed;
-  bottom: 0;
+  top: 0;
   right: 10px;
 }
 
