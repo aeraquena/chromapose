@@ -58,7 +58,7 @@ io.on('connection', function(socket){
   // On match
   socket.on('match', function(msg){
 
-    engine.players[socket.id].matching = true;
+    /*engine.players[socket.id].matching = true;
 
     var allMatching = true;
 
@@ -71,17 +71,17 @@ io.on('connection', function(socket){
       }
     })
 
-    if (allMatching) {
+    if (allMatching) {*/
       engine.changeTargetColor();
-    }
+    //}
   });
 
   // On match
-  socket.on('unmatch', function(msg){
+  /*socket.on('unmatch', function(msg){
     // Update list of matching clients
 
     engine.players[socket.id].matching = false;
-  });
+  });*/
 });
 
 var port = process.env.PORT || 8000;

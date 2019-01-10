@@ -72,7 +72,7 @@
 
             // Send match to socket
             socket.emit('match', players);
-        } else {
+        } /*else {
           // Client has changed to not match colors
           
           // Remove visual match indicator
@@ -80,7 +80,7 @@
 
           // Send unmatch to socket
           socket.emit('unmatch', players);
-        }
+        }*/
 
         prevIsMatching = isMatching;
       }
