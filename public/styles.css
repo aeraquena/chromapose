@@ -66,6 +66,11 @@ body {
 #instructions {
   margin: 20px;
   font-size: 1em;
+  display: none;
+}
+
+#instructions.shown {
+  display: block;
 }
 
 #instructions li {

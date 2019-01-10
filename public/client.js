@@ -150,6 +150,19 @@
       var e = window.event;
     }
 
+    // Show/hide instructions
+    $('#instructionsLink').click(function() {
+      if ($('#instructions').hasClass('shown')) {
+        // hide
+        $('#instructions').removeClass('shown');
+        $(this).text('?');
+      } else {
+        // show
+        $('#instructions').addClass('shown');
+        $(this).text('X');
+      }
+    })
+
     function drawGame() {
       // draw stuff
       requestAnimationFrame(drawGame)
