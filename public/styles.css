@@ -3,6 +3,8 @@ body {
   height: 100vh;
   font-family: "Monaco";
   color: #fff;
+  overflow-x: hidden; 
+  overflow-y: hidden;
 }
 
 #screen {
@@ -49,6 +51,6 @@ body {
   background-size: 50px;
   padding-left: 50px;
   background-repeat: no-repeat;
-  background-position: 0 -2px;
+  background-position: 0 -3px;
   font-size: 50px;
 }
