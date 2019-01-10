@@ -57,7 +57,7 @@ body {
   background-position: 0 -3px;
 }
 
-#bottom .instructionsLink {
+#bottom #instructionsLink {
   position: fixed;
   bottom: 0;
   right: 5px;
