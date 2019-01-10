@@ -64,6 +64,22 @@ body {
   left: 10px;
 }
 
+#top #score.scored {
+  animation: scored .1s;
+}
+
+@keyframes scored {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 #top #instructionsLink {
   position: fixed;
   top: 0;

@@ -60,6 +60,7 @@
       }
     }
 
+    var scoreTimeout;
 
     // Checks match between target and user color
     function checkMatch() {
@@ -76,7 +77,10 @@
 
             // Update local score
             score++;
-            $('#score').text(score);
+            $('#score').text(score).addClass('scored');
+            scoreTimeout = setTimeout(function() {
+              $('#score').removeClass('scored');
+            }, 500);
 
             // Send match to socket
             socket.emit('match', players);
