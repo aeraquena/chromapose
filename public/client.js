@@ -68,7 +68,7 @@
             // Client has changed to match colors
 
             // Add visual match indicator
-            $('#screen').addClass('match');
+            //$('#screen').addClass('match');
 
             // Send match to socket
             socket.emit('match', players);
