@@ -58,6 +58,12 @@ body {
   background-position: 0 11px;
 }
 
+#top #score {
+  position: fixed;
+  top: 0;
+  left: 10px;
+}
+
 #top #instructionsLink {
   position: fixed;
   top: 0;
