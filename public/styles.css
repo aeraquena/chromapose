@@ -1,7 +1,7 @@
 body {
   background: #000;
   height: 100vh;
-  font-family: "Monaco";
+  font-family: 'Roboto Mono', 'Monaco', monospace;
   color: #fff;
   overflow-x: hidden; 
   overflow-y: hidden;
