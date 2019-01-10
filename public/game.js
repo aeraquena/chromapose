@@ -11,6 +11,7 @@ function changeTargetColor() {
   // Change target color
   targetColor.hue = Math.floor(Math.random() * 255);
   targetColor.lightness = Math.floor(Math.random() * 60) + 20; // 20-80% range
+  $('screen').addClass('animated');
 }
 
 if (!this.navigator) { // determine whether this is a node module or inlined via script tag

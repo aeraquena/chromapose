@@ -17,6 +17,10 @@ body {
   border-style: solid;
 }
 
+#screen.animated {
+  border-width: 10px;
+}
+
 #screen.match {
   animation: pulse .75s infinite;
 }

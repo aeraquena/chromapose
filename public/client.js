@@ -22,7 +22,8 @@
       // update game
       updateGameState({
         players: players, 
-        targetColor: targetColor})
+        targetColor: targetColor
+      })
     }
 
     /* Movement */
@@ -66,8 +67,6 @@
 
             // Send match to socket
             socket.emit('match', players);
-
-
         }
 
         prevIsMatching = isMatching;
