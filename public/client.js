@@ -65,9 +65,9 @@
 
             clearTimeout(matchAnimationTimeout)
             // Win state
-            $('screen').addClass('match');
+            $('#screen').addClass('match');
             matchAnimationTimeout = setTimeout(function() {
-              $('screen').removeClass('match');
+              $('#screen').removeClass('match');
             }, 500);
 
             // Update local score
