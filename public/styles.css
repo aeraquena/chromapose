@@ -65,7 +65,7 @@ body {
 }
 
 #top #score.scored {
-  animation: scored .1s;
+  animation: scored .25s infinite;
 }
 
 @keyframes scored {
