@@ -32,7 +32,7 @@
     var hue, lightness;
 
     var prevIsMatching = false;
-    //var score = 0;
+    var score = 0;
 
     // Map value from one range onto another
     function map(value, xMin, xMax, yMin, yMax) {
