@@ -16,7 +16,7 @@ body {
 }
 
 #screen.match {
-  animation: pulse 1s infinite;
+  animation: pulse .75s infinite;
 }
 
 @keyframes pulse {
@@ -27,10 +27,10 @@ body {
     right: 0;
   }
   50% {
-    top: 10%;
-    left: 10%;
-    bottom: 10%;
-    right: 10%;
+    top: 50px;
+    left: 50px;
+    bottom: 50px;
+    right: 50px;
   }
   100% {
     top: 0;
