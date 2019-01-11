@@ -61,7 +61,7 @@
 
     // Checks match between target and user color
     function checkMatch() {
-      var bound = 12;
+      var bound = 5;
 
       // Is player within the target color bounds?
       var isMatching = hue > (targetColor.hue - bound) && hue < (targetColor.hue + bound) &&
