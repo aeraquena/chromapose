@@ -72,6 +72,7 @@ io.on('connection', function(socket){
     })
 
     if (allMatching) {
+      io.emit('colorChanged');
       engine.changeTargetColor();
     }
   });

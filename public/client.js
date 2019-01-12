@@ -56,7 +56,7 @@
 
     // Checks match between target and user color
     function checkMatch() {
-      var bound = 9; // TODO: make global constant
+      var bound = 9; // bounding box for color matches
 
       // Is player within the target color bounds?
       var isMatching = hue > (targetColor.hue - bound) && hue < (targetColor.hue + bound) &&
@@ -85,6 +85,16 @@
         prevIsMatching = isMatching;
       }
     }
+
+    // Animation when color changes
+    var winTimeout;
+    socket.on('colorChanged', function() {
+      clearTimeout(winTimeout);
+      $('#screen').addClass('win');
+      winTimeout = setTimeout(function() {
+        $('#screen').removeClass('win');
+      }, 500);
+    });
 
     // Detect if browser supports orientation
     if (typeof window.orientation !== 'undefined') { 
