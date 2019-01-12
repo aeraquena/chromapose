@@ -21,7 +21,8 @@ function emitUpdates() {
   // tell everyone what's up
   io.emit('gameStateUpdate', { 
     players: engine.players, 
-    targetColor: engine.targetColor
+    targetColor: engine.targetColor,
+    matchingPlayers: engine.matchingPlayers 
   });
 }
 
@@ -36,6 +37,7 @@ io.on('connection', function(socket){
 
   // add player to engine.players obj
   engine.players[socket.id] = {
+    matching: false // the only one we'll keep
   }
 
   // set socket listeners
@@ -55,8 +57,30 @@ io.on('connection', function(socket){
 
   // On match
   socket.on('match', function(msg){
-    io.emit('colorChanged');
-    engine.changeTargetColor();
+
+    engine.players[socket.id].matching = true;
+
+    var allMatching = true;
+
+    // Update list of matching clients
+    Object.keys(engine.players).forEach((playerId) => {
+      // Check if all players are matching. If one is not, exit early
+      if (engine.players[playerId].matching == false) {
+        allMatching = false;
+        return false;
+      }
+    })
+
+    if (allMatching) {
+      engine.changeTargetColor();
+    }
+  });
+
+  // On match
+  socket.on('unmatch', function(msg){
+    // Update list of matching clients
+
+    engine.players[socket.id].matching = false;
   });
 });
 

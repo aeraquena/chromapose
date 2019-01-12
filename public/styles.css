@@ -17,24 +17,8 @@ body {
   border-style: solid;
 }
 
-#screen.lose {
-  animation: lose .5s;
-}
-
-@keyframes lose {
-  0% {
-    border-width: 60px;
-  }
-  50% {
-    border-width: 0;
-  }
-  100% {
-    border-width: 60px;
-  }
-}
-
 #screen.match {
-  animation: pulse .5s;
+  animation: pulse .75s infinite;
 }
 
 @keyframes pulse {
@@ -45,10 +29,10 @@ body {
     right: 0;
   }
   50% {
-    top: 50%;
-    left: 50%;
-    bottom: 50%;
-    right: 50%;
+    top: 60px;
+    left: 60px;
+    bottom: 60px;
+    right: 60px;
   }
   100% {
     top: 0;
@@ -58,7 +42,7 @@ body {
   }
 }
 
-.info {
+#bottom {
   font-size: 50px;
   font-weight: bold;
 }
@@ -74,31 +58,9 @@ body {
   background-position: 0 11px;
 }
 
-#top #score {
+#bottom #instructionsLink {
   position: fixed;
-  top: 0;
-  left: 10px;
-}
-
-#top #score.scored {
-  animation: scored .25s infinite;
-}
-
-@keyframes scored {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(2);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-#top #instructionsLink {
-  position: fixed;
-  top: 0;
+  bottom: 0;
   right: 10px;
 }
 

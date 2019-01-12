@@ -7,12 +7,19 @@
       // update local state to match state on server
       players = gameState.players
       targetColor = gameState.targetColor
+      matchingPlayers = gameState.matchingPlayers
 
       // Calculate matching players
       var playerCount = Object.keys(players).length
-      
-      // Show total players
-      document.getElementById('playerCount').innerHTML = String(playerCount)
+      var matchingPlayers = 0;
+      Object.values(players).forEach((player, index) => {      
+        if (player.matching) {
+          matchingPlayers++;
+        }
+      })
+
+      // Show matching players and total players
+      document.getElementById('playerCount').innerHTML = String(matchingPlayers) + "/" + String(playerCount)
 
       // Change target border color
       $('#screen').css('border-color', 'hsl(' + targetColor.hue + ', 100%, ' + targetColor.lightness + '%)');
@@ -22,18 +29,9 @@
       // update game
       updateGameState({
         players: players, 
-        targetColor: targetColor
-      })
+        targetColor: targetColor,
+        matchingPlayers: matchingPlayers})
     }
-
-    var borderTimeout;
-    socket.on('colorChanged', function() {
-      clearTimeout(borderTimeout);
-      $('#screen').addClass('lose');
-      borderTimeout = setTimeout(function() {
-        $('#screen').removeClass('lose');
-      }, 500);
-    });
 
     /* Movement */
 
@@ -42,7 +40,6 @@
     var hue, lightness;
 
     var prevIsMatching = false;
-    var score = 0;
 
     // Map value from one range onto another
     function map(value, xMin, xMax, yMin, yMax) {
@@ -57,11 +54,9 @@
       }
     }
 
-    var scoreTimeout;
-
     // Checks match between target and user color
     function checkMatch() {
-      var bound = 11;
+      var bound = 11; // TODO: make global constant
 
       // Is player within the target color bounds?
       var isMatching = hue > (targetColor.hue - bound) && hue < (targetColor.hue + bound) &&
@@ -72,19 +67,19 @@
         if (isMatching) {
             // Client has changed to match colors
 
-            clearTimeout(scoreTimeout);
-            // Update local score
-            score++;
-            // Win state
+            // Add visual match indicator
             $('#screen').addClass('match');
-            $('#score').text(score).addClass('scored');
-            scoreTimeout = setTimeout(function() {
-              $('#screen').removeClass('match');
-              $('#score').removeClass('scored');
-            }, 500);
 
             // Send match to socket
             socket.emit('match', players);
+        } else {
+          // Client has changed to not match colors
+          
+          // Remove visual match indicator
+          $('#screen').removeClass('match');
+
+          // Send unmatch to socket
+          socket.emit('unmatch', players);
         }
 
         prevIsMatching = isMatching;
@@ -123,7 +118,7 @@
             lightness = ((Math.floor(map(frontBack, -180, 180, 0, 60))) % 60) + 20;
 
             // Z = hue
-            hue = (Math.floor(map(rotDeg, 0, 360, 255, 0))) % 255;
+            hue = (Math.floor(map(rotDeg, 0, 360, 0, 255))) % 255;
 
             // Change background color
             $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
