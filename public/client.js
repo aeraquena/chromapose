@@ -93,7 +93,7 @@
       $('#screen').addClass('win');
       winTimeout = setTimeout(function() {
         $('#screen').removeClass('win');
-      }, 500);
+      }, 750);
     });
 
     // Detect if browser supports orientation
@@ -145,7 +145,7 @@
 
       $("body").mousemove(function(e) {
 
-          hue = (Math.floor(map(e.pageX, 0, bodyWidth, 0, 255))) % 255;
+          hue = (Math.floor(map(e.pageX, 0, bodyWidth, 255, 0))) % 255;
           lightness = (Math.floor(map(e.pageY, 0, bodyHeight, 0, 80)) % 80) + 20;
 
           // Change color

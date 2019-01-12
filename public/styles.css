@@ -43,7 +43,7 @@ body {
 }
 
 #screen.win {
-  animation: win .5s;
+  animation: win .75s;
 }
 
 @keyframes win {
