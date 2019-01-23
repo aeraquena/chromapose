@@ -42,7 +42,8 @@
     var prevIsMatching = false;
 
     // Map value from one range onto another
-    function map(value, xMin, xMax, yMin, yMax) {
+    function map(value, xMin, xMax, yMin, yMax) { // stepSize, (yMax - yMin)/stepSize, mapped back... or %
+      // try 64 colors. make sure it's divisible by 4
       // Clamp
       if (value < xMin) {
         return yMin;
@@ -50,6 +51,10 @@
         return yMax;
       } else {
         var result = (value - xMin) * ((yMax - yMin)/(xMax - xMin)) + yMin;
+        // Round to nearest step
+        if (result / 4 != 0) {
+          result = Math.floor(result/4) * 4;
+        }
         return result;
       }
     }
