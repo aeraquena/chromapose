@@ -19,7 +19,7 @@ body {
 
 #screen.match {
   animation: pulse .75s infinite;
-  border-width: 2000px;
+  border-width: 60px 2000px;
 }
 
 @keyframes pulse {
