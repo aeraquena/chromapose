@@ -9,8 +9,9 @@ var targetColor = {
 // Update target color
 function changeTargetColor() {
   // Change target color
-  targetColor.hue = Math.floor(Math.random() * 255);
-  targetColor.lightness = Math.floor(Math.random() * 60) + 20; // 20-80% range
+  var stepSize = 8;
+  targetColor.hue = Math.floor(Math.floor(Math.random() * 255) / stepSize) * stepSize;
+  targetColor.lightness = Math.floor(Math.floor(Math.random() * 60) + 20) * stepSize; // 20-80% range
 }
 
 if (!this.navigator) { // determine whether this is a node module or inlined via script tag
