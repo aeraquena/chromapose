@@ -52,8 +52,9 @@
       } else {
         var result = (value - xMin) * ((yMax - yMin)/(xMax - xMin)) + yMin;
         // Round to nearest step
-        if (result / 4 != 0) {
-          result = Math.floor(result/4) * 4;
+        var stepSize = 8;
+        if (result / stepSize != 0) {
+          result = Math.floor(result/stepSize) * stepSize;
         }
         return result;
       }
