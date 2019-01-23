@@ -42,8 +42,7 @@
     var prevIsMatching = false;
 
     // Map value from one range onto another
-    function map(value, xMin, xMax, yMin, yMax) { // stepSize, (yMax - yMin)/stepSize, mapped back... or %
-      // try 64 colors. make sure it's divisible by 4
+    function map(value, xMin, xMax, yMin, yMax) {
       // Clamp
       if (value < xMin) {
         return yMin;
@@ -51,18 +50,13 @@
         return yMax;
       } else {
         var result = (value - xMin) * ((yMax - yMin)/(xMax - xMin)) + yMin;
-        // Round to nearest step
-        var stepSize = 8;
-        if (result / stepSize != 0) {
-          result = Math.floor(result/stepSize) * stepSize;
-        }
         return result;
       }
     }
 
     // Checks match between target and user color
     function checkMatch() {
-      var bound = 4; // bounding box for color matches 
+      var bound = 10; // bounding box for color matches
 
       // Is player within the target color bounds?
       var isMatching = hue > (targetColor.hue - bound) && hue < (targetColor.hue + bound) &&
