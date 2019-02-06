@@ -83,6 +83,12 @@ io.on('connection', function(socket){
 
     engine.players[socket.id].matching = false;
   });
+
+  // Change target color manually
+  socket.on('changeColor', function(msg){
+    engine.changeTargetColor();
+    io.emit('colorChanged');
+  });
 });
 
 var port = process.env.PORT || 8000;

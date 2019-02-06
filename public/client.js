@@ -171,7 +171,12 @@
         $('#instructions').addClass('shown');
         $(this).text('X');
       }
-    })
+    });
+
+    // Change outer color manually
+    $('#change-outer-color').click(function() {
+      socket.emit('changeColor');
+    });
 
     function drawGame() {
       // draw stuff
