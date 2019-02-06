@@ -89,14 +89,6 @@ io.on('connection', function(socket){
     engine.changeTargetColor();
     io.emit('colorChanged');
   });
-
-  // Kick all players off
-  socket.on('disconnectAll', function(msg){
-    engine.players = {};
-    engine.matchingPlayers = 0;
-    clearInterval(gameInterval)
-    clearInterval(updateInterval)
-  });
 });
 
 var port = process.env.PORT || 8000;
