@@ -6,6 +6,8 @@ var targetColor = {
   'lightness': 0
 };
 
+var matchingPlayers = 0;
+
 // Update target color
 function changeTargetColor() {
   // Change target color
@@ -17,6 +19,7 @@ if (!this.navigator) { // determine whether this is a node module or inlined via
   module.exports = {
     players: players,
     changeTargetColor: changeTargetColor,
-    targetColor: targetColor
+    targetColor: targetColor,
+    matchingPlayers: matchingPlayers
   }
 }
