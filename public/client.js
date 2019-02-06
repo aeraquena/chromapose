@@ -178,9 +178,9 @@
       socket.emit('changeColor');
     });
 
-    $('#disconnect-all').click(function() {
+    /*$('#disconnect-all').click(function() {
       socket.emit('disconnectAll');
-    });
+    });*/
 
     function drawGame() {
       // draw stuff
