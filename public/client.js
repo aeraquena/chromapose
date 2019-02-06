@@ -178,6 +178,11 @@
       socket.emit('changeColor');
     });
 
+    // Disconnect all players
+    $('#disconnect-all').click(function() {
+      socket.emit('disconnectAll');
+    });
+
     function drawGame() {
       // draw stuff
       requestAnimationFrame(drawGame)
