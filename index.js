@@ -89,6 +89,13 @@ io.on('connection', function(socket){
     engine.changeTargetColor();
     io.emit('colorChanged');
   });
+
+  // Disconnect all
+  socket.on('disconnectAll', function(msg){
+    Object.keys(engine.players).forEach((playerId) => {
+      engine.players[playerId].disconnect(true);
+    })
+  });
 });
 
 var port = process.env.PORT || 8000;
