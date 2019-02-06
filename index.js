@@ -93,6 +93,7 @@ io.on('connection', function(socket){
   // Kick all players off
   socket.on('disconnectAll', function(msg){
     engine.players = {};
+    engine.matchingPlayers = 0;
     clearInterval(gameInterval)
     clearInterval(updateInterval)
   });
