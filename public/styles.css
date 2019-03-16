@@ -121,3 +121,45 @@ a {
   color: #fff;
   text-decoration: none;
 }
+
+/* About */
+
+body#about {
+  overflow-x: scroll; 
+  overflow-y: scroll;
+  margin: 50px 100px;
+}
+
+body#about a {
+  text-decoration: underline;
+}
+
+body#about a:hover {
+  text-decoration: none;
+}
+
+body#about h1, h2 {
+  text-align: center;
+}
+
+body#about h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+body#about h2 {
+  font-size: 2em;
+}
+
+body#about #author {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+body#about ol {
+  padding: 0 0 0 30px;
+}
+
+body#about li {
+  padding: 5px 0;
+}
