@@ -183,7 +183,9 @@
     // Join game
     $('#join-game').click(function() {
       console.log('Join Game');
-      //socket.emit('changeColor');
+
+      $('#splash button').hide();
+      $('#splash #input-number').show();
     });
 
     // New game
