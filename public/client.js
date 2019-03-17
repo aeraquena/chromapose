@@ -5,14 +5,15 @@
 
     function updateGameState(gameState) {
       // update local state to match state on server
-      players = gameState.players
-      targetColor = gameState.targetColor
-      matchingPlayers = gameState.matchingPlayers
+      games = gameState.games
+      /*games['0'].players = gameState.games['0'].players
+      games['0'].targetColor = gameState.games['0'].targetColor
+      games['0'].matchingPlayers = gameState.games['0'].matchingPlayers*/
 
       // Calculate matching players
-      var playerCount = Object.keys(players).length
+      var playerCount = Object.keys(games['0'].players).length
       var matchingPlayers = 0;
-      Object.values(players).forEach((player, index) => {      
+      Object.values(games['0'].players).forEach((player, index) => {      
         if (player.matching) {
           matchingPlayers++;
         }
@@ -22,15 +23,16 @@
       document.getElementById('playerCount').innerHTML = String(matchingPlayers) + "/" + String(playerCount)
 
       // Change target border color
-      $('#screen').css('border-color', 'hsl(' + targetColor.hue + ', 100%, ' + targetColor.lightness + '%)');
+      $('#screen').css('border-color', 'hsl(' + games['0'].targetColor.hue + ', 100%, ' + games['0'].targetColor.lightness + '%)');
     }
 
     function gameLoop() {
       // update game
       updateGameState({
-        players: players, 
-        targetColor: targetColor,
-        matchingPlayers: matchingPlayers})
+        games: games
+        /*players: games['0'].players, 
+        targetColor: games['0'].targetColor,
+        matchingPlayers: games['0'].matchingPlayers*/})
     }
 
     /* Movement */
@@ -59,8 +61,8 @@
       var bound = 10; // bounding box for color matches
 
       // Is player within the target color bounds?
-      var isMatching = hue > (targetColor.hue - bound) && hue < (targetColor.hue + bound) &&
-        lightness > (targetColor.lightness - bound) && lightness < (targetColor.lightness + bound);
+      var isMatching = hue > (games['0'].targetColor.hue - bound) && hue < (games['0'].targetColor.hue + bound) &&
+        lightness > (games['0'].targetColor.lightness - bound) && lightness < (games['0'].targetColor.lightness + bound);
 
       // Only send a socket signal + change screen state if match state has changed
       if (isMatching != prevIsMatching) {
@@ -71,7 +73,7 @@
             $('#screen').addClass('match');
 
             // Send match to socket
-            socket.emit('match', players);
+            socket.emit('match', games['0'].players);
         } else {
           // Client has changed to not match colors
           
@@ -79,7 +81,7 @@
           $('#screen').removeClass('match');
 
           // Send unmatch to socket
-          socket.emit('unmatch', players);
+          socket.emit('unmatch', games['0'].players);
         }
 
         prevIsMatching = isMatching;
