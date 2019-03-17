@@ -161,6 +161,11 @@ a {
   color: #fff;
   width: 200px;
   font-family: 'Roboto Mono', 'Monaco', monospace;
+  margin-bottom: 20px;
+}
+
+#splash #input-number-container #join-game-number {
+  display: none;
 }
 
 /* About */

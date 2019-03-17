@@ -188,6 +188,22 @@
       $('#splash #input-number-container').show();
     });
 
+    $('#input-number').on('cut keyup paste', function() {
+      if ($('#input-number').text() == '') {
+        $('#join-game-number').hide();
+      } else {
+        $('#join-game-number').show();
+      }
+    });
+
+    // Join game number
+    $('#join-game-number').click(function() {
+      console.log('Join Game Number ' + $('#input-number').text());
+
+      $('#splash #start-buttons').hide();
+      $('#splash #input-number-container').show();
+    });
+
     // New game
     $('#new-game').click(function() {
       console.log('New Game');
