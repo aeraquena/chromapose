@@ -148,6 +148,21 @@ a {
   opacity: .5;
 }
 
+#splash #input-number-container {
+  display: none;
+}
+
+#splash #input-number {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #fff;
+  font-size: 36px;
+  outline: none;
+  color: #fff;
+  width: 200px;
+  font-family: 'Roboto Mono', 'Monaco', monospace;
+}
+
 /* About */
 
 body#about {
