@@ -9,16 +9,6 @@ var games = {
   }
 }
 
-//var players = {}
-
-// the changing target color - starts as black
-/*var targetColor = {
-  'hue': 0, 
-  'lightness': 0
-};*/
-
-//var matchingPlayers = 0;
-
 // Update target color
 function changeTargetColor() {
   // Change target color
@@ -30,8 +20,5 @@ if (!this.navigator) { // determine whether this is a node module or inlined via
   module.exports = {
     games: games,
     changeTargetColor: changeTargetColor
-    /*players: players,
-    targetColor: targetColor,
-    matchingPlayers: matchingPlayers*/
   }
 }

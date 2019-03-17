@@ -180,9 +180,15 @@
       socket.emit('changeColor');
     });
 
-    /*$('#disconnect-all').click(function() {
-      socket.emit('disconnectAll');
-    });*/
+    // Join game
+    $('#join-game').click(function() {
+      //socket.emit('changeColor');
+    });
+
+    // New game
+    $('#new-game').click(function() {
+      //socket.emit('changeColor');
+    });
 
     function drawGame() {
       // draw stuff

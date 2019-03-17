@@ -21,9 +21,6 @@ function emitUpdates() {
   // tell everyone what's up
   io.emit('gameStateUpdate', { 
     games: engine.games
-    /*players: engine.players, 
-    targetColor: engine.targetColor,
-    matchingPlayers: engine.matchingPlayers */
   });
 }
 
@@ -36,6 +33,7 @@ io.on('connection', function(socket){
     updateInterval = setInterval(emitUpdates, 40)
 	}
 
+  // TODO: Remove this, do this on "join game" instead
   // add player to engine.players obj
   engine.games['0'].players[socket.id] = {
     matching: false // the only one we'll keep
