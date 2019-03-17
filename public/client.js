@@ -189,10 +189,10 @@
     });
 
     $('#input-number').on('cut keyup paste', function() {
-      if ($('#input-number').text() == '') {
-        $('#join-game-number').hide();
-      } else {
+      if ($('#input-number').val()) {
         $('#join-game-number').show();
+      } else {
+        $('#join-game-number').hide();
       }
     });
 
