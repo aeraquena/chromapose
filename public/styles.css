@@ -162,6 +162,7 @@ a {
   width: 200px;
   font-family: 'Roboto Mono', 'Monaco', monospace;
   margin-bottom: 20px;
+  border-radius: 0;
 }
 
 #splash #input-number-container #join-game-number {

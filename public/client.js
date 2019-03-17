@@ -200,14 +200,17 @@
     $('#join-game-number').click(function() {
       console.log('Join Game Number ' + $('#input-number').text());
 
-      $('#splash #start-buttons').hide();
-      $('#splash #input-number-container').show();
+      // Hide splash menu
+      // Add user to game object players
     });
 
     // New game
     $('#new-game').click(function() {
       console.log('New Game');
-      //socket.emit('changeColor');
+
+      // Hide splash menu
+      // Create new game object
+      // Add user to game object players
     });
 
     function drawGame() {
