@@ -37,7 +37,7 @@ io.on('connection', function(socket){
 	}
 
   // add player to engine.players obj
-  engine.players[socket.id] = {
+  engine.games['0'].players[socket.id] = {
     matching: false // the only one we'll keep
   }
 
@@ -46,10 +46,10 @@ io.on('connection', function(socket){
   // On player disconnect
   socket.on('disconnect', function() {
     // Remove player from players
-  	delete engine.players[socket.id]
+  	delete engine.games['0'].players[socket.id]
   	// end game if there are no engine.players left
-  	if (Object.keys(engine.players).length > 0) {
-    	io.emit('gameStateUpdate', engine.players);
+  	if (Object.keys(engine.games['0'].players).length > 0) {
+    	io.emit('gameStateUpdate', engine.games['0'].players);
   	} else {
   		clearInterval(gameInterval)
       clearInterval(updateInterval)
@@ -59,14 +59,14 @@ io.on('connection', function(socket){
   // On match
   socket.on('match', function(msg){
 
-    engine.players[socket.id].matching = true;
+    engine.games['0'].players[socket.id].matching = true;
 
     var allMatching = true;
 
     // Update list of matching clients
-    Object.keys(engine.players).forEach((playerId) => {
+    Object.keys(engine.games['0'].players).forEach((playerId) => {
       // Check if all players are matching. If one is not, exit early
-      if (engine.players[playerId].matching == false) {
+      if (engine.games['0'].players[playerId].matching == false) {
         allMatching = false;
         return false;
       }
@@ -82,7 +82,7 @@ io.on('connection', function(socket){
   socket.on('unmatch', function(msg){
     // Update list of matching clients
 
-    engine.players[socket.id].matching = false;
+    engine.games['0'].players[socket.id].matching = false;
   });
 
   // Change target color manually
