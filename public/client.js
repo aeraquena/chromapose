@@ -182,11 +182,13 @@
 
     // Join game
     $('#join-game').click(function() {
+      console.log('Join Game');
       //socket.emit('changeColor');
     });
 
     // New game
     $('#new-game').click(function() {
+      console.log('New Game');
       //socket.emit('changeColor');
     });
 

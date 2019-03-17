@@ -122,6 +122,23 @@ a {
   text-decoration: none;
 }
 
+#splash {
+  position: fixed;
+  font-size: 48px;
+  text-align: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#splash button {
+  color: #fff;
+  font-size: 36px;
+  border: 1px solid #fff;
+  display: block;
+}
+
 /* About */
 
 body#about {
