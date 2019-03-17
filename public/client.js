@@ -184,7 +184,7 @@
     $('#join-game').click(function() {
       console.log('Join Game');
 
-      $('#splash button').hide();
+      $('#splash #start-buttons').hide();
       $('#splash #input-number-container').show();
     });
 
