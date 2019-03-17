@@ -201,6 +201,8 @@
       console.log('Join Game Number ' + $('#input-number').text());
 
       // Hide splash menu
+      $('#splash').hide();
+
       // Add user to game object players
     });
 
@@ -209,6 +211,8 @@
       console.log('New Game');
 
       // Hide splash menu
+      $('#splash').hide();
+      
       // Create new game object
       // Add user to game object players
     });
