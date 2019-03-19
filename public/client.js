@@ -197,7 +197,7 @@
 
     $('#input-number').on('cut keyup paste', function() {
       if ($('#input-number').val()) {
-        $('#join-game-number').show();
+        $('#join-game-number').css('display', 'block');
       } else {
         $('#join-game-number').hide();
       }
