@@ -4,6 +4,7 @@
     socket.on('gameStateUpdate', updateGameState);
 
     function updateGameState(gameState) {
+      console.log('Socket id: ' + socket.id);
       // update local state to match state on server
       games = gameState.games
       /*games['0'].players = gameState.games['0'].players
@@ -13,7 +14,7 @@
       // Calculate matching players
       var playerCount = Object.keys(games['0'].players).length
       var matchingPlayers = 0;
-      Object.values(games['0'].players).forEach((player, index) => {      
+      Object.values(games['0'].players).forEach((player, index) => { // todo: get game id based on player     
         if (player.matching) {
           matchingPlayers++;
         }
@@ -29,7 +30,8 @@
     function gameLoop() {
       // update game
       updateGameState({
-        games: games
+        games: games,
+        gameId: gameId
         /*players: games['0'].players, 
         targetColor: games['0'].targetColor,
         matchingPlayers: games['0'].matchingPlayers*/})
