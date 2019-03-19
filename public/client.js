@@ -211,6 +211,9 @@
       // Hide splash menu
       $('#splash').hide();
 
+      // Add game ID to display
+      $('#top #gameId').text('#' + gameId);
+
       // Add user to game object players
       socket.emit('join', gameId);
 
@@ -224,6 +227,9 @@
 
       // Hide splash menu
       $('#splash').hide();
+
+      // Add game ID to display
+      $('#top #gameId').text('#' + gameId);
       
       // Create new game object
       // Add user to game object players
