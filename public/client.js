@@ -1,15 +1,17 @@
   $(function () {
     var socket = io();
 
+    var gameId = null;
+
     socket.on('gameStateUpdate', updateGameState);
 
     function updateGameState(gameState) {
       console.log('Socket id: ' + socket.id);
       // update local state to match state on server
       games = gameState.games
-      playerToGameIndex = gameState.playerToGameIndex
+      //playerToGameIndex = gameState.playerToGameIndex
 
-      var gameId = playerToGameIndex[socket.id];
+      //var gameId = playerToGameIndex[socket.id];
       console.log('Game id: ' + gameId);
 
       /*games['0'].players = gameState.games['0'].players
@@ -66,7 +68,7 @@
     // Checks match between target and user color
     function checkMatch() {
       // TODO: Pass in game id
-      
+
       var bound = 10; // bounding box for color matches
 
       // Is player within the target color bounds?
@@ -208,7 +210,7 @@
     // Join game number
     $('#join-game-number').click(function() {
       console.log('Join Game Number ' + $('#input-number').val());
-      var gameId = $('#input-number').val();
+      gameId = $('#input-number').val();
 
       // Hide splash menu
       $('#splash').hide();
