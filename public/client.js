@@ -162,7 +162,9 @@
           // Change background color
           $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
 
-          checkMatch(hue, lightness);
+          if (gameId) {
+            checkMatch(hue, lightness);
+          }
       })
       var e = window.event;
     }
