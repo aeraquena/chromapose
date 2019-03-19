@@ -101,7 +101,7 @@ body {
 }
 
 #instructions {
-  margin: 60px 80px;
+  margin: 60px 70px;
   font-size: 1em;
   display: none;
   position: fixed;
@@ -116,7 +116,8 @@ body {
 }
 
 #instructions ol {
-  padding: 0 0 0 33px;
+  padding: 0 0 0 30px;
+  margin: 0;
 }
 
 #instructions li {
