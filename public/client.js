@@ -198,8 +198,8 @@
 
     // Join game number
     $('#join-game-number').click(function() {
-      console.log('Join Game Number ' + $('#input-number').text());
-      var gameId = $('#input-number').text();
+      console.log('Join Game Number ' + $('#input-number').val());
+      var gameId = $('#input-number').val();
 
       // Hide splash menu
       $('#splash').hide();

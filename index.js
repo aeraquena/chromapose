@@ -56,6 +56,7 @@ io.on('connection', function(socket){
 
   // Player joins game
   socket.on('join', function(gameId) {
+    console.log('-- Start to join game --');
     // Create game if it doesn't exist
     if (!engine.games[gameId]) {
       // Create instance of game
