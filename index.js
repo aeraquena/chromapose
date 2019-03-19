@@ -28,16 +28,16 @@ function emitUpdates() {
 io.on('connection', function(socket){
   console.log('User connected: ', socket.id)
   // start game if this is the first player
-  if (Object.keys(engine.games['0'].players).length == 0) {
+  /*if (Object.keys(engine.games['0'].players).length == 0) {
     engine.changeTargetColor()
     updateInterval = setInterval(emitUpdates, 40)
-	}
+	}*/
 
   // TODO: Remove this, do this on "join game" instead
   // add player to engine.players obj
-  engine.games['0'].players[socket.id] = {
+  /*engine.games['0'].players[socket.id] = {
     matching: false // the only one we'll keep
-  }
+  }*/
 
   // set socket listeners
 
@@ -53,6 +53,33 @@ io.on('connection', function(socket){
       clearInterval(updateInterval)
   	}
   })
+
+  // Player joins game
+  socket.on('join', function(gameId) {
+    // Create game if it doesn't exist
+    if (!engine.games[gameId]) {
+      // Create instance of game
+      engine.games[gameId] = {
+        players: {},
+        targetColor: {
+          'hue': 0, 
+          'lightness': 0
+        },
+        matchingPlayers: 0
+      };
+
+      engine.changeTargetColor() // TODO: For this game
+      updateInterval = setInterval(emitUpdates, 40) // necessary for each game?
+    }
+
+    // Assign player to game
+    engine.games[gameId].players[socket.id] = {
+      matching: false // the only one we'll keep
+    }
+
+    console.log('-- Joined game --');
+    console.log(engine.games);
+  }
 
   // On match
   socket.on('match', function(msg){
