@@ -174,12 +174,12 @@
       if ($('#instructions').hasClass('shown')) {
         // hide
         $('#instructions').removeClass('shown');
-        $('#splash').hide();
+        $('#splash').show();
         $(this).text('?');
       } else {
         // show
         $('#instructions').addClass('shown');
-        $('#splash').show();
+        $('#splash').hide();
         $(this).text('X');
       }
     });
