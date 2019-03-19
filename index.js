@@ -69,7 +69,7 @@ io.on('connection', function(socket){
         matchingPlayers: 0
       };
 
-      engine.changeTargetColor() // TODO: For this game
+      engine.changeTargetColor(gameId) // TODO: For this game
       updateInterval = setInterval(emitUpdates, 40) // necessary for each game?
     }
 
@@ -85,6 +85,7 @@ io.on('connection', function(socket){
   // On match
   socket.on('match', function(msg){
 
+    // TODO: Pass in game id. Or find user's current game id
     engine.games['0'].players[socket.id].matching = true;
 
     var allMatching = true;
@@ -100,7 +101,7 @@ io.on('connection', function(socket){
 
     if (allMatching) {
       io.emit('colorChanged');
-      engine.changeTargetColor();
+      engine.changeTargetColor(gameId); // todo: pass in game id
     }
   });
 
@@ -108,12 +109,14 @@ io.on('connection', function(socket){
   socket.on('unmatch', function(msg){
     // Update list of matching clients
 
+    // TODO: Pass in game id. Or find user's current game id
+
     engine.games['0'].players[socket.id].matching = false;
   });
 
   // Change target color manually
   socket.on('changeColor', function(msg){
-    engine.changeTargetColor();
+    engine.changeTargetColor(gameId); // todo: get game id
     io.emit('colorChanged');
   });
 });
