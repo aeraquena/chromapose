@@ -45,14 +45,17 @@ io.on('connection', function(socket){
   socket.on('disconnect', function() {
     // Find which game the player belonged to
     var gameId;
-    $.each(engine.games, function(gameIndex, game) {
-      $.each(game.players, function(playerIndex, player) {
+    for (var gameIndex in engine.games) {
+      for (var playerIndex in engine.games[gameIndex].players) {
+    //for (const [gameIndex, game] of engine.games.entries(object))
+//    $.each(engine.games, function(gameIndex, game) {
+      //$.each(game.players, function(playerIndex, player) {
         if (playerIndex == socket.id) {
           gameId = gameIndex;
-          return false;
+          break;
         }
-      });
-    });
+      }
+    }
     console.log('disconnect game id: ' + gameId);
 
     // Remove player from players in game.id
