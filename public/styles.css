@@ -72,9 +72,15 @@ body {
   }
 }
 
-#bottom {
+#top, #bottom {
   font-size: 50px;
   font-weight: bold;
+}
+
+#top #gameId {
+  position: fixed;
+  top: 0;
+  left: 10px;
 }
 
 #bottom #playerCount {  
