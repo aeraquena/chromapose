@@ -6,11 +6,8 @@
     socket.on('gameStateUpdate', updateGameState);
 
     function updateGameState(gameState) {
-      console.log('Socket id: ' + socket.id);
       // update local state to match state on server
       games = gameState.games
-
-      console.log('Game id: ' + gameId);
 
       // Calculate matching players
       if (gameId) {
@@ -79,7 +76,7 @@
             $('#screen').addClass('match');
 
             // Send match to socket
-            //socket.emit('match', games[gameId].players);
+            socket.emit('match', gameId);
         } else {
           // Client has changed to not match colors
           
@@ -87,7 +84,7 @@
           $('#screen').removeClass('match');
 
           // Send unmatch to socket
-          //socket.emit('unmatch', games[gameId].players);
+          socket.emit('unmatch', gameId);
         }
 
         prevIsMatching = isMatching;
@@ -183,7 +180,7 @@
 
     // Change outer color manually
     $('#change-outer-color').click(function() {
-      socket.emit('changeColor');
+      socket.emit('changeColor', gameId);
     });
 
     // Join game

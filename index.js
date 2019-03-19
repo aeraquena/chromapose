@@ -47,9 +47,6 @@ io.on('connection', function(socket){
     var gameId;
     for (var gameIndex in engine.games) {
       for (var playerIndex in engine.games[gameIndex].players) {
-    //for (const [gameIndex, game] of engine.games.entries(object))
-//    $.each(engine.games, function(gameIndex, game) {
-      //$.each(game.players, function(playerIndex, player) {
         if (playerIndex == socket.id) {
           gameId = gameIndex;
           break;
@@ -105,17 +102,17 @@ io.on('connection', function(socket){
   });
 
   // On match
-  socket.on('match', function(msg){
+  socket.on('match', function(gameId){
+    console.log('Match, game id: ' + gameId);
 
-    // TODO: Pass in game id. Or find user's current game id
-    engine.games['0'].players[socket.id].matching = true;
+    engine.games[gameId].players[socket.id].matching = true;
 
     var allMatching = true;
 
     // Update list of matching clients
-    Object.keys(engine.games['0'].players).forEach((playerId) => {
+    Object.keys(engine.games[gameId].players).forEach((playerId) => {
       // Check if all players are matching. If one is not, exit early
-      if (engine.games['0'].players[playerId].matching == false) {
+      if (engine.games[gameId].players[playerId].matching == false) {
         allMatching = false;
         return false;
       }
@@ -123,21 +120,21 @@ io.on('connection', function(socket){
 
     if (allMatching) {
       io.emit('colorChanged');
-      engine.changeTargetColor(gameId); // todo: pass in game id
+      engine.changeTargetColor(gameId);
     }
   });
 
   // On match
-  socket.on('unmatch', function(msg){
+  socket.on('unmatch', function(gameId){
     // Update list of matching clients
 
     // TODO: Pass in game id. Or find user's current game id
 
-    engine.games['0'].players[socket.id].matching = false;
+    engine.games[gameId].players[socket.id].matching = false;
   });
 
   // Change target color manually
-  socket.on('changeColor', function(msg){
+  socket.on('changeColor', function(gameId){
     engine.changeTargetColor(gameId); // todo: get game id
     io.emit('colorChanged');
   });

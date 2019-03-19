@@ -1,13 +1,4 @@
-var games = {
-  /*'0': {
-    players: {},
-    targetColor: {
-      'hue': 0, 
-      'lightness': 0
-    },
-    matchingPlayers: 0
-  }*/
-}
+var games = {}
 
 // Update target color
 function changeTargetColor(gameId) {
