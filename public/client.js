@@ -10,7 +10,7 @@
       games = gameState.games
 
       // Calculate matching players
-      if (gameId) {
+      if (games[gameId]) {
         var playerCount = Object.keys(games[gameId].players).length
         var matchingPlayers = 0;
         Object.values(games[gameId].players).forEach((player, index) => { // todo: get game id based on player     
@@ -138,7 +138,9 @@
             // Change background color
             $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
 
-            checkMatch(hue, lightness);
+            if (gameId) {
+              checkMatch(hue, lightness);
+            }
           }, true);
       }
     } else {
