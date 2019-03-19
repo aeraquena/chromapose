@@ -7,14 +7,19 @@
       console.log('Socket id: ' + socket.id);
       // update local state to match state on server
       games = gameState.games
+      playerToGameIndex = gameState.playerToGameIndex
+
+      var gameId = playerToGameIndex[socket.id];
+      console.log('Game id: ' + gameId);
+
       /*games['0'].players = gameState.games['0'].players
       games['0'].targetColor = gameState.games['0'].targetColor
       games['0'].matchingPlayers = gameState.games['0'].matchingPlayers*/
 
       // Calculate matching players
-      var playerCount = Object.keys(games['0'].players).length
+      var playerCount = Object.keys(games[gameId].players).length
       var matchingPlayers = 0;
-      Object.values(games['0'].players).forEach((player, index) => { // todo: get game id based on player     
+      Object.values(games[gameId].players).forEach((player, index) => { // todo: get game id based on player     
         if (player.matching) {
           matchingPlayers++;
         }
@@ -24,14 +29,14 @@
       document.getElementById('playerCount').innerHTML = String(matchingPlayers) + "/" + String(playerCount)
 
       // Change target border color
-      $('#screen').css('border-color', 'hsl(' + games['0'].targetColor.hue + ', 100%, ' + games['0'].targetColor.lightness + '%)');
+      $('#screen').css('border-color', 'hsl(' + games[gameId].targetColor.hue + ', 100%, ' + games[gameId].targetColor.lightness + '%)');
     }
 
     function gameLoop() {
       // update game
       updateGameState({
         games: games,
-        gameId: gameId
+        playerToGameIndex: playerToGameIndex
         /*players: games['0'].players, 
         targetColor: games['0'].targetColor,
         matchingPlayers: games['0'].matchingPlayers*/})
@@ -60,6 +65,8 @@
 
     // Checks match between target and user color
     function checkMatch() {
+      // TODO: Pass in game id
+      
       var bound = 10; // bounding box for color matches
 
       // Is player within the target color bounds?

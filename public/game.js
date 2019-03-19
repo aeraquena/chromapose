@@ -9,6 +9,8 @@ var games = {
   }
 }
 
+var playerToGameIndex = {};
+
 // Update target color
 function changeTargetColor(gameId) {
   // Needs to take in game id
@@ -21,6 +23,7 @@ function changeTargetColor(gameId) {
 if (!this.navigator) { // determine whether this is a node module or inlined via script tag
   module.exports = {
     games: games,
+    playerToGameIndex: playerToGameIndex,
     changeTargetColor: changeTargetColor
   }
 }
