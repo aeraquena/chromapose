@@ -79,7 +79,7 @@ io.on('connection', function(socket){
 
     console.log('-- Joined game --');
     console.log(engine.games);
-  }
+  });
 
   // On match
   socket.on('match', function(msg){
