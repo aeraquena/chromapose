@@ -13,8 +13,12 @@ body {
   left: 0;
   bottom: 0;
   right: 0;
-  border-width: 60px;
+  border-width: 0;
   border-style: solid;
+}
+
+#screen.game {
+  border-width: 60px;
 }
 
 #screen.match {

@@ -127,15 +127,12 @@ io.on('connection', function(socket){
   // On match
   socket.on('unmatch', function(gameId){
     // Update list of matching clients
-
-    // TODO: Pass in game id. Or find user's current game id
-
     engine.games[gameId].players[socket.id].matching = false;
   });
 
   // Change target color manually
   socket.on('changeColor', function(gameId){
-    engine.changeTargetColor(gameId); // todo: get game id
+    engine.changeTargetColor(gameId);
     io.emit('colorChanged');
   });
 });

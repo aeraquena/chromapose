@@ -213,6 +213,9 @@
 
       // Add user to game object players
       socket.emit('join', gameId);
+
+      // Expand border
+      $('#screen').addClass('game');
     });
 
     // New game
@@ -225,6 +228,9 @@
       // Create new game object
       // Add user to game object players
       socket.emit('join', gameId);
+
+      // Expand border
+      $('#screen').addClass('game');
     });
 
     function drawGame() {
