@@ -174,10 +174,12 @@
       if ($('#instructions').hasClass('shown')) {
         // hide
         $('#instructions').removeClass('shown');
+        $('#splash').hide();
         $(this).text('?');
       } else {
         // show
         $('#instructions').addClass('shown');
+        $('#splash').show();
         $(this).text('X');
       }
     });
@@ -208,8 +210,8 @@
       console.log('Join Game Number ' + $('#input-number').val());
       gameId = $('#input-number').val();
 
-      // Hide splash menu
-      $('#splash').hide();
+      // Remove splash menu
+      $('#splash').remove();
 
       // Add game ID to display
       $('#top #gameId').text('#' + gameId);
@@ -225,8 +227,8 @@
     $('#new-game').click(function() {
       console.log('New Game');
 
-      // Hide splash menu
-      $('#splash').hide();
+      // Remove splash menu
+      $('#splash').remove();
 
       // Add game ID to display
       $('#top #gameId').text('#' + gameId);
