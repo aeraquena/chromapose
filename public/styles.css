@@ -157,12 +157,6 @@ a {
   position: relative;
 }
 
-#splash #number-symbol {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
 #splash #input-number {
   background: transparent;
   border: 0;
@@ -170,7 +164,7 @@ a {
   font-size: 36px;
   outline: none;
   color: #fff;
-  width: 220px;
+  width: 67px;
   font-family: 'Roboto Mono', 'Monaco', monospace;
   margin-bottom: 20px;
   border-radius: 0;
