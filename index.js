@@ -20,8 +20,7 @@ app.get('/', function(req, res){
 function emitUpdates() {
   // tell everyone what's up
   io.emit('gameStateUpdate', { 
-    games: engine.games,
-    playerToGameIndex: engine.playerToGameIndex
+    games: engine.games
   });
 }
 
@@ -44,15 +43,17 @@ io.on('connection', function(socket){
 
   // On player disconnect
   socket.on('disconnect', function() {
-    // Remove player from players
+    // Remove player from players in game.id
   	delete engine.games['0'].players[socket.id]
-    delete engine.playerToGameIndex[socket.id]
+
   	// end game if there are no engine.players left
   	if (Object.keys(engine.games['0'].players).length > 0) {
     	io.emit('gameStateUpdate', engine.games['0'].players);
   	} else {
   		clearInterval(gameInterval)
       clearInterval(updateInterval)
+
+      // Remove games index
   	}
   })
 
@@ -79,9 +80,6 @@ io.on('connection', function(socket){
     engine.games[gameId].players[socket.id] = {
       matching: false // the only one we'll keep
     }
-
-    // Create key-value pair of player-game
-    engine.playerToGameIndex[socket.id] = gameId;
 
     console.log('-- Joined game --');
     console.log(engine.games);

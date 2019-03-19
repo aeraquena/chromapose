@@ -9,9 +9,7 @@
       console.log('Socket id: ' + socket.id);
       // update local state to match state on server
       games = gameState.games
-      //playerToGameIndex = gameState.playerToGameIndex
 
-      //var gameId = playerToGameIndex[socket.id];
       console.log('Game id: ' + gameId);
 
       /*games['0'].players = gameState.games['0'].players
@@ -37,8 +35,7 @@
     function gameLoop() {
       // update game
       updateGameState({
-        games: games,
-        playerToGameIndex: playerToGameIndex
+        games: games
         /*players: games['0'].players, 
         targetColor: games['0'].targetColor,
         matchingPlayers: games['0'].matchingPlayers*/})
