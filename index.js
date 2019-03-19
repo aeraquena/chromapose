@@ -43,18 +43,34 @@ io.on('connection', function(socket){
 
   // On player disconnect
   socket.on('disconnect', function() {
+    // Find which game the player belonged to
+    var gameId;
+    $.each(engine.games, function(gameIndex, game) {
+      $.each(game.players, function(playerIndex, player) {
+        if (playerIndex == socket.id) {
+          gameId = gameIndex;
+          return false;
+        }
+      });
+    });
+    console.log('disconnect game id: ' + gameId);
+
     // Remove player from players in game.id
-  	delete engine.games['0'].players[socket.id]
+  	delete engine.games[gameId].players[socket.id]
 
   	// end game if there are no engine.players left
-  	if (Object.keys(engine.games['0'].players).length > 0) {
-    	io.emit('gameStateUpdate', engine.games['0'].players);
+  	if (Object.keys(engine.games[gameId].players).length > 0) {
+    	io.emit('gameStateUpdate', engine.games[gameId].players);
   	} else {
   		clearInterval(gameInterval)
       clearInterval(updateInterval)
 
-      // Remove games index
+      // Remove game
+      delete engine.games[gameId];
   	}
+
+    console.log('After disconnect');
+    console.log(engine.games);
   })
 
   // Player joins game

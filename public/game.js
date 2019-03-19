@@ -1,12 +1,12 @@
 var games = {
-  '0': {
+  /*'0': {
     players: {},
     targetColor: {
       'hue': 0, 
       'lightness': 0
     },
     matchingPlayers: 0
-  }
+  }*/
 }
 
 // Update target color
