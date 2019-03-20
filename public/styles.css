@@ -223,7 +223,6 @@ body#about h1, h2, a {
   color: #00ffff;
   background-image: -webkit-linear-gradient(92deg, #00ffff, #00ffff);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   animation: hue 10s infinite linear;
 }
 
