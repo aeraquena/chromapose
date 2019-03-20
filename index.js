@@ -100,7 +100,8 @@ io.on('connection', function(socket){
     // Generate game id
     var gameId = Math.floor(Math.random() * 1000);
     io.emit('gameCreated', {
-      'gameId': gameId
+      'gameId': gameId,
+      'socketId': socket.id
     });
 
     // Create instance of game

@@ -8,8 +8,8 @@
     socket.on('gameCreated', updateGameId);
 
     function updateGameState(gameState) {
-      console.log('update game state');
-      console.log(gameState);
+      //console.log('update game state');
+      //console.log(gameState);
       // update local state to match state on server
       games = gameState.games
 
@@ -36,7 +36,7 @@
 
     function updateGameId(game) {
       console.log('socket id: ' + socket.id);
-      console.log('game socket id: ' + game.socketId);
+      console.log('game socket id: ' + game.socketId); // this is undefined
       console.log('game id: ' + game.gameId);
       if (game.socketId == socket.id) { 
         $('#top #gameId').text('#' + game.gameId);
