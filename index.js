@@ -51,7 +51,7 @@ io.on('connection', function(socket){
 
   	// end game if there are no engine.players left
   	if (Object.keys(engine.games[gameId].players).length > 0) {
-    	io.emit('gameStateUpdate', engine.games[gameId].players);
+    	io.emit('gameStateUpdate', engine.games); // Should this be engine.games? //[gameId].players
   	} else {
   		clearInterval(gameInterval)
       clearInterval(updateInterval)
@@ -107,8 +107,8 @@ io.on('connection', function(socket){
       engine.games[gameId] = {
         players: {},
         targetColor: {
-          'hue': 100, 
-          'lightness': 100
+          'hue': 0, 
+          'lightness': 0
         },
         matchingPlayers: 0
       };
@@ -120,8 +120,9 @@ io.on('connection', function(socket){
       engine.games[gameId].players[socket.id] = {
         matching: false // the only one we'll keep
       }
-      //console.log('Created game ' + gameId);
-      //console.log(engine.games);
+      
+      console.log('Created game ' + gameId);
+      console.log(engine.games);
   });
 
   // On match
