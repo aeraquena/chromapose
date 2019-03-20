@@ -4,7 +4,6 @@
     <title>chromapose</title>
     <link rel="stylesheet" href="../styles.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <meta 
          name='viewport' 
          content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1' 
@@ -66,20 +65,5 @@
   	<br/><br/>
   	Videos and photos feature players Jamie Sichel, Rachel Clancy, Tammu Do, Rachael Melanson, and Phoenix Perry.
   	<br/><br/><br/><br/>
-    <script>
-      $('document').ready(function() {
-        var bodyWidth = $('body').width();
-        var bodyHeight = $('body').height();
-
-        $("body").mousemove(function(e) {
-
-            hue = (Math.floor(map(e.pageX, 0, bodyWidth, 255, 0))) % 255;
-            lightness = (Math.floor(map(e.pageY, 0, bodyHeight, 0, 80)) % 80) + 20;
-
-            // Change background color
-            $('#author').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
-        })
-      });
-    </script>
   </body>
 </html>
