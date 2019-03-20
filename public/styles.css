@@ -220,8 +220,8 @@ body#about h1, h2 {
 }
 
 body#about h1, h2, .rainbow {
-  color: #f35626;
-  background-image: -webkit-linear-gradient(92deg, #f35626, #f35626);
+  color: #ff0000;
+  background-image: -webkit-linear-gradient(92deg, #ff0000, #ff0000);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: hue 10s infinite linear;
