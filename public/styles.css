@@ -1,5 +1,5 @@
 body {
-  background: #000;
+  background-color: #000;
   height: 100vh;
   font-family: 'Monaco', monospace;
   color: #fff;
@@ -226,6 +226,11 @@ body#about h1 {
 
 body#about h2 {
   font-size: 2em;
+}
+
+body#about h3 {
+  text-align: center;
+  font-weight: normal;
 }
 
 body#about #author {
