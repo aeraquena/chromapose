@@ -219,7 +219,7 @@ body#about h1, h2 {
   text-align: center;
 }
 
-body#about h1, h2, .rainbow {
+body#about h1, h2, a {
   color: #00ffff;
   background-image: -webkit-linear-gradient(92deg, #00ffff, #00ffff);
   -webkit-background-clip: text;
