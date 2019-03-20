@@ -8,12 +8,8 @@
     socket.on('gameCreated', updateGameId);
 
     function updateGameState(gameState) {
-      console.log('update game state');
-      console.log(gameState);
       // update local state to match state on server
       games = gameState.games
-
-      console.log('game id: ' + gameId)
 
       // Calculate matching players
       if (games[gameId]) {
@@ -37,9 +33,6 @@
     }
 
     function updateGameId(game) {
-      /*console.log('socket id: ' + socket.id);
-      console.log('game socket id: ' + game.socketId);
-      console.log('game id: ' + game.gameId);*/
       if (game.socketId = socket.id) { 
         $('#top #gameId').text('#' + game.gameId);
         gameId = game.gameId;
@@ -210,8 +203,6 @@
 
     // Join game
     $('#join-game').click(function() {
-      //console.log('Join Game');
-
       $('#splash #start-buttons').hide();
       $('#splash #input-number-container').show();
     });
@@ -226,7 +217,6 @@
 
     // Join game number
     $('#join-game-number').click(function() {
-      //console.log('Join Game Number ' + $('#input-number').val());
       gameId = $('#input-number').val();
 
       // Remove splash menu
@@ -244,14 +234,11 @@
 
     // New game
     $('#new-game').click(function() {
-      //console.log('New Game');
-
       // Remove splash menu
       $('#splash').remove();
 
       // Create new game object
       // Add user to game object players
-      //socket.emit('join', gameId);
       socket.emit('newGame');
 
       // Expand border
