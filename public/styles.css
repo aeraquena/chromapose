@@ -1,7 +1,7 @@
 body {
   background: #000;
   height: 100vh;
-  font-family: 'Roboto Mono', 'Monaco', monospace;
+  font-family: 'Monaco', monospace;
   color: #fff;
   overflow-x: hidden; 
   overflow-y: hidden;
@@ -177,7 +177,7 @@ a:active {
   outline: none;
   color: #fff;
   width: 67px;
-  font-family: 'Roboto Mono', 'Monaco', monospace;
+  font-family: 'Monaco', monospace;
   margin-bottom: 20px;
   border-radius: 0;
 }
@@ -203,6 +203,7 @@ body#about {
   overflow-x: scroll; 
   overflow-y: scroll;
   margin: 50px 100px;
+  font-family: 'Roboto Mono', 'Monaco', monospace;
 }
 
 body#about a {
