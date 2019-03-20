@@ -8,6 +8,8 @@
     socket.on('gameCreated', updateGameId);
 
     function updateGameState(gameState) {
+      console.log('update game state');
+      console.log(gameState);
       // update local state to match state on server
       games = gameState.games
 
