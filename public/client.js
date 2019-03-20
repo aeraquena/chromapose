@@ -33,9 +33,9 @@
     }
 
     function updateGameId(game) {
-      console.log('socket id: ' + socket.id);
+      /*console.log('socket id: ' + socket.id);
       console.log('game socket id: ' + game.socketId);
-      console.log('game id: ' + game.gameId);
+      console.log('game id: ' + game.gameId);*/
       if (game.socketId = socket.id) { 
         $('#top #gameId').text('#' + game.gameId);
       }
@@ -205,7 +205,7 @@
 
     // Join game
     $('#join-game').click(function() {
-      console.log('Join Game');
+      //console.log('Join Game');
 
       $('#splash #start-buttons').hide();
       $('#splash #input-number-container').show();
@@ -221,7 +221,7 @@
 
     // Join game number
     $('#join-game-number').click(function() {
-      console.log('Join Game Number ' + $('#input-number').val());
+      //console.log('Join Game Number ' + $('#input-number').val());
       gameId = $('#input-number').val();
 
       // Remove splash menu
@@ -239,7 +239,7 @@
 
     // New game
     $('#new-game').click(function() {
-      console.log('New Game');
+      //console.log('New Game');
 
       // Remove splash menu
       $('#splash').remove();

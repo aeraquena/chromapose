@@ -26,18 +26,7 @@ function emitUpdates() {
 
 // On new player connect
 io.on('connection', function(socket){
-  console.log('User connected: ', socket.id)
-  // start game if this is the first player
-  /*if (Object.keys(engine.games['0'].players).length == 0) {
-    engine.changeTargetColor()
-    updateInterval = setInterval(emitUpdates, 40)
-	}*/
-
-  // TODO: Remove this, do this on "join game" instead
-  // add player to engine.players obj
-  /*engine.games['0'].players[socket.id] = {
-    matching: false // the only one we'll keep
-  }*/
+  //console.log('User connected: ', socket.id)
 
   // set socket listeners
 
@@ -53,7 +42,7 @@ io.on('connection', function(socket){
         }
       }
     }
-    console.log('disconnect game id: ' + gameId);
+    //console.log('disconnect game id: ' + gameId);
 
     // Remove player from players in game.id
     if (engine.games[gameId]) {
@@ -71,13 +60,13 @@ io.on('connection', function(socket){
       delete engine.games[gameId];
   	}
 
-    console.log('After disconnect');
-    console.log(engine.games);
+    //console.log('After disconnect');
+    //console.log(engine.games);
   })
 
   // Player joins game
   socket.on('join', function(gameId) {
-    console.log('-- Start to join game --');
+    //console.log('-- Start to join game --');
     // Create game if it doesn't exist
     // TODO: Remove this
     if (!engine.games[gameId]) {
@@ -100,19 +89,18 @@ io.on('connection', function(socket){
       matching: false // the only one we'll keep
     }
 
-    console.log('-- Joined game --');
-    console.log(engine.games);
+    //console.log('-- Joined game --');
+    //console.log(engine.games);
   });
 
   // Player creates new game
   socket.on('newGame', function() {
-    console.log('-- Create new game --');
+    //console.log('-- Create new game --');
 
     // Generate game id
     var gameId = Math.floor(Math.random() * 1000);
     io.emit('gameCreated', {
-      'gameId': gameId/*,
-      'socketId': socket.id*/
+      'gameId': gameId
     });
 
     // Create instance of game
@@ -128,13 +116,17 @@ io.on('connection', function(socket){
       engine.changeTargetColor(gameId) // TODO: For this game
       updateInterval = setInterval(emitUpdates, 40) // necessary for each game?
 
-      console.log('Created game ' + gameId);
-      console.log(engine.games);
+      // Assign player to game
+      engine.games[gameId].players[socket.id] = {
+        matching: false // the only one we'll keep
+      }
+      //console.log('Created game ' + gameId);
+      //console.log(engine.games);
   });
 
   // On match
   socket.on('match', function(gameId){
-    console.log('Match, game id: ' + gameId);
+    //console.log('Match, game id: ' + gameId);
 
     engine.games[gameId].players[socket.id].matching = true;
 
