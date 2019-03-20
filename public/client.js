@@ -105,12 +105,14 @@
 
     // Animation when color changes
     var winTimeout;
-    socket.on('colorChanged', function() {
-      clearTimeout(winTimeout);
-      $('#screen').addClass('win');
-      winTimeout = setTimeout(function() {
-        $('#screen').removeClass('win');
-      }, 750);
+    socket.on('colorChanged', function(changedGameId) {
+      if (changedGameId == gameId) {
+        clearTimeout(winTimeout);
+        $('#screen').addClass('win');
+        winTimeout = setTimeout(function() {
+          $('#screen').removeClass('win');
+        }, 750);
+      }
     });
 
     // Detect if browser supports orientation

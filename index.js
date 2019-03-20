@@ -150,7 +150,7 @@ io.on('connection', function(socket){
     })
 
     if (allMatching) {
-      io.emit('colorChanged');
+      io.emit('colorChanged', gameId);
       engine.changeTargetColor(gameId);
     }
   });
@@ -164,7 +164,7 @@ io.on('connection', function(socket){
   // Change target color manually
   socket.on('changeColor', function(gameId){
     engine.changeTargetColor(gameId);
-    io.emit('colorChanged');
+    io.emit('colorChanged', gameId);
   });
 });
 
