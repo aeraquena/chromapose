@@ -107,8 +107,8 @@ io.on('connection', function(socket){
       engine.games[gameId] = {
         players: {},
         targetColor: {
-          'hue': 0, 
-          'lightness': 0
+          'hue': 100, 
+          'lightness': 100
         },
         matchingPlayers: 0
       };
