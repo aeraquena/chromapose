@@ -127,7 +127,7 @@ io.on('connection', function(socket){
       updateInterval = setInterval(emitUpdates, 40) // necessary for each game?
 
       console.log('Created game ' + gameId);
-  }
+  });
 
   // On match
   socket.on('match', function(gameId){
