@@ -56,7 +56,9 @@ io.on('connection', function(socket){
     console.log('disconnect game id: ' + gameId);
 
     // Remove player from players in game.id
-  	delete engine.games[gameId].players[socket.id]
+    if (engine.games[gameId]) {
+  	 delete engine.games[gameId].players[socket.id]
+    }
 
   	// end game if there are no engine.players left
   	if (Object.keys(engine.games[gameId].players).length > 0) {
@@ -127,6 +129,7 @@ io.on('connection', function(socket){
       updateInterval = setInterval(emitUpdates, 40) // necessary for each game?
 
       console.log('Created game ' + gameId);
+      console.log(engine.games);
   });
 
   // On match
