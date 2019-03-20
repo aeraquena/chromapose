@@ -42,6 +42,7 @@
       console.log('game id: ' + game.gameId);*/
       if (game.socketId = socket.id) { 
         $('#top #gameId').text('#' + game.gameId);
+        gameId = game.gameId;
       }
     }
 
