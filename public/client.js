@@ -5,6 +5,8 @@
 
     socket.on('gameStateUpdate', updateGameState);
 
+    socket.on('gameCreated', updateGameId);
+
     function updateGameState(gameState) {
       // update local state to match state on server
       games = gameState.games
@@ -30,10 +32,20 @@
       }
     }
 
+    function updateGameId(game) {
+      console.log('socket id: ' + socket.id);
+      console.log('game socket id: ' + game.socketId);
+      console.log('game id: ' + game.gameId);
+      if (game.socketId = socket.id) { 
+        $('#top #gameId').text('#' + game.gameId);
+      }
+    }
+
     function gameLoop() {
       // update game
       updateGameState({
-        games: games})
+        games: games
+      })
     }
 
     /* Movement */
@@ -230,12 +242,10 @@
       // Remove splash menu
       $('#splash').remove();
 
-      // Add game ID to display
-      $('#top #gameId').text('#' + gameId);
-      
       // Create new game object
       // Add user to game object players
-      socket.emit('join', gameId);
+      //socket.emit('join', gameId);
+      socket.emit('newGame');
 
       // Expand border
       $('#screen').addClass('game');

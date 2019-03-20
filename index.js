@@ -77,6 +77,7 @@ io.on('connection', function(socket){
   socket.on('join', function(gameId) {
     console.log('-- Start to join game --');
     // Create game if it doesn't exist
+    // TODO: Remove this
     if (!engine.games[gameId]) {
       // Create instance of game
       engine.games[gameId] = {
@@ -100,6 +101,33 @@ io.on('connection', function(socket){
     console.log('-- Joined game --');
     console.log(engine.games);
   });
+
+  // Player creates new game
+  socket.on('newGame', function() {
+    console.log('-- Create new game --');
+
+    // Generate game id
+    var gameId = Math.floor(Math.random() * 1000);
+    io.emit('gameCreated', {
+      'gameId': gameId/*,
+      'socketId': socket.id*/
+    });
+
+    // Create instance of game
+      engine.games[gameId] = {
+        players: {},
+        targetColor: {
+          'hue': 0, 
+          'lightness': 0
+        },
+        matchingPlayers: 0
+      };
+
+      engine.changeTargetColor(gameId) // TODO: For this game
+      updateInterval = setInterval(emitUpdates, 40) // necessary for each game?
+
+      console.log('Created game ' + gameId);
+  }
 
   // On match
   socket.on('match', function(gameId){
