@@ -13,6 +13,8 @@
       // update local state to match state on server
       games = gameState.games
 
+      console.log('game id: ' + gameId)
+
       // Calculate matching players
       if (games[gameId]) {
         var playerCount = Object.keys(games[gameId].players).length
