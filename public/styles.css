@@ -130,6 +130,11 @@ p.centered {
 
 a {
   color: #fff;
+  text-decoration: underline;
+}
+
+a:hover,
+a:active {
   text-decoration: none;
 }
 
@@ -204,7 +209,8 @@ body#about a {
   text-decoration: underline;
 }
 
-body#about a:hover {
+body#about a:hover,
+body#about a:active {
   text-decoration: none;
 }
 

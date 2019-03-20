@@ -26,8 +26,6 @@ function emitUpdates() {
 
 // On new player connect
 io.on('connection', function(socket){
-  //console.log('User connected: ', socket.id)
-
   // set socket listeners
 
   // On player disconnect
@@ -42,7 +40,6 @@ io.on('connection', function(socket){
         }
       }
     }
-    //console.log('disconnect game id: ' + gameId);
 
     // Remove player from players in game.id
     if (engine.games[gameId]) {
@@ -59,14 +56,10 @@ io.on('connection', function(socket){
       // Remove game
       delete engine.games[gameId];
   	}
-
-    //console.log('After disconnect');
-    //console.log(engine.games);
   })
 
   // Player joins game
   socket.on('join', function(gameId) {
-    //console.log('-- Start to join game --');
     // Create game if it doesn't exist
     // TODO: Remove this
     if (!engine.games[gameId]) {
@@ -88,15 +81,10 @@ io.on('connection', function(socket){
     engine.games[gameId].players[socket.id] = {
       matching: false // the only one we'll keep
     }
-
-    //console.log('-- Joined game --');
-    //console.log(engine.games);
   });
 
   // Player creates new game
   socket.on('newGame', function() {
-    //console.log('-- Create new game --');
-
     // Generate game id
     var gameId = Math.floor(Math.random() * 1000);
     io.emit('gameCreated', {
@@ -121,15 +109,10 @@ io.on('connection', function(socket){
       engine.games[gameId].players[socket.id] = {
         matching: false // the only one we'll keep
       }
-      
-      console.log('Created game ' + gameId);
-      console.log(engine.games);
   });
 
   // On match
   socket.on('match', function(gameId){
-    //console.log('Match, game id: ' + gameId);
-
     engine.games[gameId].players[socket.id].matching = true;
 
     var allMatching = true;
