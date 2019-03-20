@@ -8,6 +8,19 @@
          name='viewport' 
          content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1' 
     />
+    <script>
+      var bodyWidth = $('body').width();
+      var bodyHeight = $('body').height();
+
+      $("body").mousemove(function(e) {
+
+          hue = (Math.floor(map(e.pageX, 0, bodyWidth, 255, 0))) % 255;
+          lightness = (Math.floor(map(e.pageY, 0, bodyHeight, 0, 80)) % 80) + 20;
+
+          // Change background color
+          $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
+      })
+    </script>
   </head>
   <body id="about">
   	<h1>chromapose</h1>
@@ -42,10 +55,10 @@
   	<img src="../photos/chromapose1.png" width="100%">
     <br/>
     <br/>
+    <img src="../photos/chromapose.png" width="100%">
+    <br/>
+    <br/>
     <img src="../photos/chromapose2.png" width="100%">
-    <br/>
-    <br/>
-    <img src="../photos/chromapose3.png" width="100%">
 
     <br/><br/>
 
