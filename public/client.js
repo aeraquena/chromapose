@@ -116,6 +116,9 @@
         winTimeout = setTimeout(function() {
           $('#screen').removeClass('win');
         }, 750);
+
+        // Remove tutorial
+        $('#tutorial').remove();
       }
     });
 
@@ -236,12 +239,18 @@
 
       // Expand border
       $('#screen').addClass('game');
+
+      // Show tutorial
+      $('#tutorial').addClass('shown');
     });
 
     // New game
     $('#new-game').click(function() {
       // Remove splash menu
       $('#splash').remove();
+
+      // Show tutorial
+      $('#tutorial').addClass('shown');
 
       // Create new game object
       // Add user to game object players

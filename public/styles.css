@@ -212,6 +212,30 @@ input[type=number] {
   display: none;
 }
 
+/* Tutorial */
+
+#tutorial {
+  text-align: center;
+  font-size: 20px;
+  display: none;
+}
+
+#tutorial.shown {
+  display: block;
+}
+
+#tutorial-2 {
+  display: none;
+}
+
+#screen.match #tutorial-1 {
+  display: none;
+}
+
+#screen.match #tutorial-2 {
+  display: block;
+}
+
 /* About */
 
 body#about {
