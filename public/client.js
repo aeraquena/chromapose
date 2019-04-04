@@ -159,7 +159,7 @@
             if (gameId) {
               checkMatch(hue, lightness);
             }
-          }, true);
+          }); // ,true
       }
     } else {
       console.log('Desktop');
