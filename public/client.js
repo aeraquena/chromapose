@@ -77,10 +77,6 @@
 
     // Checks match between target and user color
     function checkMatch() {
-      console.log('-- check match --');
-      console.log('game id: ' + gameId);
-      console.log(games);
-
       var bound = 10; // bounding box for color matches
 
       // Is player within the target color bounds?
@@ -163,7 +159,7 @@
             // Change background color
             $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
 
-            if (gameId) {
+            if (games && gameId) {
               checkMatch(hue, lightness);
             }
           }); // ,true
@@ -187,7 +183,7 @@
           // Change background color
           $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
 
-          if (gameId) {
+          if (games && gameId) {
             checkMatch(hue, lightness);
           }
       })
