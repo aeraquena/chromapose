@@ -123,6 +123,7 @@
 
       // Device orientation
       if (window.DeviceOrientationEvent) {
+        console.log('device orientation event');
           window.addEventListener("deviceorientation", function(event) {
               // alpha: rotation around z-axis
               rotDeg = event.alpha;
