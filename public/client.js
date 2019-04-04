@@ -94,6 +94,7 @@
           $('#screen').removeClass('match');
 
           // Send unmatch to socket
+          console.log('Client unmatch, game id: ' + gameId);
           socket.emit('unmatch', gameId);
         }
 

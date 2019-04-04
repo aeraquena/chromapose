@@ -30,6 +30,7 @@ io.on('connection', function(socket){
 
   // On player disconnect
   socket.on('disconnect', function() {
+    console.log('disconnect');
     // Find which game the player belonged to
     var gameId;
     for (var gameIndex in engine.games) {
@@ -40,6 +41,7 @@ io.on('connection', function(socket){
         }
       }
     }
+    console.log('disconnect game id: ' + gameId);
 
     // Remove player from players in game.id
     if (engine.games[gameId]) {
@@ -56,10 +58,14 @@ io.on('connection', function(socket){
       // Remove game
       delete engine.games[gameId];
   	}
+
+    console.log(engine.games);
   })
 
   // Player joins game
   socket.on('join', function(gameId) {
+    console.log('join game id: ' + gameId);
+
     // Create game if it doesn't exist
     // TODO: Remove this
     if (!engine.games[gameId]) {
@@ -81,10 +87,14 @@ io.on('connection', function(socket){
     engine.games[gameId].players[socket.id] = {
       matching: false // the only one we'll keep
     }
+
+    console.log(engine.games);
   });
 
   // Player creates new game
   socket.on('newGame', function() {
+    console.log('new game');
+
     // Generate game id
     var gameId = Math.floor(Math.random() * 1000);
     io.emit('gameCreated', {
@@ -109,10 +119,14 @@ io.on('connection', function(socket){
       engine.games[gameId].players[socket.id] = {
         matching: false // the only one we'll keep
       }
+
+      console.log(engine.games);
   });
 
   // On match
   socket.on('match', function(gameId){
+    console.log('match, game id: ' + gameId);
+
     engine.games[gameId].players[socket.id].matching = true;
 
     var allMatching = true;
@@ -127,15 +141,22 @@ io.on('connection', function(socket){
     })
 
     if (allMatching) {
+      console.log('emit color changed');
       io.emit('colorChanged', gameId);
       engine.changeTargetColor(gameId);
     }
+
+    console.log(engine.games);
   });
 
   // On match
   socket.on('unmatch', function(gameId){
+    console.log('Unmatch game id: ' + gameId);
     // Update list of matching clients
+    // game id can be undefined
     engine.games[gameId].players[socket.id].matching = false;
+
+    console.log(engine.games);
   });
 
   // Change target color manually
