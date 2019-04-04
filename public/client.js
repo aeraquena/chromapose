@@ -118,6 +118,7 @@
 
     // Detect if browser supports orientation
     if (typeof window.orientation !== 'undefined') { 
+      console.log('Mobile');
       // Mobile
 
       // Device orientation
@@ -159,6 +160,7 @@
           }, true);
       }
     } else {
+      console.log('Desktop');
       // Desktop
       $('#content').css('font-size', '18px');
 
