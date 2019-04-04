@@ -7,6 +7,8 @@
 
     socket.on('gameCreated', updateGameId);
 
+    var games;
+
     function updateGameState(gameState) {
       // update local state to match state on server
       games = gameState.games
@@ -72,8 +74,6 @@
     // Checks match between target and user color
     function checkMatch() {
       // TODO: Pass in game id
-
-      var games = gameState.games;
 
       console.log(games); // this is BLANK
 
