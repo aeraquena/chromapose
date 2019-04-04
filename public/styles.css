@@ -148,6 +148,10 @@ a:active {
   left: 0;
 }
 
+#splash.subtitle {
+  font-size: 20px;
+}
+
 #splash button {
   color: #fff;
   font-size: 36px;
@@ -165,7 +169,6 @@ a:active {
 }
 
 #splash #input-number-container {
-  display: none;
   position: relative;
 }
 
