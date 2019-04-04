@@ -77,6 +77,10 @@
 
     // Checks match between target and user color
     function checkMatch() {
+      console.log('-- check match --');
+      console.log('game id: ' + gameId);
+      console.log(games);
+
       var bound = 10; // bounding box for color matches
 
       // Is player within the target color bounds?
