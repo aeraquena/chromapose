@@ -73,7 +73,9 @@
     function checkMatch() {
       // TODO: Pass in game id
 
-      console.log(games);
+      var games = gameState.games;
+
+      console.log(games); // this is BLANK
 
       var bound = 10; // bounding box for color matches
 
