@@ -115,10 +115,10 @@
         $('#screen').addClass('win');
         winTimeout = setTimeout(function() {
           $('#screen').removeClass('win');
-        }, 750);
 
-        // Remove tutorial
-        $('#tutorial').remove();
+          // Remove tutorial
+          $('#tutorial').remove();
+        }, 750);
       }
     });
 
