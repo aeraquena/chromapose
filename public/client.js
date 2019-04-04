@@ -11,6 +11,8 @@
       // update local state to match state on server
       games = gameState.games
 
+      console.log('target color: ' + games[gameId].targetColor.hue + ', ' + games[gameId].targetColor.lightness);
+
       // Calculate matching players
       if (games[gameId]) {
         var playerCount = Object.keys(games[gameId].players).length
