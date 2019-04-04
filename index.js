@@ -79,6 +79,7 @@ io.on('connection', function(socket){
         matchingPlayers: 0
       };
 
+      console.log('Join, change target color');
       engine.changeTargetColor(gameId) // TODO: For this game
       updateInterval = setInterval(emitUpdates, 40) // necessary for each game?
     }
@@ -143,6 +144,7 @@ io.on('connection', function(socket){
     if (allMatching) {
       console.log('emit color changed');
       io.emit('colorChanged', gameId);
+      console.log('all matching - change target color');
       engine.changeTargetColor(gameId);
     }
 
@@ -167,6 +169,7 @@ io.on('connection', function(socket){
   // Change target color manually
   socket.on('changeColor', function(gameId){
     engine.changeTargetColor(gameId);
+    console.log('change target color manually');
     io.emit('colorChanged', gameId);
   });
 });
