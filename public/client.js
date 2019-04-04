@@ -20,26 +20,32 @@
       games = gameState.games;
 
       // Calculate matching players
-      if (games && games[gameId]) {
-        var playerCount = Object.keys(games[gameId].players).length
-        var matchingPlayers = 0;
-        Object.values(games[gameId].players).forEach((player, index) => { // todo: get game id based on player     
-          if (player.matching) {
-            matchingPlayers++;
-          }
-        })
+      if (games) {
+        if (games[gameId]) {
+          var playerCount = Object.keys(games[gameId].players).length
+          var matchingPlayers = 0;
+          Object.values(games[gameId].players).forEach((player, index) => { // todo: get game id based on player     
+            if (player.matching) {
+              matchingPlayers++;
+            }
+          })
 
-        // Show matching players and total players
-        document.getElementById('playerCount').innerHTML = String(matchingPlayers) + "/" + String(playerCount)
+          // Show matching players and total players
+          document.getElementById('playerCount').innerHTML = String(matchingPlayers) + "/" + String(playerCount)
 
-        console.log('target color:');
-        console.log(games[gameId].targetColor);
+          console.log('target color:');
+          console.log(games[gameId].targetColor);
 
-        // Change target border color
-        $('#screen').css(
-          'border-color', 
-          'hsl(' + games[gameId].targetColor.hue + 
-          ', 100%, ' + games[gameId].targetColor.lightness + '%)');
+          // Change target border color
+          $('#screen').css(
+            'border-color', 
+            'hsl(' + games[gameId].targetColor.hue + 
+            ', 100%, ' + games[gameId].targetColor.lightness + '%)');
+        } else {
+          // Disconnected, go black
+          console.log('disconnected');
+          $('#page').remove();
+        }
       }
     }
 

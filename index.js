@@ -46,20 +46,20 @@ io.on('connection', function(socket){
     // Remove player from players in game.id
     if (engine.games[gameId]) {
   	 delete engine.games[gameId].players[socket.id]
+
+    	// end game if there are no engine.players left
+    	if (Object.keys(engine.games[gameId].players).length > 0) {
+      	io.emit('gameStateUpdate', engine.games);
+    	} else {
+    		clearInterval(gameInterval)
+        clearInterval(updateInterval)
+
+        // Remove game
+        delete engine.games[gameId];
+
+        console.log('end game: ' + gameId);
+    	}
     }
-
-  	// end game if there are no engine.players left
-  	if (engine.games[gameId] && Object.keys(engine.games[gameId].players).length > 0) {
-    	io.emit('gameStateUpdate', engine.games);
-  	} else {
-  		clearInterval(gameInterval)
-      clearInterval(updateInterval)
-
-      // Remove game
-      delete engine.games[gameId];
-
-      console.log('end game: ' + gameId);
-  	}
 
     console.log(engine.games);
   })
