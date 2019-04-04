@@ -224,7 +224,9 @@ input[type=number] {
   font-size: 50px;
 }
 
-#tutorial .step-1 {
+#tutorial .step-1,
+#tutorial .step-3,
+#tutorial .step-4 {
   position: fixed;
   left: 0;
   right: 0;
@@ -242,15 +244,29 @@ input[type=number] {
   display: block;
 }
 
-#tutorial-2 {
+#tutorial-2,
+#tutorial-3 {
   display: none;
 }
 
-#screen.match #tutorial-1 {
+#screen.match #tutorial-1,
+#screen.win #tutorial-1 {
   display: none;
 }
 
 #screen.match #tutorial-2 {
+  display: block;
+}
+
+#screen.win #tutorial-2 {
+  display: none;
+}
+
+#screen.match #tutorial-3 {
+  display: none;
+}
+
+#screen.win #tutorial-3 {
   display: block;
 }
 
