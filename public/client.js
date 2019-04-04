@@ -116,6 +116,10 @@
       }
     });
 
+    window.addEventListener("deviceorientation", function(event) {
+      console.log(event);
+    });
+
     // Detect if browser supports orientation
     if (typeof window.orientation !== 'undefined') { 
       console.log('Mobile');
