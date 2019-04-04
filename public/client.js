@@ -32,6 +32,9 @@
         // Show matching players and total players
         document.getElementById('playerCount').innerHTML = String(matchingPlayers) + "/" + String(playerCount)
 
+        console.log('target color:');
+        console.log(games[gameId].targetColor);
+
         // Change target border color
         $('#screen').css(
           'border-color', 
