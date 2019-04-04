@@ -270,6 +270,10 @@ input[type=number] {
   display: block;
 }
 
+#tutorial .tutorial-large {
+  font-size: 36px;
+}
+
 /* About */
 
 body#about {
