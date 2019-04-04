@@ -11,7 +11,35 @@
   </head>
   <body>
   	<!-- Code adapted from https://github.com/sgoedecke/socket-io-game -->
-    <div id="screen"></div>
+    <div id="screen">
+      <div id="tutorial">
+        <div id="tutorial-1">
+          <div class="step step-1">
+            <span class="arrow">&uarr;</span><br/>
+            Move your phone<br/>
+            to change<br/>
+            this color<br/>
+          </div>
+          <div class="step step-2">
+            to match<br/>
+            this color<br/>
+            <span class="arrow">&darr;</span>
+          </div>
+        </div>
+        <div id="tutorial-2">
+          <div class="step step-3">
+            Nice!<br/><br/>
+            Now help everyone<br/>
+            else move
+          </div>
+        </div>
+        <div id="tutorial-3">
+          <div class="step step-4">
+            Great!
+          </div>
+        </div>
+      </div>
+    </div>
     
     <div id="splash">
       <p class="centered title"><strong>chromapose</strong></p>
@@ -23,34 +51,6 @@
         <div id="input-number-container">
           <div id="input-number-outer">#<input type="number" id="input-number"></div>
           <button id="join-game-number">join</button>
-        </div>
-      </div>
-    </div>
-
-    <div id="tutorial">
-      <div id="tutorial-1">
-        <div class="step step-1">
-          <span class="arrow">&uarr;</span><br/>
-          Move your phone<br/>
-          to change<br/>
-          this color<br/>
-        </div>
-        <div class="step step-2">
-          to match<br/>
-          this color<br/>
-          <span class="arrow">&darr;</span>
-        </div>
-      </div>
-      <div id="tutorial-2">
-        <div class="step step-3">
-          Nice!<br/><br/>
-          Now help everyone<br/>
-          else move
-        </div>
-      </div>
-      <div id="tutorial-3">
-        <div class="step step-4">
-          Great!
         </div>
       </div>
     </div>
