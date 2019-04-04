@@ -147,9 +147,9 @@ io.on('connection', function(socket){
     }
 
     // Unmatch all players
-    Object.keys(engine.games[gameId].players).forEach((playerId) => {
+    /*Object.keys(engine.games[gameId].players).forEach((playerId) => {
       engine.games[gameId].players[playerId].matching = false;
-    })
+    })*/
 
     console.log(engine.games);
   });

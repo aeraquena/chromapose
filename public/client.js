@@ -73,6 +73,8 @@
     function checkMatch() {
       // TODO: Pass in game id
 
+      console.log(games);
+
       var bound = 10; // bounding box for color matches
 
       // Is player within the target color bounds?
@@ -154,6 +156,7 @@
             $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
 
             if (gameId) {
+              console.log('check game id: ' + gameId);
               checkMatch(hue, lightness);
             }
           }); // ,true

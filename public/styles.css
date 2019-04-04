@@ -2,7 +2,7 @@ body {
   background-color: #000;
   height: 100vh;
   font-family: 'Monaco', monospace;
-  color: #fff;
+  color: #ccc; /* #fff */
   overflow-x: hidden; 
   overflow-y: hidden;
 }
