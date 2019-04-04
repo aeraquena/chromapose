@@ -172,10 +172,13 @@ a:active {
   position: relative;
 }
 
+#splash #input-number-outer {
+  border-bottom: 1px solid #fff;
+}
+
 #splash #input-number {
   background: transparent;
   border: 0;
-  border-bottom: 1px solid #fff;
   font-size: 36px;
   outline: none;
   color: #fff;
