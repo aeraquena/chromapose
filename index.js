@@ -180,10 +180,13 @@ io.on('connection', function(socket){
 
 // Redirect all HTTP traffic to HTTPS
 function ensureSecure(req, res, next){
+  console.log('ensure secure');
   if(req.secure){
+    console.log('secure');
     // OK, continue
     return next();
   };
+  console.log('not secure');
   res.redirect('https://'+req.hostname+req.url); // handle port numbers if you need non defaults
 };
 
