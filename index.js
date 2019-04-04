@@ -128,26 +128,28 @@ io.on('connection', function(socket){
   socket.on('match', function(gameId){
     console.log('match, game id: ' + gameId);
 
-    if (engine.games[gameId].players[socket.id]) {
+    if (engine.games[gameId] &&engine.games[gameId].players[socket.id]) {
       engine.games[gameId].players[socket.id].matching = true;
     }
-    
+
     var allMatching = true;
 
-    // Update list of matching clients
-    Object.keys(engine.games[gameId].players).forEach((playerId) => {
-      // Check if all players are matching. If one is not, exit early
-      if (engine.games[gameId].players[playerId].matching == false) {
-        allMatching = false;
-        return false;
-      }
-    })
+    if (engine.games[gameId]) {
+      // Update list of matching clients
+      Object.keys(engine.games[gameId].players).forEach((playerId) => {
+        // Check if all players are matching. If one is not, exit early
+        if (engine.games[gameId].players[playerId].matching == false) {
+          allMatching = false;
+          return false;
+        }
+      })
 
-    if (allMatching) {
-      console.log('emit color changed');
-      io.emit('colorChanged', gameId);
-      console.log('all matching - change target color');
-      engine.changeTargetColor(gameId);
+      if (allMatching) {
+        console.log('emit color changed');
+        io.emit('colorChanged', gameId);
+        console.log('all matching - change target color');
+        engine.changeTargetColor(gameId);
+      }
     }
 
     // Unmatch all players
