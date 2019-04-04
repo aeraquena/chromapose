@@ -7,7 +7,7 @@
 
     var socket = io();
 
-    var oldSocketId = socket.id; // used for erasing page when socket disconnects and removes id
+    //var oldSocketId = socket.id; // used for erasing page when socket disconnects and removes id
 
     var gameId = null;
 
@@ -15,19 +15,24 @@
 
     socket.on('gameCreated', updateGameId);
 
-    socket.on('disconnectClient', function(socketId) {
+    /*socket.on('disconnectClient', function(socketId) {
       // Disconnected, go black
       if (socketId == oldSocketId) { 
         console.log('disconnected');
         $('#page').remove();
       }
-    });
+    });*/
 
     var games;
 
     function updateGameState(gameState) {
       // update local state to match state on server
       games = gameState.games;
+
+      console.lgo(socket.readyState);
+      if (socket.readyState = socket.CLOSED) {
+        console.log('socket closed');
+      }
 
       // Calculate matching players
       if (games && games[gameId]) {

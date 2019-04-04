@@ -30,7 +30,7 @@ io.on('connection', function(socket){
 
   // On player disconnect
   socket.on('disconnect', function() {
-    io.emit('disconnectClient', socket.id);
+    //io.emit('disconnectClient', socket.id);
     console.log('disconnect');
     // Find which game the player belonged to
     var gameId;
