@@ -10,14 +10,11 @@
     var games;
 
     function updateGameState(gameState) {
-      console.log('update game state');
       // update local state to match state on server
-      games = gameState.games
+      games = gameState.games;
 
       // Calculate matching players
       if (games && games[gameId]) {
-        console.log('target color: ' + games[gameId].targetColor.hue + ', ' + games[gameId].targetColor.lightness);
-
         var playerCount = Object.keys(games[gameId].players).length
         var matchingPlayers = 0;
         Object.values(games[gameId].players).forEach((player, index) => { // todo: get game id based on player     
@@ -74,10 +71,6 @@
 
     // Checks match between target and user color
     function checkMatch() {
-      // TODO: Pass in game id
-
-      console.log(games); // this is BLANK
-
       var bound = 10; // bounding box for color matches
 
       // Is player within the target color bounds?
@@ -101,7 +94,6 @@
           $('#screen').removeClass('match');
 
           // Send unmatch to socket
-          console.log('Client unmatch, game id: ' + gameId);
           socket.emit('unmatch', gameId);
         }
 
@@ -159,7 +151,6 @@
             $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
 
             if (gameId) {
-              console.log('check game id: ' + gameId);
               checkMatch(hue, lightness);
             }
           }); // ,true
