@@ -29,7 +29,7 @@
       // update local state to match state on server
       games = gameState.games;
 
-      console.lgo(socket.readyState);
+      console.log(socket.readyState);
       if (socket.readyState = socket.CLOSED) {
         console.log('socket closed');
       }
