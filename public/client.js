@@ -10,6 +10,7 @@
     var games;
 
     function updateGameState(gameState) {
+      console.log('update game state');
       // update local state to match state on server
       games = gameState.games
 
