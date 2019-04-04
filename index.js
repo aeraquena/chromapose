@@ -128,8 +128,10 @@ io.on('connection', function(socket){
   socket.on('match', function(gameId){
     console.log('match, game id: ' + gameId);
 
-    engine.games[gameId].players[socket.id].matching = true;
-
+    if (engine.games[gameId].players[socket.id]) {
+      engine.games[gameId].players[socket.id].matching = true;
+    }
+    
     var allMatching = true;
 
     // Update list of matching clients
