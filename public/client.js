@@ -29,10 +29,10 @@
       // update local state to match state on server
       games = gameState.games;
 
-      console.log(socket.readyState);
-      if (socket.readyState = socket.CLOSED) {
+      console.log(socket);
+      /*if (socket.readyState = socket.CLOSED) {
         console.log('socket closed');
-      }
+      }*/
 
       // Calculate matching players
       if (games && games[gameId]) {
