@@ -44,6 +44,7 @@
     }
 
     function updateGameId(game) {
+      console.log('-- update game id --');
       if (game.socketId == socket.id) { 
         $('#top #gameId').text('#' + game.gameId);
         gameId = game.gameId;
