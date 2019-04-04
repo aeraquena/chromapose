@@ -1,6 +1,7 @@
   $(function () {
     // Redirect to https
-    if (window.location.href == "http://chromapose.herokuapp.com/") {
+    if (window.location.href == "http://chromapose.herokuapp.com/" || 
+      window.location.href == "http://www.chromapose.me/") {
       window.location.replace('https://chromapose.herokuapp.com/');
     }
 
