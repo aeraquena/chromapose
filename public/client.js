@@ -14,7 +14,7 @@
       games = gameState.games
 
       // Calculate matching players
-      if (games[gameId]) {
+      if (games && games[gameId]) {
         console.log('target color: ' + games[gameId].targetColor.hue + ', ' + games[gameId].targetColor.lightness);
 
         var playerCount = Object.keys(games[gameId].players).length
