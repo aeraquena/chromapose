@@ -57,6 +57,8 @@ io.on('connection', function(socket){
 
       // Remove game
       delete engine.games[gameId];
+
+      console.log('end game: ' + gameId);
   	}
 
     console.log(engine.games);
@@ -75,8 +77,8 @@ io.on('connection', function(socket){
         targetColor: {
           'hue': 0, 
           'lightness': 0
-        },
-        matchingPlayers: 0
+        }/*,
+        matchingPlayers: 0*/
       };
 
       console.log('Join, change target color');
@@ -109,8 +111,8 @@ io.on('connection', function(socket){
         targetColor: {
           'hue': 0, 
           'lightness': 0
-        },
-        matchingPlayers: 0
+        }/*,
+        matchingPlayers: 0*/
       };
 
       engine.changeTargetColor(gameId) // TODO: For this game
@@ -118,7 +120,7 @@ io.on('connection', function(socket){
 
       // Assign player to game
       engine.games[gameId].players[socket.id] = {
-        matching: false // the only one we'll keep
+        matching: false // is player matching?
       }
 
       console.log(engine.games);
@@ -128,7 +130,7 @@ io.on('connection', function(socket){
   socket.on('match', function(gameId){
     console.log('match, game id: ' + gameId);
 
-    if (engine.games[gameId] &&engine.games[gameId].players[socket.id]) {
+    if (engine.games[gameId] && engine.games[gameId].players[socket.id]) {
       engine.games[gameId].players[socket.id].matching = true;
     }
 
@@ -145,9 +147,8 @@ io.on('connection', function(socket){
       })
 
       if (allMatching) {
-        console.log('emit color changed');
-        io.emit('colorChanged', gameId);
         console.log('all matching - change target color');
+        io.emit('colorChanged', gameId);
         engine.changeTargetColor(gameId);
       }
     }
