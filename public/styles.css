@@ -1,7 +1,7 @@
 body {
   background-color: #000;
   height: 100vh;
-  font-family: 'Monaco', monospace;
+  font-family: 'Roboto Mono', monospace;
   color: #fff;
   overflow-x: hidden; 
   overflow-y: hidden;
@@ -165,7 +165,7 @@ a:active {
   margin: 0 auto 30px;
   background: transparent;
   padding: 10px;
-  font-family: 'Roboto Mono', 'Monaco', monospace;
+  font-family: 'Roboto Mono', monospace;
   width: 220px;
 }
 
@@ -176,6 +176,7 @@ a:active {
 #splash #input-number-container {
   position: relative;
   margin-top: -10px;
+  white-space: nowrap;
 }
 
 #splash #input-number-outer {
@@ -192,7 +193,7 @@ a:active {
   outline: none;
   color: #fff;
   width: 196px;
-  font-family: 'Monaco', monospace;
+  font-family: 'Roboto Mono', monospace;
   border-radius: 0;
 }
 
@@ -217,7 +218,7 @@ body#about {
   overflow-x: scroll; 
   overflow-y: scroll;
   margin: 50px 100px;
-  font-family: 'Roboto Mono', 'Monaco', monospace;
+  font-family: 'Roboto Mono', monospace;
 }
 
 body#about a {
