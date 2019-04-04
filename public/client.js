@@ -33,6 +33,10 @@
       /*if (socket.readyState = socket.CLOSED) {
         console.log('socket closed');
       }*/
+      console.log('update game state');
+      if (!socket) {
+        console.log('no socket');
+      }
 
       // Calculate matching players
       if (games && games[gameId]) {
