@@ -1,4 +1,9 @@
   $(function () {
+    // Redirect to https
+    if (window.location.href == "http://chromapose.herokuapp.com/") {
+      window.location.replace('https://chromapose.herokuapp.com/');
+    }
+
     var socket = io();
 
     var gameId = null;

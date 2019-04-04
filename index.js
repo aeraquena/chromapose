@@ -179,7 +179,7 @@ io.on('connection', function(socket){
 });
 
 // Redirect all HTTP traffic to HTTPS
-function ensureSecure(req, res, next){
+/*function ensureSecure(req, res, next){
   console.log('ensure secure');
   if(req.secure){
     console.log('secure');
@@ -190,7 +190,7 @@ function ensureSecure(req, res, next){
   res.redirect('https://'+req.hostname+req.url); // handle port numbers if you need non defaults
 };
 
-app.all('*', ensureSecure);
+app.all('*', ensureSecure);*/
 
 var port = process.env.PORT || 8000;
 http.listen(port, function(){
