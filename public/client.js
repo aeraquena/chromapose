@@ -29,15 +29,6 @@
       // update local state to match state on server
       games = gameState.games;
 
-      console.log(socket);
-      /*if (socket.readyState = socket.CLOSED) {
-        console.log('socket closed');
-      }*/
-      console.log('update game state');
-      if (!socket) {
-        console.log('no socket');
-      }
-
       // Calculate matching players
       if (games && games[gameId]) {
         var playerCount = Object.keys(games[gameId].players).length
@@ -100,7 +91,7 @@
 
     // Checks match between target and user color
     function checkMatch() {
-      var bound = 11; // bounding box for color matches
+      var bound = 12; // bounding box for color matches
 
       // Is player within the target color bounds?
       var isMatching = hue > (games[gameId].targetColor.hue - bound) && hue < (games[gameId].targetColor.hue + bound) &&
