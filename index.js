@@ -28,12 +28,13 @@ function emitUpdates() {
 io.on('connection', function(socket){
   // set socket listeners
 
-  console.log('connect, socket id: ' + socket);
+  console.log('connect, socket id: ' + socket.id);
+  io.emit('userConnected');
 
   // On player disconnect
   socket.on('disconnect', function() {
     //io.emit('disconnectClient', socket.id);
-    console.log('disconnect');
+    console.log('disconnect, socket id: ' + socket.id);
     // Find which game the player belonged to
     var gameId;
     for (var gameIndex in engine.games) {
