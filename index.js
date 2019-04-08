@@ -28,6 +28,8 @@ function emitUpdates() {
 io.on('connection', function(socket){
   // set socket listeners
 
+  console.log('connect, socket id: ' + socket);
+
   // On player disconnect
   socket.on('disconnect', function() {
     //io.emit('disconnectClient', socket.id);
