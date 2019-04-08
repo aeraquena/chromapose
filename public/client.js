@@ -34,6 +34,8 @@
     });*/
 
     var games;
+    var bound = 15;
+    var minBound = 12;
 
     function updateGameState(gameState) {
       // update local state to match state on server
@@ -101,7 +103,7 @@
 
     // Checks match between target and user color
     function checkMatch() {
-      var bound = 12; // bounding box for color matches
+      //var bound = 12; // bounding box for color matches
 
       // Is player within the target color bounds?
       var isMatching = hue > (games[gameId].targetColor.hue - bound) && hue < (games[gameId].targetColor.hue + bound) &&
@@ -143,6 +145,12 @@
           // Remove tutorial
           $('#tutorial').remove();
         }, 750);
+
+        // Decrease bound until it reaches min bound
+        if (bound > minBound) {
+          console.log('bound: ' + bound);
+          bound--;
+        }
       }
     });
 
