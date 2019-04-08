@@ -147,13 +147,14 @@ a:active {
 }
 
 #splash {
-  position: fixed;
+  position: absolute;
   font-size: 36px;
   text-align: center;
   top: 30px;
   right: 0;
   bottom: 0;
   left: 0;
+  overflow-y: scroll;
 }
 
 #splash .title {
