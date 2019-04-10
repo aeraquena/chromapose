@@ -16,14 +16,14 @@
     socket.on('gameCreated', updateGameId);
 
     // User connected. If reconnecting, go back to main menu
-    socket.on('userConnected', function() {
+    /*socket.on('userConnected', function() {
       console.log('user connected');
       // Not on splash screen
       if ($('#splash').length == 0) {
         console.log('reload');
         location.reload();
       }
-    });
+    });*/
 
     /*socket.on('disconnectClient', function(socketId) {
       // Disconnected, go black
@@ -148,7 +148,6 @@
 
         // Decrease bound until it reaches min bound
         if (bound > minBound) {
-          console.log('bound: ' + bound);
           bound--;
         }
       }
