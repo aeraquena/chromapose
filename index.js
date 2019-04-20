@@ -193,12 +193,12 @@ io.on('connection', function(socket){
       engine.games[position.gameId].players[socket.id].y = position.y;
       engine.games[position.gameId].players[socket.id].z = position.z;
       console.log(engine.games[position.gameId].players);
-      
+
       io.emit('playerMoved', {
-        'gameId': gameId, 
+        'gameId': position.gameId, 
         'socketId': socket.id,
-        'y': y,
-        'z': z
+        'y': position.y,
+        'z': position.z
       });
     }
   });
