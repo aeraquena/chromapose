@@ -230,6 +230,10 @@
 
           if (games && gameId) {
             checkMatch(hue, lightness);
+
+            // Send position to server
+            console.log('move');
+            socket.emit('move', {'gameId': gameId, 'y': lightness, 'z': hue});
           }
       })
       var e = window.event;
