@@ -195,7 +195,7 @@
 
               // Send position to server
               console.log('move');
-              socket.emit('move', {'y': lightness, 'z': hue});
+              socket.emit('move', {'gameId': gameId, 'y': lightness, 'z': hue});
             }
           }); // ,true
       }

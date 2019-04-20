@@ -189,9 +189,9 @@ io.on('connection', function(socket){
   // Player moves
   socket.on('move', function(position){
     console.log('move');
-    engine.games[gameId].players[socket.id].y = position.y;
-    engine.games[gameId].players[socket.id].y = position.z;
-    console.log(engine.games[gameId].players);
+    engine.games[position.gameId].players[socket.id].y = position.y;
+    engine.games[position.gameId].players[socket.id].y = position.z;
+    console.log(engine.games[position.gameId].players);
   });
 });
 
