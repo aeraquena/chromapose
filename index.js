@@ -190,7 +190,7 @@ io.on('connection', function(socket){
   socket.on('move', function(position){
     console.log('move');
     engine.games[position.gameId].players[socket.id].y = position.y;
-    engine.games[position.gameId].players[socket.id].y = position.z;
+    engine.games[position.gameId].players[socket.id].z = position.z;
     console.log(engine.games[position.gameId].players);
   });
 });
