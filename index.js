@@ -189,7 +189,7 @@ io.on('connection', function(socket){
   // Player moves
   socket.on('move', function(position){
     console.log('move');
-    if (position.gameId) {
+    if (engine.games[position.gameId]) {
       engine.games[position.gameId].players[socket.id].y = position.y;
       engine.games[position.gameId].players[socket.id].z = position.z;
       console.log(engine.games[position.gameId].players);
