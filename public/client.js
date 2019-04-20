@@ -194,6 +194,7 @@
               checkMatch(hue, lightness);
 
               // Send position to server
+              console.log('move');
               socket.emit('move', {'y': lightness, 'z': hue});
             }
           }); // ,true
