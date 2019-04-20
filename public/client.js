@@ -155,8 +155,9 @@
 
     // A player moved, update their color
     socket.on('playerMoved', function(data) {
+      console.log('player moved');
       // Same game, but not same player
-      if (data.changedGameId == gameId && 
+      if (data.gameId == gameId && 
         data.socketId != socket.id) {
         
         $('#partnerColor').css('background-color', 'hsl(' + data.x + ', 100%, ' + data.y + '%)');
