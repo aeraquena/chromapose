@@ -91,7 +91,9 @@ io.on('connection', function(socket){
 
     // Assign player to game
     engine.games[gameId].players[socket.id] = {
-      matching: false // is player matching?
+      matching: false, // is player matching?
+      y: 0,
+      z: 0
     }
 
     console.log(engine.games);
@@ -122,7 +124,9 @@ io.on('connection', function(socket){
 
       // Assign player to game
       engine.games[gameId].players[socket.id] = {
-        matching: false // is player matching?
+        matching: false, // is player matching?
+        y: 0,
+        z: 0
       }
 
       console.log(engine.games);
@@ -180,6 +184,13 @@ io.on('connection', function(socket){
     engine.changeTargetColor(gameId);
     console.log('change target color manually');
     io.emit('colorChanged', gameId);
+  });
+
+  // Player moves
+  socket.on('move', function(position){
+    games[gameId].players[socket.id].y = position.y;
+    games[gameId].players[socket.id].y = position.z;
+    console.log(games[gameId].players);
   });
 });
 

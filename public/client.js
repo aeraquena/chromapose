@@ -192,6 +192,9 @@
 
             if (games && gameId) {
               checkMatch(hue, lightness);
+
+              // Send position to server
+              socket.emit('move', {'y': lightness, 'z': hue});
             }
           }); // ,true
       }
