@@ -155,12 +155,14 @@
 
     // A player moved, update their color
     socket.on('playerMoved', function(data) {
+      console.log(data);
       console.log('player moved');
       // Same game, but not same player
       if (data.gameId == gameId && 
         data.socketId != socket.id) {
+        console.log('other player moved');
         
-        $('#partnerColor').css('background-color', 'hsl(' + data.x + ', 100%, ' + data.y + '%)');
+        $('#partnerColor').css('background-color', 'hsl(' + data.z + ', 100%, ' + data.y + '%)');
       }
     });
 
