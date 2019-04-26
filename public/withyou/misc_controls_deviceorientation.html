@@ -60,7 +60,7 @@
 				scene.add( mesh );
 
 				var helperGeometry = new THREE.BoxBufferGeometry( 100, 100, 100, 4, 4, 4 );
-				var helperMaterial = new THREE.MeshBasicMaterial( { color: 0xff00ff, wireframe: true } );
+				var helperMaterial = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true } );
 				var helper = new THREE.Mesh( helperGeometry, helperMaterial );
 				scene.add( helper );
 
@@ -73,10 +73,13 @@
 
 				//
 
-				// Add cube
+				// Add cubes
 				var geometry = new THREE.BoxGeometry( 1, 1, 1 );
 				var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
 				cube = new THREE.Mesh( geometry, material );
+				cube.position.x = 5;
+				cube.position.y = 5;
+				cube.position.z = 5;
 				scene.add( cube );
 
 				var geometry = new THREE.BoxGeometry( 1, 1, 1 );
@@ -87,7 +90,7 @@
 				cube.position.z = 10;
 				scene.add( cube2 );
 
-				camera.position.z = 5;
+				//camera.position.z = 5;
 
 				window.addEventListener( 'resize', onWindowResize, false );
 
