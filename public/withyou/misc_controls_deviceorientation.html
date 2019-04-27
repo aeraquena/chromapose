@@ -103,7 +103,7 @@
 
 					var quaternion = new THREE.Quaternion();
 					quaternion.setFromAxisAngle( new THREE.Vector3(angleX, angleY, angleZ), Math.PI / 2 );
-					targetBall.matrix.makeRotationFromQuaternion();
+					targetBall.matrix.makeRotationFromQuaternion(quaternion);
 				}
 
 				theta += dTheta;
