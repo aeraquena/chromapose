@@ -97,13 +97,13 @@
 					yMultiplier = (Math.random() * 10) - 5;
 					zMultiplier = (Math.random() * 10) - 5;*/
 
-					angleX = Math.random();
-					angleY = Math.random();
-					angleZ = Math.random();
+					var angleX = Math.random();
+					var angleY = Math.random();
+					var angleZ = Math.random();
 
 					var quaternion = new THREE.Quaternion();
 					quaternion.setFromAxisAngle( new THREE.Vector3(angleX, angleY, angleZ), Math.PI / 2 );
-					targetBall.matrix.setRotationFromQuaternion();
+					targetBall.matrix.makeRotationFromQuaternion();
 				}
 
 				theta += dTheta;
