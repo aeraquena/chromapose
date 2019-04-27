@@ -36,7 +36,7 @@
 		<script>
 
 			var camera, scene, renderer, controls, targetBall;
-			
+
 			var currentPosition, nextPosition;
 			var lerpPercent = 0;
 
@@ -177,6 +177,7 @@
 				}
 
 				frameCount++;
+				lerpPercent += .01;
 			}
 
 			function onWindowResize() {
