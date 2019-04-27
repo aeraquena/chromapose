@@ -104,12 +104,12 @@
 			}
 
 			var nextPosition = {
-				x: Math.floor(Math.random() * 10) - 5,
-				y: Math.floor(Math.random() * 10) - 5,
-				z: Math.floor(Math.random() * 10) - 5
+				x: 0,
+				y: 0, 
+				z: 0
 			}
 
-			var lerpPercent = 0;
+			var lerpPercent = 1;
 
 			// Linear interpolates between two points of x, y, z
 			function lerpPosition(currPos, nextPos, percent) {
@@ -142,6 +142,8 @@
 						y: Math.floor(Math.random() * 10) - 5,
 						z: Math.floor(Math.random() * 10) - 5
 					}
+
+					lerpPercent = 0;
 				}
 
 				lerpedPos = lerpPosition(currentPosition, nextPosition, lerpPercent);
