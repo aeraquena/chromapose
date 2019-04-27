@@ -112,7 +112,7 @@
 			var cubeDirectionX = 1;
 
 
-			var lerpPercent = 1;
+			var lerpPercent = 0;
 
 			function animate() {
 
@@ -121,7 +121,7 @@
 				cube.rotation.x += 0.01;
 				cube.rotation.y += 0.01;
 
-				if (lerpPercent == 1) {
+				if (lerpPercent >= 1) {
 					currentPosition = nextPosition;
 
 					// Generate new nextPosition, coordinates between -5 and 5
@@ -143,7 +143,7 @@
 				cube.position.y = currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent);
 				cube.position.z = currentPosition.z + ((nextPosition.z - currentPosition.z) * lerpPercent);
 				
-				lerpPercent += .01;
+				lerpPercent += .1;
 
 				/*if (cube.position.x > 5) {
 					cubeDirectionX = -1;
