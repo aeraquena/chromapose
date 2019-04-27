@@ -87,8 +87,8 @@
 				//Increment theta, and update moon x and y
 				  //position based off new theta value        
 				  theta += dTheta;
-				  targetBall.position.x = r * Math.cos(theta);
-				  targetBall.position.z = r * Math.sin(theta);
+				  targetBall.position.x = r * Math.cos(theta) * -1;
+				  targetBall.position.z = r * Math.sin(theta) * 2;
 				  targetBall.position.y = Math.sin(theta) * 5;
 
 				controls.update();
