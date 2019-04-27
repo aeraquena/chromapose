@@ -79,17 +79,28 @@
 			var theta = 0;
 			var dTheta = 2 * Math.PI / 1000;
 
+			var frameCount = 0;
+			var xMultiplier, yMultiplier, zMultiplier;
+
 			function animate() {
 
 				window.requestAnimationFrame( animate );
 
 				// Rotate target ball
 				//Increment theta, and update moon x and y
-				  //position based off new theta value        
-				  theta += dTheta;
-				  targetBall.position.x = r * Math.cos(theta) * -1;
-				  targetBall.position.z = r * Math.sin(theta) * 2;
-				  targetBall.position.y = Math.sin(theta) * 5;
+				//position based off new theta value        
+
+				// change angles every 5 seconds
+				if (frameCount % 300 == 0) {
+					xMultiplier = (Math.random() * 10) - 5;
+					yMultiplier = (Math.random() * 10) - 5;
+					zMultiplier = (Math.random() * 10) - 5;
+				}
+
+				theta += dTheta;
+				targetBall.position.x = r * Math.cos(theta) * xMultiplier;
+				targetBall.position.z = r * Math.sin(theta) * yMultiplier;
+				 targetBall.position.y = Math.sin(theta) * zMultiplier;
 
 				controls.update();
 				renderer.render( scene, camera );
@@ -109,6 +120,8 @@
 				} else {
 					console.log('---');
 				}
+
+				frameCount++;
 			}
 
 			function onWindowResize() {
