@@ -116,11 +116,8 @@
 
 				theta += dTheta;
 				
-				targetBall.position.x += r * (Math.cos(theta) - Math.cos(theta - dTheta));
-				targetBall.position.z += r * (Math.sin(theta) - Math.sin(theta - dTheta));
-
-				//targetBall.position.x = r * Math.cos(theta);// * xMultiplier;
-				//targetBall.position.z = r * Math.sin(theta);// * yMultiplier;
+				targetBall.position.x = r * Math.cos(theta);// * xMultiplier;
+				targetBall.position.z = r * Math.sin(theta);// * yMultiplier;
 				//targetBall.position.y = Math.sin(theta) * zMultiplier;
 
 				controls.update();
