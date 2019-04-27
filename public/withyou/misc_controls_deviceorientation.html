@@ -82,6 +82,7 @@
 
 			var frameCount = 0;
 			var xMultiplier, yMultiplier, zMultiplier;
+			var yAngle = 0;
 
 			function animate() {
 
@@ -93,6 +94,7 @@
 
 				// change angles every 5 seconds
 				// position changes though
+
 				if (frameCount % 300 == 0) {
 					/*xMultiplier = (Math.random() * 10) - 5;
 					yMultiplier = (Math.random() * 10) - 5;
@@ -109,12 +111,16 @@
 					targetBall.matrix.makeRotationFromQuaternion(quaternion);*/
 
 					// 30 degrees
-					targetBall.rotateOnWorldAxis(new THREE.Vector3(1,0,0), 30 * Math.PI/180);
+					//targetBall.rotateOnWorldAxis(new THREE.Vector3(1,0,0), 30 * Math.PI/180);
 				}
 
 				theta += dTheta;
-				targetBall.position.x = r * Math.cos(theta);// * xMultiplier;
-				targetBall.position.z = r * Math.sin(theta);// * yMultiplier;
+				
+				targetBall.position.x += r * (Math.cos(theta) - Math.cos(theta - dTheta));
+				targetBall.position.z += r * (Math.sin(theta) - Math.sin(theta - dTheta));
+
+				//targetBall.position.x = r * Math.cos(theta);// * xMultiplier;
+				//targetBall.position.z = r * Math.sin(theta);// * yMultiplier;
 				//targetBall.position.y = Math.sin(theta) * zMultiplier;
 
 				controls.update();
