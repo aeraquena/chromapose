@@ -98,36 +98,18 @@
 			var cubeDirectionX = 1;
 
 			var currentPosition = {
-				x: 0,
-				y: 0, 
-				z: 0
+				'x': 0,
+				'y': 0, 
+				'z': 0
 			}
 
 			var nextPosition = {
-				x: 0,
-				y: 0, 
-				z: 0
+				'x': 0,
+				'y': 0, 
+				'z': 0
 			}
 
 			var lerpPercent = 1;
-
-			// Linear interpolates between two points of x, y, z
-			function lerpPosition(currPos, nextPos, percent) {
-				console.log('next pos:');
-				console.log(nextPos);
-
-				var lerpedPos = {
-					x: 0,
-					y: 0, 
-					z: 0
-				}
-
-				lerpedPos.x = (nextPos.x - currPos.x) * percent;
-				lerpedPos.y = (nextPos.y - currPos.y) * percent;
-				lerpedPos.z = (nextPos.z - currPos.z) * percent;
-
-				return lerpedPos;
-			}
 
 			function animate() {
 
@@ -141,9 +123,9 @@
 
 					// Generate new nextPosition, coordinates between -5 and 5
 					nextPosition = {
-						x: Math.floor(Math.random() * 10) - 5,
-						y: Math.floor(Math.random() * 10) - 5,
-						z: Math.floor(Math.random() * 10) - 5
+						'x': Math.floor(Math.random() * 10) - 5,
+						'y': Math.floor(Math.random() * 10) - 5,
+						'z': Math.floor(Math.random() * 10) - 5
 					}
 
 					lerpPercent = 0;
@@ -174,6 +156,24 @@
 				controls.update();
 				renderer.render( scene, camera );
 
+			}
+
+			// Linear interpolates between two points of x, y, z
+			function lerpPosition(currPos, nextPos, percent) {
+				console.log('next pos:');
+				console.log(nextPos);
+
+				var lerpedPos = {
+					'x': 0,
+					'y': 0, 
+					'z': 0
+				}
+
+				lerpedPos.x = (nextPos.x - currPos.x) * percent;
+				lerpedPos.y = (nextPos.y - currPos.y) * percent;
+				lerpedPos.z = (nextPos.z - currPos.z) * percent;
+
+				return lerpedPos;
 			}
 
 			function onWindowResize() {
