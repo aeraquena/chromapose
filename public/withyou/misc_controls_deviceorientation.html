@@ -36,6 +36,9 @@
 		<script>
 
 			var camera, scene, renderer, controls, targetBall;
+			
+			var currentPosition, nextPosition;
+			var lerpPercent = 0;
 
 			init();
 			animate();
@@ -94,8 +97,6 @@
 			var xMultiplier, yMultiplier, zMultiplier;
 			var yAngle = 0;
 
-			var currentPosition, nextPosition;
-			var lerpPercent = 0;
 
 			function animate() {
 
