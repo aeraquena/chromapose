@@ -82,27 +82,39 @@
 				cube.position.z = 5;
 				scene.add( cube );
 
-				var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+				/*var geometry = new THREE.BoxGeometry( 1, 1, 1 );
 				var material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
 				cube2 = new THREE.Mesh( geometry, material );
 				cube2.position.x = 10;
 				cube2.position.y = 0;
 				cube2.position.z = 0;
-				scene.add( cube2 );
+				scene.add( cube2 );*/
 
 				//camera.position.z = 5;
 
 				window.addEventListener( 'resize', onWindowResize, false );
-
-
 			}
+
+			var cubeDirectionX = 1;
 
 			function animate() {
 
 				window.requestAnimationFrame( animate );
 
-				cube.rotation.x += 0.01;
-				cube.rotation.y += 0.01;
+				//cube.rotation.x += 0.01;
+				//cube.rotation.y += 0.01;
+
+				if (cube.position.x > 5) {
+					cubeDirectionX = -1;
+				} else if (cube.position.x < -5) {
+					cubeDirectionX = 1;
+				}
+
+				if (cubeDirectionX == 1) {
+					cube.position.x += 0.01;
+				} else if (cubeDirectionX == -1) {
+					cube.position.x -= 0.01;
+				}
 
 				controls.update();
 				renderer.render( scene, camera );
