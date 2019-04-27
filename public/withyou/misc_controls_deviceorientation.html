@@ -89,7 +89,7 @@
 				  theta += dTheta;
 				  targetBall.position.x = r * Math.cos(theta);
 				  targetBall.position.z = r * Math.sin(theta);
-				  targetBall.position.y += .05;
+				  targetBall.position.y = Math.sin(theta);
 
 				controls.update();
 				renderer.render( scene, camera );
