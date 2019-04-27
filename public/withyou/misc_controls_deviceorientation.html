@@ -179,6 +179,8 @@
 				camera.aspect = window.innerWidth / window.innerHeight;
 				camera.updateProjectionMatrix();
 
+				console.log('on window resize');
+
 				// Check frustum (whether object is in view)
 				var frustum = new THREE.Frustum();
 				frustum.setFromMatrix(new THREE.Matrix4().multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));  
