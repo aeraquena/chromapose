@@ -54,17 +54,18 @@
 				// invert the geometry on the x-axis so that all of the faces point inward
 				geometry.scale( - 1, 1, 1 );
 
-				var material = new THREE.MeshBasicMaterial( {
+				/*var material = new THREE.MeshBasicMaterial( {
 					map: new THREE.TextureLoader().load( 'textures/2294472375_24a3b8ef46_o.jpg' )
-				} );
+				} );*/
+				var material = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true } );
 
 				var mesh = new THREE.Mesh( geometry, material );
 				scene.add( mesh );
 
-				var helperGeometry = new THREE.BoxBufferGeometry( 100, 100, 100, 4, 4, 4 );
+				/*var helperGeometry = new THREE.BoxBufferGeometry( 100, 100, 100, 4, 4, 4 );
 				var helperMaterial = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true } );
 				var helper = new THREE.Mesh( helperGeometry, helperMaterial );
-				scene.add( helper );
+				scene.add( helper );*/
 
 				//
 
