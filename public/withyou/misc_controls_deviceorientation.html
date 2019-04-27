@@ -72,6 +72,16 @@
 				targetBall = new THREE.Mesh( geometry, material );
 				scene.add( targetBall );
 
+				currentPosition = {
+					'x': 0,
+					'y': 0
+				}
+
+				nextPosition = {
+					'x': Math.floor(Math.random() * 10) - 5,
+					'y': Math.floor(Math.random() * 10) - 5
+				}
+
 				window.addEventListener( 'resize', onWindowResize, false );
 			}
 
@@ -83,6 +93,9 @@
 			var frameCount = 0;
 			var xMultiplier, yMultiplier, zMultiplier;
 			var yAngle = 0;
+
+			var currentPosition, nextPosition;
+			var lerpPercent = 0;
 
 			function animate() {
 
@@ -114,6 +127,18 @@
 					//targetBall.rotateOnWorldAxis(new THREE.Vector3(1,0,0), 30 * Math.PI/180);
 				}
 
+				if (lerpPercent >= 1) {
+					currentPosition = nextPosition;
+
+					// Generate new nextPosition, coordinates between -5 and 5
+					nextPosition = {
+						'x': Math.floor(Math.random() * 360),
+						'y': Math.floor(Math.random() * 360)
+					}
+
+					lerpPercent = 0;
+				}
+
 				theta += dTheta;
 				
 				//targetBall.position.x = r * Math.cos(theta);// * xMultiplier;
@@ -121,8 +146,15 @@
 				
 				//targetBall.position.y = Math.sin(theta) * zMultiplier;
 
+				//currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent);
+				//currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent);
+
 				var radius = 5;
-				targetBall.position.setFromSphericalCoords(radius, THREE.Math.degToRad(23), THREE.Math.degToRad(45));
+				targetBall.position.setFromSphericalCoords(
+					radius, 
+					THREE.Math.degToRad(currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent)), 
+					THREE.Math.degToRad(currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent))
+				);
 
 				controls.update();
 				renderer.render( scene, camera );
