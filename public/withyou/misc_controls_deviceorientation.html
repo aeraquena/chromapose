@@ -100,13 +100,16 @@
 
 					console.log('randomize angle');
 
-					var angleX = Math.random();
+					/*var angleX = Math.random();
 					var angleY = Math.random();
 					var angleZ = Math.random();
 
 					var quaternion = new THREE.Quaternion();
 					quaternion.setFromAxisAngle( new THREE.Vector3(angleX, angleY, angleZ), Math.PI / 2 );
-					targetBall.matrix.makeRotationFromQuaternion(quaternion);
+					targetBall.matrix.makeRotationFromQuaternion(quaternion);*/
+
+					// 30 degrees
+					targetBall.rotateOnWorldAxis(new THREE.Vector3(1,0,0), 30 * Math.PI/180);
 				}
 
 				theta += dTheta;
