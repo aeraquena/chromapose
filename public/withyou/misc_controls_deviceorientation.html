@@ -115,7 +115,7 @@
 			function lerpPosition(currPos, nextPos, percent) {
 				console.log('next pos:');
 				console.log(nextPos);
-				
+
 				var lerpedPos = {
 					x: 0,
 					y: 0, 
@@ -148,6 +148,9 @@
 
 					lerpPercent = 0;
 				}
+
+				console.log('next position, animate');
+				console.log(nextPosition);
 
 				lerpedPos = lerpPosition(currentPosition, nextPosition, lerpPercent);
 				cube.position.x = lerpedPos.x;
