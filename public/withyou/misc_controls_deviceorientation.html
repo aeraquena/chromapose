@@ -91,16 +91,25 @@
 				//position based off new theta value        
 
 				// change angles every 5 seconds
+				// position changes though
 				if (frameCount % 300 == 0) {
-					xMultiplier = (Math.random() * 10) - 5;
+					/*xMultiplier = (Math.random() * 10) - 5;
 					yMultiplier = (Math.random() * 10) - 5;
-					zMultiplier = (Math.random() * 10) - 5;
+					zMultiplier = (Math.random() * 10) - 5;*/
+
+					angleX = Math.random();
+					angleY = Math.random();
+					angleZ = Math.random();
+
+					var quaternion = new THREE.Quaternion();
+					quaternion.setFromAxisAngle( new THREE.Vector3(angleX, angleY, angleZ), Math.PI / 2 );
+					targetBall.matrix.setRotationFromQuaternion();
 				}
 
 				theta += dTheta;
-				targetBall.position.x = r * Math.cos(theta) * xMultiplier;
-				targetBall.position.z = r * Math.sin(theta) * yMultiplier;
-				 targetBall.position.y = Math.sin(theta) * zMultiplier;
+				targetBall.position.x = r * Math.cos(theta);// * xMultiplier;
+				targetBall.position.z = r * Math.sin(theta);// * yMultiplier;
+				//targetBall.position.y = Math.sin(theta) * zMultiplier;
 
 				controls.update();
 				renderer.render( scene, camera );
