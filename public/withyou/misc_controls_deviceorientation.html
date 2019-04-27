@@ -116,9 +116,13 @@
 
 				theta += dTheta;
 				
-				targetBall.position.x = r * Math.cos(theta);// * xMultiplier;
-				targetBall.position.z = r * Math.sin(theta);// * yMultiplier;
+				//targetBall.position.x = r * Math.cos(theta);// * xMultiplier;
+				//targetBall.position.z = r * Math.sin(theta);// * yMultiplier;
+				
 				//targetBall.position.y = Math.sin(theta) * zMultiplier;
+
+				var radius = 5;
+				targetBall.position.setFromSphericalCoords(radius, THREE.Math.degToRad(23), THREE.Math.degToRad(45));
 
 				controls.update();
 				renderer.render( scene, camera );
