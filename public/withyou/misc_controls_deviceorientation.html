@@ -82,8 +82,8 @@
 				}
 
 				nextPosition = {
-					'x': Math.floor(Math.random() * 360), 
-					'y': Math.floor(Math.random() * 180) - 90
+					'x': Math.floor(Math.random() * 180) - 90, 
+					'y': Math.floor(Math.random() * 180)
 				}
 
 				// balls to determine what coordinate system is
@@ -91,8 +91,6 @@
 				geometry = new THREE.BoxGeometry( 1, 1, 1 );
 				material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } ); // green
 				var leftBall = new THREE.Mesh( geometry, material );
-
-				// 270, 0 starts out in front of me
 
 				leftBall.position.setFromSphericalCoords(
 					radius, 
@@ -135,8 +133,8 @@
 
 					// Generate new nextPosition, coordinates between -5 and 5
 					nextPosition = {
-						'x': Math.floor(Math.random() * 360), 
-						'y': Math.floor(Math.random() * 180) - 90
+						'x': Math.floor(Math.random() * 180) - 90, 
+						'y': Math.floor(Math.random() * 180)
 					}
 
 					lerpPercent = 0;
