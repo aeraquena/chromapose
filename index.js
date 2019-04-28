@@ -38,6 +38,7 @@ io.on('connection', function(socket){
     console.log('disconnect, socket id: ' + socket.id);
     // Find which game the player belonged to
     var gameId;
+    var pairId;
     for (var gameIndex in engine.games) {
       for (var playerIndex in engine.games[gameIndex].players) {
         if (playerIndex == socket.id) {
@@ -46,10 +47,22 @@ io.on('connection', function(socket){
         }
       }
     }
+
+    if (gameId == null) {
+      for (var pairIndex in engine.pairs) {
+        for (var playerIndex in engine.pairs[pairIndex].players) {
+          if (playerIndex == socket.id) {
+            pairId = pairIndex;
+            break;
+          }
+        }
+      }
+    }
+
     console.log('disconnect game id: ' + gameId);
 
     // Remove player from players in game.id
-    if (engine.games[gameId]) {
+    if (gameId && engine.games[gameId]) {
   	 delete engine.games[gameId].players[socket.id]
 
     	// end game if there are no engine.players left
@@ -64,9 +77,31 @@ io.on('connection', function(socket){
 
         console.log('end game: ' + gameId);
     	}
+    } else if (pairId && engine.pairs[pairId]) {
+     delete engine.pairs[pairId].players[socket.id]
+
+      // end game if there are no engine.players left
+      // TODO: end game if anyone leaves?
+      if (Object.keys(engine.pairs[pairId].players).length > 0) {
+        io.emit('gameStateUpdate', engine.pairs);
+      } else {
+        clearInterval(gameInterval)
+        clearInterval(updateInterval)
+
+        // Remove game
+        delete engine.pairs[pairId];
+
+        console.log('end pair: ' + pairId);
+      }
     }
 
+    console.log('games:');
     console.log(engine.games);
+
+    console.log('pairs:');
+    console.log(engine.pairs);
+
+    // Do the same for pairs
   })
 
   // Player joins game
@@ -98,6 +133,36 @@ io.on('connection', function(socket){
     }
 
     console.log(engine.games);
+  });
+
+  // Player joins pair
+  socket.on('joinPair', function(pairId) {
+    console.log('join pair id: ' + pairId);
+
+    // Create game if it doesn't exist
+    if (!engine.pairs[pairId]) {
+      // Create instance of game
+      engine.pairs[pairId] = {
+        players: {},
+        targetColor: {
+          'hue': 0, 
+          'lightness': 0
+        }
+      };
+      // TODO: Change to target sequence of coordinates
+
+      engine.changeTargetColor(gameId) // TODO: For this game
+      updateInterval = setInterval(emitUpdates, 40) // necessary for each game?
+    }
+
+    // Assign player to game
+    engine.games[gameId].players[socket.id] = {
+      matching: false, // is player matching? //
+      y: 0, //
+      z: 0 //
+    }
+
+    console.log(engine.pairs);
   });
 
   // Player creates new game
@@ -188,6 +253,7 @@ io.on('connection', function(socket){
   });
 
   // Player moves
+  // TODO: Remove from this and client code
   socket.on('move', function(position){
     console.log('move');
     if (engine.games[position.gameId]) {

@@ -16,7 +16,7 @@
 
     function updateGameState(gameState) {
       // update local state to match state on server
-      games = gameState.games;
+      games = gameState.games; //
       pairs = gameState.pairs;
 
       // Calculate matching players
@@ -31,6 +31,7 @@
       }*/
     }
 
+    //
     function updateGameId(game) {
       console.log('-- update game id --');
       if (game.socketId == socket.id) { 
@@ -42,11 +43,12 @@
     function gameLoop() {
       // update game
       updateGameState({
-        games: games,
+        games: games, //
         pairs: pairs
       })
     }
 
+    //
     /* Movement */
 
     // Local variables specific to player's device
@@ -229,6 +231,8 @@
       socket.emit('changeColor', gameId);
     });
 
+    // end //
+
     // Join game
     $('#join-game').click(function() {
       $('#splash #start-buttons').hide();
@@ -255,6 +259,7 @@
 
       // Add user to game object players
       socket.emit('join', gameId);
+      // change to joinPair
 
       // Expand border
       $('#screen').addClass('game');
@@ -263,6 +268,7 @@
       $('#tutorial').addClass('shown');
     });
 
+    //
     // New game
     $('#new-game').click(function() {
       // Remove splash menu
