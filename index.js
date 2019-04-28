@@ -156,7 +156,7 @@ io.on('connection', function(socket){
     }
 
     // Assign player to game
-    engine.games[gameId].players[socket.id] = {
+    engine.pairs[pairId].players[socket.id] = {
       matching: false, // is player matching? //
       y: 0, //
       z: 0 //
