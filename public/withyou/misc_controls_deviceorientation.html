@@ -101,16 +101,16 @@
 				);
 				scene.add( leftBall );
 
-				/*geometry = new THREE.BoxGeometry( 1, 1, 1 );
+				geometry = new THREE.BoxGeometry( 1, 1, 1 );
 				material = new THREE.MeshBasicMaterial( { color: 0xffd700 } ); // yellow
 				var rightBall = new THREE.Mesh( geometry, material );
 
 				rightBall.position.setFromSphericalCoords(
 					radius, 
-					THREE.Math.degToRad(0), // this controls vertical position, moving backwards from you
-					THREE.Math.degToRad(90)
+					THREE.Math.degToRad(-90), // this controls vertical position, moving backwards from you
+					THREE.Math.degToRad(-90)
 				);
-				scene.add( rightBall );*/
+				scene.add( rightBall );
 
 				window.addEventListener( 'resize', onWindowResize, false );
 			}
