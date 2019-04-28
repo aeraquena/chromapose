@@ -92,9 +92,11 @@
 				material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } ); // green
 				var leftBall = new THREE.Mesh( geometry, material );
 
+				// 270, 0 starts out in front of me
+
 				leftBall.position.setFromSphericalCoords(
 					radius, 
-					THREE.Math.degToRad(270), 
+					THREE.Math.degToRad(180), 
 					THREE.Math.degToRad(0)
 				);
 				scene.add( leftBall );
@@ -105,7 +107,7 @@
 
 				rightBall.position.setFromSphericalCoords(
 					radius, 
-					THREE.Math.degToRad(90), 
+					THREE.Math.degToRad(360), 
 					THREE.Math.degToRad(0)
 				);
 				scene.add( rightBall );
