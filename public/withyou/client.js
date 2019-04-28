@@ -1,13 +1,6 @@
   $(function () {
-    // Redirect to https
-    /*if (window.location.href == "http://chromapose.herokuapp.com/" || 
-      window.location.href == "http://www.chromapose.me/") {
-      window.location.replace('https://chromapose.herokuapp.com/');
-    }*/
 
     var socket = io();
-
-    //var oldSocketId = socket.id; // used for erasing page when socket disconnects and removes id
 
     var gameId = null;
 
@@ -15,34 +8,19 @@
 
     socket.on('gameCreated', updateGameId);
 
-    // User connected. If reconnecting, go back to main menu
-    /*socket.on('userConnected', function() {
-      console.log('user connected');
-      // Not on splash screen
-      if ($('#splash').length == 0) {
-        console.log('reload');
-        location.reload();
-      }
-    });*/
+    var pairs;
 
-    /*socket.on('disconnectClient', function(socketId) {
-      // Disconnected, go black
-      if (socketId == oldSocketId) { 
-        console.log('disconnected');
-        $('#page').remove();
-      }
-    });*/
-
-    var games;
-    var bound = 15;
-    var minBound = 12;
+    var games; //
+    var bound = 15; //
+    var minBound = 12; //
 
     function updateGameState(gameState) {
       // update local state to match state on server
       games = gameState.games;
+      pairs = gameState.pairs;
 
       // Calculate matching players
-      if (games && games[gameId]) {
+      /*if (games && games[gameId]) {
         var playerCount = Object.keys(games[gameId].players).length
         var matchingPlayers = 0;
         Object.values(games[gameId].players).forEach((player, index) => { // todo: get game id based on player     
@@ -50,19 +28,7 @@
             matchingPlayers++;
           }
         })
-
-        // Show matching players and total players
-        document.getElementById('playerCount').innerHTML = String(matchingPlayers) + "/" + String(playerCount)
-
-        //console.log('target color:');
-        //console.log(games[gameId].targetColor);
-
-        // Change target border color
-        $('#screen').css(
-          'border-color', 
-          'hsl(' + games[gameId].targetColor.hue + 
-          ', 100%, ' + games[gameId].targetColor.lightness + '%)');
-      }
+      }*/
     }
 
     function updateGameId(game) {
@@ -76,7 +42,8 @@
     function gameLoop() {
       // update game
       updateGameState({
-        games: games
+        games: games,
+        pairs: pairs
       })
     }
 

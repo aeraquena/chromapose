@@ -99,15 +99,6 @@
 					THREE.Math.degToRad(currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent)), 
 					THREE.Math.degToRad(currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent))
 				);
-				if ((currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent)) < -90 || 
-					(currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent)) > 90) {
-					console.log('x out of bounds');
-				}
-				if ((currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent)) < 0 ||
-					(currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent)) > 180) {
-					console.log('y out of bounds');
-				}
-				//console.log((currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent)) + ',' + (currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent)));
 
 				controls.update();
 				renderer.render( scene, camera );

@@ -20,7 +20,8 @@ app.get('/', function(req, res){
 function emitUpdates() {
   // tell everyone what's up
   io.emit('gameStateUpdate', { 
-    games: engine.games
+    games: engine.games,
+    pairs: engine.pairs
   });
 }
 
