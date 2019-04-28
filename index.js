@@ -151,7 +151,7 @@ io.on('connection', function(socket){
       };
       // TODO: Change to target sequence of coordinates
 
-      engine.changeTargetColor(gameId) // TODO: For this game
+      //engine.changeTargetColor(gameId) // TODO: For this game
       updateInterval = setInterval(emitUpdates, 40) // necessary for each game?
     }
 
