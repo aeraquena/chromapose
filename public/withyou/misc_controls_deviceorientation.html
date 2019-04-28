@@ -40,6 +40,8 @@
 			var currentPosition, nextPosition;
 			var lerpPercent = 0;
 
+			var radius = 5;
+
 			init();
 			animate();
 
@@ -69,9 +71,9 @@
 
 				// target ball
 
-				//var geometry = new THREE.SphereGeometry( 1, 32, 32 );
+				// Red = west
 				var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-				var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+				var material = new THREE.MeshBasicMaterial( { color: 0xff0000 } );
 				targetBall = new THREE.Mesh( geometry, material );
 				scene.add( targetBall );
 
@@ -84,6 +86,30 @@
 					'x': Math.floor(Math.random() * 360), 
 					'y': Math.floor(Math.random() * 180) - 90
 				}
+
+				// balls to determine what coordinate system is
+
+				geometry = new THREE.BoxGeometry( 1, 1, 1 );
+				material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+				var leftBall = new THREE.Mesh( geometry, material );
+
+				leftBall.position.setFromSphericalCoords(
+					radius, 
+					THREE.Math.degToRad(-90), 
+					THREE.Math.degToRad(0)
+				);
+				scene.add( leftBall );
+
+				geometry = new THREE.BoxGeometry( 1, 1, 1 );
+				material = new THREE.MeshBasicMaterial( { color: 0xffd700 } );
+				var rightBall = new THREE.Mesh( geometry, material );
+
+				rightBall.position.setFromSphericalCoords(
+					radius, 
+					THREE.Math.degToRad(90), 
+					THREE.Math.degToRad(0)
+				);
+				scene.add( rightBall );
 
 				window.addEventListener( 'resize', onWindowResize, false );
 			}
@@ -104,7 +130,6 @@
 					lerpPercent = 0;
 				}
 
-				var radius = 5;
 				targetBall.position.setFromSphericalCoords(
 					radius, 
 					THREE.Math.degToRad(currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent)), 
