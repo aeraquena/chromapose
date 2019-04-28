@@ -1,4 +1,5 @@
 var games = {}
+var pairs = {}
 
 // Update target color
 function changeTargetColor(gameId) {
@@ -12,6 +13,7 @@ function changeTargetColor(gameId) {
 if (!this.navigator) { // determine whether this is a node module or inlined via script tag
   module.exports = {
     games: games,
+    pairs: pairs,
     changeTargetColor: changeTargetColor
   }
 }
