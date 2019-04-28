@@ -38,7 +38,7 @@
 			var camera, scene, renderer, controls, targetBall;
 
 			var currentPosition, nextPosition;
-			var lerpPercent = 1;
+			var lerpPercent = 0;
 
 			init();
 			animate();
@@ -80,10 +80,10 @@
 					'y': 0
 				}
 
-				/*nextPosition = {
-					'x': Math.floor(Math.random() * 10) - 5,
-					'y': Math.floor(Math.random() * 10) - 5
-				}*/
+				nextPosition = {
+					'x': Math.floor(Math.random() * 180) - 90,
+					'y': Math.floor(Math.random() * 180) - 90
+				}
 
 				window.addEventListener( 'resize', onWindowResize, false );
 			}
