@@ -313,117 +313,6 @@
       $('#screen').addClass('game');
     });
 
-    /* Three.js graphics */
-
-    var camera, scene, renderer, controls, targetBall;
-
-    var currentPosition, nextPosition;
-    var lerpPercent = 0;
-
-    var radius = 5;
-
-    init();
-    animate();
-
-    function init() {
-
-      camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1100 );
-
-      controls = new THREE.DeviceOrientationControls( camera );
-
-      scene = new THREE.Scene();
-
-      // Sphere wireframe
-
-      var geometry = new THREE.SphereBufferGeometry( 500, 30, 20 );
-      // invert the geometry on the x-axis so that all of the faces point inward
-      geometry.scale( - 1, 1, 1 );
-
-      var material = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true } );
-
-      var mesh = new THREE.Mesh( geometry, material );
-      scene.add( mesh );
-
-      renderer = new THREE.WebGLRenderer( { antialias: true } );
-      renderer.setPixelRatio( window.devicePixelRatio );
-      renderer.setSize( window.innerWidth, window.innerHeight );
-      document.body.appendChild( renderer.domElement );
-
-      // target ball
-
-      var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-      var material = new THREE.MeshBasicMaterial( { color: 0xff0000 } ); // red
-      targetBall = new THREE.Mesh( geometry, material );
-      scene.add( targetBall );
-
-      // in front of you
-      currentPosition = {
-        'x': -90,
-        'y': 0
-      }
-
-      nextPosition = {
-        'x': Math.floor(Math.random() * 180) + 180,
-        'y': Math.floor(Math.random() * 180) - 90
-      }
-
-      window.addEventListener( 'resize', onWindowResize, false );
-    }
-
-    function animate() {
-
-      window.requestAnimationFrame( animate );
-
-      if (lerpPercent >= 1) {
-        currentPosition = nextPosition;
-
-        // Generate new nextPosition, coordinates between -5 and 5
-        // TODO: Get this from server
-        nextPosition = {
-          'x': Math.floor(Math.random() * 180) + 180,
-          'y': Math.floor(Math.random() * 180) - 90
-        }
-
-        lerpPercent = 0;
-      }
-
-      targetBall.position.setFromSphericalCoords(
-        radius, 
-        THREE.Math.degToRad(currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent)), 
-        THREE.Math.degToRad(currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent))
-      );
-
-      controls.update();
-      renderer.render( scene, camera );
-
-      // Check frustum (whether object is in view)
-      camera.updateMatrix();
-      camera.updateMatrixWorld();
-
-      var frustum = new THREE.Frustum();
-      frustum.setFromMatrix(new THREE.Matrix4().multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));  
-
-      // Your 3d point to check
-      var pos = new THREE.Vector3(targetBall.position.x, targetBall.position.y, targetBall.position.z);
-      if (frustum.containsPoint(pos)) {
-          // Do something with the position...
-          console.log('IN VIEW');
-      } else {
-        console.log('---');
-      }
-
-      lerpPercent += .01;
-    }
-
-    function onWindowResize() {
-
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-
-      renderer.setSize( window.innerWidth, window.innerHeight );
-
-    }
-
     function drawGame() {
       // draw stuff
       requestAnimationFrame(drawGame)
@@ -432,3 +321,112 @@
     setInterval(gameLoop, 25)
     requestAnimationFrame(drawGame)
   });
+
+  var camera, scene, renderer, controls, targetBall;
+
+  var currentPosition, nextPosition;
+  var lerpPercent = 0;
+
+  var radius = 5;
+
+  init();
+  animate();
+
+  function init() {
+
+    camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1100 );
+
+    controls = new THREE.DeviceOrientationControls( camera );
+
+    scene = new THREE.Scene();
+
+    // Sphere wireframe
+
+    var geometry = new THREE.SphereBufferGeometry( 500, 30, 20 );
+    // invert the geometry on the x-axis so that all of the faces point inward
+    geometry.scale( - 1, 1, 1 );
+
+    var material = new THREE.MeshBasicMaterial( { color: 0xffffff, wireframe: true } );
+
+    var mesh = new THREE.Mesh( geometry, material );
+    scene.add( mesh );
+
+    renderer = new THREE.WebGLRenderer( { antialias: true } );
+    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement );
+
+    // target ball
+
+    var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+    var material = new THREE.MeshBasicMaterial( { color: 0xff0000 } ); // red
+    targetBall = new THREE.Mesh( geometry, material );
+    scene.add( targetBall );
+
+    // in front of you
+    currentPosition = {
+      'x': -90,
+      'y': 0
+    }
+
+    nextPosition = {
+      'x': Math.floor(Math.random() * 180) + 180,
+      'y': Math.floor(Math.random() * 180) - 90
+    }
+
+    window.addEventListener( 'resize', onWindowResize, false );
+  }
+
+  function animate() {
+
+    window.requestAnimationFrame( animate );
+
+    if (lerpPercent >= 1) {
+      currentPosition = nextPosition;
+
+      // Generate new nextPosition, coordinates between -5 and 5
+      // TODO: Get this from server
+      nextPosition = {
+        'x': Math.floor(Math.random() * 180) + 180,
+        'y': Math.floor(Math.random() * 180) - 90
+      }
+
+      lerpPercent = 0;
+    }
+
+    targetBall.position.setFromSphericalCoords(
+      radius, 
+      THREE.Math.degToRad(currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent)), 
+      THREE.Math.degToRad(currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent))
+    );
+
+    controls.update();
+    renderer.render( scene, camera );
+
+    // Check frustum (whether object is in view)
+    camera.updateMatrix();
+    camera.updateMatrixWorld();
+
+    var frustum = new THREE.Frustum();
+    frustum.setFromMatrix(new THREE.Matrix4().multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));  
+
+    // Your 3d point to check
+    var pos = new THREE.Vector3(targetBall.position.x, targetBall.position.y, targetBall.position.z);
+    if (frustum.containsPoint(pos)) {
+        // Do something with the position...
+        console.log('IN VIEW');
+    } else {
+      console.log('---');
+    }
+
+    lerpPercent += .01;
+  }
+
+  function onWindowResize() {
+
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize( window.innerWidth, window.innerHeight );
+
+  }
