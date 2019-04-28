@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>three.js webgl - controls - deviceorientation</title>
+		<title>with you</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="user-scalable=no, initial-scale=1">
 		<style>
@@ -10,28 +10,16 @@
 				background-color: #000000;
 				overflow: hidden;
 			}
-
-			#info {
-				position: absolute;
-				top: 0px; width: 100%;
-				color: #ffffff;
-				padding: 5px;
-				font-family:Monospace;
-				font-size:13px;
-				font-weight: bold;
-				text-align:center;
-				box-sizing: border-box;
-			}
-
-			a {
-				color: #ff8800;
-			}
 		</style>
 	</head>
 	<body>
 
 		<script src="./three.js"></script>
 		<script src="./DeviceOrientationControls.js"></script>
+		<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+	    <script src="/socket.io/socket.io.js"></script>
+	    <script src='./game.js'></script>
+	    <script src='./client.js'></script>
 
 		<script>
 
@@ -86,41 +74,6 @@
 					'x': Math.floor(Math.random() * 180) + 180,
 					'y': Math.floor(Math.random() * 180) - 90
 				}
-
-				// balls to determine what coordinate system is
-
-				geometry = new THREE.BoxGeometry( 1, 1, 1 );
-				material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } ); // green
-				var leftBall = new THREE.Mesh( geometry, material );
-
-				leftBall.position.setFromSphericalCoords(
-					radius, 
-					THREE.Math.degToRad(-90), // this controls vertical position
-					THREE.Math.degToRad(90)
-				);
-				scene.add( leftBall );
-
-				geometry = new THREE.BoxGeometry( 1, 1, 1 );
-				material = new THREE.MeshBasicMaterial( { color: 0xffd700 } ); // yellow
-				var rightBall = new THREE.Mesh( geometry, material );
-
-				rightBall.position.setFromSphericalCoords(
-					radius, 
-					THREE.Math.degToRad(-90), // this controls vertical position, moving backwards from you
-					THREE.Math.degToRad(-90)
-				);
-				scene.add( rightBall );
-
-				geometry = new THREE.BoxGeometry( 1, 1, 1 );
-				material = new THREE.MeshBasicMaterial( { color: 0x00ffff } ); // yellow
-				var bottomBall = new THREE.Mesh( geometry, material );
-
-				bottomBall.position.setFromSphericalCoords(
-					radius, 
-					THREE.Math.degToRad(180), // this controls vertical position, moving backwards from you
-					THREE.Math.degToRad(0)
-				);
-				scene.add( bottomBall );
 
 				window.addEventListener( 'resize', onWindowResize, false );
 			}
