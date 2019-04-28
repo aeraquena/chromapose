@@ -76,8 +76,9 @@
 				targetBall = new THREE.Mesh( geometry, material );
 				scene.add( targetBall );
 
+				// in front of you
 				currentPosition = {
-					'x': 0,
+					'x': -90,
 					'y': 0
 				}
 
@@ -145,6 +146,7 @@
 					THREE.Math.degToRad(currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent)), 
 					THREE.Math.degToRad(currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent))
 				);
+				console.log((currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent)) + ',' + (currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent)));
 
 				controls.update();
 				renderer.render( scene, camera );
