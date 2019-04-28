@@ -258,7 +258,7 @@
       $('#top #gameId').text('#' + gameId);
 
       // Add user to game object players
-      socket.emit('join', gameId);
+      socket.emit('joinPair', gameId);
       // change to joinPair
 
       // Expand border
