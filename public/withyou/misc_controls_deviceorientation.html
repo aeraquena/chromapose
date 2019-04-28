@@ -38,7 +38,7 @@
 			var camera, scene, renderer, controls, targetBall;
 
 			var currentPosition, nextPosition;
-			var lerpPercent = 0;
+			var lerpPercent = 1;
 
 			init();
 			animate();
@@ -80,75 +80,29 @@
 					'y': 0
 				}
 
-				nextPosition = {
+				/*nextPosition = {
 					'x': Math.floor(Math.random() * 10) - 5,
 					'y': Math.floor(Math.random() * 10) - 5
-				}
+				}*/
 
 				window.addEventListener( 'resize', onWindowResize, false );
 			}
 
-			// Set the target ball's orbital radius, start angle, and angle increment value
-			var r = 5;
-			var theta = 0;
-			var dTheta = 2 * Math.PI / 1000;
-
-			var frameCount = 0;
-			var xMultiplier, yMultiplier, zMultiplier;
-			var yAngle = 0;
-
-
 			function animate() {
 
 				window.requestAnimationFrame( animate );
-
-				// Rotate target ball
-				//Increment theta, and update moon x and y
-				//position based off new theta value        
-
-				// change angles every 5 seconds
-				// position changes though
-
-				if (frameCount % 300 == 0) {
-					/*xMultiplier = (Math.random() * 10) - 5;
-					yMultiplier = (Math.random() * 10) - 5;
-					zMultiplier = (Math.random() * 10) - 5;*/
-
-					console.log('randomize angle');
-
-					/*var angleX = Math.random();
-					var angleY = Math.random();
-					var angleZ = Math.random();
-
-					var quaternion = new THREE.Quaternion();
-					quaternion.setFromAxisAngle( new THREE.Vector3(angleX, angleY, angleZ), Math.PI / 2 );
-					targetBall.matrix.makeRotationFromQuaternion(quaternion);*/
-
-					// 30 degrees
-					//targetBall.rotateOnWorldAxis(new THREE.Vector3(1,0,0), 30 * Math.PI/180);
-				}
 
 				if (lerpPercent >= 1) {
 					currentPosition = nextPosition;
 
 					// Generate new nextPosition, coordinates between -5 and 5
 					nextPosition = {
-						'x': Math.floor(Math.random() * 360),
-						'y': Math.floor(Math.random() * 360)
+						'x': Math.floor(Math.random() * 180) - 90,
+						'y': Math.floor(Math.random() * 180) - 90
 					}
 
 					lerpPercent = 0;
 				}
-
-				theta += dTheta;
-				
-				//targetBall.position.x = r * Math.cos(theta);// * xMultiplier;
-				//targetBall.position.z = r * Math.sin(theta);// * yMultiplier;
-				
-				//targetBall.position.y = Math.sin(theta) * zMultiplier;
-
-				//currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent);
-				//currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent);
 
 				var radius = 5;
 				targetBall.position.setFromSphericalCoords(
@@ -176,7 +130,6 @@
 					console.log('---');
 				}
 
-				frameCount++;
 				lerpPercent += .002;
 			}
 
