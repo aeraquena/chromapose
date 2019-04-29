@@ -35,10 +35,10 @@
       }
 
       //
-      function updatePairId(pair) {
+      function updatePairId(game) {
         console.log('-- update game id --');
-        if (pair.socketId == socket.id) { 
-          pairId = pair.pairId;
+        if (game.socketId == socket.id) { 
+          pairId = game.gameId;
         }
       }
 
