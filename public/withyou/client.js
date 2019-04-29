@@ -25,7 +25,7 @@
       var radius = 5;
 
       var lineDots = [];
-      var numLineDots = 20;
+      var numLineDots = 50;
 
       function updateGameState(gameState) {
         console.log('update game state');
@@ -435,7 +435,7 @@
         // Animate lines between dots
 
         for (i = 0; i < numLineDots; i++) {
-          lerpPercent = 1/numLineDots * i + (frameCount % 50 * .02);
+          lerpPercent = 1/numLineDots * i + (frameCount % 50 * .002);
 
           // Set position of line dots
           lineDots[i].position.setFromSphericalCoords(
