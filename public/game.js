@@ -10,8 +10,14 @@ function changeTargetColor(gameId) {
   games[gameId].targetColor.lightness = Math.floor(Math.random() * 60) + 20; // 20-80% range
 }
 
-function changeTargetPoint() {
-	console.log('chromapose - change target point');
+// Update target color
+function changeTargetPoint(pairId) {
+  // Change target color
+  pairs[pairId].targetPoint.phi = Math.floor(Math.random() * 180) + 180;
+  pairs[pairId].targetPoint.theta = Math.floor(Math.random() * 180) - 90;
+
+  console.log('change target point');
+  console.log(pairs[pairId].targetPoint);
 }
 
 if (!this.navigator) { // determine whether this is a node module or inlined via script tag
