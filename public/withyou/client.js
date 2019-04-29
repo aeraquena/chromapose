@@ -23,12 +23,14 @@
         games = gameState.games; //
         pairs = gameState.pairs;
 
-        nextPosition = {
-          'x': pairs[pairId].targetPoint.phi,
-          'y': pairs[pairId].targetPoint.theta 
+        if (pairs && pairs[pairId]) {
+          nextPosition = {
+            'x': pairs[pairId].targetPoint.phi,
+            'y': pairs[pairId].targetPoint.theta 
+          }
+          console.log('next position:');
+          console.log(nextPosition);
         }
-        console.log('next position:');
-        console.log(nextPosition);
 
         // Calculate matching players
         /*if (games && games[gameId]) {

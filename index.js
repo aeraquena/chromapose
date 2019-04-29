@@ -150,7 +150,7 @@ io.on('connection', function(socket){
         }
       };
 
-      //engine.changeTargetColor(gameId) // TODO: For this game
+      engine.changeTargetPoint(pairId)
       updateInterval = setInterval(emitUpdates, 40) // necessary for each game?
     }
 
