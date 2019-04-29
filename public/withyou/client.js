@@ -17,6 +17,13 @@
       var bound = 15; //
       var minBound = 12; //
 
+      var camera, scene, renderer, controls, targetBall;
+
+      var currentPosition, nextPosition;
+      var lerpPercent = 0;
+
+      var radius = 5;
+
       function updateGameState(gameState) {
         console.log('update game state');
         // update local state to match state on server
@@ -306,13 +313,6 @@
         // draw stuff
         requestAnimationFrame(drawGame)
       }
-
-      var camera, scene, renderer, controls, targetBall;
-
-      var currentPosition, nextPosition;
-      var lerpPercent = 0;
-
-      var radius = 5;
 
       function init() {
 
