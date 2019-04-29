@@ -8,6 +8,10 @@ function changeTargetPoint(pairId) {
   pairs[pairId].targetPoint.theta = Math.floor(Math.random() * 180) - 90;
 }
 
+function changeTargetColor() {
+	
+}
+
 if (!this.navigator) { // determine whether this is a node module or inlined via script tag
   module.exports = {
     games: games,

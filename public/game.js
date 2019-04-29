@@ -10,6 +10,10 @@ function changeTargetColor(gameId) {
   games[gameId].targetColor.lightness = Math.floor(Math.random() * 60) + 20; // 20-80% range
 }
 
+function changeTargetPoint() {
+	
+}
+
 if (!this.navigator) { // determine whether this is a node module or inlined via script tag
   module.exports = {
     games: games,
