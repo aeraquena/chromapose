@@ -1,173 +1,203 @@
   $(function () {
 
-    var socket = io();
+    $(window).on('load', function() {
 
-    var gameId = null;
-    var pairId = null;
+      var socket = io();
 
-    socket.on('gameStateUpdate', updateGameState);
+      var gameId = null;
+      var pairId = null;
 
-    socket.on('gameCreated', updatePairId);
+      socket.on('gameStateUpdate', updateGameState);
 
-    var pairs;
+      socket.on('gameCreated', updatePairId);
 
-    var games; //
-    var bound = 15; //
-    var minBound = 12; //
+      var pairs;
 
-    function updateGameState(gameState) {
-      // update local state to match state on server
-      games = gameState.games; //
-      pairs = gameState.pairs;
+      var games; //
+      var bound = 15; //
+      var minBound = 12; //
 
-      // Calculate matching players
-      /*if (games && games[gameId]) {
-        var playerCount = Object.keys(games[gameId].players).length
-        var matchingPlayers = 0;
-        Object.values(games[gameId].players).forEach((player, index) => { // todo: get game id based on player     
-          if (player.matching) {
-            matchingPlayers++;
-          }
+      function updateGameState(gameState) {
+        // update local state to match state on server
+        games = gameState.games; //
+        pairs = gameState.pairs;
+
+        // Calculate matching players
+        /*if (games && games[gameId]) {
+          var playerCount = Object.keys(games[gameId].players).length
+          var matchingPlayers = 0;
+          Object.values(games[gameId].players).forEach((player, index) => { // todo: get game id based on player     
+            if (player.matching) {
+              matchingPlayers++;
+            }
+          })
+        }*/
+      }
+
+      //
+      function updatePairId(pair) {
+        console.log('-- update game id --');
+        if (pair.socketId == socket.id) { 
+          pairId = pair.pairId;
+        }
+      }
+
+      function gameLoop() {
+        // update game
+        updateGameState({
+          games: games, //
+          pairs: pairs
         })
-      }*/
-    }
-
-    //
-    function updatePairId(pair) {
-      console.log('-- update game id --');
-      if (pair.socketId == socket.id) { 
-        pairId = pair.pairId;
       }
-    }
 
-    function gameLoop() {
-      // update game
-      updateGameState({
-        games: games, //
-        pairs: pairs
-      })
-    }
+      //
+      /* Movement */
 
-    //
-    /* Movement */
+      // Local variables specific to player's device
+      var rotDeg, leftRight, frontBack;
+      var hue, lightness;
 
-    // Local variables specific to player's device
-    var rotDeg, leftRight, frontBack;
-    var hue, lightness;
+      var prevIsMatching = false;
 
-    var prevIsMatching = false;
-
-    // Map value from one range onto another
-    function map(value, xMin, xMax, yMin, yMax) {
-      // Clamp
-      if (value < xMin) {
-        return yMin;
-      } else if (value > xMax) {
-        return yMax;
-      } else {
-        var result = (value - xMin) * ((yMax - yMin)/(xMax - xMin)) + yMin;
-        return result;
-      }
-    }
-
-    // Checks match between target and user color
-    function checkMatch() {
-      //var bound = 12; // bounding box for color matches
-
-      // Is player within the target color bounds?
-      var isMatching = hue > (games[gameId].targetColor.hue - bound) && hue < (games[gameId].targetColor.hue + bound) &&
-        lightness > (games[gameId].targetColor.lightness - bound) && lightness < (games[gameId].targetColor.lightness + bound);
-
-      // Only send a socket signal + change screen state if match state has changed
-      if (isMatching != prevIsMatching) {
-        if (isMatching) {
-            // Client has changed to match colors
-
-            // Add visual match indicator
-            $('#screen').addClass('match');
-
-            // Send match to socket
-            socket.emit('match', gameId);
+      // Map value from one range onto another
+      function map(value, xMin, xMax, yMin, yMax) {
+        // Clamp
+        if (value < xMin) {
+          return yMin;
+        } else if (value > xMax) {
+          return yMax;
         } else {
-          // Client has changed to not match colors
+          var result = (value - xMin) * ((yMax - yMin)/(xMax - xMin)) + yMin;
+          return result;
+        }
+      }
+
+      // Checks match between target and user color
+      function checkMatch() {
+        //var bound = 12; // bounding box for color matches
+
+        // Is player within the target color bounds?
+        var isMatching = hue > (games[gameId].targetColor.hue - bound) && hue < (games[gameId].targetColor.hue + bound) &&
+          lightness > (games[gameId].targetColor.lightness - bound) && lightness < (games[gameId].targetColor.lightness + bound);
+
+        // Only send a socket signal + change screen state if match state has changed
+        if (isMatching != prevIsMatching) {
+          if (isMatching) {
+              // Client has changed to match colors
+
+              // Add visual match indicator
+              $('#screen').addClass('match');
+
+              // Send match to socket
+              socket.emit('match', gameId);
+          } else {
+            // Client has changed to not match colors
+            
+            // Remove visual match indicator
+            $('#screen').removeClass('match');
+
+            // Send unmatch to socket
+            socket.emit('unmatch', gameId);
+          }
+
+          prevIsMatching = isMatching;
+        }
+      }
+
+      // Animation when color changes
+      var winTimeout;
+      socket.on('colorChanged', function(changedGameId) {
+        if (changedGameId == gameId) {
+          clearTimeout(winTimeout);
+          $('#screen').addClass('win');
+          winTimeout = setTimeout(function() {
+            $('#screen').removeClass('win');
+
+            // Remove tutorial
+            $('#tutorial').remove();
+          }, 750);
+
+          // Decrease bound until it reaches min bound
+          if (bound > minBound) {
+            bound--;
+          }
+        }
+      });
+
+      // A player moved, update their color
+      /*socket.on('playerMoved', function(data) {
+        console.log(data);
+        console.log('player moved');
+        // Same game, but not same player
+        if (data.gameId == gameId && 
+          data.socketId != socket.id) {
+          console.log('other player moved');
           
-          // Remove visual match indicator
-          $('#screen').removeClass('match');
-
-          // Send unmatch to socket
-          socket.emit('unmatch', gameId);
+          $('#partnerColor').css('background-color', 'hsl(' + data.z + ', 100%, ' + data.y + '%)');
         }
+      });*/
 
-        prevIsMatching = isMatching;
-      }
-    }
+      // Detect if browser supports orientation
+      if (typeof window.orientation !== 'undefined') { 
+        // Mobile
 
-    // Animation when color changes
-    var winTimeout;
-    socket.on('colorChanged', function(changedGameId) {
-      if (changedGameId == gameId) {
-        clearTimeout(winTimeout);
-        $('#screen').addClass('win');
-        winTimeout = setTimeout(function() {
-          $('#screen').removeClass('win');
+        // Device orientation
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener("deviceorientation", function(event) {
+                // alpha: rotation around z-axis
+                rotDeg = event.alpha;
+                // gamma: left to right
+                leftRight = event.gamma;
+                // beta: front back motion
+                frontBack = event.beta;
 
-          // Remove tutorial
-          $('#tutorial').remove();
-        }, 750);
+                // Left right rotation (around X-axis)
+              $('span.value.lr').text(leftRight.toFixed(2));
+              $('#lr').width(leftRight + 90);
 
-        // Decrease bound until it reaches min bound
-        if (bound > minBound) {
-          bound--;
+              // Front back rotation (around Y-axis)
+              $('span.value.fb').text(frontBack.toFixed(2));
+              $('#fb').width(frontBack + 180);
+
+              // Alpha rotation (around Z-axis)
+              $('span.value.rotdeg').text(rotDeg.toFixed(2));
+              $('#rotdeg').width(rotDeg);
+
+              // Y = lightness
+              // (Map front-back to lightness) + (Random 0-100) % 100
+              // 20-80
+              lightness = ((Math.floor(map(frontBack, -180, 180, 0, 60))) % 60) + 20;
+
+              // Z = hue
+              hue = (Math.floor(map(rotDeg, 0, 360, 255, 0))) % 255;
+
+              // Change background color
+              $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
+
+              if (games && gameId) {
+                checkMatch(hue, lightness);
+
+                // Send position to server
+                console.log('move');
+                socket.emit('move', {'gameId': gameId, 'y': lightness, 'z': hue});
+              }
+            }); // ,true
         }
-      }
-    });
+      } else {
+        // Desktop
+        $('#content').css('font-size', '18px');
 
-    // A player moved, update their color
-    /*socket.on('playerMoved', function(data) {
-      console.log(data);
-      console.log('player moved');
-      // Same game, but not same player
-      if (data.gameId == gameId && 
-        data.socketId != socket.id) {
-        console.log('other player moved');
-        
-        $('#partnerColor').css('background-color', 'hsl(' + data.z + ', 100%, ' + data.y + '%)');
-      }
-    });*/
+        var bodyWidth = $('body').width();
+        var bodyHeight = $('body').height();
 
-    // Detect if browser supports orientation
-    if (typeof window.orientation !== 'undefined') { 
-      // Mobile
+        $("body").mousemove(function(e) {
 
-      // Device orientation
-      if (window.DeviceOrientationEvent) {
-          window.addEventListener("deviceorientation", function(event) {
-              // alpha: rotation around z-axis
-              rotDeg = event.alpha;
-              // gamma: left to right
-              leftRight = event.gamma;
-              // beta: front back motion
-              frontBack = event.beta;
+            hue = (Math.floor(map(e.pageX, 0, bodyWidth, 255, 0))) % 255;
+            lightness = (Math.floor(map(e.pageY, 0, bodyHeight, 0, 80)) % 80) + 20;
 
-              // Left right rotation (around X-axis)
-            $('span.value.lr').text(leftRight.toFixed(2));
-            $('#lr').width(leftRight + 90);
-
-            // Front back rotation (around Y-axis)
-            $('span.value.fb').text(frontBack.toFixed(2));
-            $('#fb').width(frontBack + 180);
-
-            // Alpha rotation (around Z-axis)
-            $('span.value.rotdeg').text(rotDeg.toFixed(2));
-            $('#rotdeg').width(rotDeg);
-
-            // Y = lightness
-            // (Map front-back to lightness) + (Random 0-100) % 100
-            // 20-80
-            lightness = ((Math.floor(map(frontBack, -180, 180, 0, 60))) % 60) + 20;
-
-            // Z = hue
-            hue = (Math.floor(map(rotDeg, 0, 360, 255, 0))) % 255;
+            // Change color
+            $('#hue').text(hue);
+            $('#lightness').text(lightness);
 
             // Change background color
             $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
@@ -179,123 +209,94 @@
               console.log('move');
               socket.emit('move', {'gameId': gameId, 'y': lightness, 'z': hue});
             }
-          }); // ,true
+        })
+        var e = window.event;
       }
-    } else {
-      // Desktop
-      $('#content').css('font-size', '18px');
 
-      var bodyWidth = $('body').width();
-      var bodyHeight = $('body').height();
+      // Show/hide instructions
+      $('#instructionsLink').click(function() {
+        if ($('#instructions').hasClass('shown')) {
+          // hide
+          $('#instructions').removeClass('shown');
+          $('#splash').show();
+          $(this).text('?');
+        } else {
+          // show
+          $('#instructions').addClass('shown');
+          $('#splash').hide();
+          $(this).text('X');
+        }
+      });
 
-      $("body").mousemove(function(e) {
+      // Change outer color manually
+      /*$('#change-outer-color').click(function() {
+        socket.emit('changeColor', gameId);
+      });*/
 
-          hue = (Math.floor(map(e.pageX, 0, bodyWidth, 255, 0))) % 255;
-          lightness = (Math.floor(map(e.pageY, 0, bodyHeight, 0, 80)) % 80) + 20;
+      // end //
 
-          // Change color
-          $('#hue').text(hue);
-          $('#lightness').text(lightness);
+      // Join game
+      $('#join-game').click(function() {
+        $('#splash #start-buttons').hide();
+        $('#splash #input-number-container').show();
+      });
 
-          // Change background color
-          $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
+      $('#input-number').on('cut keyup paste', function() {
+        if ($('#input-number').val()) {
+          $('#join-game-number').css('display', 'block');
+        } else {
+          $('#join-game-number').hide();
+        }
+      });
 
-          if (games && gameId) {
-            checkMatch(hue, lightness);
+      // Join game number
+      $('#join-game-number').click(function() {
+        gameId = $('#input-number').val();
 
-            // Send position to server
-            console.log('move');
-            socket.emit('move', {'gameId': gameId, 'y': lightness, 'z': hue});
-          }
-      })
-      var e = window.event;
-    }
+        // Remove splash menu
+        $('#splash').remove();
 
-    // Show/hide instructions
-    $('#instructionsLink').click(function() {
-      if ($('#instructions').hasClass('shown')) {
-        // hide
-        $('#instructions').removeClass('shown');
-        $('#splash').show();
-        $(this).text('?');
-      } else {
-        // show
-        $('#instructions').addClass('shown');
-        $('#splash').hide();
-        $(this).text('X');
+        // Add game ID to display
+        //$('#top #gameId').text('#' + gameId);
+
+        // Add user to game object players
+        socket.emit('joinPair', gameId);
+        // change to joinPair
+
+        // Expand border
+        $('#screen').addClass('game');
+
+        // Show tutorial
+        $('#tutorial').addClass('shown');
+
+        // Don't init until pair id is set
+        init();
+        animate();
+      });
+
+      //
+      // New game
+      $('#new-game').click(function() {
+        // Remove splash menu
+        $('#splash').remove();
+
+        // Show tutorial
+        $('#tutorial').addClass('shown');
+
+        // Create new game object
+        // Add user to game object players
+        //socket.emit('join', gameId);
+        socket.emit('newGame');
+
+        // Expand border
+        $('#screen').addClass('game');
+      });
+
+      function drawGame() {
+        // draw stuff
+        requestAnimationFrame(drawGame)
       }
-    });
 
-    // Change outer color manually
-    /*$('#change-outer-color').click(function() {
-      socket.emit('changeColor', gameId);
-    });*/
-
-    // end //
-
-    // Join game
-    $('#join-game').click(function() {
-      $('#splash #start-buttons').hide();
-      $('#splash #input-number-container').show();
-    });
-
-    $('#input-number').on('cut keyup paste', function() {
-      if ($('#input-number').val()) {
-        $('#join-game-number').css('display', 'block');
-      } else {
-        $('#join-game-number').hide();
-      }
-    });
-
-    // Join game number
-    $('#join-game-number').click(function() {
-      gameId = $('#input-number').val();
-
-      // Remove splash menu
-      $('#splash').remove();
-
-      // Add game ID to display
-      //$('#top #gameId').text('#' + gameId);
-
-      // Add user to game object players
-      socket.emit('joinPair', gameId);
-      // change to joinPair
-
-      // Expand border
-      $('#screen').addClass('game');
-
-      // Show tutorial
-      $('#tutorial').addClass('shown');
-
-      // Don't init until pair id is set
-      init();
-      animate();
-    });
-
-    //
-    // New game
-    $('#new-game').click(function() {
-      // Remove splash menu
-      $('#splash').remove();
-
-      // Show tutorial
-      $('#tutorial').addClass('shown');
-
-      // Create new game object
-      // Add user to game object players
-      //socket.emit('join', gameId);
-      socket.emit('newGame');
-
-      // Expand border
-      $('#screen').addClass('game');
-    });
-
-    function drawGame() {
-      // draw stuff
-      requestAnimationFrame(drawGame)
-    }
-
-    $(window).on('load', function() {
       var camera, scene, renderer, controls, targetBall;
 
       var currentPosition, nextPosition;
@@ -405,8 +406,9 @@
         renderer.setSize( window.innerWidth, window.innerHeight );
 
       }
-    });
+      
+      setInterval(gameLoop, 25)
+      requestAnimationFrame(drawGame)
 
-    setInterval(gameLoop, 25)
-    requestAnimationFrame(drawGame)
+    });
   });
