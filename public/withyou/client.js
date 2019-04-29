@@ -251,7 +251,7 @@
 
       // Join game number
       $('#join-game-number').click(function() {
-        gameId = $('#input-number').val();
+        pairId = $('#input-number').val();
 
         // Remove splash menu
         $('#splash').remove();
@@ -260,7 +260,7 @@
         //$('#top #gameId').text('#' + gameId);
 
         // Add user to game object players
-        socket.emit('joinPair', gameId);
+        socket.emit('joinPair', pairId);
         // change to joinPair
 
         // Expand border
