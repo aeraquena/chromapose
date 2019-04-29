@@ -289,6 +289,28 @@
           scene.add( lineDots[i] );
         }
 
+        // Blue circle
+        var geometry = new THREE.SphereGeometry( 1, 32, 32 );
+        var material = new THREE.MeshBasicMaterial( { color: 0x0000ff } ); // blue
+        blueBall = new THREE.Mesh( geometry, material );
+        blueBall.position.setFromSphericalCoords(
+            radius, 
+            -90, 
+            20
+          );
+        scene.add( blueBall );
+
+        // Yellow circle
+        var geometry = new THREE.SphereGeometry( 1, 32, 32 );
+        var material = new THREE.MeshBasicMaterial( { color: 0xffff00 } ); // yellow
+        yellowBall = new THREE.Mesh( geometry, material );
+        yellowBall.position.setFromSphericalCoords(
+            radius, 
+            -90, 
+            -20
+          );
+        scene.add( yellowBall );
+
         window.addEventListener( 'resize', onWindowResize, false );
       }
 
