@@ -454,7 +454,7 @@
           lineDots[i].position.setFromSphericalCoords(
             radius, 
             THREE.Math.degToRad(currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent)), 
-            THREE.Math.degToRad(currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent))
+            THREE.Math.degToRad(currentPosition.y + ((currentPosition.y - nextPosition.y) * lerpPercent))
           );
         }
 
