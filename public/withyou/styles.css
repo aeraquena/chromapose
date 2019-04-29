@@ -5,6 +5,7 @@ body {
   color: #fff;
   overflow-x: hidden; 
   overflow-y: hidden;
+  margin: 0px;
 }
 
 body:not(#about) {

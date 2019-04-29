@@ -3,10 +3,11 @@
     var socket = io();
 
     var gameId = null;
+    var pairId = null;
 
     socket.on('gameStateUpdate', updateGameState);
 
-    socket.on('gameCreated', updateGameId);
+    socket.on('gameCreated', updatePairId);
 
     var pairs;
 
@@ -32,11 +33,10 @@
     }
 
     //
-    function updateGameId(game) {
+    function updatePairId(pair) {
       console.log('-- update game id --');
-      if (game.socketId == socket.id) { 
-        $('#top #gameId').text('#' + game.gameId);
-        gameId = game.gameId;
+      if (pair.socketId == socket.id) { 
+        pairId = pair.pairId;
       }
     }
 
@@ -123,7 +123,7 @@
     });
 
     // A player moved, update their color
-    socket.on('playerMoved', function(data) {
+    /*socket.on('playerMoved', function(data) {
       console.log(data);
       console.log('player moved');
       // Same game, but not same player
@@ -133,7 +133,7 @@
         
         $('#partnerColor').css('background-color', 'hsl(' + data.z + ', 100%, ' + data.y + '%)');
       }
-    });
+    });*/
 
     // Detect if browser supports orientation
     if (typeof window.orientation !== 'undefined') { 
@@ -227,9 +227,9 @@
     });
 
     // Change outer color manually
-    $('#change-outer-color').click(function() {
+    /*$('#change-outer-color').click(function() {
       socket.emit('changeColor', gameId);
-    });
+    });*/
 
     // end //
 
@@ -255,7 +255,7 @@
       $('#splash').remove();
 
       // Add game ID to display
-      $('#top #gameId').text('#' + gameId);
+      //$('#top #gameId').text('#' + gameId);
 
       // Add user to game object players
       socket.emit('joinPair', gameId);
@@ -333,6 +333,8 @@
         targetBall = new THREE.Mesh( geometry, material );
         scene.add( targetBall );
 
+        // TODO: rename x = phi, y = theta
+
         // in front of you
         currentPosition = {
           'x': -90,
@@ -340,9 +342,11 @@
         }
 
         nextPosition = {
-          'x': Math.floor(Math.random() * 180) + 180,
-          'y': Math.floor(Math.random() * 180) - 90
+          'x': pairs[pairId].targetPoint.phi, //Math.floor(Math.random() * 180) + 180,
+          'y': pairs[pairId].targetPoint.theta //Math.floor(Math.random() * 180) - 90
         }
+        console.log('next position:');
+        console.log(nextPosition);
 
         window.addEventListener( 'resize', onWindowResize, false );
       }

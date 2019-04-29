@@ -144,12 +144,11 @@ io.on('connection', function(socket){
       // Create instance of game
       engine.pairs[pairId] = {
         players: {},
-        targetColor: {
-          'hue': 0, 
-          'lightness': 0
+        targetPoint: {
+          'phi': 0, 
+          'theta': 0
         }
       };
-      // TODO: Change to target sequence of coordinates
 
       //engine.changeTargetColor(gameId) // TODO: For this game
       updateInterval = setInterval(emitUpdates, 40) // necessary for each game?
@@ -158,8 +157,8 @@ io.on('connection', function(socket){
     // Assign player to game
     engine.pairs[pairId].players[socket.id] = {
       matching: false, // is player matching? //
-      y: 0, //
-      z: 0 //
+      y: 0, // change to phi
+      z: 0 // change to theta
     }
 
     console.log(engine.pairs);
