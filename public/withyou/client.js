@@ -435,7 +435,7 @@
         // Animate lines between dots
 
         for (i = 0; i < numLineDots; i++) {
-          lerpPercent = 1/numLineDots * i + (frameCount % 50 * .002);
+          lerpPercent = 1/numLineDots * i + (frameCount % 50 * .02);
 
           // Set position of line dots
           lineDots[i].position.setFromSphericalCoords(
