@@ -359,6 +359,9 @@
         controls.update();
         renderer.render( scene, camera );
 
+        console.log('camera position:');
+        console.log(camera.position);
+
         // Check frustum (whether object is in view)
         camera.updateMatrix();
         camera.updateMatrixWorld();
