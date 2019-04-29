@@ -334,12 +334,12 @@
         }*/
 
         // Draw line of dots around horizontal axis of target point
-        var startPosition {
+        var startPosition = {
           'x': nextPosition.x,
           'y': 90
         }
 
-        var endPosition {
+        var endPosition = {
           'x': nextPosition.x,
           'y': -90
         }
