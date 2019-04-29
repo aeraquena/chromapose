@@ -23,6 +23,13 @@
         games = gameState.games; //
         pairs = gameState.pairs;
 
+        nextPosition = {
+          'x': pairs[pairId].targetPoint.phi,
+          'y': pairs[pairId].targetPoint.theta 
+        }
+        console.log('next position:');
+        console.log(nextPosition);
+
         // Calculate matching players
         /*if (games && games[gameId]) {
           var playerCount = Object.keys(games[gameId].players).length
@@ -344,7 +351,9 @@
           'y': 0
         }
 
-        console.log('pairs');
+        nextPosition = currentPosition;
+
+        /*console.log('pairs');
         console.log(pairs);
         console.log('pair id');
         console.log(pairId);
@@ -358,7 +367,7 @@
           nextPosition = currentPosition;
         }
         console.log('next position:');
-        console.log(nextPosition);
+        console.log(nextPosition);*/
 
         window.addEventListener( 'resize', onWindowResize, false );
       }
