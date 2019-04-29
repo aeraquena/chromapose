@@ -306,8 +306,8 @@
         yellowBall = new THREE.Mesh( geometry, material );
         yellowBall.position.setFromSphericalCoords(
             radius, 
-            THREE.Math.degToRad(-90), 
-            THREE.Math.degToRad(-10)
+            THREE.Math.degToRad(-90),  // rotate around -90
+            THREE.Math.degToRad(-10) // same
           );
         scene.add( yellowBall );
 
@@ -322,8 +322,31 @@
 
         // Animate lines between dots
 
-        for (i = 0; i < numLineDots; i++) {
+        /*for (i = 0; i < numLineDots; i++) {
           lerpPercent = 1/numLineDots * i + (frameCount % 50 * .002);
+
+          // Set position of line dots
+          lineDots[i].position.setFromSphericalCoords(
+            radius, 
+            THREE.Math.degToRad(currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent)), 
+            THREE.Math.degToRad(currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent))
+          );
+        }*/
+
+        // Draw line of dots around horizontal axis of target point
+        var startPosition {
+          'x': nextPosition.x,
+          'y': 90
+        }
+
+        var endPosition {
+          'x': nextPosition.x,
+          'y': -90
+        }
+        for (i = 0; i < numLineDots; i++) {
+          lerpPercent = 1/numLineDots * i;// + (frameCount % 50 * .002);
+
+          // from: phi, 90 ... phi, -90
 
           // Set position of line dots
           lineDots[i].position.setFromSphericalCoords(
