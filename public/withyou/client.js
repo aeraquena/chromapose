@@ -252,7 +252,7 @@
         document.body.appendChild( renderer.domElement );
 
         // current ball
-        var geometry = new THREE.SphereGeometry( 1, 32, 32 );
+        /*var geometry = new THREE.SphereGeometry( 1, 32, 32 );
         var material = new THREE.MeshBasicMaterial( { color: 0xff0000 } ); // red
         currentBall = new THREE.Mesh( geometry, material );
         scene.add( currentBall );
@@ -308,7 +308,7 @@
             THREE.Math.degToRad(-90),  // rotate around -90
             THREE.Math.degToRad(-10) // same
           );
-        scene.add( yellowBall );
+        scene.add( yellowBall );*/
 
         window.addEventListener( 'resize', onWindowResize, false );
       }
@@ -333,7 +333,7 @@
         }*/
 
         // Draw line of dots around horizontal axis of target point
-        var endPosition = {
+        /*var endPosition = {
           'x': nextPosition.x,
           'y': nextPosition.y - 90
         }
@@ -353,7 +353,7 @@
             THREE.Math.degToRad(currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent)), 
             THREE.Math.degToRad(currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent))
           );
-        }
+        }*/
 
         controls.update();
         renderer.render( scene, camera );
@@ -362,7 +362,7 @@
         camera.updateMatrix();
         camera.updateMatrixWorld();
 
-        var frustum = new THREE.Frustum();
+        /*var frustum = new THREE.Frustum();
         frustum.setFromMatrix(new THREE.Matrix4().multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));  
 
         // Your 3d point to check
@@ -378,7 +378,7 @@
         //console.log('camera');
         //console.log(camera);
 
-        var isMatching = frustum.containsPoint(pos);
+        /*var isMatching = frustum.containsPoint(pos);
 
         // Only send a socket signal + change screen state if match state has changed
         if (isMatching != prevIsMatching) {
@@ -399,10 +399,10 @@
           }
 
           prevIsMatching = isMatching;
-        }
+        }*/
 
         //lerpPercent += .01;
-        frameCount++;
+        //frameCount++;
       }
 
       function onWindowResize() {
