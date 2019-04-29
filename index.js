@@ -244,6 +244,53 @@ io.on('connection', function(socket){
     console.log(engine.games);
   });
 
+  // On match
+  socket.on('matchPair', function(pairId){
+    console.log('match, game id: ' + pairId);
+
+    if (engine.pairs[pairId] && engine.pairs[pairId].players[socket.id]) {
+      engine.pairs[pairId].players[socket.id].matching = true;
+    }
+
+    var allMatching = true;
+
+    if (engine.pairs[pairId]) {
+      // Update list of matching clients
+      Object.keys(engine.pairs[pairId].players).forEach((playerId) => {
+        // Check if all players are matching. If one is not, exit early
+        if (engine.pairs[pairId].players[playerId].matching == false) {
+          allMatching = false;
+          return false;
+        }
+      })
+
+      if (allMatching) {
+        console.log('all matching - change target color');
+        //io.emit('pointChanged', gameId);
+        engine.changeTargetPoint(pairId);
+      }
+    }
+
+    // Unmatch all players
+    /*Object.keys(engine.games[gameId].players).forEach((playerId) => {
+      engine.games[gameId].players[playerId].matching = false;
+    })*/
+
+    console.log(engine.games);
+  });
+
+  // On unmatch
+  socket.on('unmatchPair', function(pairId){
+    console.log('Unmatch game id: ' + pairId);
+    // Update list of matching clients
+    // game id can be undefined
+    if (engine.pairs[pairId]) {
+      engine.pairs[pairId].players[socket.id].matching = false;
+    }
+
+    console.log(engine.[pairs]);
+  });
+
   // Change target color manually
   socket.on('changeColor', function(gameId){
     engine.changeTargetColor(gameId);

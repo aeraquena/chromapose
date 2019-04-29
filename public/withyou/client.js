@@ -141,9 +141,9 @@
       }*/
 
       // Animation when color changes
-      var winTimeout;
-      socket.on('colorChanged', function(changedGameId) {
-        if (changedGameId == gameId) {
+      /*var winTimeout;
+      socket.on('pointChanged', function(changedGameId) {
+        if (changedGameId == pairId) {
           clearTimeout(winTimeout);
           $('#screen').addClass('win');
           winTimeout = setTimeout(function() {
@@ -158,7 +158,7 @@
             bound--;
           }
         }
-      });
+      });*/
 
       // A player moved, update their color
       /*socket.on('playerMoved', function(data) {
@@ -172,82 +172,6 @@
           $('#partnerColor').css('background-color', 'hsl(' + data.z + ', 100%, ' + data.y + '%)');
         }
       });*/
-
-      // Detect if browser supports orientation
-      /*if (typeof window.orientation !== 'undefined') { 
-        // Mobile
-
-        // Device orientation
-        if (window.DeviceOrientationEvent) {
-            window.addEventListener("deviceorientation", function(event) {
-                // alpha: rotation around z-axis
-                rotDeg = event.alpha;
-                // gamma: left to right
-                leftRight = event.gamma;
-                // beta: front back motion
-                frontBack = event.beta;
-
-                // Left right rotation (around X-axis)
-              $('span.value.lr').text(leftRight.toFixed(2));
-              $('#lr').width(leftRight + 90);
-
-              // Front back rotation (around Y-axis)
-              $('span.value.fb').text(frontBack.toFixed(2));
-              $('#fb').width(frontBack + 180);
-
-              // Alpha rotation (around Z-axis)
-              $('span.value.rotdeg').text(rotDeg.toFixed(2));
-              $('#rotdeg').width(rotDeg);
-
-              // Y = lightness
-              // (Map front-back to lightness) + (Random 0-100) % 100
-              // 20-80
-              lightness = ((Math.floor(map(frontBack, -180, 180, 0, 60))) % 60) + 20;
-
-              // Z = hue
-              hue = (Math.floor(map(rotDeg, 0, 360, 255, 0))) % 255;
-
-              // Change background color
-              $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
-
-              if (games && gameId) {
-                checkMatch(hue, lightness);
-
-                // Send position to server
-                console.log('move');
-                socket.emit('move', {'gameId': gameId, 'y': lightness, 'z': hue});
-              }
-            }); // ,true
-        }
-      } else {
-        // Desktop
-        $('#content').css('font-size', '18px');
-
-        var bodyWidth = $('body').width();
-        var bodyHeight = $('body').height();
-
-        $("body").mousemove(function(e) {
-
-            hue = (Math.floor(map(e.pageX, 0, bodyWidth, 255, 0))) % 255;
-            lightness = (Math.floor(map(e.pageY, 0, bodyHeight, 0, 80)) % 80) + 20;
-
-            // Change color
-            $('#hue').text(hue);
-            $('#lightness').text(lightness);
-
-            // Change background color
-            $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
-
-            if (games && gameId) {
-              checkMatch(hue, lightness);
-
-              // Send position to server
-              console.log('move');
-              socket.emit('move', {'gameId': gameId, 'y': lightness, 'z': hue});
-            }
-        })
-        var e = window.event;
-      }*/
 
       // Show/hide instructions
       $('#instructionsLink').click(function() {
@@ -263,13 +187,6 @@
           $(this).text('X');
         }
       });
-
-      // Change outer color manually
-      /*$('#change-outer-color').click(function() {
-        socket.emit('changeColor', gameId);
-      });*/
-
-      // end //
 
       // Join game
       $('#join-game').click(function() {
@@ -292,12 +209,8 @@
         // Remove splash menu
         $('#splash').remove();
 
-        // Add game ID to display
-        //$('#top #gameId').text('#' + gameId);
-
         // Add user to game object players
         socket.emit('joinPair', pairId);
-        // change to joinPair
 
         // Expand border
         $('#screen').addClass('game');
@@ -308,24 +221,6 @@
         // Don't init until pair id is set
         init();
         animate();
-      });
-
-      //
-      // New game
-      $('#new-game').click(function() {
-        // Remove splash menu
-        $('#splash').remove();
-
-        // Show tutorial
-        $('#tutorial').addClass('shown');
-
-        // Create new game object
-        // Add user to game object players
-        //socket.emit('join', gameId);
-        socket.emit('newGame');
-
-        // Expand border
-        $('#screen').addClass('game');
       });
 
       function drawGame() {
@@ -394,22 +289,6 @@
           scene.add( lineDots[i] );
         }
 
-        /*console.log('pairs');
-        console.log(pairs);
-        console.log('pair id');
-        console.log(pairId);
-
-        if (pairs && pairs[pairId]) {
-          nextPosition = {
-            'x': pairs[pairId].targetPoint.phi, //Math.floor(Math.random() * 180) + 180,
-            'y': pairs[pairId].targetPoint.theta //Math.floor(Math.random() * 180) - 90
-          }
-        } else {
-          nextPosition = currentPosition;
-        }
-        console.log('next position:');
-        console.log(nextPosition);*/
-
         window.addEventListener( 'resize', onWindowResize, false );
       }
 
@@ -424,27 +303,6 @@
 
         window.requestAnimationFrame( animate );
 
-        // lerp derp
-
-        /*if (lerpPercent >= 1) {
-          currentPosition = nextPosition;
-
-          // Generate new nextPosition, coordinates between -5 and 5
-          // TODO: Get this from server
-          nextPosition = {
-            'x': Math.floor(Math.random() * 180) + 180,
-            'y': Math.floor(Math.random() * 180) - 90
-          }
-
-          lerpPercent = 0;
-        }
-
-        targetBall.position.setFromSphericalCoords(
-          radius, 
-          THREE.Math.degToRad(currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent)), 
-          THREE.Math.degToRad(currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent))
-        );*/
-
         // Animate lines between dots
 
         for (i = 0; i < numLineDots; i++) {
@@ -454,7 +312,7 @@
           lineDots[i].position.setFromSphericalCoords(
             radius, 
             THREE.Math.degToRad(currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent)), 
-            THREE.Math.degToRad(currentPosition.y + ((currentPosition.y - nextPosition.y) * lerpPercent))
+            THREE.Math.degToRad(currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent))
           );
         }
 
@@ -470,10 +328,35 @@
 
         // Your 3d point to check
         var pos = new THREE.Vector3(targetBall.position.x, targetBall.position.y, targetBall.position.z);
-        if (frustum.containsPoint(pos)) {
+        /*if (frustum.containsPoint(pos)) {
             // Do something with the position...
             console.log('IN VIEW');
             // communicate: matching
+        } else {
+
+        }*/
+
+        var isMatching = frustum.containsPoint(pos);
+
+        // Only send a socket signal + change screen state if match state has changed
+        if (isMatching != prevIsMatching) {
+          if (isMatching) {
+              // Client has changed to match colors
+
+              console.log('match');
+
+              // Send match to socket
+              socket.emit('matchPair', pairId);
+          } else {
+            // Client has changed to not match colors
+            
+            console.log('unmatch');
+
+            // Send unmatch to socket
+            socket.emit('unmatchPair', pairId);
+          }
+
+          prevIsMatching = isMatching;
         }
 
         //lerpPercent += .01;
