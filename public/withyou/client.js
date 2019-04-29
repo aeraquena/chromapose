@@ -18,6 +18,7 @@
       var minBound = 12; //
 
       function updateGameState(gameState) {
+        console.log('update game state');
         // update local state to match state on server
         games = gameState.games; //
         pairs = gameState.pairs;
@@ -348,9 +349,13 @@
         console.log('pair id');
         console.log(pairId);
 
-        nextPosition = {
-          'x': pairs[pairId].targetPoint.phi, //Math.floor(Math.random() * 180) + 180,
-          'y': pairs[pairId].targetPoint.theta //Math.floor(Math.random() * 180) - 90
+        if (pairs && pairs[pairId]) {
+          nextPosition = {
+            'x': pairs[pairId].targetPoint.phi, //Math.floor(Math.random() * 180) + 180,
+            'y': pairs[pairId].targetPoint.theta //Math.floor(Math.random() * 180) - 90
+          }
+        } else {
+          nextPosition = currentPosition;
         }
         console.log('next position:');
         console.log(nextPosition);
