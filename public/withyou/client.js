@@ -296,11 +296,6 @@
 
       function animate() {
 
-        console.log('pairs');
-        console.log(pairs);
-        console.log('pair id');
-        console.log(pairId);
-
         window.requestAnimationFrame( animate );
 
         // Animate lines between dots
