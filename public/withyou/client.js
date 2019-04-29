@@ -383,7 +383,9 @@
 
         window.requestAnimationFrame( animate );
 
-        if (lerpPercent >= 1) {
+        // lerp derp
+
+        /*if (lerpPercent >= 1) {
           currentPosition = nextPosition;
 
           // Generate new nextPosition, coordinates between -5 and 5
@@ -400,6 +402,12 @@
           radius, 
           THREE.Math.degToRad(currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent)), 
           THREE.Math.degToRad(currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent))
+        );*/
+
+        targetBall.position.setFromSphericalCoords(
+          radius, 
+          THREE.Math.degToRad(nextPosition.x), 
+          THREE.Math.degToRad(nextPosition.y)
         );
 
         controls.update();
@@ -417,11 +425,10 @@
         if (frustum.containsPoint(pos)) {
             // Do something with the position...
             console.log('IN VIEW');
-        } else {
-          console.log('---');
+            // communicate: matching
         }
 
-        lerpPercent += .01;
+        //lerpPercent += .01;
       }
 
       function onWindowResize() {
