@@ -288,7 +288,7 @@ io.on('connection', function(socket){
       engine.pairs[pairId].players[socket.id].matching = false;
     }
 
-    console.log(engine.[pairs]);
+    console.log(engine.pairs);
   });
 
   // Change target color manually
