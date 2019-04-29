@@ -11,7 +11,7 @@ function changeTargetColor(gameId) {
 }
 
 function changeTargetPoint() {
-	
+	console.log('chromapose - change target point');
 }
 
 if (!this.navigator) { // determine whether this is a node module or inlined via script tag
