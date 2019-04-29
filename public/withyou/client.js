@@ -24,6 +24,8 @@
 
       var radius = 5;
 
+      var lineDots = [];
+
       function updateGameState(gameState) {
         console.log('update game state');
         // update local state to match state on server
@@ -37,6 +39,26 @@
           }
           console.log('next position:');
           console.log(nextPosition);
+        }
+
+        // Draw
+
+        // Set target ball position
+        targetBall.position.setFromSphericalCoords(
+          radius, 
+          THREE.Math.degToRad(nextPosition.x), 
+          THREE.Math.degToRad(nextPosition.y)
+        );
+
+        for (i = 0; i < 10; i++) {
+          lerpPercent = .1 * i;
+
+          // Set position of line dots
+          lineDots[i].position.setFromSphericalCoords(
+            radius, 
+            THREE.Math.degToRad(currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent)), 
+            THREE.Math.degToRad(currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent))
+          );
         }
 
         // Calculate matching players
@@ -355,6 +377,20 @@
 
         nextPosition = currentPosition;
 
+        // Line between current and next position
+
+        // Draw dotted line between current position and target
+
+        // Array of dotted line balls
+
+        // Initialize line dots and add to scene
+        for (i = 0; i < 10; i++) {
+          var geometry = new THREE.BoxGeometry( .25, .25, .25 );
+          var material = new THREE.MeshBasicMaterial( { color: 0x00ffff } ); // red
+          lineDots[i] = new THREE.Mesh( geometry, material );
+          scene.add( lineDots[i] );
+        }
+
         /*console.log('pairs');
         console.log(pairs);
         console.log('pair id');
@@ -404,11 +440,7 @@
           THREE.Math.degToRad(currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent))
         );*/
 
-        targetBall.position.setFromSphericalCoords(
-          radius, 
-          THREE.Math.degToRad(nextPosition.x), 
-          THREE.Math.degToRad(nextPosition.y)
-        );
+          
 
         controls.update();
         renderer.render( scene, camera );
