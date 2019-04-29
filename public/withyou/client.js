@@ -295,8 +295,8 @@
         blueBall = new THREE.Mesh( geometry, material );
         blueBall.position.setFromSphericalCoords(
             radius, 
-            -90, 
-            10
+            -80, 
+            0
           );
         scene.add( blueBall );
 
@@ -306,8 +306,8 @@
         yellowBall = new THREE.Mesh( geometry, material );
         yellowBall.position.setFromSphericalCoords(
             radius, 
-            -90, 
-            -10
+            -100, 
+            0
           );
         scene.add( yellowBall );
 
