@@ -73,7 +73,7 @@
       }
 
       // Checks match between target and user color
-      function checkMatch() {
+      /*function checkMatch() {
         //var bound = 12; // bounding box for color matches
 
         // Is player within the target color bounds?
@@ -102,7 +102,7 @@
 
           prevIsMatching = isMatching;
         }
-      }
+      }*/
 
       // Animation when color changes
       var winTimeout;
@@ -138,7 +138,7 @@
       });*/
 
       // Detect if browser supports orientation
-      if (typeof window.orientation !== 'undefined') { 
+      /*if (typeof window.orientation !== 'undefined') { 
         // Mobile
 
         // Device orientation
@@ -211,7 +211,7 @@
             }
         })
         var e = window.event;
-      }
+      }*/
 
       // Show/hide instructions
       $('#instructionsLink').click(function() {
@@ -406,7 +406,7 @@
         renderer.setSize( window.innerWidth, window.innerHeight );
 
       }
-      
+
       setInterval(gameLoop, 25)
       requestAnimationFrame(drawGame)
 
