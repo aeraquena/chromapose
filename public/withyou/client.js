@@ -25,6 +25,7 @@
       var radius = 5;
 
       var lineDots = [];
+      var numLineDots = 20;
 
       function updateGameState(gameState) {
         console.log('update game state');
@@ -50,8 +51,8 @@
           THREE.Math.degToRad(nextPosition.y)
         );
 
-        for (i = 0; i < 10; i++) {
-          lerpPercent = .1 * i;
+        for (i = 0; i < numLineDots; i++) {
+          lerpPercent = 1/numLineDots * i;
 
           // Set position of line dots
           lineDots[i].position.setFromSphericalCoords(
@@ -362,7 +363,7 @@
 
         // target ball
 
-        var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+        var geometry = new THREE.SphereGeometry( 1, 32, 32 );
         var material = new THREE.MeshBasicMaterial( { color: 0xff0000 } ); // red
         targetBall = new THREE.Mesh( geometry, material );
         scene.add( targetBall );
@@ -384,8 +385,8 @@
         // Array of dotted line balls
 
         // Initialize line dots and add to scene
-        for (i = 0; i < 10; i++) {
-          var geometry = new THREE.BoxGeometry( .25, .25, .25 );
+        for (i = 0; i < numLineDots; i++) {
+          var geometry = new THREE.SphereGeometry( .25, 32, 32 );
           var material = new THREE.MeshBasicMaterial( { color: 0x00ffff } ); // red
           lineDots[i] = new THREE.Mesh( geometry, material );
           scene.add( lineDots[i] );
