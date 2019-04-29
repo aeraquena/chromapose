@@ -14,6 +14,7 @@ if (!this.navigator) { // determine whether this is a node module or inlined via
   module.exports = {
     games: games,
     pairs: pairs,
-    changeTargetColor: changeTargetColor
+    changeTargetColor: changeTargetColor,
+    changeTargetPoint: changeTargetPoint
   }
 }
