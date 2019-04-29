@@ -375,8 +375,8 @@
 
         }*/
 
-        console.log('camera');
-        console.log(camera);
+        //console.log('camera');
+        //console.log(camera);
 
         var isMatching = frustum.containsPoint(pos);
 
