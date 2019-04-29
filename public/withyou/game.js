@@ -5,7 +5,7 @@ var pairs = {}
 function changeTargetPoint(pairId) {
   // Change target color
   pairs[pairId].targetPoint.phi = Math.floor(Math.random() * 180) + 180;
-  pairs[pairId].targetPoint.theta = 'y': Math.floor(Math.random() * 180) - 90;
+  pairs[pairId].targetPoint.theta = Math.floor(Math.random() * 180) - 90;
 }
 
 if (!this.navigator) { // determine whether this is a node module or inlined via script tag

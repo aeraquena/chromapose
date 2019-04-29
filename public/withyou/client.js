@@ -266,6 +266,10 @@
 
       // Show tutorial
       $('#tutorial').addClass('shown');
+
+      // Don't init until pair id is set
+      init();
+      animate();
     });
 
     //
@@ -298,9 +302,6 @@
       var lerpPercent = 0;
 
       var radius = 5;
-
-      init();
-      animate();
 
       function init() {
 
