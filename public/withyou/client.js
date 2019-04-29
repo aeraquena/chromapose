@@ -51,17 +51,6 @@
           THREE.Math.degToRad(nextPosition.y)
         );
 
-        for (i = 0; i < numLineDots; i++) {
-          lerpPercent = 1/numLineDots * i;
-
-          // Set position of line dots
-          lineDots[i].position.setFromSphericalCoords(
-            radius, 
-            THREE.Math.degToRad(currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent)), 
-            THREE.Math.degToRad(currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent))
-          );
-        }
-
         // Calculate matching players
         /*if (games && games[gameId]) {
           var playerCount = Object.keys(games[gameId].players).length
@@ -386,7 +375,7 @@
 
         // Initialize line dots and add to scene
         for (i = 0; i < numLineDots; i++) {
-          var geometry = new THREE.SphereGeometry( .25, 32, 32 );
+          var geometry = new THREE.SphereGeometry( .1, 32, 32 );
           var material = new THREE.MeshBasicMaterial( { color: 0x00ffff } ); // red
           lineDots[i] = new THREE.Mesh( geometry, material );
           scene.add( lineDots[i] );
@@ -410,6 +399,8 @@
 
         window.addEventListener( 'resize', onWindowResize, false );
       }
+
+      var frameCount = 0;
 
       function animate() {
 
@@ -441,7 +432,18 @@
           THREE.Math.degToRad(currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent))
         );*/
 
-          
+        // Animate lines between dots
+
+        for (i = 0; i < numLineDots; i++) {
+          lerpPercent = 1/numLineDots * i + (frameCount % 10 * .01);
+
+          // Set position of line dots
+          lineDots[i].position.setFromSphericalCoords(
+            radius, 
+            THREE.Math.degToRad(currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent)), 
+            THREE.Math.degToRad(currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent))
+          );
+        }
 
         controls.update();
         renderer.render( scene, camera );
@@ -462,6 +464,7 @@
         }
 
         //lerpPercent += .01;
+        frameCount++;
       }
 
       function onWindowResize() {
