@@ -334,14 +334,14 @@
         }*/
 
         // Draw line of dots around horizontal axis of target point
-        var startPosition = {
+        var startPosition = nextPosition; /*{
           'x': 0,
           'y': nextPosition.y
-        }
+        }*/
 
         var endPosition = {
-          'x': 180,
-          'y': nextPosition.y
+          'x': nextPosition.x,
+          'y': nextPosition.y + 180
         }
         for (i = 0; i < numLineDots; i++) {
           lerpPercent = 1/numLineDots * i;// + (frameCount % 50 * .002);
