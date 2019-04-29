@@ -17,7 +17,7 @@
       var bound = 15; //
       var minBound = 12; //
 
-      var camera, scene, renderer, controls, targetBall;
+      var camera, scene, renderer, controls, targetBall, currentBall;
 
       var currentPosition, nextPosition;
       var lerpPercent = 0;
@@ -43,6 +43,13 @@
         }
 
         // Draw
+
+        // Set current ball position
+        currentBall.position.setFromSphericalCoords(
+          radius, 
+          THREE.Math.degToRad(currentPosition.x), 
+          THREE.Math.degToRad(currentPosition.y)
+        );
 
         // Set target ball position
         targetBall.position.setFromSphericalCoords(
@@ -350,10 +357,16 @@
         renderer.setSize( window.innerWidth, window.innerHeight );
         document.body.appendChild( renderer.domElement );
 
+        // current ball
+        var geometry = new THREE.SphereGeometry( 1, 32, 32 );
+        var material = new THREE.MeshBasicMaterial( { color: 0xff0000 } ); // red
+        currentBall = new THREE.Mesh( geometry, material );
+        scene.add( currentBall );
+
         // target ball
 
         var geometry = new THREE.SphereGeometry( 1, 32, 32 );
-        var material = new THREE.MeshBasicMaterial( { color: 0xff0000 } ); // red
+        var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } ); // green
         targetBall = new THREE.Mesh( geometry, material );
         scene.add( targetBall );
 
