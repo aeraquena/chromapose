@@ -296,7 +296,7 @@
         blueBall.position.setFromSphericalCoords(
             radius, 
             -90, 
-            20
+            10
           );
         scene.add( blueBall );
 
@@ -307,7 +307,7 @@
         yellowBall.position.setFromSphericalCoords(
             radius, 
             -90, 
-            -20
+            -10
           );
         scene.add( yellowBall );
 
