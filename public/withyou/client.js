@@ -28,7 +28,6 @@
       var numLineDots = 50;
 
       function updateGameState(gameState) {
-        console.log('update game state');
         // update local state to match state on server
         games = gameState.games; //
         pairs = gameState.pairs;
@@ -38,8 +37,8 @@
             'x': pairs[pairId].targetPoint.phi,
             'y': pairs[pairId].targetPoint.theta 
           }
-          console.log('next position:');
-          console.log(nextPosition);
+          //console.log('next position:');
+          //console.log(nextPosition);
         }
 
         // Draw
@@ -359,9 +358,6 @@
         controls.update();
         renderer.render( scene, camera );
 
-        console.log('camera position:');
-        console.log(camera.position);
-
         // Check frustum (whether object is in view)
         camera.updateMatrix();
         camera.updateMatrixWorld();
@@ -378,6 +374,9 @@
         } else {
 
         }*/
+
+        console.log('camera');
+        console.log(camera);
 
         var isMatching = frustum.containsPoint(pos);
 
