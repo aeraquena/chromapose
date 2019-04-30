@@ -295,7 +295,7 @@
             $('span.value.rotdeg').text(rotDeg.toFixed(2));
             $('#rotdeg').width(rotDeg);
 
-            var scaleVertical = Math.floor(map(frontBack, -180, 180, 0, 1));
+            var scaleVertical = map(frontBack, -180, 180, 0, 1);
 
             // P1: Change size of circle based on Y
             // and closeness to target Y
