@@ -28,11 +28,11 @@ $(function () {
   $(document).on('click', '#done', function(){
     $('#part-2').remove();
     $(window).scrollTop(0);
-    $('#part-3').remove();
+    $('#part-3').show();
 
     setTimeout(function() {
       document.location.replace('game.html#' + pairId);
-    }, 500);
+    }, 750);
 
   });
 
