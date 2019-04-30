@@ -28,14 +28,11 @@ $(function () {
 
   $('#done').click(function() {
     console.log('click done');
-    $(window).scrollTop(0);
-    $('#part-2').hide();
-    $('#part-3').show();
-    setTimeout('goToGame(pairId)', 500);
+    document.location.replace('game.html#' + pairId);
   });
 
-  function goToGame(myPairId) {
-      document.location.replace('game.html#' + myPairId);
+  var goToGame = function(myPairId) {
+     
   }
 
 });
