@@ -76,8 +76,8 @@
           })
         }*/
 
-        $('.ball.target').css('left', pairs[pairId].targetPoint.h);
-        $('.ball.target').css('top', pairs[pairId].targetPoint.v);
+        $('.ball.target').css('left', pairs[pairId].targetPoint.h * 400);
+        $('.ball.target').css('top', pairs[pairId].targetPoint.v * 400);
       }
 
       //
@@ -154,8 +154,8 @@
               
               //$('.ball.vertical').css('transform', 'scale(' + diffVertical + ')');
               //$('.ball.horizontal').css('transform', 'scale(' + diffHorizontal + ')');
-              $('.ball.horizontal').css('left', scaleVertical * 400);
-              $('.ball.vertical').css('top', scaleHorizontal * 400);
+              $('.ball.horizontal').css('left', scaleHorizontal * 400);
+              $('.ball.vertical').css('top', scaleVertical * 400);
 
               //100 - (scaleVertical pairs[pairId].targetPoint.phi);
 
