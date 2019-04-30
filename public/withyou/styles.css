@@ -353,10 +353,10 @@ input[type=number] {
   border-top: 1px solid #fff;
 }
 
-#screen.vertical .horizontal {
+#screen.game.vertical .horizontal {
   display: none;
 }
 
-#screen.horizontal .vertical {
+#screen.game.horizontal .vertical {
   display: none;
 }

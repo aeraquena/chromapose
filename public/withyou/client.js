@@ -292,7 +292,7 @@
         $('#tutorial').addClass('shown');
 
         // Hide horizontal or vertical based on role
-        if (pairs[pairId].players[socketId].role == 0) {
+        if (pairs[pairId].players[socket.id].role == 0) {
           $('#screen').addClass('horizontal');
         } else {
           $('#screen').addClass('vertical');
