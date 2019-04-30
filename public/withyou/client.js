@@ -45,8 +45,8 @@
           }
 
           if (myTargetPoint) {
-            $('.ball.target.horizontal').css('left', myTargetPoint.h * screenWidth);
-            $('.ball.target.vertical').css('top', myTargetPoint.v * screenHeight);
+            $('.ball.target.horizontal').css('left', screenWidth - (myTargetPoint.h * screenWidth));
+            $('.ball.target.vertical').css('top', screenHeight - (myTargetPoint.v * screenHeight));
 
             // update info
             $('span.text-th').text(myTargetPoint.h.toFixed(2));
