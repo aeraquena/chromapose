@@ -34,6 +34,9 @@
     $('#start').click(function() {
       console.log('joining ' + hash);
       socket.emit('joinPair', hash);
+      $('#intro').remove();
+
+      // Assign roles
     });
 
     // Expand border
@@ -43,13 +46,14 @@
     $('#tutorial').addClass('shown');
 
     function updateGameState(gameState) {
+      console.log('update game state');
       // update local state to match state on server
       games = gameState.games; //
       pairs = gameState.pairs;
 
       if (pairs && pairs[pairId] && pairs[pairId].players[socket.id]) {
 
-        if (!role && pairs[pairId].players[socket.id].role) {
+        if (role == 0 && pairs[pairId].players[socket.id].role) {
           // Hide horizontal or vertical based on role
           role = pairs[pairId].players[socket.id].role;
           $('span.text-r').text(role);

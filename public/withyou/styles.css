@@ -360,3 +360,7 @@ input[type=number] {
 /*#screen.game .info {
   display: block;
 }*/
+
+#intro {
+  position: fixed;
+}
