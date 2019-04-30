@@ -152,11 +152,11 @@
               // and closeness to target Y
               // scale = 100 * .01            
               
-              $('.ball.vertical').css('transform', 'scale(' + diffVertical + ')');
-              $('.ball.horizontal').css('transform', 'scale(' + diffHorizontal + ')');
+              //$('.ball.player.vertical').css('transform', 'scale(' + diffVertical + ')');
+              //$('.ball.player.horizontal').css('transform', 'scale(' + diffHorizontal + ')');
               
-              $('.ball.horizontal').css('left', scaleHorizontal * 400);
-              $('.ball.vertical').css('top', scaleVertical * 400);
+              $('.ball.player.horizontal').css('left', scaleHorizontal * 400);
+              $('.ball.player.vertical').css('top', scaleVertical * 400);
 
               //100 - (scaleVertical pairs[pairId].targetPoint.phi);
 
