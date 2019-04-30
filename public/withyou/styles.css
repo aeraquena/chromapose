@@ -293,7 +293,7 @@ input[type=number] {
   position: absolute;
   border-radius: 100px;
   margin: auto;
-  display: none;
+  visibility: hidden;
 }
 
 .ball.vertical {
@@ -319,7 +319,7 @@ input[type=number] {
 .line {
   position: absolute;
   margin: auto;
-  display: none;
+  visibility: hidden;
 }
 
 .line.vertical {
@@ -339,11 +339,11 @@ input[type=number] {
 }
 
 #screen.game.vertical .vertical {
-  display: block;
+  visibility: visible;
 }
 
 #screen.game.horizontal .horizontal {
-  display: block;
+  visibility: visible;
 }
 
 .info {
