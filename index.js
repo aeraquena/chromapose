@@ -292,7 +292,7 @@ io.on('connection', function(socket){
     console.log('Unmatch game id: ' + pairId);
     // Update list of matching clients
     // game id can be undefined
-    if (engine.pairs[pairId]) {
+    if (engine.pairs[pairId] && engine.pairs[pairId].players[socket.id]) {
       engine.pairs[pairId].players[socket.id].matching = false;
     }
 
