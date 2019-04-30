@@ -352,3 +352,11 @@ input[type=number] {
   bottom: 0;
   border-top: 1px solid #fff;
 }
+
+#screen.vertical .horizontal {
+  display: none;
+}
+
+#screen.horizontal .vertical {
+  display: none;
+}
