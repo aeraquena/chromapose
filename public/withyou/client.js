@@ -271,7 +271,12 @@
             pairId = $('#input-number').val();
 
             // Add user to game object players
-            window.location.replace('#' + pairId);
+            //window.location.replace('#' + pairId);
+            var url = window.location.href;    
+            if (url.indexOf('#') == -1){
+               url += '#' + pairId;
+            }
+            window.location.href = url;
           });
       }
   });
