@@ -26,13 +26,9 @@ $(function () {
     $('#part-2').show();
   });
 
-  $('#done').click(function() {
+  $(document).on('click', '#done', function(){
     console.log('click done');
     document.location.replace('game.html#' + pairId);
   });
-
-  var goToGame = function(myPairId) {
-     
-  }
 
 });
