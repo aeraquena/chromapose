@@ -6,7 +6,7 @@
     var socket = io();
 
     var gameId = null;
-    var pairId = null;
+    var pairId = hash;
 
     socket.on('gameStateUpdate', updateGameState);
 
@@ -64,8 +64,6 @@
             $('#screen').addClass('vertical');
           }
           //$('#screen').addClass('vertical horizontal');
-        } else {
-          console.log('failed');
         }
 
         if (myTargetPoint) {
@@ -77,6 +75,8 @@
           $('span.text-tv').text(myTargetPoint.v.toFixed(2));
 
         }
+      } else {
+        console.log('failed');
       }
     }
 
