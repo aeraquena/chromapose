@@ -30,25 +30,27 @@
         games = gameState.games; //
         pairs = gameState.pairs;
 
-        //screenHeight = screen.height;
-        //screenWidth = screen.width;
-
         if (pairs && pairs[pairId] && pairs[pairId].players[socket.id]) {
 
           if (!role && pairs[pairId].players[socket.id].role) {
             // Hide horizontal or vertical based on role
             role = pairs[pairId].players[socket.id].role;
             $('span.text-r').text(role);
-            if (pairs[pairId].players[socket.id].role == 1) {
+            /*if (pairs[pairId].players[socket.id].role == 1) {
               $('#screen').addClass('horizontal');
             } else {
               $('#screen').addClass('vertical');
-            }
+            }*/
+            $('#screen').addClass('vertical horizontal');
           }
 
           if (myTargetPoint) {
             $('.ball.target.horizontal').css('left', myTargetPoint.h * screenWidth);
             $('.ball.target.vertical').css('top', myTargetPoint.v * screenHeight);
+
+            // update info
+            $('span.text-th').text(myTargetPoint.h.toFixed(2));
+            $('span.text-tv').text(myTargetPoint.v.toFixed(2));
           }
         }
       }
