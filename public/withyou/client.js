@@ -29,9 +29,13 @@
 
           // Remove splash menu
           $('#splash').remove();
-          
-          console.log('joining ' + hash);
-          socket.emit('joinPair', hash);
+
+          console.log('starting ' + hash);
+          // do this when button pressed
+          $('#start').click(function() {
+            console.log('joining ' + hash);
+            socket.emit('joinPair', hash);
+          }
 
           // Expand border
           $('#screen').addClass('game');
