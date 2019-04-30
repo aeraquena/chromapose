@@ -115,12 +115,64 @@
         }
       }
 
+      // Device orientation
+      if (window.DeviceOrientationEvent) {
+          window.addEventListener("deviceorientation", function(event) {
+              // alpha: rotation around z-axis
+              rotDeg = event.alpha;
+              // beta: front back motion
+              frontBack = event.beta;
+
+            // Front back rotation (around Y-axis)
+            $('span.value.fb').text(frontBack.toFixed(2));
+            $('#fb').width(frontBack + 180);
+
+            // Alpha rotation (around Z-axis)
+            $('span.value.rotdeg').text(rotDeg.toFixed(2));
+            $('#rotdeg').width(rotDeg);
+
+            // Determine how close it is to target
+
+            // 0 - 100
+            var scaleVertical = map(frontBack, -180, 180, 0, 1);// * ballSize;
+            var scaleHorizontal = map(rotDeg, 0, 360, 0, 1);// * ballSize;
+
+            // lightness = phi = vertical
+            // hue = theta = horizontal
+
+            diffVertical = Math.abs(pairs[pairId].targetPoint.v - scaleVertical);
+            diffHorizontal = Math.abs(pairs[pairId].targetPoint.h - scaleHorizontal)
+
+            // P1: Change size of circle based on Y
+            // and closeness to target Y
+            // scale = 100 * .01            
+            $('.ball.vertical').css('transform', 'scale(' + diffVertical + ')');
+            $('.ball.horizontal').css('transform', 'scale(' + diffHorizontal + ')');
+
+            //100 - (scaleVertical pairs[pairId].targetPoint.phi);
+
+            //pairs[pairId].targetPoint.phi,
+            //pairs[pairId].targetPoint.theta 
+
+            // Change background color
+            //$('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
+
+            if (pairs && pairId) {
+              //checkMatch(scaleHorizontal, scaleVertical);
+              // just check if both are 0
+
+              // Send position to server - to check whether they're in sync
+              //socket.emit('move', {'pairId': pairId, 'v': scaleVertical, 'h': scaleHorizontal});
+            }
+          });
+      }
+
       // Checks match between target and user color
       // Both v and h are matching
       function checkMatch() {
         var bound = .12; // bounding box for color matches
 
-        var isMatching = diffVertical < bound && diffHorizontal < bound;
+        var isMatching = (diffVertical < bound) && (diffHorizontal < bound);
 
         // Only send a socket signal + change screen state if match state has changed
         if (isMatching != prevIsMatching) {
@@ -289,58 +341,6 @@
       }
 
       // Device orientation changes - regular, non three js
-
-      // Device orientation
-      if (window.DeviceOrientationEvent) {
-          window.addEventListener("deviceorientation", function(event) {
-              // alpha: rotation around z-axis
-              rotDeg = event.alpha;
-              // beta: front back motion
-              frontBack = event.beta;
-
-            // Front back rotation (around Y-axis)
-            $('span.value.fb').text(frontBack.toFixed(2));
-            $('#fb').width(frontBack + 180);
-
-            // Alpha rotation (around Z-axis)
-            $('span.value.rotdeg').text(rotDeg.toFixed(2));
-            $('#rotdeg').width(rotDeg);
-
-            // Determine how close it is to target
-
-            // 0 - 100
-            var scaleVertical = map(frontBack, -180, 180, 0, 1);// * ballSize;
-            var scaleHorizontal = map(rotDeg, 0, 360, 0, 1);// * ballSize;
-
-            // lightness = phi = vertical
-            // hue = theta = horizontal
-
-            diffVertical = Math.abs(pairs[pairId].targetPoint.v - scaleVertical);
-            diffHorizontal = Math.abs(pairs[pairId].targetPoint.h - scaleHorizontal)
-
-            // P1: Change size of circle based on Y
-            // and closeness to target Y
-            // scale = 100 * .01            
-            $('.ball.vertical').css('transform', 'scale(' + diffVertical + ')');
-            $('.ball.horizontal').css('transform', 'scale(' + diffHorizontal + ')');
-
-            //100 - (scaleVertical pairs[pairId].targetPoint.phi);
-
-            //pairs[pairId].targetPoint.phi,
-            //pairs[pairId].targetPoint.theta 
-
-            // Change background color
-            //$('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
-
-            if (pairs && pairId) {
-              //checkMatch(scaleHorizontal, scaleVertical);
-              // just check if both are 0
-
-              // Send position to server - to check whether they're in sync
-              //socket.emit('move', {'pairId': pairId, 'v': scaleVertical, 'h': scaleHorizontal});
-            }
-          });
-      }
 
       setInterval(gameLoop, 25)
       requestAnimationFrame(drawGame)
