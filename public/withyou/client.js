@@ -33,12 +33,11 @@
             // Hide horizontal or vertical based on role
             role = pairs[pairId].players[socket.id].role;
             $('span.text-r').text(role);
-            /*if (pairs[pairId].players[socket.id].role == 1) {
+            if (pairs[pairId].players[socket.id].role == 1) {
               $('#screen').addClass('horizontal');
             } else {
               $('#screen').addClass('vertical');
-            }*/
-            $('#screen').addClass('vertical horizontal');
+            }
           }
 
           // if player 2, calculate it - reflect it
@@ -135,7 +134,6 @@
 
               if (pairs && pairId) {
                 checkMatch();
-                // just check if both are 0
               }
 
             }
