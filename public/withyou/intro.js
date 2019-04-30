@@ -21,8 +21,8 @@ $(function () {
   $('#join-game-number').click(function() {
     console.log('click');
     pairId = $('#input-number').val();
-    $('#part-1').hide();
-    $(window).scrollTop(0);
+    $('#part-1').remove();
+    //$(window).scrollTop(0);
     $('#part-2').show();
   });
 
