@@ -2,7 +2,8 @@
 
       if(window.location.hash) {
           var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
-          
+          console.log('hash: ' + hash);
+
           var socket = io();
 
           var gameId = null;
@@ -26,6 +27,9 @@
           var screenHeight = screen.height;
           var screenWidth = screen.width;
 
+          // Remove splash menu
+          $('#splash').remove();
+          
           console.log('joining ' + hash);
           socket.emit('joinPair', hash);
 
@@ -260,9 +264,6 @@
           // Join game number
           $('#join-game-number').click(function() {
             pairId = $('#input-number').val();
-
-            // Remove splash menu
-            $('#splash').remove();
 
             // Add user to game object players
             window.location.href = '#' + pairId;
