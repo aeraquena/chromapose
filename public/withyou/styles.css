@@ -345,3 +345,16 @@ input[type=number] {
 #screen.game.horizontal .horizontal {
   display: block;
 }
+
+.info {
+  color: #fff;
+  font-size: 16px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: none;
+}
+
+#screen.game.info {
+  display: block;
+}
