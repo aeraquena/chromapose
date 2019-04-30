@@ -47,7 +47,7 @@
             // rotate around .75
             // calculate distance from .75, then go in that other direction
             var diffFromNorth = .75 - pairs[pairId].targetPoint.v;
-            var rawTargetPointV = .75 + diffFromNorth;
+            var rawTargetPoint = .75 + diffFromNorth;
             if (rawTargetPoint > 1) {
               rawTargetPoint = rawTargetPoint - 1;
             } else if ((rawTargetPoint < 0)) {
