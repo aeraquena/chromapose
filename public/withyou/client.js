@@ -35,7 +35,7 @@
           $('#start').click(function() {
             console.log('joining ' + hash);
             socket.emit('joinPair', hash);
-          }
+          });
 
           // Expand border
           $('#screen').addClass('game');
