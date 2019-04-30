@@ -291,6 +291,14 @@
         // Show tutorial
         $('#tutorial').addClass('shown');
 
+        // Hide horizontal or vertical based on role
+        if (pairs[pairId].role == 0) {
+          $('.horizontal').hide();
+        } else {
+          $('.vertical').hide();
+        }
+
+
         // Don't init until pair id is set
         //init();
         //animate();

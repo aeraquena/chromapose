@@ -139,6 +139,8 @@ io.on('connection', function(socket){
   socket.on('joinPair', function(pairId) {
     console.log('join pair id: ' + pairId);
 
+    var thisRole = 0;
+
     // Create game if it doesn't exist
     if (!engine.pairs[pairId]) {
       // Create instance of game
@@ -152,13 +154,19 @@ io.on('connection', function(socket){
 
       engine.changeTargetPoint(pairId)
       updateInterval = setInterval(emitUpdates, 40) // necessary for each game?
+
+      // Assign this player role: 1
+      thisRole = 1;
+    } else {
+      // Assign this player role: 2
     }
 
     // Assign player to game
     engine.pairs[pairId].players[socket.id] = {
       matching: false, // is player matching? //
       y: 0, // change to v
-      z: 0 // change to h
+      z: 0, // change to h
+      role: thisRole
     }
 
     console.log(engine.pairs);
