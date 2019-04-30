@@ -309,12 +309,16 @@ input[type=number] {
 
 .ball.vertical {
   background-color: red;
+  left: 200px;
 }
 
 .ball.horizontal {
   background-color: #00ffff;
+  top: 200px;
 }
 
 .ball.target {
   background-color: #00ff00;
+  left: 200px;
+  top: 200px;
 }
