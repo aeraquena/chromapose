@@ -318,8 +318,8 @@
             // P1: Change size of circle based on Y
             // and closeness to target Y
             // scale = 100 * .01            
-            $('.ball.vertical').css('transform', 'scale(' + (1 - diffVertical) + ')');
-            $('.ball.horizontal').css('transform', 'scale(' + (1 - diffHorizontal) + ')');
+            $('.ball.vertical').css('transform', 'scale(' + ((1 - diffVertical) * ballSize) + ')');
+            $('.ball.horizontal').css('transform', 'scale(' + ((1 - diffHorizontal) * ballSize) + ')');
 
             //100 - (scaleVertical pairs[pairId].targetPoint.phi);
 
