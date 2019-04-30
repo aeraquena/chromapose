@@ -62,10 +62,10 @@
             $('#screen').addClass('horizontal');
           } else {
             $('#screen').addClass('vertical');
-          } else {
-            console.log('failed');
           }
           //$('#screen').addClass('vertical horizontal');
+        } else {
+          console.log('failed');
         }
 
         if (myTargetPoint) {
