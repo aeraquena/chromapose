@@ -158,6 +158,7 @@
             //$('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
 
             if (pairs && pairId) {
+              console.log('call check match');
               //checkMatch(scaleHorizontal, scaleVertical);
               // just check if both are 0
 
@@ -170,6 +171,7 @@
       // Checks match between target and user color
       // Both v and h are matching
       function checkMatch() {
+        console.log('check match');
         var bound = .12; // bounding box for color matches
 
         var isMatching = (diffVertical < bound) && (diffHorizontal < bound);
