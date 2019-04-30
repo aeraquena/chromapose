@@ -38,5 +38,4 @@ $(function () {
       document.location.replace('game.html#' + myPairId);
   }
 
-  }
 });
