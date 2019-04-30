@@ -111,6 +111,8 @@
             // Alpha rotation (around Z-axis)
             $('span.text-h').text(scaleHorizontal.toFixed(2));
 
+            $('span.text-screen').text(screenWidth + ',' + screenHeight);
+
             if (pairs && pairs[pairId]) {
 
                 // if player 2, calculate it - reflect it
