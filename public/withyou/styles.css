@@ -362,7 +362,7 @@ input[type=number] {
 }*/
 
 #intro {
-  position: fixed;
+  position: absolute;
 }
 
 #part-2 {
