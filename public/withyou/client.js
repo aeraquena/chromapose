@@ -1,6 +1,6 @@
   $(function () {
 
-    $(window).on('load', function() {
+    //$(window).on('load', function() {
 
       var socket = io();
 
@@ -17,6 +17,9 @@
       var bound = 15;
       var minBound = 12;
 
+      var role;
+      var myTargetPoint;
+
       var diffVertical, diffHorizontal;
 
       function updateGameState(gameState) {
@@ -25,14 +28,6 @@
         pairs = gameState.pairs;
 
         if (pairs && pairs[pairId]) {
-          // Hide horizontal or vertical based on role
-          /*if (pairs[pairId].players[socket.id].role == 0) {
-            $('#screen').addClass('horizontal');
-          } else {
-            $('#screen').addClass('vertical');
-          }*/
-          $('#screen').addClass('vertical horizontal');
-
           $('.ball.target.horizontal').css('left', pairs[pairId].targetPoint.h * 400);
           $('.ball.target.vertical').css('top', pairs[pairId].targetPoint.v * 400);
         }
@@ -211,6 +206,16 @@
 
         // Show tutorial
         $('#tutorial').addClass('shown');
+        
+          // Hide horizontal or vertical based on role
+          role = pairs[pairId].players[socket.id].role;
+          $('span.text-r').text(role);
+          /*if (pairs[pairId].players[socket.id].role == 0) {
+            $('#screen').addClass('horizontal');
+          } else {
+            $('#screen').addClass('vertical');
+          }*/
+          $('#screen').addClass('vertical horizontal');
       });
 
       function drawGame() {
@@ -221,5 +226,5 @@
       setInterval(gameLoop, 25)
       requestAnimationFrame(drawGame)
 
-    });
+    //});
   });
