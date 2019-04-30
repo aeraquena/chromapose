@@ -27,7 +27,7 @@
         if (pairs && pairs[pairId]) {
           // Hide horizontal or vertical based on role
           if (pairs[pairId].players[socket.id].role == 0) {
-            $('#screen').addClass('horizontal');
+            $('#screen').addClass('horizontal vertical');
           } else {
             $('#screen').addClass('vertical');
           }
@@ -100,8 +100,8 @@
               diffVertical = Math.abs(pairs[pairId].targetPoint.v - scaleVertical);
               diffHorizontal = Math.abs(pairs[pairId].targetPoint.h - scaleHorizontal)
 
-              $('.ball.player.horizontal').css('left', scaleHorizontal * 400);
-              $('.ball.player.vertical').css('top', scaleVertical * 400);
+              $('.ball.player.horizontal').css('left', 400 - (scaleHorizontal * 400));
+              $('.ball.player.vertical').css('top', 400 - (scaleVertical * 400));
 
               if (pairs && pairId) {
                 checkMatch();
