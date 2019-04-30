@@ -22,11 +22,13 @@ $(function () {
     console.log('click');
     pairId = $('#input-number').val();
     $('#part-1').hide();
+    $(window).scrollTop(0);
     $('#part-2').show();
   });
 
   $('#done').click(function() {
-    $('body').scrollTop(0);
+    console.log('click done');
+    $(window).scrollTop(0);
     $('#part-2').hide();
     $('#part-3').show();
     setTimeout(function() {
