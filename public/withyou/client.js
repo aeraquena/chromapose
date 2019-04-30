@@ -152,8 +152,9 @@
               // and closeness to target Y
               // scale = 100 * .01            
               
-              //$('.ball.vertical').css('transform', 'scale(' + diffVertical + ')');
-              //$('.ball.horizontal').css('transform', 'scale(' + diffHorizontal + ')');
+              $('.ball.vertical').css('transform', 'scale(' + diffVertical + ')');
+              $('.ball.horizontal').css('transform', 'scale(' + diffHorizontal + ')');
+              
               $('.ball.horizontal').css('left', scaleHorizontal * 400);
               $('.ball.vertical').css('top', scaleVertical * 400);
 
