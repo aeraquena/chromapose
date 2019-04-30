@@ -22,11 +22,16 @@ $(function () {
     console.log('click');
     pairId = $('#input-number').val();
     $('#part-1').hide();
-    $('body').scrollTop(0);
     $('#part-2').show();
   });
 
   $('#done').click(function() {
-    document.location.replace('game.html#' + pairId);
+    $('body').scrollTop(0);
+    $('#part-2').hide();
+    $('#part-3').show();
+    setTimeout(function() {
+      document.location.replace('game.html#' + pairId);
+    }, 500);
+
   });
 });

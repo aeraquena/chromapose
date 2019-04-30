@@ -369,3 +369,8 @@ input[type=number] {
   display: none;
   font-size: 36px;
 }
+
+#part-2 {
+  display: none;
+  font-size: 48px;
+}
