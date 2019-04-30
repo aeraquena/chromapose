@@ -178,7 +178,7 @@
               // Client has changed to match colors
 
               // Add visual match indicator
-              //$('#screen').addClass('match');
+              $('#screen').addClass('match');
 
               // Send match to socket
               console.log('MATCH');
@@ -187,7 +187,7 @@
             // Client has changed to not match colors
             
             // Remove visual match indicator
-            //$('#screen').removeClass('match');
+            $('#screen').removeClass('match');
 
             // Send unmatch to socket
             console.log('UNMATCH');

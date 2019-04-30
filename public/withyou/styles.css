@@ -24,8 +24,9 @@ body:not(#about) {
 }
 
 #screen.match {
-  animation: pulse .75s infinite;
-  border-width: 60px 2000px;
+  /*animation: pulse .75s infinite;
+  border-width: 60px 2000px;*/
+  background-color: #ff00ff;
 }
 
 @keyframes pulse {
