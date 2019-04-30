@@ -160,7 +160,7 @@
               //$('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
 
               if (pairs && pairId) {
-                console.log('call check match');
+                //console.log('call check match');
                 checkMatch(scaleHorizontal, scaleVertical);
                 // just check if both are 0
 
@@ -175,7 +175,7 @@
       // Checks match between target and user color
       // Both v and h are matching
       function checkMatch() {
-        console.log('check match');
+        //console.log('check match');
         var bound = .12; // bounding box for color matches
 
         var isMatching = (diffVertical < bound) && (diffHorizontal < bound);
@@ -190,7 +190,7 @@
 
               // Send match to socket
               console.log('MATCH');
-              socket.emit('matchPair', gameId);
+              socket.emit('matchPair', pairId);
           } else {
             // Client has changed to not match colors
             
@@ -199,7 +199,7 @@
 
             // Send unmatch to socket
             console.log('UNMATCH');
-            socket.emit('unmatchPair', gameId);
+            socket.emit('unmatchPair', pairId);
           }
 
           prevIsMatching = isMatching;
