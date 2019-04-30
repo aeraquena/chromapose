@@ -277,6 +277,7 @@
                url += '#' + pairId;
             }
             window.location.href = url;
+            location.reload();
           });
       }
   });
