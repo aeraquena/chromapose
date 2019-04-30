@@ -47,7 +47,6 @@
     $('#tutorial').addClass('shown');
 
     function updateGameState(gameState) {
-      console.log('update game state');
       // update local state to match state on server
       games = gameState.games; //
       pairs = gameState.pairs;
@@ -55,6 +54,7 @@
       if (pairs && pairs[pairId] && pairs[pairId].players[socket.id]) {
 
         if (role == 0 && pairs[pairId].players[socket.id].role) {
+          console.log('add class based on role')
           // Hide horizontal or vertical based on role
           role = pairs[pairId].players[socket.id].role;
           $('span.text-r').text(role);
@@ -62,6 +62,8 @@
             $('#screen').addClass('horizontal');
           } else {
             $('#screen').addClass('vertical');
+          } else {
+            console.log('failed');
           }
           //$('#screen').addClass('vertical horizontal');
         }
