@@ -77,7 +77,7 @@
         }*/
 
         // Hide horizontal or vertical based on role
-        if (pairs[pairId].role == 0) {
+        if (pairs[pairId].players[socketId].role == 0) {
           $('.horizontal').hide();
         } else {
           $('.vertical').hide();
