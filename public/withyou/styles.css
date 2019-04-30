@@ -302,6 +302,10 @@ input[type=number] {
   display: none;
 }
 
+#screen.game .ball {
+  display: block;
+}
+
 .ball.vertical {
   background-color: red;
   left: 200px;
@@ -323,9 +327,14 @@ input[type=number] {
   bottom: 0;
 }
 
+#screen.game .line {
+  display: block;
+}
+
 .line {
   position: absolute;
   margin: auto;
+  display: none;
 }
 
 .line.vertical {
