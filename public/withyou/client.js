@@ -23,8 +23,8 @@
 
     var diffVertical, diffHorizontal;
 
-    var screenHeight = 300;//screen.height;
-    var screenWidth = 300;//screen.width;
+    var screenHeight = screen.height;
+    var screenWidth = screen.width;
 
     // Remove splash menu
     $('#splash').remove();
@@ -177,7 +177,7 @@
         });
     }
 
-    /*$(window).bind( 'orientationchange', function(e){
+    $(window).bind( 'orientationchange', function(e){
         var ori = window.orientation;
         if (ori==90 || ori==-90) {
           // horizontal
@@ -189,7 +189,7 @@
           screenWidth = screen.width;
           console.log('changed to portrait');
         }
-    });*/
+    });
 
     // Checks match between target and user color
     // Both v and h are matching
