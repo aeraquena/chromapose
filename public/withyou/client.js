@@ -223,6 +223,8 @@
         // Show tutorial
         $('#tutorial').addClass('shown');
 
+        $('.ball').show();
+
         // Don't init until pair id is set
         init();
         animate();

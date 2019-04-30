@@ -304,6 +304,7 @@ input[type=number] {
   bottom: 0;
   margin: auto;
   opacity: .5;
+  display: none;
 }
 
 .ball.vertical {
