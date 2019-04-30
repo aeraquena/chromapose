@@ -26,6 +26,15 @@
           var screenHeight = screen.height;
           var screenWidth = screen.width;
 
+          console.log('joining ' + hash);
+          socket.emit('joinPair', hash);
+
+          // Expand border
+          $('#screen').addClass('game');
+
+          // Show tutorial
+          $('#tutorial').addClass('shown');
+
           function updateGameState(gameState) {
             // update local state to match state on server
             games = gameState.games; //
@@ -45,7 +54,7 @@
                 //$('#screen').addClass('vertical horizontal');
               }
 
-              if (myTargetPoint && targetPoint !== pairs[pairId].targetPoint) {
+              if (myTargetPoint) {
                 $('.ball.target.horizontal').css('left', screenWidth - (myTargetPoint.h * screenWidth));
                 $('.ball.target.vertical').css('top', screenHeight - (myTargetPoint.v * screenHeight));
 
@@ -222,22 +231,19 @@
             }
           });*/
 
-          // Show/hide instructions
-          $('#instructionsLink').click(function() {
-            if ($('#instructions').hasClass('shown')) {
-              // hide
-              $('#instructions').removeClass('shown');
-              $('#splash').show();
-              $(this).text('?');
-            } else {
-              // show
-              $('#instructions').addClass('shown');
-              $('#splash').hide();
-              $(this).text('X');
-            }
-          });
+          function drawGame() {
+            // draw stuff
+            requestAnimationFrame(drawGame)
+          }
 
-          // Join game
+          setInterval(gameLoop, 25)
+          requestAnimationFrame(drawGame)
+      } else {
+          // Intro screen
+
+          var pairId;
+
+        // Join game
           $('#join-game').click(function() {
             $('#splash #start-buttons').hide();
             $('#splash #input-number-container').show();
@@ -259,24 +265,7 @@
             $('#splash').remove();
 
             // Add user to game object players
-            socket.emit('joinPair', pairId);
-
-            // Expand border
-            $('#screen').addClass('game');
-
-            // Show tutorial
-            $('#tutorial').addClass('shown');
+            window.location.href = '#' + pairId;
           });
-
-          function drawGame() {
-            // draw stuff
-            requestAnimationFrame(drawGame)
-          }
-
-          setInterval(gameLoop, 25)
-          requestAnimationFrame(drawGame)
-      } else {
-          // Intro screen
-        console.log('intro');
       }
   });
