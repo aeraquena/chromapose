@@ -22,16 +22,16 @@
 
       var diffVertical, diffHorizontal;
 
-      var screenHeight;
-      var screenWidth;
+      var screenHeight = screen.height;
+      var screenWidth = screen.width;
 
       function updateGameState(gameState) {
         // update local state to match state on server
         games = gameState.games; //
         pairs = gameState.pairs;
 
-        screenHeight = screen.height;
-        screenWidth = screen.width;
+        //screenHeight = screen.height;
+        //screenWidth = screen.width;
 
         if (pairs && pairs[pairId] && pairs[pairId].players[socket.id]) {
 
@@ -149,6 +149,20 @@
             }
           });
       }
+
+      $(window).bind( 'orientationchange', function(e){
+          var ori = window.orientation;
+          if (ori==90 || ori==-90) {
+            // horizontal
+            screenHeight = screen.width;
+            screenWidth = screen.height;
+            console.log('changed to landscape');
+          } else {
+            screenHeight = screen.height;
+            screenWidth = screen.width;
+            console.log('changed to portrait');
+          }
+      });
 
       // Checks match between target and user color
       // Both v and h are matching
