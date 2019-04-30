@@ -15,8 +15,8 @@ function changeTargetPoint(pairId) {
   // Change target color
   // change to scale of 0-100 to keep things easy
   // rename phi and theta
-  pairs[pairId].targetPoint.phi = Math.floor(Math.random() * 100);
-  pairs[pairId].targetPoint.theta = Math.floor(Math.random() * 100);
+  pairs[pairId].targetPoint.v = Math.random();
+  pairs[pairId].targetPoint.h = Math.random();
 
   console.log('change target point');
   console.log(pairs[pairId].targetPoint);

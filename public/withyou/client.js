@@ -301,14 +301,28 @@
             $('span.value.rotdeg').text(rotDeg.toFixed(2));
             $('#rotdeg').width(rotDeg);
 
-            var scaleVertical = map(frontBack, -180, 180, 0, 1) * ballSize;
-            var scaleHorizontal = map(rotDeg, 0, 360, 0, 1) * ballSize;
+            // Determine how close it is to target
+
+            // 0 - 100
+            var scaleVertical = map(frontBack, -180, 180, 0, 1);// * ballSize;
+            var scaleHorizontal = map(rotDeg, 0, 360, 0, 1);// * ballSize;
+
+            // lightness = phi = vertical
+            // hue = theta = horizontal
+
+            var diffVertical = Math.abs(pairs[pairId].targetPoint.v - scaleVertical);
+            var diffHorizontal = Math.abs(pairs[pairId].targetPoint.h - scaleHorizontal)
 
             // P1: Change size of circle based on Y
             // and closeness to target Y
             // scale = 100 * .01            
-            $('.ball.vertical').css('transform', 'scale(' + scaleVertical + ')');
-            $('.ball.horizontal').css('transform', 'scale(' + scaleHorizontal + ')');
+            $('.ball.vertical').css('transform', 'scale(' + (1 - diffVertical) + ')');
+            $('.ball.horizontal').css('transform', 'scale(' + (1 - diffHorizontal) + ')');
+
+            //100 - (scaleVertical pairs[pairId].targetPoint.phi);
+
+            //pairs[pairId].targetPoint.phi,
+            //pairs[pairId].targetPoint.theta 
 
             // Change background color
             //$('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');

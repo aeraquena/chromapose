@@ -145,8 +145,8 @@ io.on('connection', function(socket){
       engine.pairs[pairId] = {
         players: {},
         targetPoint: {
-          'phi': 0, 
-          'theta': 0
+          'v': 0, 
+          'h': 0
         }
       };
 
@@ -157,8 +157,8 @@ io.on('connection', function(socket){
     // Assign player to game
     engine.pairs[pairId].players[socket.id] = {
       matching: false, // is player matching? //
-      y: 0, // change to phi
-      z: 0 // change to theta
+      y: 0, // change to v
+      z: 0 // change to h
     }
 
     console.log(engine.pairs);
