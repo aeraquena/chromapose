@@ -19,16 +19,21 @@ $(function () {
 
   // Join game number
   $('#join-game-number').click(function() {
-    console.log('click');
     pairId = $('#input-number').val();
     $('#part-1').remove();
-    //$(window).scrollTop(0);
+    $(window).scrollTop(0);
     $('#part-2').show();
   });
 
   $(document).on('click', '#done', function(){
-    console.log('click done');
-    document.location.replace('game.html#' + pairId);
+    $('#part-2').remove();
+    $(window).scrollTop(0);
+    $('#part-3').remove();
+
+    setTimeout(function() {
+      document.location.replace('game.html#' + pairId);
+    }, 500);
+
   });
 
 });

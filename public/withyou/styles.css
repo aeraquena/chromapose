@@ -365,12 +365,19 @@ input[type=number] {
   position: absolute;
 }
 
-#part-2 {
+#splash #part-2,
+#splash #part-3 {
   display: none;
+}
+
+#splash #part-2 {
   font-size: 36px;
 }
 
-#part-3 {
-  display: none;
+#splash #part-2 .subtitle {
+  font-size: 36px;
+}
+
+#splash #part-3 .subtitle {
   font-size: 48px;
 }
