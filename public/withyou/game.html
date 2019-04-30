@@ -1,270 +1,41 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<title>chromapose</title>
-		<meta 
-		     name='viewport' 
-		     content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' 
-		/>
+<html lang="en">
+  <head>
+    <title>with you</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700" rel="stylesheet">
+    <link rel="stylesheet" href='./styles.css'>
+  </head>
+  <body>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src='./game.js'></script>
+    <script src='./client.js'></script>
 
-		<style>
-			body {
-				font-family: helvetica, arial, sans serif;
-				background: #000;
-			}
-			.meter {
-				background: black;
-				height: 20px;
-				margin-bottom: 10px;
-			}
+    <div id="screen">
+      <div class="line vertical"></div>
+      <div class="line horizontal"></div>
 
-			span.value {
-				font-weight: bold;
-			}
+      <div class="ball target vertical"></div>
+      <div class="ball target horizontal"></div>
+      <div class="ball player vertical"></div>
+      <div class="ball player horizontal"></div>
 
-			button {
-				font-size: 18px;
-				font-weight: bold;
-			}
+      <div class="info">
+        V: <span class="text-v"></span>
+        H: <span class="text-h"></span><br/>
+        TV: <span class="text-tv"></span>
+        TH: <span class="text-th"></span>
+        <!--Role: <span class="text-r"></span>
+        Screen: <span class="text-screen"></span>-->
+      </div>
 
-			#content {
-				position: absolute;
-				top: 0;
-				left: 0;
-				font-size: 24px;
-				color: #fff;
-			}
+    </div>
 
-			#screen {
-				position: absolute;
-				top: 0;
-				left: 0;
-				bottom: 0;
-				right: 0;
-				border-width: 40px;
-				border-style: solid;
-				display: none;
-			}
-
-			/*#arrow {
-				font-size: 300px;
-				position: absolute;
-				left: 100px;
-				top: 100px;
-				color: #fff;
-				display: none;
-			}*/
-
-			.arrow {
-				font-size: 300px;
-				position: absolute;
-				top: 100px;
-				left: 100px;
-				color: #fff;
-			}
-
-			.arrow.x {
-				/*top: 0;*/
-				color: #f00; /* red */
-			}
-
-			.arrow.y {
-				/*top: 150px;*/
-				color: #000dff; /* blue */
-			}
-
-			.arrow.z {
-				/*top: 300px;*/
-				color: #04ff00; /* green */
-			}
-
-			#targetArrow {
-				font-size: 300px;
-				position: absolute;
-				left: 100px;
-				top: 100px;
-				color: #fff;
-				opacity: .5;
-				display: none;
-			}
-
-			.instructions {
-				font-family: 'Roboto Mono', 'Monaco', monospace;
-				text-align: center;
-				font-size: 50px;
-				margin-top: 280px;
-				color: #fff;
-			}
-
-			#location {
-				font-family: 'Roboto Mono', 'Monaco', monospace;
-				font-size: 18px;
-				color: #fff;
-			}
-		</style>
-	</head>
-
-	<body>
-		<script>
-			// Get geolocation
-			var x = document.getElementById("location");
-			function getLocation() {
-				console.log('getLocation');
-			  if (navigator.geolocation) {
-			  	console.log('geolocation enabled');
-			    navigator.geolocation.getCurrentPosition(showPosition);
-			  } else {
-			  	console.log('geolocation disabled');
-			    x.innerHTML = "Geolocation is not supported by this browser.";
-			  }
-			}
-
-			function showPosition(position) {
-			  x.innerHTML = "Latitude: " + position.coords.latitude + 
-			  "<br>Longitude: " + position.coords.longitude; 
-			}
-		</script>
-
-		<div id="screen"></div>
-		<div id="content">
-			<!--<div class="label">Left-Right Rotation (Y Axis): <span class="value lr"></span>&deg;</div>
-			<div class="meter" id="lr"></div>
-
-			<div class="label">Front-Back Rotation (X Axis): <span class="value fb"></span>&deg;</div>
-			<div class="meter" id="fb"></div>-->
-
-			<div class="label">Alpha Rotation (Z axis): <span class="value rotdeg"></span>&deg;</div>
-			<div class="meter" id="rotdeg"></div>
-
-			<div class="label">Target:</div> <span class="value targetDeg"></span>
-
-			<br/>
-
-			<div>Hue: <span id="hue" class="value"></span></div>
-			<div>Saturation: <span id="saturation" class="value"></span>%</div>
-			<div>Lightness: <span id="lightness" class="value"></span>%</div>
-		</div>
-
-		<!--<div class="instructions">
-			now dance
-		</div>-->
-		
-		<div class="arrow x">&#8593;</div>
-		<div class="arrow y">&#8593;</div>
-		<div class="arrow z">&#8593;</div>
-		<!--<div id="targetArrow">&#8593;</div>-->
-
-		<script type="text/javascript">
-
-			// intro
-			/*setTimeout(function() {
-				$('.instructions').hide();
-				$('#arrow').show();
-				$('#targetArrow').show();
-			}, 750);*/
-			
-			// MOVEMENT
-
-			var rotDeg, leftRight, frontBack;
-			var hue, saturation, lightness;
-			var targetHue, targetSaturation, targetLightness;
-
-			var targetDirection;
-
-			var targetDirections = [90, 0, 180, 270, 45, 315, 225, 135];
-			var targetDirIndex = 0;
-
-			// Map value from one range onto another
-			function map(value, xMin, xMax, yMin, yMax) {
-
-				// Clamp
-				if (value < xMin) {
-					return yMin;
-				} else if (result > yMax) {
-					return yMax;
-				} else {
-					var result = (value - xMin) * ((yMax - yMin)/(xMax - xMin)) + yMin;
-					return result;
-				}
-			}
-
-			// Generates a target color
-			/*function generateTargetColor() {
-				targetHue = Math.floor(Math.random() * 255);
-				targetSaturation = Math.floor(Math.random() * 100);
-				targetLightness = Math.floor(Math.random() * 100);
-				$('#screen').css('border-color', 'hsl(' + targetHue + ', ' + targetSaturation + '%, ' + targetLightness + '%)');
-			}
-			generateTargetColor();*/
-
-			targetDirection = targetDirections[targetDirIndex];
-			$('#targetArrow').css('transform', 'rotate( ' + targetDirection + 'deg)');
-
-			// Device orientation
-			if (window.DeviceOrientationEvent) {
-			    window.addEventListener("deviceorientation", function(event) {
-			        // alpha: rotation around z-axis
-			        rotDeg = event.alpha;
-			        // gamma: left to right
-			        leftRight = event.gamma;
-			        // beta: front back motion
-			        frontBack = event.beta;
-
-			        // Left right rotation (around X-axis)
-					$('span.value.lr').text(leftRight.toFixed(2));
-					$('#lr').width(leftRight + 90);
-
-					// Front back rotation (around Y-axis)
-					$('span.value.fb').text(frontBack.toFixed(2));
-					$('#fb').width(frontBack + 180);
-
-			        // Alpha rotation (around Z-axis)
-			        $('span.value.rotdeg').text(rotDeg.toFixed(2));
-			        $('#rotdeg').width(rotDeg);
-
-					// X = saturation
-					saturation = Math.floor(map(leftRight, -90, 90, 0, 100));
-
-					// Y = lightness
-					lightness = Math.floor(map(frontBack, -180, 180, 0, 100));
-
-					// Z = hue
-					hue = Math.floor(map(rotDeg, 0, 360, 0, 255));
-
-					$('#hue').text(hue);
-					$('#saturation').text(saturation);
-					$('#lightness').text(lightness);
-
-					// Change background color
-					//$('#screen').css('background-color', 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)');
-					
-					$('.arrow.x').css('transform', 'rotate(-' + Math.floor(map(leftRight, -90, 90, 0, 360)) + 'deg)');
-					$('.arrow.y').css('transform', 'rotate(-' + Math.floor(map(frontBack, -180, 180, 0, 360)) + 'deg)');
-					$('.arrow.z').css('transform', 'rotate(-' + rotDeg + 'deg)');
-
-					if ((360-parseInt(rotDeg) > targetDirection - 5) && //((rotDeg * -1) % 360
-						(360-parseInt(rotDeg) < targetDirection + 5)) {
-						generateTargetDirection();
-					}
-			    }, true);
-			}
-
-			function generateTargetDirection() {
-				// choreographed
-				targetDirIndex++;
-				if (targetDirIndex > targetDirections.length - 1) {
-					targetDirIndex = 0;
-				}
-				targetDirection = targetDirections[targetDirIndex];
-
-				$('#targetArrow').css('transform', 'rotate( ' + targetDirection + 'deg)');
-				$('.targetDeg').html(targetDirection);
-			}
-			//generateTargetDirection();
-
-		</script>
-
-	</body>
-</html
+      <div class="intro">
+        <button type="button" id="start">ok</button>
+      </div>
+  </body>
+</html>

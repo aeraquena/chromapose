@@ -163,7 +163,7 @@ a:active {
   margin-bottom: 30px;
 }
 
-#splash button {
+button {
   color: #fff;
   font-size: 36px;
   border: 1px solid #fff;
@@ -175,7 +175,7 @@ a:active {
   width: 220px;
 }
 
-#splash button:active {
+button:active {
   opacity: .5;
 }
 
