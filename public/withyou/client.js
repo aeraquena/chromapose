@@ -76,6 +76,13 @@
           })
         }*/
 
+        // Hide horizontal or vertical based on role
+        if (pairs[pairId].role == 0) {
+          $('.horizontal').hide();
+        } else {
+          $('.vertical').hide();
+        }
+
         $('.ball.target.horizontal').css('left', pairs[pairId].targetPoint.h * 400);
         $('.ball.target.vertical').css('top', pairs[pairId].targetPoint.v * 400);
       }
@@ -290,13 +297,6 @@
 
         // Show tutorial
         $('#tutorial').addClass('shown');
-
-        // Hide horizontal or vertical based on role
-        if (pairs[pairId].role == 0) {
-          $('.horizontal').hide();
-        } else {
-          $('.vertical').hide();
-        }
 
 
         // Don't init until pair id is set
