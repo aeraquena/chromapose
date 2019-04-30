@@ -48,8 +48,10 @@
           $('span.text-r').text(role);
           if (pairs[pairId].players[socket.id].role == 1) {
             $('#screen').addClass('horizontal');
+            $('.instructions.top .instructions-orientation').text('horizontal');
           } else {
             $('#screen').addClass('vertical');
+            $('.instructions.top .instructions-orientation').text('vertical');
           }
           //$('#screen').addClass('vertical horizontal');
         }
