@@ -329,7 +329,6 @@ input[type=number] {
 }
 
 .line {
-  border: 1px solid #fff;
   position: absolute;
   margin: auto;
 }
@@ -339,6 +338,7 @@ input[type=number] {
   height: 100%;
   left: 0;
   right: 0;
+  border-left: 1px solid #fff;
 }
 
 .line.horizontal {
@@ -346,4 +346,5 @@ input[type=number] {
   height: 1px;
   top: 0;
   bottom: 0;
+  border-top: 1px solid #fff;
 }
