@@ -301,7 +301,8 @@
             // P1: Change size of circle based on Y
             // and closeness to target Y
             // scale = 100 * .01            
-            $('#ball').css('transform', 'scale(' + scaleHorizontal + ')');
+            $('.ball.vertical').css('transform', 'scale(' + scaleVertical + ')');
+            $('.ball.horizontal').css('transform', 'scale(' + scaleHorizontal + ')');
 
             // Y = lightness
             // (Map front-back to lightness) + (Random 0-100) % 100

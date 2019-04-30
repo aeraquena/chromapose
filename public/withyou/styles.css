@@ -292,8 +292,7 @@ input[type=number] {
   height: 60px;
 }
 
-#ball {
-  background-color: red;
+.ball {
   height: 300px;
   width: 300px;
   z-index: 10;
@@ -304,4 +303,12 @@ input[type=number] {
   right: 0;
   bottom: 0;
   margin: auto;
+}
+
+.ball.vertical {
+  background-color: red;
+}
+
+.ball.horizontal {
+  background-color: #00ffff;
 }
