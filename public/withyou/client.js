@@ -75,6 +75,9 @@
             }
           })
         }*/
+
+        $('.ball.target').css('left', pairs[pairId].targetPoint.h);
+        $('.ball.target').css('top', pairs[pairId].targetPoint.v);
       }
 
       //
@@ -133,7 +136,7 @@
 
             // Determine how close it is to target
 
-            // 0 - 100
+            // 0 - 1
             var scaleVertical = map(frontBack, -180, 180, 0, 1);// * ballSize;
             var scaleHorizontal = map(rotDeg, 0, 360, 0, 1);// * ballSize;
 
@@ -151,8 +154,8 @@
               
               //$('.ball.vertical').css('transform', 'scale(' + diffVertical + ')');
               //$('.ball.horizontal').css('transform', 'scale(' + diffHorizontal + ')');
-              $('.ball.horizontal').css('left', diffHorizontal * 400);
-              $('.ball.vertical').css('top', diffVertical * 400);
+              $('.ball.horizontal').css('left', scaleVertical * 400);
+              $('.ball.vertical').css('top', scaleHorizontal * 400);
 
               //100 - (scaleVertical pairs[pairId].targetPoint.phi);
 

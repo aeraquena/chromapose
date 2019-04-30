@@ -314,3 +314,7 @@ input[type=number] {
 .ball.horizontal {
   background-color: #00ffff;
 }
+
+.ball.target {
+  background-color: #00ff00;
+}
