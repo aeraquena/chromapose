@@ -271,7 +271,7 @@
             pairId = $('#input-number').val();
 
             // Add user to game object players
-            window.location.href = '#' + pairId;
+            window.location.replace('#' + pairId);
           });
       }
   });
