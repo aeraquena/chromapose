@@ -296,11 +296,12 @@
             $('#rotdeg').width(rotDeg);
 
             var scaleVertical = map(frontBack, -180, 180, 0, 1);
+            var scaleHorizontal = map(rotDeg, 0, 360, 0, 1);
 
             // P1: Change size of circle based on Y
             // and closeness to target Y
             // scale = 100 * .01            
-            $('#ball').css('transform', 'scale(' + scaleVertical + ')');
+            $('#ball').css('transform', 'scale(' + scaleHorizontal + ')');
 
             // Y = lightness
             // (Map front-back to lightness) + (Random 0-100) % 100
