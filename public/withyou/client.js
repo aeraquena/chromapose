@@ -267,6 +267,7 @@
 
           // Join game number
           $('#join-game-number').click(function() {
+            console.log('click');
             pairId = $('#input-number').val();
 
             // Add user to game object players
