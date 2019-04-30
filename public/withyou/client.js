@@ -77,6 +77,13 @@
         }*/
 
         if (pairs && pairs[pairId]) {
+          // Hide horizontal or vertical based on role
+          if (pairs[pairId].players[socket.id].role == 0) {
+            $('#screen').addClass('horizontal');
+          } else {
+            $('#screen').addClass('vertical');
+          }
+
           $('.ball.target.horizontal').css('left', pairs[pairId].targetPoint.h * 400);
           $('.ball.target.vertical').css('top', pairs[pairId].targetPoint.v * 400);
         }
@@ -292,13 +299,6 @@
 
         // Show tutorial
         $('#tutorial').addClass('shown');
-
-        // Hide horizontal or vertical based on role
-        if (pairs[pairId].players[socket.id].role == 0) {
-          $('#screen').addClass('horizontal');
-        } else {
-          $('#screen').addClass('vertical');
-        }
 
         // Don't init until pair id is set
         //init();
