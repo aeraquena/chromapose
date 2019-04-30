@@ -161,7 +161,7 @@
 
               if (pairs && pairId) {
                 console.log('call check match');
-                //checkMatch(scaleHorizontal, scaleVertical);
+                checkMatch(scaleHorizontal, scaleVertical);
                 // just check if both are 0
 
                 // Send position to server - to check whether they're in sync
