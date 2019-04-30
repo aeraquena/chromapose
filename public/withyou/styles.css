@@ -302,8 +302,8 @@ input[type=number] {
   left: 0;
   /*right: 0;
   bottom: 0;
-  margin: auto;
   opacity: .5;*/
+  margin: auto;
   display: none;
 }
 
@@ -314,11 +314,12 @@ input[type=number] {
 
 .ball.horizontal {
   background-color: #00ffff;
-  top: 200px;
+  top: 0;
+  bottom: 0;
 }
 
 .ball.target {
   background-color: #00ff00;
-  left: 200px;
-  top: 200px;
+  left: 0;
+  right: 200px;
 }
