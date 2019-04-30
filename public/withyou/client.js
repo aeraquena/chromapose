@@ -76,8 +76,10 @@
           })
         }*/
 
-        $('.ball.target.horizontal').css('left', pairs[pairId].targetPoint.h * 400);
-        $('.ball.target.vertical').css('top', pairs[pairId].targetPoint.v * 400);
+        if (pairs && pairs[pairId]) {
+          $('.ball.target.horizontal').css('left', pairs[pairId].targetPoint.h * 400);
+          $('.ball.target.vertical').css('top', pairs[pairId].targetPoint.v * 400);
+        }
       }
 
       //
