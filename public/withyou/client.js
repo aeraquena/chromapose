@@ -51,6 +51,7 @@
             // update info
             $('span.text-th').text(myTargetPoint.h.toFixed(2));
             $('span.text-tv').text(myTargetPoint.v.toFixed(2));
+
           }
         }
       }
