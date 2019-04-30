@@ -148,8 +148,11 @@
               // P1: Change size of circle based on Y
               // and closeness to target Y
               // scale = 100 * .01            
-              $('.ball.vertical').css('transform', 'scale(' + diffVertical + ')');
-              $('.ball.horizontal').css('transform', 'scale(' + diffHorizontal + ')');
+              
+              //$('.ball.vertical').css('transform', 'scale(' + diffVertical + ')');
+              //$('.ball.horizontal').css('transform', 'scale(' + diffHorizontal + ')');
+              $('.ball.horizontal').css('left', diffHorizontal * 400);
+              $('.ball.vertical').css('top', diffVertical * 400);
 
               //100 - (scaleVertical pairs[pairId].targetPoint.phi);
 
@@ -287,8 +290,8 @@
         $('.ball').show();
 
         // Don't init until pair id is set
-        init();
-        animate();
+        //init();
+        //animate();
       });
 
       function drawGame() {
@@ -296,7 +299,7 @@
         requestAnimationFrame(drawGame)
       }
 
-      function init() {
+      /*function init() {
 
         camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1100 );
 
@@ -344,7 +347,7 @@
 
         renderer.setSize( window.innerWidth, window.innerHeight );
 
-      }
+      }*/
 
       // Device orientation changes - regular, non three js
 
