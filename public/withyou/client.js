@@ -22,13 +22,16 @@
 
       var diffVertical, diffHorizontal;
 
-      var screenHeight = screen.height;
-      var screenWidth = screen.width;
+      var screenHeight;
+      var screenWidth;
 
       function updateGameState(gameState) {
         // update local state to match state on server
         games = gameState.games; //
         pairs = gameState.pairs;
+
+        screenHeight = screen.height;
+        screenWidth = screen.width;
 
         if (pairs && pairs[pairId] && pairs[pairId].players[socket.id]) {
 
