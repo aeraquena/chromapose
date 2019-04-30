@@ -32,7 +32,7 @@
         games = gameState.games; //
         pairs = gameState.pairs;
 
-        if (pairs && pairs[pairId]) {
+        /*if (pairs && pairs[pairId]) {
           nextPosition = {
             'x': pairs[pairId].targetPoint.phi,
             'y': pairs[pairId].targetPoint.theta 
@@ -251,65 +251,6 @@
         renderer.setSize( window.innerWidth, window.innerHeight );
         document.body.appendChild( renderer.domElement );
 
-        // current ball
-        /*var geometry = new THREE.SphereGeometry( 1, 32, 32 );
-        var material = new THREE.MeshBasicMaterial( { color: 0xff0000 } ); // red
-        currentBall = new THREE.Mesh( geometry, material );
-        scene.add( currentBall );
-
-        // target ball
-
-        var geometry = new THREE.SphereGeometry( 1, 32, 32 );
-        var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } ); // green
-        targetBall = new THREE.Mesh( geometry, material );
-        scene.add( targetBall );
-
-        // TODO: rename x = phi, y = theta
-
-        // in front of you
-        currentPosition = {
-          'x': -90,
-          'y': 0
-        }
-
-        nextPosition = currentPosition;
-
-        // Line between current and next position
-
-        // Draw dotted line between current position and target
-
-        // Array of dotted line balls
-
-        // Initialize line dots and add to scene
-        for (i = 0; i < numLineDots; i++) {
-          var geometry = new THREE.SphereGeometry( .1, 32, 32 );
-          var material = new THREE.MeshBasicMaterial( { color: 0x00ffff } ); // red
-          lineDots[i] = new THREE.Mesh( geometry, material );
-          scene.add( lineDots[i] );
-        }
-
-        // Blue circle
-        var geometry = new THREE.SphereGeometry( 1, 32, 32 );
-        var material = new THREE.MeshBasicMaterial( { color: 0x0000ff } ); // blue
-        blueBall = new THREE.Mesh( geometry, material );
-        blueBall.position.setFromSphericalCoords(
-            radius, 
-            THREE.Math.degToRad(-90), 
-            THREE.Math.degToRad(10)
-          );
-        scene.add( blueBall );
-
-        // Yellow circle
-        var geometry = new THREE.SphereGeometry( 1, 32, 32 );
-        var material = new THREE.MeshBasicMaterial( { color: 0xffff00 } ); // yellow
-        yellowBall = new THREE.Mesh( geometry, material );
-        yellowBall.position.setFromSphericalCoords(
-            radius, 
-            THREE.Math.degToRad(-90),  // rotate around -90
-            THREE.Math.degToRad(-10) // same
-          );
-        scene.add( yellowBall );*/
-
         window.addEventListener( 'resize', onWindowResize, false );
       }
 
@@ -319,90 +260,12 @@
 
         window.requestAnimationFrame( animate );
 
-        // Animate lines between dots
-
-        /*for (i = 0; i < numLineDots; i++) {
-          lerpPercent = 1/numLineDots * i + (frameCount % 50 * .002);
-
-          // Set position of line dots
-          lineDots[i].position.setFromSphericalCoords(
-            radius, 
-            THREE.Math.degToRad(currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent)), 
-            THREE.Math.degToRad(currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent))
-          );
-        }*/
-
-        // Draw line of dots around horizontal axis of target point
-        /*var endPosition = {
-          'x': nextPosition.x,
-          'y': nextPosition.y - 90
-        }
-
-        var endPosition = {
-          'x': nextPosition.x,
-          'y': nextPosition.y + 90
-        }
-        for (i = 0; i < numLineDots; i++) {
-          lerpPercent = 1/numLineDots * i;// + (frameCount % 50 * .002);
-
-          // from: phi, 90 ... phi, -90
-
-          // Set position of line dots
-          lineDots[i].position.setFromSphericalCoords(
-            radius, 
-            THREE.Math.degToRad(currentPosition.x + ((nextPosition.x - currentPosition.x) * lerpPercent)), 
-            THREE.Math.degToRad(currentPosition.y + ((nextPosition.y - currentPosition.y) * lerpPercent))
-          );
-        }*/
-
         controls.update();
         renderer.render( scene, camera );
 
         // Check frustum (whether object is in view)
         camera.updateMatrix();
         camera.updateMatrixWorld();
-
-        /*var frustum = new THREE.Frustum();
-        frustum.setFromMatrix(new THREE.Matrix4().multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));  
-
-        // Your 3d point to check
-        var pos = new THREE.Vector3(targetBall.position.x, targetBall.position.y, targetBall.position.z);
-        /*if (frustum.containsPoint(pos)) {
-            // Do something with the position...
-            console.log('IN VIEW');
-            // communicate: matching
-        } else {
-
-        }*/
-
-        //console.log('camera');
-        //console.log(camera);
-
-        /*var isMatching = frustum.containsPoint(pos);
-
-        // Only send a socket signal + change screen state if match state has changed
-        if (isMatching != prevIsMatching) {
-          if (isMatching) {
-              // Client has changed to match colors
-
-              console.log('match');
-
-              // Send match to socket
-              socket.emit('matchPair', pairId);
-          } else {
-            // Client has changed to not match colors
-            
-            console.log('unmatch');
-
-            // Send unmatch to socket
-            socket.emit('unmatchPair', pairId);
-          }
-
-          prevIsMatching = isMatching;
-        }*/
-
-        //lerpPercent += .01;
-        //frameCount++;
       }
 
       function onWindowResize() {
@@ -412,6 +275,52 @@
 
         renderer.setSize( window.innerWidth, window.innerHeight );
 
+      }
+
+      // Device orientation changes - regular, non three js
+
+      // Device orientation
+      if (window.DeviceOrientationEvent) {
+          window.addEventListener("deviceorientation", function(event) {
+              // alpha: rotation around z-axis
+              rotDeg = event.alpha;
+              // beta: front back motion
+              frontBack = event.beta;
+
+            // Front back rotation (around Y-axis)
+            $('span.value.fb').text(frontBack.toFixed(2));
+            $('#fb').width(frontBack + 180);
+
+            // Alpha rotation (around Z-axis)
+            $('span.value.rotdeg').text(rotDeg.toFixed(2));
+            $('#rotdeg').width(rotDeg);
+
+            var scaleVertical = Math.floor(map(frontBack, -180, 180, 0, 1));
+
+            // P1: Change size of circle based on Y
+            // and closeness to target Y
+            // scale = 100 * .01            
+            $('#ball').css('transform', 'scale(' + scaleVertical + ')');
+
+            // Y = lightness
+            // (Map front-back to lightness) + (Random 0-100) % 100
+            // 20-80
+            lightness = ((Math.floor(map(frontBack, -180, 180, 0, 60))) % 60) + 20;
+
+            // Z = hue
+            hue = (Math.floor(map(rotDeg, 0, 360, 255, 0))) % 255;
+
+            // Change background color
+            $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
+
+            if (games && gameId) {
+              checkMatch(hue, lightness);
+
+              // Send position to server
+              console.log('move');
+              socket.emit('move', {'gameId': gameId, 'y': lightness, 'z': hue});
+            }
+          }); // ,true
       }
 
       setInterval(gameLoop, 25)
