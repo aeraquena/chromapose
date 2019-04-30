@@ -27,18 +27,18 @@
     var screenWidth = screen.width;
 
     // Remove splash menu
-    $('#splash').remove();
+    //$('#splash').remove();
 
     console.log('starting ' + hash);
     // do this when button pressed
-    $('#start').click(function() {
+    //$('#start').click(function() {
       console.log('joining ' + hash);
       socket.emit('joinPair', hash);
-      $('#intro').remove();
-      $('#screen').addClass('game');
+      //$('#splash').remove();
+      //$('#screen').addClass('game');
 
       // Assign roles
-    });
+    //});
 
     // Expand border
     $('#screen').addClass('game');

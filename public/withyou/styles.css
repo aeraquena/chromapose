@@ -144,7 +144,7 @@ a:active {
 }
 
 #splash {
-  position: absolute;
+  position: fixed;
   font-size: 36px;
   text-align: center;
   top: 30px;
@@ -155,7 +155,7 @@ a:active {
 }
 
 #splash .title {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 #splash .subtitle {
