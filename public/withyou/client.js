@@ -76,8 +76,8 @@
           })
         }*/
 
-        $('.ball.target').css('left', pairs[pairId].targetPoint.h * 400);
-        $('.ball.target').css('top', pairs[pairId].targetPoint.v * 400);
+        $('.ball.target.horizontal').css('left', pairs[pairId].targetPoint.h * 400);
+        $('.ball.target.vertical').css('top', pairs[pairId].targetPoint.v * 400);
       }
 
       //

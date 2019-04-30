@@ -314,11 +314,16 @@ input[type=number] {
 }
 
 .ball.target {
-  background-color: #00ff00;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+  background-color: transparent;
+  border-width: 2px;
+}
+
+.ball.target.horizontal {
+  border-color: #00ffff;
+}
+
+.ball.target.vertical {
+  border-color: red;
 }
 
 #screen.game .line {
