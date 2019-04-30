@@ -28,8 +28,8 @@
       var numLineDots = 50;
 
       // set ball size to screen height or width, whichever is greater
-      var ballSize = Math.max(screen.width, screen.height) / 10;
-      $('.ball').css('transform', 'scale(' + ballSize + ')');
+      //var ballSize = Math.max(screen.width, screen.height) / 10;
+      //$('.ball').css('transform', 'scale(' + ballSize + ')');
       //$('.ball').css('height', ballSize);
       //$('.ball').css('border-radius', ballSize);
 
@@ -318,8 +318,8 @@
             // P1: Change size of circle based on Y
             // and closeness to target Y
             // scale = 100 * .01            
-            $('.ball.vertical').css('transform', 'scale(' + ((1 - diffVertical) * ballSize) + ')');
-            $('.ball.horizontal').css('transform', 'scale(' + ((1 - diffHorizontal) * ballSize) + ')');
+            $('.ball.vertical').css('transform', 'scale(' + diffVertical + ')');
+            $('.ball.horizontal').css('transform', 'scale(' + diffHorizontal + ')');
 
             //100 - (scaleVertical pairs[pairId].targetPoint.phi);
 
