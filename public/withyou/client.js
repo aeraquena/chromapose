@@ -22,12 +22,15 @@
 
       var diffVertical, diffHorizontal;
 
+      var screenHeight = screen.height;
+      var screenWidth = screen.width;
+
       function updateGameState(gameState) {
         // update local state to match state on server
         games = gameState.games; //
         pairs = gameState.pairs;
 
-        if (pairs && pairs[pairId]) {
+        if (pairs && pairs[pairId] && pairs[pairId].players[socket.id]) {
 
           if (!role && pairs[pairId].players[socket.id].role) {
             // Hide horizontal or vertical based on role
@@ -41,8 +44,8 @@
           }
 
           if (myTargetPoint) {
-            $('.ball.target.horizontal').css('left', myTargetPoint.h * 400);
-            $('.ball.target.vertical').css('top', myTargetPoint.v * 400);
+            $('.ball.target.horizontal').css('left', myTargetPoint.h * screenWidth);
+            $('.ball.target.vertical').css('top', myTargetPoint.v * screenHeight);
           }
         }
       }
@@ -131,8 +134,8 @@
               diffVertical = Math.abs(myTargetPoint.v - scaleVertical);
               diffHorizontal = Math.abs(myTargetPoint.h - scaleHorizontal)
 
-              $('.ball.player.horizontal').css('left', 400 - (scaleHorizontal * 400));
-              $('.ball.player.vertical').css('top', 400 - (scaleVertical * 400));
+              $('.ball.player.horizontal').css('left', screenWidth - (scaleHorizontal * screenWidth));
+              $('.ball.player.vertical').css('top', screenHeight - (scaleVertical * screenHeight));
 
               if (pairs && pairId) {
                 checkMatch();
