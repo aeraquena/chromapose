@@ -35,6 +35,7 @@
       console.log('joining ' + hash);
       socket.emit('joinPair', hash);
       $('#intro').remove();
+      $('#screen').addClass('game');
 
       // Assign roles
     });
