@@ -29,7 +29,7 @@
 
         if (pairs && pairs[pairId]) {
 
-          if (!role) {
+          if (!role && pairs[pairId].players[socket.id].role) {
             // Hide horizontal or vertical based on role
             role = pairs[pairId].players[socket.id].role;
             $('span.text-r').text(role);
@@ -38,27 +38,6 @@
             } else {
               $('#screen').addClass('vertical');
             }
-          }
-
-          // if player 2, calculate it - reflect it
-
-          if (role == 2) {
-            // rotate around .75
-            // calculate distance from .75, then go in that other direction
-            var diffFromNorth = .75 - pairs[pairId].targetPoint.v;
-            var rawTargetPoint = .75 + diffFromNorth;
-            if (rawTargetPoint > 1) {
-              rawTargetPoint = rawTargetPoint - 1;
-            } else if ((rawTargetPoint < 0)) {
-              rawTargetPoint = rawTargetPoint + 1;
-            }
-
-            myTargetPoint = {
-              'v': rawTargetPoint,
-              'h': pairs[pairId].targetPoint.h
-            };
-          } else {
-            myTargetPoint = pairs[pairId].targetPoint;
           }
 
           $('.ball.target.horizontal').css('left', myTargetPoint.h * 400);
@@ -125,6 +104,27 @@
             $('span.text-h').text(scaleHorizontal.toFixed(2));
 
             if (pairs && pairs[pairId]) {
+ 
+                // if player 2, calculate it - reflect it
+
+                if (role == 2) {
+                  // rotate around .75
+                  // calculate distance from .75, then go in that other direction
+                  var diffFromNorth = .75 - pairs[pairId].targetPoint.v;
+                  var rawTargetPoint = .75 + diffFromNorth;
+                  if (rawTargetPoint > 1) {
+                    rawTargetPoint = rawTargetPoint - 1;
+                  } else if ((rawTargetPoint < 0)) {
+                    rawTargetPoint = rawTargetPoint + 1;
+                  }
+
+                  myTargetPoint = {
+                    'v': rawTargetPoint,
+                    'h': pairs[pairId].targetPoint.h
+                  };
+                } else {
+                  myTargetPoint = pairs[pairId].targetPoint;
+                }
 
               diffVertical = Math.abs(myTargetPoint.v - scaleVertical);
               diffHorizontal = Math.abs(myTargetPoint.h - scaleHorizontal)
