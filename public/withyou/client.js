@@ -27,6 +27,11 @@
       var lineDots = [];
       var numLineDots = 50;
 
+      // set ball size to screen height or width, whichever is greater
+      var ballSize = Math.max(screen.width, screen.height);
+      $('.ball').css('width', ballSize);
+      $('.ball').css('height', ballSize);
+
       function updateGameState(gameState) {
         // update local state to match state on server
         games = gameState.games; //
@@ -108,7 +113,7 @@
       }
 
       // Checks match between target and user color
-      /*function checkMatch() {
+      function checkMatch() {
         //var bound = 12; // bounding box for color matches
 
         // Is player within the target color bounds?
@@ -121,7 +126,7 @@
               // Client has changed to match colors
 
               // Add visual match indicator
-              $('#screen').addClass('match');
+              //$('#screen').addClass('match');
 
               // Send match to socket
               socket.emit('match', gameId);
@@ -129,7 +134,7 @@
             // Client has changed to not match colors
             
             // Remove visual match indicator
-            $('#screen').removeClass('match');
+            //$('#screen').removeClass('match');
 
             // Send unmatch to socket
             socket.emit('unmatch', gameId);
@@ -137,7 +142,7 @@
 
           prevIsMatching = isMatching;
         }
-      }*/
+      }
 
       // Animation when color changes
       /*var winTimeout;
@@ -304,25 +309,17 @@
             $('.ball.vertical').css('transform', 'scale(' + scaleVertical + ')');
             $('.ball.horizontal').css('transform', 'scale(' + scaleHorizontal + ')');
 
-            // Y = lightness
-            // (Map front-back to lightness) + (Random 0-100) % 100
-            // 20-80
-            lightness = ((Math.floor(map(frontBack, -180, 180, 0, 60))) % 60) + 20;
-
-            // Z = hue
-            hue = (Math.floor(map(rotDeg, 0, 360, 255, 0))) % 255;
-
             // Change background color
-            $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
+            //$('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
 
-            if (games && gameId) {
-              checkMatch(hue, lightness);
+            if (pairs && pairId) {
+              //checkMatch(scaleHorizontal, scaleVertical);
+              // just check if both are 0
 
-              // Send position to server
-              console.log('move');
-              socket.emit('move', {'gameId': gameId, 'y': lightness, 'z': hue});
+              // Send position to server - to check whether they're in sync
+              //socket.emit('move', {'pairId': pairId, 'v': scaleVertical, 'h': scaleHorizontal});
             }
-          }); // ,true
+          });
       }
 
       setInterval(gameLoop, 25)
