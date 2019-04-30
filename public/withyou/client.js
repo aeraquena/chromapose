@@ -27,6 +27,8 @@
       var lineDots = [];
       var numLineDots = 50;
 
+      var diffVertical, diffHorizontal;
+
       // set ball size to screen height or width, whichever is greater
       //var ballSize = Math.max(screen.width, screen.height) / 10;
       //$('.ball').css('transform', 'scale(' + ballSize + ')');
@@ -96,7 +98,7 @@
 
       // Local variables specific to player's device
       var rotDeg, leftRight, frontBack;
-      var hue, lightness;
+      //var hue, lightness;
 
       var prevIsMatching = false;
 
@@ -114,12 +116,11 @@
       }
 
       // Checks match between target and user color
+      // Both v and h are matching
       function checkMatch() {
-        //var bound = 12; // bounding box for color matches
+        var bound = .12; // bounding box for color matches
 
-        // Is player within the target color bounds?
-        var isMatching = hue > (games[gameId].targetColor.hue - bound) && hue < (games[gameId].targetColor.hue + bound) &&
-          lightness > (games[gameId].targetColor.lightness - bound) && lightness < (games[gameId].targetColor.lightness + bound);
+        var isMatching = diffVertical < bound && diffHorizontal < bound;
 
         // Only send a socket signal + change screen state if match state has changed
         if (isMatching != prevIsMatching) {
@@ -130,7 +131,8 @@
               //$('#screen').addClass('match');
 
               // Send match to socket
-              socket.emit('match', gameId);
+              console.log('MATCH');
+              socket.emit('matchPair', gameId);
           } else {
             // Client has changed to not match colors
             
@@ -138,7 +140,8 @@
             //$('#screen').removeClass('match');
 
             // Send unmatch to socket
-            socket.emit('unmatch', gameId);
+            console.log('UNMATCH');
+            socket.emit('unmatchPair', gameId);
           }
 
           prevIsMatching = isMatching;
@@ -312,8 +315,8 @@
             // lightness = phi = vertical
             // hue = theta = horizontal
 
-            var diffVertical = Math.abs(pairs[pairId].targetPoint.v - scaleVertical);
-            var diffHorizontal = Math.abs(pairs[pairId].targetPoint.h - scaleHorizontal)
+            diffVertical = Math.abs(pairs[pairId].targetPoint.v - scaleVertical);
+            diffHorizontal = Math.abs(pairs[pairId].targetPoint.h - scaleHorizontal)
 
             // P1: Change size of circle based on Y
             // and closeness to target Y
