@@ -17,7 +17,7 @@
       var bound = 15;
       var minBound = 12;
 
-      var role = -1;
+      var role = 0;
       var myTargetPoint;
 
       var diffVertical, diffHorizontal;
@@ -29,11 +29,11 @@
 
         if (pairs && pairs[pairId]) {
 
-          if (role == -1) {
+          if (!role) {
             // Hide horizontal or vertical based on role
             role = pairs[pairId].players[socket.id].role;
             $('span.text-r').text(role);
-            /*if (pairs[pairId].players[socket.id].role == 0) {
+            /*if (pairs[pairId].players[socket.id].role == 1) {
               $('#screen').addClass('horizontal');
             } else {
               $('#screen').addClass('vertical');
@@ -41,8 +41,29 @@
             $('#screen').addClass('vertical horizontal');
           }
 
-          $('.ball.target.horizontal').css('left', pairs[pairId].targetPoint.h * 400);
-          $('.ball.target.vertical').css('top', pairs[pairId].targetPoint.v * 400);
+          // if player 2, calculate it - reflect it
+
+          if (role == 2) {
+            // rotate around .75
+            // calculate distance from .75, then go in that other direction
+            var diffFromNorth = .75 - pairs[pairId].targetPoint.v;
+            var rawTargetPointV = .75 + diffFromNorth;
+            if (rawTargetPoint > 1) {
+              rawTargetPoint = rawTargetPoint - 1;
+            } else if ((rawTargetPoint < 0)) {
+              rawTargetPoint = rawTargetPoint + 1;
+            }
+
+            myTargetPoint = {
+              'v': rawTargetPoint,
+              'h': pairs[pairId].targetPoint.h
+            };
+          } else {
+            myTargetPoint = pairs[pairId].targetPoint;
+          }
+
+          $('.ball.target.horizontal').css('left', myTargetPoint.h * 400);
+          $('.ball.target.vertical').css('top', myTargetPoint.v * 400);
         }
       }
 
@@ -106,8 +127,8 @@
 
             if (pairs && pairs[pairId]) {
 
-              diffVertical = Math.abs(pairs[pairId].targetPoint.v - scaleVertical);
-              diffHorizontal = Math.abs(pairs[pairId].targetPoint.h - scaleHorizontal)
+              diffVertical = Math.abs(myTargetPoint.v - scaleVertical);
+              diffHorizontal = Math.abs(myTargetPoint.h - scaleHorizontal)
 
               $('.ball.player.horizontal').css('left', 400 - (scaleHorizontal * 400));
               $('.ball.player.vertical').css('top', 400 - (scaleVertical * 400));

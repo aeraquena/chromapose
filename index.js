@@ -139,7 +139,7 @@ io.on('connection', function(socket){
   socket.on('joinPair', function(pairId) {
     console.log('join pair id: ' + pairId);
 
-    var thisRole = 0;
+    var thisRole;
 
     // Create game if it doesn't exist
     if (!engine.pairs[pairId]) {
@@ -159,6 +159,7 @@ io.on('connection', function(socket){
       thisRole = 1;
     } else {
       // Assign this player role: 2
+      thisRole = 2;
     }
 
     // Assign player to game
