@@ -28,9 +28,10 @@
       var numLineDots = 50;
 
       // set ball size to screen height or width, whichever is greater
-      var ballSize = Math.max(screen.width, screen.height);
-      $('.ball').css('width', ballSize);
-      $('.ball').css('height', ballSize);
+      var ballSize = Math.max(screen.width, screen.height) / 10;
+      $('.ball').css('transform', 'scale(' + ballSize + ')');
+      //$('.ball').css('height', ballSize);
+      //$('.ball').css('border-radius', ballSize);
 
       function updateGameState(gameState) {
         // update local state to match state on server

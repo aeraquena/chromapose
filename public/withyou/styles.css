@@ -293,11 +293,11 @@ input[type=number] {
 }
 
 .ball {
-  height: 300px;
-  width: 300px;
+  height: 10px;
+  width: 10px;
   z-index: 10;
   position: absolute;
-  border-radius: 200px;
+  border-radius: 10px;
   top: 0;
   left: 0;
   right: 0;
