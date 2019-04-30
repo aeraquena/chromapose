@@ -140,30 +140,34 @@
             // lightness = phi = vertical
             // hue = theta = horizontal
 
-            diffVertical = Math.abs(pairs[pairId].targetPoint.v - scaleVertical);
-            diffHorizontal = Math.abs(pairs[pairId].targetPoint.h - scaleHorizontal)
+            if (pairs && pairs[pairId]) {
 
-            // P1: Change size of circle based on Y
-            // and closeness to target Y
-            // scale = 100 * .01            
-            $('.ball.vertical').css('transform', 'scale(' + diffVertical + ')');
-            $('.ball.horizontal').css('transform', 'scale(' + diffHorizontal + ')');
+              diffVertical = Math.abs(pairs[pairId].targetPoint.v - scaleVertical);
+              diffHorizontal = Math.abs(pairs[pairId].targetPoint.h - scaleHorizontal)
 
-            //100 - (scaleVertical pairs[pairId].targetPoint.phi);
+              // P1: Change size of circle based on Y
+              // and closeness to target Y
+              // scale = 100 * .01            
+              $('.ball.vertical').css('transform', 'scale(' + diffVertical + ')');
+              $('.ball.horizontal').css('transform', 'scale(' + diffHorizontal + ')');
 
-            //pairs[pairId].targetPoint.phi,
-            //pairs[pairId].targetPoint.theta 
+              //100 - (scaleVertical pairs[pairId].targetPoint.phi);
 
-            // Change background color
-            //$('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
+              //pairs[pairId].targetPoint.phi,
+              //pairs[pairId].targetPoint.theta 
 
-            if (pairs && pairId) {
-              console.log('call check match');
-              //checkMatch(scaleHorizontal, scaleVertical);
-              // just check if both are 0
+              // Change background color
+              //$('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
 
-              // Send position to server - to check whether they're in sync
-              //socket.emit('move', {'pairId': pairId, 'v': scaleVertical, 'h': scaleHorizontal});
+              if (pairs && pairId) {
+                console.log('call check match');
+                //checkMatch(scaleHorizontal, scaleVertical);
+                // just check if both are 0
+
+                // Send position to server - to check whether they're in sync
+                //socket.emit('move', {'pairId': pairId, 'v': scaleVertical, 'h': scaleHorizontal});
+              }
+
             }
           });
       }
