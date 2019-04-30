@@ -22,6 +22,7 @@ $(function () {
     console.log('click');
     pairId = $('#input-number').val();
     $('#part-1').hide();
+    $('body').scrollTop(0);
     $('#part-2').show();
   });
 
