@@ -327,7 +327,7 @@ input[type=number] {
   height: 100%;
   left: 0;
   right: 0;
-  border-left: 1px solid #fff;
+  border-left: 2px solid #fff;
 }
 
 .line.horizontal {
@@ -335,13 +335,13 @@ input[type=number] {
   height: 1px;
   top: 0;
   bottom: 0;
-  border-top: 1px solid #fff;
+  border-top: 2px solid #fff;
 }
 
-#screen.game.vertical .horizontal {
-  display: none;
+#screen.game.vertical .vertical {
+  display: block;
 }
 
-#screen.game.horizontal .vertical {
-  display: none;
+#screen.game.horizontal .horizontal {
+  display: block;
 }
