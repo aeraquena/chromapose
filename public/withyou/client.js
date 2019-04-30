@@ -40,8 +40,10 @@
             }
           }
 
-          $('.ball.target.horizontal').css('left', myTargetPoint.h * 400);
-          $('.ball.target.vertical').css('top', myTargetPoint.v * 400);
+          if (myTargetPoint) {
+            $('.ball.target.horizontal').css('left', myTargetPoint.h * 400);
+            $('.ball.target.vertical').css('top', myTargetPoint.v * 400);
+          }
         }
       }
 
@@ -104,7 +106,7 @@
             $('span.text-h').text(scaleHorizontal.toFixed(2));
 
             if (pairs && pairs[pairId]) {
- 
+
                 // if player 2, calculate it - reflect it
 
                 if (role == 2) {
