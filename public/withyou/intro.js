@@ -31,9 +31,12 @@ $(function () {
     $(window).scrollTop(0);
     $('#part-2').hide();
     $('#part-3').show();
-    setTimeout(function() {
-      document.location.replace('game.html#' + pairId);
-    }, 500);
-
+    setTimeout('goToGame(pairId)', 500);
   });
+
+  function goToGame(myPairId) {
+      document.location.replace('game.html#' + myPairId);
+  }
+
+  }
 });
