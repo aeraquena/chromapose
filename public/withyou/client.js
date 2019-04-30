@@ -26,20 +26,8 @@
     var screenHeight = screen.height;
     var screenWidth = screen.width;
 
-    // Remove splash menu
-    //$('#splash').remove();
-
-    console.log('starting ' + hash);
-    // do this when button pressed
-    //$('#start').click(function() {
-      console.log('joining ' + hash);
-      socket.emit('joinPair', hash);
-      //$('#splash').remove();
-      //$('#screen').addClass('game');
-
-      // Assign roles
-    //});
-
+    socket.emit('joinPair', hash);
+    
     // Expand border
     $('#screen').addClass('game');
 
