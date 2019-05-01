@@ -160,7 +160,7 @@
                 myTargetPoint = pairs[pairId].targetPoint;
               }
 
-              myTargetPoint.v = 1; // remove when done
+              myTargetPoint.v = 0; // remove when done
 
             diffVertical = Math.abs(myTargetPoint.v - scaleVertical);
             diffHorizontal = Math.abs(myTargetPoint.h - scaleHorizontal)
