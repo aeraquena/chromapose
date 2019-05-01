@@ -23,7 +23,9 @@
 
     var diffVertical, diffHorizontal;
 
-    var screenHeight = screen.height - 40;
+    var marginV = 70;
+
+    var screenHeight = screen.height - marginV * 2;
     var screenWidth = screen.width;
 
     socket.emit('joinPair', hash);
@@ -58,7 +60,7 @@
 
         if (myTargetPoint) {
           $('.ball.target.horizontal').css('left', screenWidth - (myTargetPoint.h * screenWidth));
-          $('.ball.target.vertical').css('top', screenHeight - (myTargetPoint.v * screenHeight) + 20);
+          $('.ball.target.vertical').css('top', screenHeight - (myTargetPoint.v * screenHeight) + marginV);
 
           // update info
           $('span.text-th').text(myTargetPoint.h.toFixed(2));
@@ -157,7 +159,7 @@
             diffHorizontal = Math.abs(myTargetPoint.h - scaleHorizontal)
 
             $('.ball.player.horizontal').css('left', screenWidth - (scaleHorizontal * screenWidth));
-            $('.ball.player.vertical').css('top', screenHeight - (scaleVertical * screenHeight) + 20);
+            $('.ball.player.vertical').css('top', screenHeight - (scaleVertical * screenHeight) + marginV);
 
             if (pairs && pairId) {
               checkMatch();

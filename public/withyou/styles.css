@@ -383,7 +383,7 @@ input[type=number] {
 }
 
 .instructions {
-  /*background-color: black;*/
+  background-color: black;
   color: #fff;
   font-size: 24px;
   text-align: center;
