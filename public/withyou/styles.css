@@ -311,7 +311,8 @@ input[type=number] {
   visibility: visible;
 }*/
 
-#screen.match .ball.player {
+#screen.match.horizontal .ball.player.horizontal,
+#screen.match.vertical .ball.player.vertical {
   visibility: hidden;
 }
 
