@@ -23,8 +23,8 @@
 
     var diffVertical, diffHorizontal;
 
-    var topMargin = 88;
-    var bottomMargin = 88;
+    var topMargin = 85;
+    var bottomMargin = 90;
 
     var screenHeight = window.innerHeight - topMargin - bottomMargin;
     var screenWidth = window.innerWidth;
