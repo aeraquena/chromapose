@@ -196,10 +196,9 @@
 
       // Player's visible axis is matching
       var imMatching = false;
-      if (role == 1) {
-        diffHorizontal < bound;
-      } else if (role == 2) {
-        diffVertical < bound;
+      if ((role == 1 && diffHorizontal < bound) ||
+        (role == 2 && diffVertical < bound)) {
+        imMatching = true;
       }
 
       if (imMatching != prevImMatching) {
