@@ -30,27 +30,6 @@ body:not(#about) {
   background-color: #ff00ff;*/
 }
 
-@keyframes pulse {
-  0% {
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-  }
-  50% {
-    top: 60px;
-    left: 60px;
-    bottom: 60px;
-    right: 60px;
-  }
-  100% {
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-  }
-}
-
 #screen.win {
   animation: win .75s;
 }
@@ -156,6 +135,7 @@ a:active {
 
 #splash .title {
   margin-bottom: 40px;
+  margin-top: 0;
 }
 
 #splash .subtitle {
@@ -318,6 +298,32 @@ input[type=number] {
   border-color: #fff;
 }
 
+#screen.match .ball.target {
+  animation: pulse .75s infinite;
+  z-index: 11;
+}
+
+#screen.match .ball.target.horizontal {
+   background-color: #00ffff;
+}
+
+#screen.match .ball.target.vertical {
+   background-color: #ff0000;
+}
+
+@keyframes pulse {
+  0% {
+    border-width: 2px;
+  }
+  50% {
+    border-width: 7px;
+  }
+  100% {
+    border-width: 2px;
+  }
+}
+
+
 .line {
   position: absolute;
   margin: auto;
@@ -398,4 +404,12 @@ input[type=number] {
 
 .instructions.bottom {
   bottom: 0;
+}
+
+#start-buttons .subtitle {
+  margin-bottom: 0;
+}
+
+#splash .subtitle.pretitle {
+  margin-bottom: 0;
 }
