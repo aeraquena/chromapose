@@ -24,7 +24,7 @@
     var diffVertical, diffHorizontal;
 
     var topMargin = 80;
-    var bottomMargin = 260;
+    var bottomMargin = 265;
 
     var screenHeight = screen.height - topMargin - bottomMargin;
     var screenWidth = screen.width;
