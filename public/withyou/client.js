@@ -51,9 +51,11 @@
           if (pairs[pairId].players[socket.id].role == 1) {
             $('#screen').addClass('horizontal');
             $('.instructions .instructions-orientation').text('horizontal');
+            $('.instructions .instructions-orientation-partner').text('vertical');
           } else {
             $('#screen').addClass('vertical');
             $('.instructions .instructions-orientation').text('vertical');
+            $('.instructions .instructions-orientation-partner').text('horizontal');
           }
           //$('#screen').addClass('vertical horizontal');
         }
