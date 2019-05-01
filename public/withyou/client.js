@@ -57,7 +57,7 @@
             $('.instructions .instructions-orientation').text('vertical');
             $('.instructions .instructions-orientation-partner').text('horizontal');
           }
-          //$('#screen').addClass('vertical horizontal');
+          $('#screen').addClass('vertical horizontal'); // remove when done
         }
 
         if (myTargetPoint) {
@@ -157,6 +157,8 @@
               } else {
                 myTargetPoint = pairs[pairId].targetPoint;
               }
+
+              myTargetPoint.v = 1; // remove when done
 
             diffVertical = Math.abs(myTargetPoint.v - scaleVertical);
             diffHorizontal = Math.abs(myTargetPoint.h - scaleHorizontal)
