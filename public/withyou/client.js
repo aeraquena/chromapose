@@ -98,6 +98,7 @@
     //var hue, lightness;
 
     var prevIsMatching = false;
+    var prevImMatching = false;
 
     // Map value from one range onto another
     function map(value, xMin, xMax, yMin, yMax) {
@@ -193,22 +194,36 @@
 
       var isMatching = (diffVertical < bound) && (diffHorizontal < bound);
 
+      // Player's visible axis is matching
+      var imMatching = false;
+      if (role == 1) {
+        diffHorizontal < bound;
+      } else if (role == 2) {
+        diffVertical < bound;
+      }
+
+      if (imMatching != prevImMatching) {
+        if (imMatching) {
+          $('#screen').addClass('match');
+        } else {
+          // Remove visual match indicator
+          $('#screen').removeClass('match');
+        }
+        prevImMatching = imMatching;
+      }
+
       // Only send a socket signal + change screen state if match state has changed
       if (isMatching != prevIsMatching) {
         if (isMatching) {
             // Client has changed to match colors
 
             // Add visual match indicator
-            $('#screen').addClass('match');
 
             // Send match to socket
             console.log('MATCH');
             socket.emit('matchPair', pairId);
         } else {
           // Client has changed to not match colors
-          
-          // Remove visual match indicator
-          $('#screen').removeClass('match');
 
           // Send unmatch to socket
           console.log('UNMATCH');
