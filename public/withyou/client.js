@@ -23,10 +23,10 @@
 
     var diffVertical, diffHorizontal;
 
-    var topMargin = 80;
-    var bottomMargin = 80;
+    var topMargin = 85;
+    var bottomMargin = 85;
 
-    var screenHeight = window.innerHeight - topMargin - bottomMargin; //screen.height - topMargin - bottomMargin;
+    var screenHeight = window.innerHeight - topMargin - bottomMargin;
     var screenWidth = window.innerWidth;
 
     var ballSize = 75;
