@@ -26,6 +26,9 @@
     var topMargin = 80;
     var bottomMargin = 265;
 
+    console.log('screen height: ' + screen.height);
+    console.log('inner height: ' + window.innerHeight)
+
     var screenHeight = screen.height - topMargin - bottomMargin;
     var screenWidth = screen.width;
 
