@@ -402,6 +402,7 @@ input[type=number] {
 }
 
 .instructions {
+  background-color: black;
   color: #fff;
   font-size: 18px;
   text-align: center;
