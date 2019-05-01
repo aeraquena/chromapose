@@ -24,13 +24,10 @@
     var diffVertical, diffHorizontal;
 
     var topMargin = 80;
-    var bottomMargin = 265;
+    var bottomMargin = 80;
 
-    console.log('screen height: ' + screen.height);
-    console.log('inner height: ' + window.innerHeight)
-
-    var screenHeight = screen.height - topMargin - bottomMargin;
-    var screenWidth = screen.width;
+    var screenHeight = window.innerHeight - topMargin - bottomMargin; //screen.height - topMargin - bottomMargin;
+    var screenWidth = window.innerWidth;
 
     var ballSize = 75;
 
@@ -50,7 +47,6 @@
       if (pairs && pairs[pairId] && pairs[pairId].players[socket.id]) {
 
         if (role == 0 && pairs[pairId].players[socket.id].role) {
-          console.log('add class based on role')
           // Hide horizontal or vertical based on role
           role = pairs[pairId].players[socket.id].role;
           $('span.text-r').text(role);
@@ -75,8 +71,6 @@
           $('span.text-tv').text(myTargetPoint.v.toFixed(2));
 
         }
-      } else {
-        console.log('failed');
       }
     }
 
