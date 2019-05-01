@@ -23,7 +23,7 @@
 
     var diffVertical, diffHorizontal;
 
-    var marginV = 70;
+    var marginV = 80;
 
     var screenHeight = screen.height - marginV * 2;
     var screenWidth = screen.width;
