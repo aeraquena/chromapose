@@ -23,9 +23,10 @@
 
     var diffVertical, diffHorizontal;
 
-    var marginV = 80;
+    var topMargin = 80;
+    var bottomMargin = 160;
 
-    var screenHeight = screen.height - marginV * 2;
+    var screenHeight = screen.height - topMargin - bottomMargin;
     var screenWidth = screen.width;
 
     var ballSize = 75;
@@ -59,12 +60,12 @@
             $('.instructions .instructions-orientation').text('vertical');
             $('.instructions .instructions-orientation-partner').text('horizontal');
           }
-          $('#screen').addClass('vertical horizontal'); // remove when done
+          $('#screen').addClass('vertical horizontal'); // remove
         }
 
         if (myTargetPoint) {
           $('.ball.target.horizontal').css('left', screenWidth - (myTargetPoint.h * screenWidth) - ballSize/2);
-          $('.ball.target.vertical').css('top', screenHeight - (myTargetPoint.v * screenHeight) - ballSize/2);
+          $('.ball.target.vertical').css('top', screenHeight - (myTargetPoint.v * screenHeight) - ballSize/2 + topMargin);
 
           // update info
           $('span.text-th').text(myTargetPoint.h.toFixed(2));
@@ -159,14 +160,13 @@
               } else {
                 myTargetPoint = pairs[pairId].targetPoint;
               }
-
-              myTargetPoint.v = 0; // remove when done
+              myTargetPoint.v = 0; // remove
 
             diffVertical = Math.abs(myTargetPoint.v - scaleVertical);
             diffHorizontal = Math.abs(myTargetPoint.h - scaleHorizontal)
 
             $('.ball.player.horizontal').css('left', screenWidth - (scaleHorizontal * screenWidth) - ballSize/2);
-            $('.ball.player.vertical').css('top', screenHeight - (scaleVertical * screenHeight) - ballSize/2);
+            $('.ball.player.vertical').css('top', screenHeight - (scaleVertical * screenHeight) - ballSize/2 + topMargin);
 
             if (pairs && pairId) {
               checkMatch();
