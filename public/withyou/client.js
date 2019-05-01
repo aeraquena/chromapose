@@ -64,7 +64,7 @@
 
         if (myTargetPoint) {
           $('.ball.target.horizontal').css('left', screenWidth - (myTargetPoint.h * screenWidth) - ballSize/2);
-          $('.ball.target.vertical').css('top', screenHeight - (myTargetPoint.v * screenHeight) + marginV - ballSize/2);
+          $('.ball.target.vertical').css('top', screenHeight - (myTargetPoint.v * screenHeight) - ballSize/2);
 
           // update info
           $('span.text-th').text(myTargetPoint.h.toFixed(2));
@@ -166,7 +166,7 @@
             diffHorizontal = Math.abs(myTargetPoint.h - scaleHorizontal)
 
             $('.ball.player.horizontal').css('left', screenWidth - (scaleHorizontal * screenWidth) - ballSize/2);
-            $('.ball.player.vertical').css('top', screenHeight - (scaleVertical * screenHeight) + marginV - ballSize/2);
+            $('.ball.player.vertical').css('top', screenHeight - (scaleVertical * screenHeight) - ballSize/2);
 
             if (pairs && pairId) {
               checkMatch();
