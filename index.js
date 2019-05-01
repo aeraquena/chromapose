@@ -275,7 +275,7 @@ io.on('connection', function(socket){
 
       if (allMatching) {
         console.log('all matching - change target color');
-        //io.emit('pointChanged', gameId);
+        io.emit('pointChanged', pairId);
         engine.changeTargetPoint(pairId);
       }
     }

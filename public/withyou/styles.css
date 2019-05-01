@@ -30,28 +30,42 @@ body:not(#about) {
   background-color: #ff00ff;*/
 }
 
-#screen.win {
-  animation: win .75s;
+#screen.win .winAnimation {
+  display: none;
+    z-index: 12;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 300px;
+    height: 300px;
+    border-radius: 300px;
+}
+
+#screen.horizontal .winAnimation {
+  background-color: #00ffff;
+}
+
+#screen.vertical .winAnimation {
+  background-color: #ff0000;
+}
+
+#screen.win .winAnimation {
+  display: block;
+   animation: win .75s;
 }
 
 @keyframes win {
   0% {
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    transform: scale(0);
   }
   50% {
-    top: 50%;
-    left: 50%;
-    bottom: 50%;
-    right: 50%;
+    transform: scale(3);
   }
   100% {
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    transform: scale(0);
   }
 }
 

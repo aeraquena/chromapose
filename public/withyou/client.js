@@ -29,6 +29,11 @@
     var screenHeight = window.innerHeight - topMargin - bottomMargin;
     var screenWidth = window.innerWidth;
 
+    /*var winSize = Math.max(window.innerWidth, window.innerHeight);
+    $('winAnimation').css('width', winSize);
+    $('winAnimation').css('height', winSize);
+    $('winAnimation').css('border-radius', winSize);*/
+
     var ballSize = 75;
 
     socket.emit('joinPair', hash);
@@ -59,7 +64,7 @@
             $('.instructions .instructions-orientation').text('vertical');
             $('.instructions .instructions-orientation-partner').text('horizontal');
           }
-          $('#screen').addClass('vertical horizontal'); // remove
+          //$('#screen').addClass('vertical horizontal');
         }
 
         if (myTargetPoint) {
@@ -67,9 +72,8 @@
           $('.ball.target.vertical').css('top', screenHeight - (myTargetPoint.v * screenHeight) - ballSize/2 + topMargin);
 
           // update info
-          $('span.text-th').text(myTargetPoint.h.toFixed(2));
-          $('span.text-tv').text(myTargetPoint.v.toFixed(2));
-
+          //$('span.text-th').text(myTargetPoint.h.toFixed(2));
+          //$('span.text-tv').text(myTargetPoint.v.toFixed(2));
         }
       }
     }
@@ -157,7 +161,6 @@
               } else {
                 myTargetPoint = pairs[pairId].targetPoint;
               }
-              myTargetPoint.v = 0; // remove
 
             diffVertical = Math.abs(myTargetPoint.v - scaleVertical);
             diffHorizontal = Math.abs(myTargetPoint.h - scaleHorizontal)
@@ -235,24 +238,17 @@
     }
 
     // Animation when color changes
-    /*var winTimeout;
+    var winTimeout;
     socket.on('pointChanged', function(changedGameId) {
       if (changedGameId == pairId) {
         clearTimeout(winTimeout);
+
         $('#screen').addClass('win');
         winTimeout = setTimeout(function() {
           $('#screen').removeClass('win');
-
-          // Remove tutorial
-          $('#tutorial').remove();
         }, 750);
-
-        // Decrease bound until it reaches min bound
-        if (bound > minBound) {
-          bound--;
-        }
       }
-    });*/
+    });
 
     function drawGame() {
       // draw stuff
