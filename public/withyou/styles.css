@@ -303,6 +303,14 @@ input[type=number] {
   z-index: 11;
 }
 
+#screen .ball.player {
+  visibility: visible;
+}
+
+#screen.match .ball.player {
+  visibility: hidden;
+}
+
 #screen.match .ball.target.horizontal {
    background-color: #00ffff;
 }
@@ -314,12 +322,17 @@ input[type=number] {
 @keyframes pulse {
   0% {
     border-width: 2px;
+    margin-top: 0;
+    margin-left: 0;
   }
   50% {
-    border-width: 7px;
+    border-width: 12px;
+    margin-top: -5px;
+    margin-left: -5px;
   }
   100% {
-    border-width: 2px;
+    margin-top: 0;
+    margin-left: 0;
   }
 }
 
