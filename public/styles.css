@@ -360,6 +360,14 @@ body#about li {
   padding: 5px 0;
 }
 
+body#about .photo-row {
+  white-space: nowrap;
+}
+
+body#about .photo-row img {
+  width: 49.5%;
+}
+
 /* Portrait and Landscape */
 @media only screen 
   and (min-device-width: 375px) 
