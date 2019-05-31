@@ -362,12 +362,12 @@ body#about li {
 
 body#about .photo-row {
   white-space: nowrap;
-  margin-bottom: 2%;
 }
 
 body#about .photo-row img {
   width: 49%;
   margin-right: 2%;
+  margin-bottom: 2.4%;
   display: inline-block;
 }
 
