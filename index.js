@@ -331,10 +331,10 @@ io.on('connection', function(socket){
       if (y[2] - y[1] < positionBound &&
         z[2] - z[1] < positionBound) {
         console.log('position match');
-        io.emit('positionMatch', position.gameId);
+        //io.emit('positionMatch', position.gameId);
       } else {
         console.log('position unmatch');
-        io.emit('positionUnmatch', position.gameId);
+        //io.emit('positionUnmatch', position.gameId);
       }
 
       console.log('---');
