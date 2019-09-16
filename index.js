@@ -334,7 +334,7 @@ io.on('connection', function(socket){
       posY[1] = Math.abs(.75 - posY[1]);
       posY[2] = Math.abs(.75 - posY[2]);
 
-      var positionBound = .1;
+      var positionBound = .15;
 
       if (Math.abs(posY[2] - posY[1]) < positionBound &&
         Math.abs(posZ[2] - posZ[1]) < positionBound) {
