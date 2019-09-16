@@ -254,12 +254,16 @@
       }
     });
 
-    socket.on('positionMatch', function(data) {
-      $('.instructions.top').removeClass('warning');
+    socket.on('positionMatch', function(thisPairId) {
+      if (thisPairId == pairId) {
+        $('.instructions.top').removeClass('warning');
+      }
     });
 
-    socket.on('positionUnmatch', function(data) {
-      $('.instructions.top').addClass('warning');
+    socket.on('positionUnmatch', function(thisPairId) {
+      if (thisPairId == pairId) {
+        $('.instructions.top').addClass('warning');
+      }
     });
 
     // A player moved, update their color
