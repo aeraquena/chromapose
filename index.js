@@ -314,10 +314,10 @@ io.on('connection', function(socket){
       engine.pairs[position.gameId].players[socket.id].y = position.y;
       engine.pairs[position.gameId].players[socket.id].z = position.z;
       
-      for (var playerIndex in engine.pairs[position.gameId].players) {
-        var posY = {};
-        var posZ = {};
+      var posY = {};
+      var posZ = {};
 
+      for (var playerIndex in engine.pairs[position.gameId].players) {
         console.log(playerIndex);
         console.log(engine.pairs[position.gameId].players[playerIndex]);
 
@@ -325,6 +325,7 @@ io.on('connection', function(socket){
         posZ[engine.pairs[position.gameId].players[playerIndex].role] = engine.pairs[position.gameId].players[playerIndex].z;
       }
 
+      // why are both '2'
       console.log(posY);
       console.log(posZ);
       
