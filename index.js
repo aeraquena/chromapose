@@ -318,15 +318,15 @@ io.on('connection', function(socket){
       var posZ = {};
 
       for (var playerIndex in engine.pairs[position.gameId].players) {
-        console.log(playerIndex);
-        console.log(engine.pairs[position.gameId].players[playerIndex]);
+        //console.log(playerIndex);
+        //console.log(engine.pairs[position.gameId].players[playerIndex]);
 
         posY[engine.pairs[position.gameId].players[playerIndex].role] = engine.pairs[position.gameId].players[playerIndex].y;
         posZ[engine.pairs[position.gameId].players[playerIndex].role] = engine.pairs[position.gameId].players[playerIndex].z;
       }
 
-      console.log(posY);
-      console.log(posZ);
+      //console.log(posY);
+      //console.log(posZ);
       
       // Compare y and z to determine if players are face to face
       //posZ[2] = 1 - posZ[2];
@@ -335,21 +335,22 @@ io.on('connection', function(socket){
       posY[2] = Math.abs(.75 - posY[2]);
 
       // also need to treat 0 and 1 as the same for posZ
+      var posYDiff = Math.abs(posY[2] - posY[1]);
       var posZDiff = .5 - Math.abs(Math.abs(posZ[1] - posZ[2]) - .5);
-      console.log('posZDiff: ' + posZDiff);
+      console.log('posYDiff: ' + posYDiff + ', posZDiff: ' + posZDiff);
 
       var positionBound = .15;
 
-      if (Math.abs(posY[2] - posY[1]) < positionBound &&
+      if (posYDiff < positionBound &&
         posZDiff < positionBound) {
-        console.log('position match');
+        //console.log('position match');
         io.emit('positionMatch', position.gameId);
       } else {
-        console.log('position unmatch');
+        //console.log('position unmatch');
         io.emit('positionUnmatch', position.gameId);
       }
 
-      console.log('---');
+      //console.log('---');
     }
   });
 });
