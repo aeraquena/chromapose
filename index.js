@@ -312,13 +312,13 @@ io.on('connection', function(socket){
   socket.on('move', function(position){
     //console.log('move');
     console.log(position);
-    if (engine.games[position.gameId]) {
-      engine.games[position.gameId].players[socket.id].y = position.y;
-      engine.games[position.gameId].players[socket.id].z = position.z;
+    if (engine.pairs[position.gameId]) {
+      engine.pairs[position.gameId].players[socket.id].y = position.y;
+      engine.pairs[position.gameId].players[socket.id].z = position.z;
       
       console.log('matches game id');
       
-      $.each(engine.games[position.gameId].players, function(k, v) {
+      $.each(engine.pairs[position.gameId].players, function(k, v) {
         console.log(k);
         console.log(v);
       });
