@@ -170,6 +170,10 @@
 
             if (pairs && pairId) {
               checkMatch();
+
+              // Send position to server
+              //console.log('move');
+              socket.emit('move', {'gameId': gameId, 'y': diffVertical, 'z': diffHorizontal}); // TODO: ???
             }
 
           }
@@ -196,6 +200,7 @@
       //console.log('check match');
       var bound = .05; //.03 // bounding box for color matches
 
+      // both players are matching
       var isMatching = (diffVertical < bound) && (diffHorizontal < bound);
 
       // Player's visible axis is matching
@@ -249,6 +254,19 @@
         }, 750);
       }
     });
+
+    // A player moved, update their color
+    /*socket.on('playerMoved', function(data) {
+      console.log(data);
+      console.log('player moved');
+      // Same game, but not same player
+      if (data.gameId == gameId && 
+        data.socketId != socket.id) {
+        console.log('other player moved');
+        
+        $('#partnerColor').css('background-color', 'hsl(' + data.z + ', 100%, ' + data.y + '%)');
+      }
+    });*/
 
     function drawGame() {
       // draw stuff

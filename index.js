@@ -314,14 +314,15 @@ io.on('connection', function(socket){
     if (engine.games[position.gameId]) {
       engine.games[position.gameId].players[socket.id].y = position.y;
       engine.games[position.gameId].players[socket.id].z = position.z;
-      //console.log(engine.games[position.gameId].players);
+      
+      console.log(engine.games[position.gameId].players);
 
-      io.emit('playerMoved', {
+      /*io.emit('playerMoved', {
         'gameId': position.gameId, 
         'socketId': socket.id,
         'y': position.y,
         'z': position.z
-      });
+      });*/
     }
   });
 });

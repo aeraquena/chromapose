@@ -427,10 +427,19 @@ input[type=number] {
   right: 0;
   margin: 0;
   z-index: 10;
+  padding: 5px 0;
 }
 
 .instructions.top {
   top: 0;
+}
+
+.instructions.top.warning {
+  background-color: red;
+}
+
+.instructions.top.warning .find-target {
+  display: none;
 }
 
 .instructions.bottom {
