@@ -334,10 +334,14 @@ io.on('connection', function(socket){
       posY[1] = Math.abs(.75 - posY[1]);
       posY[2] = Math.abs(.75 - posY[2]);
 
+      // also need to treat 0 and 1 as the same for posZ
+      var posZDiff = .5 - Math.abs(Math.abs(posZ[1] - posZ[2]) - .5);
+      console.log('posZDiff: ' + posZDiff);
+
       var positionBound = .15;
 
       if (Math.abs(posY[2] - posY[1]) < positionBound &&
-        Math.abs(posZ[2] - posZ[1]) < positionBound) {
+        posZDiff < positionBound) {
         console.log('position match');
         io.emit('positionMatch', position.gameId);
       } else {
