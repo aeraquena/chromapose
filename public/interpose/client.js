@@ -172,8 +172,7 @@
               checkMatch();
 
               // Send position to server
-              //console.log('move');
-              socket.emit('move', {'gameId': pairId, 'y': diffVertical, 'z': diffHorizontal}); // TODO: ???
+              socket.emit('move', {'gameId': pairId, 'y': diffVertical, 'z': diffHorizontal});
             }
 
           }
@@ -253,6 +252,14 @@
           $('#screen').removeClass('win');
         }, 750);
       }
+    });
+
+    socket.on('positionMatch', function(data) {
+      $('.instructions.top').removeClass('warning');
+    });
+
+    socket.on('positionUnmatch', function(data) {
+      $('.instructions.top').addClass('warning');
     });
 
     // A player moved, update their color
