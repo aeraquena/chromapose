@@ -330,25 +330,19 @@ io.on('connection', function(socket){
       console.log(posZ);
       
       // Compare y and z to determine if players are face to face
-      /*y[2] = 1 - y[2];
+      posZ[2] = 1 - posZ[2];
+
       var positionBound = .01;
-      if (y[2] - y[1] < positionBound &&
-        z[2] - z[1] < positionBound) {
+      if (Math.abs(posY[2] - posY[1]) < positionBound &&
+        Math.abs(posZ[2] - posZ[1]) < positionBound) {
         console.log('position match');
         //io.emit('positionMatch', position.gameId);
       } else {
         console.log('position unmatch');
         //io.emit('positionUnmatch', position.gameId);
-      }*/
+      }
 
       console.log('---');
-
-      /*io.emit('playerMoved', {
-        'gameId': position.gameId, 
-        'socketId': socket.id,
-        'y': position.y,
-        'z': position.z
-      });*/
     }
   });
 });
