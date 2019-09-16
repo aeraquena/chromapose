@@ -318,10 +318,14 @@ io.on('connection', function(socket){
       
       console.log('matches game id');
       
-      $.each(engine.pairs[position.gameId].players, function(k, v) {
+      for (var playerIndex in engine.pairs[position.gameId].players) {
+        console.log(playerIndex);
+        console.log(engine.pairs[position.gameId].players[playerIndex]);
+      }
+      /*$.each(engine.pairs[position.gameId].players, function(k, v) {
         console.log(k);
         console.log(v);
-      });
+      });*/
       //console.log(engine.games[position.gameId].players);
 
       /*io.emit('playerMoved', {
