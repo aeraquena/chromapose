@@ -194,7 +194,7 @@
     // Both v and h are matching
     function checkMatch() {
       //console.log('check match');
-      var bound = .03; // bounding box for color matches
+      var bound = .05; //.03 // bounding box for color matches
 
       var isMatching = (diffVertical < bound) && (diffHorizontal < bound);
 
