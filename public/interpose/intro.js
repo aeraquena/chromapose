@@ -9,13 +9,13 @@ $(function () {
     $('#splash #input-number-container').show();
   });
 
-  $('#input-number').on('cut keyup paste', function() {
+  /*$('#input-number').on('cut keyup paste', function() {
     if ($('#input-number').val()) {
       $('#join-game-number').css('display', 'block');
     } else {
       $('#join-game-number').hide();
     }
-  });
+  });*/
 
   // Join game number
   $('#join-game-number').click(function() {

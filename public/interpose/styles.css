@@ -207,9 +207,9 @@ input[type=number] {
     -moz-appearance:textfield; /* Firefox */
 }
 
-#splash #input-number-container #join-game-number {
+/*#splash #input-number-container #join-game-number {
   display: none;
-}
+}*/
 
 /* Tutorial */
 
