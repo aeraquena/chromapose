@@ -324,10 +324,16 @@ io.on('connection', function(socket){
         posY[engine.pairs[position.gameId].players[playerIndex].role] = engine.pairs[position.gameId].players[playerIndex].y;
         posZ[engine.pairs[position.gameId].players[playerIndex].role] = engine.pairs[position.gameId].players[playerIndex].z;
       }
+
+      //console.log(posY);
+      //console.log(posZ);
       
       // Compare y and z to determine if players are face to face
+      //posZ[2] = 1 - posZ[2];
+      // need to calculate this properly
+      /*posY[1] = Math.abs(posY[1] - .75);
+      posY[2] = Math.abs(posY[2] - .75);*/
 
-      // Math to find the closest distance to .75, looping around 1
       if (posY[1] < .75) {
         posY[1] = Math.min(.75 - posY[1], posY[1] + .25);
       } else if (posY[1] > .75) {
@@ -353,10 +359,14 @@ io.on('connection', function(socket){
 
       if (posYDiff < positionBound &&
         posZDiff < positionBound) {
+        //console.log('position match');
         io.emit('positionMatch', position.gameId);
       } else {
+        //console.log('position unmatch');
         io.emit('positionUnmatch', position.gameId);
       }
+
+      //console.log('---');
     }
   });
 });
