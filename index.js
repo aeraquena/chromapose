@@ -311,6 +311,7 @@ io.on('connection', function(socket){
   // TODO: Remove from this and client code
   socket.on('move', function(position){
     console.log('move');
+    //console.log(position);
     if (engine.games[position.gameId]) {
       engine.games[position.gameId].players[socket.id].y = position.y;
       engine.games[position.gameId].players[socket.id].z = position.z;

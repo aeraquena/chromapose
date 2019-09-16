@@ -173,7 +173,7 @@
 
               // Send position to server
               //console.log('move');
-              socket.emit('move', {'gameId': gameId, 'y': diffVertical, 'z': diffHorizontal}); // TODO: ???
+              socket.emit('move', {'gameId': pairId, 'y': diffVertical, 'z': diffHorizontal}); // TODO: ???
             }
 
           }
