@@ -375,11 +375,11 @@ input[type=number] {
   border-top: 2px solid #fff;
 }
 
-#screen.game.vertical .vertical {
+#screen.game/*.vertical*/ .vertical {
   visibility: visible;
 }
 
-#screen.game.horizontal .horizontal {
+#screen.game/*.horizontal*/ .horizontal {
   visibility: visible;
 }
 
