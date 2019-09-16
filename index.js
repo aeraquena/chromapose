@@ -333,7 +333,8 @@ io.on('connection', function(socket){
       posZ[2] = 1 - posZ[2];
       // need to calculate this properly
 
-      var positionBound = .01;
+      var positionBound = .1;
+      
       if (Math.abs(posY[2] - posY[1]) < positionBound &&
         Math.abs(posZ[2] - posZ[1]) < positionBound) {
         console.log('position match');
