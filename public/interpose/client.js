@@ -172,7 +172,7 @@
               checkMatch();
 
               // Send position to server
-              socket.emit('move', {'gameId': pairId, 'y': myTargetPoint.v, 'z': myTargetPoint.h});
+              socket.emit('move', {'gameId': pairId, 'y': scaleVertical, 'z': scaleHorizontal});
             }
 
           }
