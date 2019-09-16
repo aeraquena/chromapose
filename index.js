@@ -321,8 +321,8 @@ io.on('connection', function(socket){
         console.log(playerIndex);
         console.log(engine.pairs[position.gameId].players[playerIndex]);
 
-        posY[role] = engine.pairs[position.gameId].players[playerIndex].y;
-        posZ[role] = engine.pairs[position.gameId].players[playerIndex].z;
+        posY[engine.pairs[position.gameId].players[playerIndex].role] = engine.pairs[position.gameId].players[playerIndex].y;
+        posZ[engine.pairs[position.gameId].players[playerIndex].role] = engine.pairs[position.gameId].players[playerIndex].z;
       }
 
       console.log(posY);
