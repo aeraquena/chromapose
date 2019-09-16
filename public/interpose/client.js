@@ -29,6 +29,8 @@
     var screenHeight = window.innerHeight - topMargin - bottomMargin;
     var screenWidth = window.innerWidth;
 
+    var positionMatch = false;
+
     /*var winSize = Math.max(window.innerWidth, window.innerHeight);
     $('winAnimation').css('width', winSize);
     $('winAnimation').css('height', winSize);
@@ -200,7 +202,7 @@
       var bound = .05; //.03 // bounding box for color matches
 
       // both players are matching
-      var isMatching = (diffVertical < bound) && (diffHorizontal < bound);
+      //var isMatching = (diffVertical < bound) && (diffHorizontal < bound);
 
       // Player's visible axis is matching
       var imMatching = false;
@@ -218,6 +220,8 @@
         }
         prevImMatching = imMatching;
       }
+
+      var isMatching = imMatching && positionMatch;
 
       // Only send a socket signal + change screen state if match state has changed
       if (isMatching != prevIsMatching) {
@@ -254,15 +258,18 @@
       }
     });
 
+    // Whether phones are held together
     socket.on('positionMatch', function(thisPairId) {
       if (thisPairId == pairId) {
         $('.instructions.top').removeClass('warning');
+        positionMatch = true;
       }
     });
 
     socket.on('positionUnmatch', function(thisPairId) {
       if (thisPairId == pairId) {
         $('.instructions.top').addClass('warning');
+        positionMatch = false;
       }
     });
 
