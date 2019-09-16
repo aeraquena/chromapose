@@ -346,7 +346,7 @@ io.on('connection', function(socket){
         posY[2] = Math.min(.75 - posY[2], posY[2] + .25);
       } else if (posY[2] > .75) {
         posY[2] = posY[2] - .75;
-      } else if (posY[1] == .75) {
+      } else if (posY[2] == .75) {
         posY[2] = 0;
       }
 
@@ -355,7 +355,7 @@ io.on('connection', function(socket){
       var posZDiff = .5 - Math.abs(Math.abs(posZ[1] - posZ[2]) - .5);
       console.log('posYDiff: ' + posYDiff.toFixed(2) + ', posZDiff: ' + posZDiff.toFixed(2));
 
-      var positionBound = .1;
+      var positionBound = .15;
 
       if (posYDiff < positionBound &&
         posZDiff < positionBound) {
