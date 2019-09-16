@@ -390,7 +390,7 @@ input[type=number] {
   top: 60px;
   left: 10px;
   z-index: 10;
-  /*display: none;*/
+  display: none;
 }
 
 /*#screen.game .info {
