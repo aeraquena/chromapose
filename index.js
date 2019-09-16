@@ -310,23 +310,15 @@ io.on('connection', function(socket){
   // Player moves
   // TODO: Remove from this and client code
   socket.on('move', function(position){
-    //console.log('move');
-    console.log(position);
     if (engine.pairs[position.gameId]) {
       engine.pairs[position.gameId].players[socket.id].y = position.y;
       engine.pairs[position.gameId].players[socket.id].z = position.z;
-      
-      console.log('matches game id');
       
       for (var playerIndex in engine.pairs[position.gameId].players) {
         console.log(playerIndex);
         console.log(engine.pairs[position.gameId].players[playerIndex]);
       }
-      /*$.each(engine.pairs[position.gameId].players, function(k, v) {
-        console.log(k);
-        console.log(v);
-      });*/
-      //console.log(engine.games[position.gameId].players);
+      console.log("---");
 
       /*io.emit('playerMoved', {
         'gameId': position.gameId, 
