@@ -310,7 +310,7 @@ io.on('connection', function(socket){
   // Player moves
   // TODO: Remove from this and client code
   socket.on('move', function(position){
-    if (engine.pairs[position.gameId]) {
+    if (engine.pairs[position.gameId] && engine.pairs[position.gameId].players[socket.id]) {
       engine.pairs[position.gameId].players[socket.id].y = position.y;
       engine.pairs[position.gameId].players[socket.id].z = position.z;
       
