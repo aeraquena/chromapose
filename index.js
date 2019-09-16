@@ -325,7 +325,6 @@ io.on('connection', function(socket){
         posZ[engine.pairs[position.gameId].players[playerIndex].role] = engine.pairs[position.gameId].players[playerIndex].z;
       }
 
-      // why are both '2'
       console.log(posY);
       console.log(posZ);
       
@@ -340,10 +339,10 @@ io.on('connection', function(socket){
       if (Math.abs(posY[2] - posY[1]) < positionBound &&
         Math.abs(posZ[2] - posZ[1]) < positionBound) {
         console.log('position match');
-        //io.emit('positionMatch', position.gameId);
+        io.emit('positionMatch', position.gameId);
       } else {
         console.log('position unmatch');
-        //io.emit('positionUnmatch', position.gameId);
+        io.emit('positionUnmatch', position.gameId);
       }
 
       console.log('---');
