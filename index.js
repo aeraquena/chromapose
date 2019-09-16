@@ -337,7 +337,7 @@ io.on('connection', function(socket){
       // also need to treat 0 and 1 as the same for posZ
       var posYDiff = Math.abs(posY[2] - posY[1]);
       var posZDiff = .5 - Math.abs(Math.abs(posZ[1] - posZ[2]) - .5);
-      console.log('posYDiff: ' + posYDiff + ', posZDiff: ' + posZDiff);
+      console.log('posYDiff: ' + posYDiff.toFixed(2) + ', posZDiff: ' + posZDiff.toFixed(2));
 
       var positionBound = .15;
 
