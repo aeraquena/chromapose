@@ -309,9 +309,9 @@ input[type=number] {
   border-width: 2px;
   border-style: solid;
   border-color: #fff;
-  transform: scale(1.5);
-  -moz-transform: scale(1.5);
-  -webkit-transform: scale(1.5);
+  transform: scale(1.4);
+  -moz-transform: scale(1.4);
+  -webkit-transform: scale(1.4);
 }
 
 #screen.match .ball.target {
@@ -345,7 +345,7 @@ input[type=number] {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.5);
+    transform: scale(1.4);
   }
   100% {
     transform: scale(1);
