@@ -315,15 +315,18 @@ io.on('connection', function(socket){
       engine.pairs[position.gameId].players[socket.id].z = position.z;
       
       for (var playerIndex in engine.pairs[position.gameId].players) {
-        //var y = {};
-        //var z = {};
+        var posY = {};
+        var posZ = {};
 
         console.log(playerIndex);
         console.log(engine.pairs[position.gameId].players[playerIndex]);
 
-        //y[role] = engine.pairs[position.gameId].players[playerIndex].y;
-        //z[role] = engine.pairs[position.gameId].players[playerIndex].z;
+        posY[role] = engine.pairs[position.gameId].players[playerIndex].y;
+        posZ[role] = engine.pairs[position.gameId].players[playerIndex].z;
       }
+
+      console.log(posY);
+      console.log(posZ);
       
       // Compare y and z to determine if players are face to face
       /*y[2] = 1 - y[2];
