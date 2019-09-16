@@ -315,8 +315,8 @@ io.on('connection', function(socket){
       engine.pairs[position.gameId].players[socket.id].z = position.z;
       
       for (var playerIndex in engine.pairs[position.gameId].players) {
-        var y = [];
-        var z = [];
+        var y = {};
+        var z = {};
 
         console.log(playerIndex);
         console.log(engine.pairs[position.gameId].players[playerIndex]);

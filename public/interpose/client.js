@@ -254,7 +254,7 @@
       }
     });
 
-    socket.on('positionMatch', function(thisPairId) {
+    /*socket.on('positionMatch', function(thisPairId) {
       if (thisPairId == pairId) {
         $('.instructions.top').removeClass('warning');
       }
@@ -264,7 +264,7 @@
       if (thisPairId == pairId) {
         $('.instructions.top').addClass('warning');
       }
-    });
+    });*/
 
     // A player moved, update their color
     /*socket.on('playerMoved', function(data) {
