@@ -331,8 +331,8 @@ io.on('connection', function(socket){
       // Compare y and z to determine if players are face to face
       //posZ[2] = 1 - posZ[2];
       // need to calculate this properly
-      posY[1] = Math.abs(.75 - posY[1]);
-      posY[2] = Math.abs(.75 - posY[2]);
+      posY[1] = Math.abs(posY[1] - .75);
+      posY[2] = Math.abs(posY[2] - .75);
 
       // also need to treat 0 and 1 as the same for posZ
       var posYDiff = Math.abs(posY[2] - posY[1]);
