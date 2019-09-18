@@ -439,8 +439,20 @@ input[type=number] {
   background-color: red;
 }
 
+.instructions.top .find-target {
+  display: block;
+}
+
 .instructions.top.warning .find-target {
   display: none;
+}
+
+.instructions.top .warning {
+  display: none;
+}
+
+.instructions.top.warning .warning {
+  display: block;
 }
 
 .instructions.bottom {
