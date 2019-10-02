@@ -166,6 +166,8 @@
       }
     });
 
+    $('#page').addClass('motion-off');
+
     // Detect if browser supports orientation
     if (typeof window.orientation !== 'undefined') { 
       // Mobile
