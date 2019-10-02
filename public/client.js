@@ -203,6 +203,10 @@
             // Change background color
             $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
 
+            if ($('#page').hasClass('motion-off')) {
+              $('#page').removeClass('motion-off');
+            }
+
             if (games && gameId) {
               checkMatch(hue, lightness);
 
@@ -230,6 +234,10 @@
 
           // Change background color
           $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
+
+          if ($('#page').hasClass('motion-off')) {
+            $('#page').removeClass('motion-off');
+          }
 
           if (games && gameId) {
             checkMatch(hue, lightness);
