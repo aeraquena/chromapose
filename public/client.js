@@ -166,7 +166,9 @@
       }
     });
 
-    if (typeof window.orientation ==  'undefined') {
+    // Detect if browser supports orientation
+    var orientation = screen.msOrientation || screen.mozOrientation || (screen.orientation || {}).type;
+    if (orientation === undefined) {
       $('#page').addClass('motion-off');
     }
 
