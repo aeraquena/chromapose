@@ -146,6 +146,10 @@ a:active {
   text-decoration: none;
 }
 
+a.kofi-button {
+  box-shadow: none;
+}
+
 #splash {
   position: absolute;
   font-size: 36px;
