@@ -291,6 +291,9 @@
     $('#input-number').on('cut keyup paste', function() {
       if ($('#input-number').val()) {
         $('#join-game-number').css('display', 'block');
+
+        // Scroll down to bottom
+        $("#splash").animate({ scrollTop: $('#splash').height() });
       } else {
         $('#join-game-number').hide();
       }
