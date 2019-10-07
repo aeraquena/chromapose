@@ -288,9 +288,9 @@
       $('#splash #input-number-container').show();
     });
 
-    $('#input-number').on('focus', function() {
-      // Scroll down to bottom
-      $("#splash").animate({ scrollTop: $('#splash').height() - $('#join-game-number').height() });
+    $('#input-number').on('blur', function() {
+        // Scroll down to bottom
+        $("#splash").animate({ scrollTop: $('#splash').height() - $('#join-game-number').height() });
     });
 
     $('#input-number').on('cut keyup paste', function() {
