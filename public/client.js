@@ -28,8 +28,7 @@
     socket.on('disconnectClient', function(socketId) {
       // Disconnected, go black
       if (socketId == oldSocketId) { 
-        $('#disconnection-notice').show();
-        //console.log('disconnected');
+        console.log('disconnected');
         //$('#page').remove();
       }
     });
