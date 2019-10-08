@@ -7,7 +7,7 @@
 
     var socket = io();
 
-    //var oldSocketId = socket.id; // used for erasing page when socket disconnects and removes id
+    var oldSocketId = socket.id; // used for erasing page when socket disconnects and removes id
 
     var gameId = null;
 
@@ -25,13 +25,13 @@
       }
     });*/
 
-    /*socket.on('disconnectClient', function(socketId) {
+    socket.on('disconnectClient', function(socketId) {
       // Disconnected, go black
       if (socketId == oldSocketId) { 
         console.log('disconnected');
-        $('#page').remove();
+        //$('#page').remove();
       }
-    });*/
+    });
 
     var games;
     var bound = 15;
