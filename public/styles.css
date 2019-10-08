@@ -258,10 +258,13 @@ input[type=number] {
   text-align: center;
   font-size: 20px;
   display: none;
+  line-height: 1.1em;
 }
 
 #tutorial .arrow {
   font-size: 50px;
+  display: block;
+  padding-top: 10px;
 }
 
 #tutorial .step-1,
@@ -270,14 +273,34 @@ input[type=number] {
   position: fixed;
   left: 0;
   right: 0;
-  top: 200px;
 }
+
+#tutorial .step-1 {
+  top: 70px;
+}
+
+@media only screen 
+  and (orientation: portrait) {
+  #tutorial .step-3,
+  #tutorial .step-4 {
+    top: 200px;
+  }
+}
+
+@media only screen 
+  and (orientation: landscape) {
+    #tutorial .step-3,
+    #tutorial .step-4 {
+      top: 100px;
+    }
+}
+
 
 #tutorial .step-2 {
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 50px;
+  bottom: 70px;
 }
 
 #tutorial.shown {
