@@ -28,7 +28,8 @@
     socket.on('disconnectClient', function(socketId) {
       // Disconnected, go black
       if (socketId == oldSocketId) { 
-        console.log('disconnected');
+        $('#disconnection-notice').show();
+        //console.log('disconnected');
         //$('#page').remove();
       }
     });
@@ -221,7 +222,7 @@
               checkMatch(hue, lightness);
 
               // Send position to server
-              console.log('move');
+              //console.log('move');
               socket.emit('move', {'gameId': gameId, 'y': lightness, 'z': hue});
             }
           }); // ,true
@@ -255,7 +256,7 @@
             checkMatch(hue, lightness);
 
             // Send position to server
-            console.log('move');
+            //console.log('move');
             socket.emit('move', {'gameId': gameId, 'y': lightness, 'z': hue});
           }
       })

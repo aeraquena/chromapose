@@ -435,3 +435,11 @@ body#about .photo-row img {
       margin: 5%;
     }
 }
+
+#disconnection-notice {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  font-size: 12px;
+}
