@@ -59,12 +59,20 @@ body:not(#about) {
 @keyframes win {
   0% {
     transform: scale(0);
+    display: none;
+  }
+  1% {
+    display: block;
   }
   50% {
     transform: scale(3);
   }
+  99% {
+    display: block;
+  }
   100% {
     transform: scale(0);
+    display: none;
   }
 }
 
