@@ -13,7 +13,7 @@
       var motionTimeout = setTimeout(function() {
         var orientation = screen.msOrientation || screen.mozOrientation || (screen.orientation || {}).type;
         if (orientation === undefined) {
-          $('#page').addClass('motion-off');
+          $('body').addClass('motion-off');
           console.log('motion off');
         }
       }, 200);
@@ -21,8 +21,8 @@
       if (window.DeviceOrientationEvent) {
         window.addEventListener("deviceorientation", function(event) {
           clearTimeout(motionTimeout);
-          if ($('#page').hasClass('motion-off')) {
-            $('#page').removeClass('motion-off');
+          if ($('body').hasClass('motion-off')) {
+            $('body').removeClass('motion-off');
             console.log('motion on');
           }
         });
