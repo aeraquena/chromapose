@@ -175,12 +175,12 @@
     }, 200);
 
     // Detect if browser supports orientation
-    //if (typeof window.orientation !== 'undefined') { 
+    if (typeof window.orientation !== 'undefined') { 
       // Mobile
 
       // Device orientation
-      //if (window.DeviceOrientationEvent) {
-          if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+      if (window.DeviceOrientationEvent) {
+          /*if (typeof DeviceOrientationEvent.requestPermission === 'function') {
             // iOS 13+
             DeviceOrientationEvent.requestPermission()
               .then(response => {
@@ -233,7 +233,7 @@
                 }
               })
               .catch(console.error);
-          } else {
+          } else {*/
             // Non iOS 13+
             window.addEventListener("deviceorientation", function(event) {
               clearTimeout(motionTimeout);
@@ -281,9 +281,9 @@
               }
             }); // ,true
 
-          }
-      //}
-    /*} else {
+          //}
+      }
+    } else {
       // Desktop
       $('#content').css('font-size', '18px');
 
@@ -317,7 +317,7 @@
           }
       })
       var e = window.event;
-    }*/
+    }
 
     // Show/hide instructions
     $('#instructionsLink').click(function() {
