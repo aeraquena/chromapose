@@ -252,6 +252,11 @@ input[type=number] {
   margin-bottom: 20px;
 }
 
+#interpose #motion-off {
+  font-size: 14px;
+  display: none;
+}
+
 /* Tutorial */
 
 #tutorial {

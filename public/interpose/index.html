@@ -6,13 +6,32 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700" rel="stylesheet">
     <link rel="stylesheet" href='./styles.css'>
+
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      if (!window.DeviceOrientationEvent) {
+        $('#part-1').hide();
+        $('#motion-off').show();
+      }
+    </script>
   </head>
-  <body>
+  <body id="interpose">
 
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script src='./intro.js'></script>
 
     <div id="splash">
+
+      <div id="motion-off">
+        <p class="subtitle">your phone's<br/>
+        <strong>motion access</strong><br/>
+        is off</p>
+        <p>using <strong>Safari</strong> on <strong>iOS 13</strong>?<br/>
+          try <strong>Chrome</strong> or <strong>Firefox</strong></p>
+        <p>using <strong>Safari</strong> on <strong>iOS 12</strong>?</p>
+        <a href="../access">enable motion access</a>
+      </div>
+
       <div id="part-1">
           <p class="centered title"><strong>interpose</strong></p>
           <p class="subtitle centered">find a dance partner<br/><br/>
@@ -27,13 +46,6 @@
             <div id="input-number-container">
               <div id="input-number-outer"><input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" id="input-number"></div>
               <button type="button" id="join-game-number">connect</button>
-            </div>
-            <div id="motion-off">
-              <p><strong>ball not moving?</strong></p>
-              <p class="subtitle">using <strong>Safari</strong> on <strong>iOS 13</strong>?<br/>
-                try <strong>Chrome</strong> or <strong>Firefox</strong></p>
-              <p class="subtitle">using <strong>Safari</strong> on <strong>iOS 12</strong>?</p>
-              <a href="../access">enable motion access</a>
             </div>
           </div>
         </div>
