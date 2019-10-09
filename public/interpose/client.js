@@ -199,7 +199,7 @@
     // Both v and h are matching
     function checkMatch() {
       //console.log('check match');
-      var bound = .25; //.03 // bounding box for color matches
+      var bound = .1; //.03 // bounding box for color matches
 
       // both players are matching
       //var isMatching = (diffVertical < bound) && (diffHorizontal < bound);
@@ -221,7 +221,7 @@
         prevImMatching = imMatching;
       }
 
-      var isMatching = imMatching && positionMatch;
+      var isMatching = imMatching && positionMatch; 
 
       // Only send a socket signal + change screen state if match state has changed
       if (isMatching != prevIsMatching) {
