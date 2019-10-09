@@ -6,11 +6,6 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700" rel="stylesheet">
     <link rel="stylesheet" href='./styles.css'>
-    <script>
-      function forceLower(strInput) {
-        strInput.value=strInput.value.toLowerCase();
-      }​
-    </script>
   </head>
   <body id="interpose">
 
@@ -42,7 +37,7 @@
               and enter it on<br/>
               both phones to connect</p>
             <div id="input-number-container">
-              <div id="input-number-outer"><input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" id="input-number" onkeyup="return forceLower(this);"></div>
+              <div id="input-number-outer"><input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" id="input-number"></div>
               <button type="button" id="join-game-number">connect</button>
             </div>
             <p class="subtitle awake">(keep your phone awake)</p>

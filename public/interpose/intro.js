@@ -38,7 +38,7 @@ $(function () {
 
   // Join game number
   $('#join-game-number').click(function() {
-    pairId = $('#input-number').val();
+    pairId = $('#input-number').val().toLowercase();
     $('#part-1').remove();
     $(window).scrollTop(0);
     $('#part-2').show();

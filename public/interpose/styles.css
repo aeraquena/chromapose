@@ -194,6 +194,7 @@ button:active {
   width: 196px;
   font-family: 'Roboto Mono', monospace;
   border-radius: 0;
+  text-transform: lowercase;
 }
 
 input::-webkit-outer-spin-button,
