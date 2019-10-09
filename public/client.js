@@ -7,7 +7,7 @@
 
     var socket = io();
 
-    var oldSocketId = socket.id; // used for erasing page when socket disconnects and removes id
+    //var oldSocketId = socket.id; // used for erasing page when socket disconnects and removes id
 
     var gameId = null;
 
@@ -25,13 +25,13 @@
       }
     });*/
 
-    socket.on('disconnectClient', function(socketId) {
+    /*socket.on('disconnectClient', function(socketId) {
       // Disconnected, go black
       if (socketId == oldSocketId) { 
         console.log('disconnected');
-        //$('#page').remove();
+        $('#page').remove();
       }
-    });
+    });*/
 
     var games;
     var bound = 15;
@@ -180,108 +180,51 @@
 
       // Device orientation
       if (window.DeviceOrientationEvent) {
-          /*if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-            // iOS 13+
-            DeviceOrientationEvent.requestPermission()
-              .then(response => {
-                if (response == 'granted') {
-                  window.addEventListener("deviceorientation", function(event) {
-                    clearTimeout(motionTimeout);
+          window.addEventListener("deviceorientation", function(event) {
+            clearTimeout(motionTimeout);
 
-                      // alpha: rotation around z-axis
-                      rotDeg = event.alpha;
-                      // gamma: left to right
-                      leftRight = event.gamma;
-                      // beta: front back motion
-                      frontBack = event.beta;
+              // alpha: rotation around z-axis
+              rotDeg = event.alpha;
+              // gamma: left to right
+              leftRight = event.gamma;
+              // beta: front back motion
+              frontBack = event.beta;
 
-                      // Left right rotation (around X-axis)
-                    $('span.value.lr').text(leftRight.toFixed(2));
-                    $('#lr').width(leftRight + 90);
+              // Left right rotation (around X-axis)
+            $('span.value.lr').text(leftRight.toFixed(2));
+            $('#lr').width(leftRight + 90);
 
-                    // Front back rotation (around Y-axis)
-                    $('span.value.fb').text(frontBack.toFixed(2));
-                    $('#fb').width(frontBack + 180);
+            // Front back rotation (around Y-axis)
+            $('span.value.fb').text(frontBack.toFixed(2));
+            $('#fb').width(frontBack + 180);
 
-                    // Alpha rotation (around Z-axis)
-                    $('span.value.rotdeg').text(rotDeg.toFixed(2));
-                    $('#rotdeg').width(rotDeg);
+            // Alpha rotation (around Z-axis)
+            $('span.value.rotdeg').text(rotDeg.toFixed(2));
+            $('#rotdeg').width(rotDeg);
 
-                    // Y = lightness
-                    // (Map front-back to lightness) + (Random 0-100) % 100
-                    // 20-80
-                    lightness = ((Math.floor(map(frontBack, -180, 180, 0, 60))) % 60) + 20;
+            // Y = lightness
+            // (Map front-back to lightness) + (Random 0-100) % 100
+            // 20-80
+            lightness = ((Math.floor(map(frontBack, -180, 180, 0, 60))) % 60) + 20;
 
-                    // Z = hue
-                    hue = (Math.floor(map(rotDeg, 0, 360, 255, 0))) % 255;
+            // Z = hue
+            hue = (Math.floor(map(rotDeg, 0, 360, 255, 0))) % 255;
 
-                    // Change background color
-                    $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
+            // Change background color
+            $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
 
-                    if ($('#page').hasClass('motion-off')) {
-                      $('#page').removeClass('motion-off');
-                    }
+            if ($('#page').hasClass('motion-off')) {
+              $('#page').removeClass('motion-off');
+            }
 
-                    if (games && gameId) {
-                      checkMatch(hue, lightness);
+            if (games && gameId) {
+              checkMatch(hue, lightness);
 
-                      // Send position to server
-                      //console.log('move');
-                      socket.emit('move', {'gameId': gameId, 'y': lightness, 'z': hue});
-                    }
-                  }); // ,true
-                }
-              })
-              .catch(console.error);
-          } else {*/
-            // Non iOS 13+
-            window.addEventListener("deviceorientation", function(event) {
-              clearTimeout(motionTimeout);
-
-                // alpha: rotation around z-axis
-                rotDeg = event.alpha;
-                // gamma: left to right
-                leftRight = event.gamma;
-                // beta: front back motion
-                frontBack = event.beta;
-
-                // Left right rotation (around X-axis)
-              $('span.value.lr').text(leftRight.toFixed(2));
-              $('#lr').width(leftRight + 90);
-
-              // Front back rotation (around Y-axis)
-              $('span.value.fb').text(frontBack.toFixed(2));
-              $('#fb').width(frontBack + 180);
-
-              // Alpha rotation (around Z-axis)
-              $('span.value.rotdeg').text(rotDeg.toFixed(2));
-              $('#rotdeg').width(rotDeg);
-
-              // Y = lightness
-              // (Map front-back to lightness) + (Random 0-100) % 100
-              // 20-80
-              lightness = ((Math.floor(map(frontBack, -180, 180, 0, 60))) % 60) + 20;
-
-              // Z = hue
-              hue = (Math.floor(map(rotDeg, 0, 360, 255, 0))) % 255;
-
-              // Change background color
-              $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
-
-              if ($('#page').hasClass('motion-off')) {
-                $('#page').removeClass('motion-off');
-              }
-
-              if (games && gameId) {
-                checkMatch(hue, lightness);
-
-                // Send position to server
-                //console.log('move');
-                socket.emit('move', {'gameId': gameId, 'y': lightness, 'z': hue});
-              }
-            }); // ,true
-
-          //}
+              // Send position to server
+              console.log('move');
+              socket.emit('move', {'gameId': gameId, 'y': lightness, 'z': hue});
+            }
+          }); // ,true
       }
     } else {
       // Desktop
@@ -312,7 +255,7 @@
             checkMatch(hue, lightness);
 
             // Send position to server
-            //console.log('move');
+            console.log('move');
             socket.emit('move', {'gameId': gameId, 'y': lightness, 'z': hue});
           }
       })

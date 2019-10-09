@@ -59,12 +59,12 @@
           $('span.text-r').text(role);
           if (pairs[pairId].players[socket.id].role == 1) {
             $('#screen').addClass('horizontal');
-            $('.instructions .instructions-orientation').text('HORIZONTAL');
-            $('.instructions .instructions-orientation-partner').text('VERTICAL');
+            $('.instructions .instructions-orientation').text('horizontal');
+            $('.instructions .instructions-orientation-partner').text('vertical');
           } else {
             $('#screen').addClass('vertical');
-            $('.instructions .instructions-orientation').text('VERTICAL');
-            $('.instructions .instructions-orientation-partner').text('HORIZONTAL');
+            $('.instructions .instructions-orientation').text('vertical');
+            $('.instructions .instructions-orientation-partner').text('horizontal');
           }
           //$('#screen').addClass('vertical horizontal');
         }
@@ -199,7 +199,7 @@
     // Both v and h are matching
     function checkMatch() {
       //console.log('check match');
-      var bound = .1; //.03 // bounding box for color matches
+      var bound = .05; //.03 // bounding box for color matches
 
       // both players are matching
       //var isMatching = (diffVertical < bound) && (diffHorizontal < bound);
@@ -221,7 +221,7 @@
         prevImMatching = imMatching;
       }
 
-      var isMatching = imMatching && positionMatch; 
+      var isMatching = imMatching && positionMatch;
 
       // Only send a socket signal + change screen state if match state has changed
       if (isMatching != prevIsMatching) {
