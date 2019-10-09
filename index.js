@@ -355,7 +355,7 @@ io.on('connection', function(socket){
       var posZDiff = .5 - Math.abs(Math.abs(posZ[1] - posZ[2]) - .5);
       //console.log('posYDiff: ' + posYDiff.toFixed(2) + ', posZDiff: ' + posZDiff.toFixed(2));
 
-      var positionBound = .2;
+      var positionBound = .3;
 
       if (posYDiff < positionBound &&
         posZDiff < positionBound) {
