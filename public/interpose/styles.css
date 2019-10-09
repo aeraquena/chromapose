@@ -53,6 +53,10 @@ body:not(#about) {
 
 #screen.win #winAnimation {
   display: block;
+  -webkit-animation: win .75s;
+  -moz-animation: win .75s;
+  -ms-animation: win .75s;
+  -o-animation: win .75s; 
    animation: win .75s;
 }
 
@@ -65,7 +69,7 @@ body:not(#about) {
     display: block;
   }
   50% {
-    transform: scale(3);
+    transform: scale(1);
   }
   99% {
     display: block;
@@ -324,6 +328,10 @@ input[type=number] {
 }
 
 #screen.match .ball.target {
+  -webkit-animation: pulse .75s infinite;
+  -moz-animation: pulse .75s infinite;
+  -ms-animation: pulse .75s infinite;
+  -o-animation: pulse .75s infinite;
   animation: pulse .75s infinite;
   z-index: 11;
 }
