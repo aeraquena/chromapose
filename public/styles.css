@@ -252,19 +252,6 @@ input[type=number] {
   margin-bottom: 20px;
 }
 
-#interpose #motion-off {
-  font-size: 14px;
-  display: none;
-}
-
-#interpose.motion-off #motion-off {
-  display: block;
-}
-
-#interpose.motion-off #part-1 {
-  display: none;
-}
-
 /* Tutorial */
 
 #tutorial {
