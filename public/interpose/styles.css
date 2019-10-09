@@ -38,9 +38,8 @@ body:not(#about) {
     right: 0;
     bottom: 0;
     margin: auto;
-    width: 300px;
-    height: 300px;
-    border-radius: 300px;
+    width: 100%;
+    height: 100%;
 }
 
 #screen.horizontal #winAnimation {
@@ -63,20 +62,12 @@ body:not(#about) {
 @keyframes win {
   0% {
     transform: scale(0);
-    visibility: hidden;
-  }
-  1% {
-    visibility: visible;
   }
   50% {
-    transform: scale(3);
-  }
-  99% {
-    visibility: visible;
+    transform: scale(1);
   }
   100% {
     transform: scale(0);
-    visibility: visible;
   }
 }
 
