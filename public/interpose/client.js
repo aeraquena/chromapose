@@ -199,7 +199,7 @@
     // Both v and h are matching
     function checkMatch() {
       //console.log('check match');
-      var bound = .1; //.03 // bounding box for color matches
+      var bound = .15; //.03 // bounding box for color matches
 
       // both players are matching
       //var isMatching = (diffVertical < bound) && (diffHorizontal < bound);
