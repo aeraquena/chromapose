@@ -52,7 +52,6 @@ body:not(#about) {
 }
 
 #screen.win #winAnimation {
-  display: block;
   -webkit-animation: win .75s;
   -moz-animation: win .75s;
   -ms-animation: win .75s;
