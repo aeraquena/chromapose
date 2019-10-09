@@ -175,6 +175,10 @@ a.kofi-button {
   margin-bottom: 30px;
 }
 
+#splash .subtitle.awake {
+  font-size: 14px;
+}
+
 #splash button,
 #splash .button {
   color: #fff;
