@@ -28,7 +28,7 @@
     socket.on('disconnectClient', function(socketId) {
       // Disconnected, go black
       if (socketId == oldSocketId) { 
-        console.log('disconnected!');
+        console.log('disconnected');
         //$('#page').remove();
       }
     });
@@ -180,7 +180,7 @@
 
       // Device orientation
       //if (window.DeviceOrientationEvent) {
-          //if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+          if (typeof DeviceOrientationEvent.requestPermission === 'function') {
             // iOS 13+
             DeviceOrientationEvent.requestPermission()
               .then(response => {
@@ -233,7 +233,7 @@
                 }
               })
               .catch(console.error);
-          /*} else {
+          } else {
             // Non iOS 13+
             window.addEventListener("deviceorientation", function(event) {
               clearTimeout(motionTimeout);
@@ -281,7 +281,7 @@
               }
             }); // ,true
 
-          }*/
+          }
       //}
     /*} else {
       // Desktop
