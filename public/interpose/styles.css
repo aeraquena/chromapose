@@ -52,6 +52,7 @@ body:not(#about) {
 }
 
 #screen.win #winAnimation {
+  display: block;
   -webkit-animation: win .75s;
   -moz-animation: win .75s;
   -ms-animation: win .75s;
@@ -62,20 +63,20 @@ body:not(#about) {
 @keyframes win {
   0% {
     transform: scale(0);
-    display: none;
+    visibility: hidden;
   }
   1% {
-    display: block;
+    visibility: visible;
   }
   50% {
-    transform: scale(1);
+    transform: scale(3);
   }
   99% {
-    display: block;
+    visibility: visible;
   }
   100% {
     transform: scale(0);
-    display: none;
+    visibility: visible;
   }
 }
 
