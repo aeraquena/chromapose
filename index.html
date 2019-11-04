@@ -12,7 +12,7 @@
   <body> 
     <!-- Code adapted from https://github.com/sgoedecke/socket-io-game -->
     <div id="page">
-    	<div id="screen">
+      <div id="screen">
         <div class="tutorial" id="tutorial">
           <div id="tutorial-1">
             <div class="step step-1">
@@ -57,11 +57,15 @@
             <div id="input-number-outer">#<input type="number" id="input-number"></div>
             <button id="join-game-number">join</button>
           </div>
+          <p class="subtitle awake">(keep your phone awake)</p>
         </div>
         <div id="motion-off">
           <p class="subtitle">your phone's<br/>
             <strong>motion access</strong><br/>
             is off</p>
+          <p class="subtitle">using <strong>Safari</strong> on <strong>iOS 13</strong>?<br/>
+            try <strong>Chrome</strong> or <strong>Firefox</strong></p>
+          <p class="subtitle">using <strong>Safari</strong> on <strong>iOS 12</strong>?</p>
           <a href="/access" class="button">enable</a>
         </div>
       </div>
@@ -95,6 +99,8 @@
         <div id='playerCount'></div>
         <div id="instructionsLink">?</div>
       </div>
+
+      <div id="disconnection-notice"></div>
     </div>
 
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>

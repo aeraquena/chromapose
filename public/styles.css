@@ -175,6 +175,10 @@ a.kofi-button {
   margin-bottom: 30px;
 }
 
+#splash .subtitle.awake {
+  font-size: 14px;
+}
+
 #splash button,
 #splash .button {
   color: #fff;
@@ -427,11 +431,19 @@ body#about .photo-row img {
 
 /* Portrait and Landscape */
 @media only screen 
-  and (min-device-width: 375px) 
+  and (min-device-width: 320px) 
   and (max-device-width: 812px) 
-  and (-webkit-min-device-pixel-ratio: 3) { 
+  and (-webkit-min-device-pixel-ratio: 2) { 
     body#about {
       font-size: 18px;
       margin: 5%;
     }
 }
+
+/*#disconnection-notice {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  font-size: 12px;
+}*/
