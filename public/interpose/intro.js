@@ -1,6 +1,25 @@
 $(function () {
   // Intro screen
 
+   // Detect if browser supports orientation
+      var motionTimeout = setTimeout(function() {
+        var orientation = screen.msOrientation || screen.mozOrientation || (screen.orientation || {}).type;
+        if (orientation === undefined) {
+          $('body').addClass('motion-off');
+          console.log('motion off');
+        }
+      }, 200);
+
+      if (window.DeviceOrientationEvent) {
+        window.addEventListener("deviceorientation", function(event) {
+          clearTimeout(motionTimeout);
+          if ($('body').hasClass('motion-off')) {
+            $('body').removeClass('motion-off');
+            console.log('motion on');
+          }
+        });
+      }
+
   var pairId;
 
   // Join game
@@ -20,6 +39,7 @@ $(function () {
   // Join game number
   $('#join-game-number').click(function() {
     pairId = $('#input-number').val();
+    pairId = pairId.toLowerCase();
     $('#part-1').remove();
     $(window).scrollTop(0);
     $('#part-2').show();
