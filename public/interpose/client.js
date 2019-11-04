@@ -63,8 +63,8 @@
             $('.instructions .instructions-orientation-partner').text('UP AND DOWN');
           } else {
             $('#screen').addClass('vertical');
-            $('.instructions .instructions-orientation').text('SIDE TO SIDE');
-            $('.instructions .instructions-orientation-partner').text('UP AND DOWN');
+            $('.instructions .instructions-orientation').text('UP AND DOWN');
+            $('.instructions .instructions-orientation-partner').text('SIDE TO SIDE');
           }
           //$('#screen').addClass('vertical horizontal');
         }
