@@ -38,9 +38,8 @@ body:not(#about) {
     right: 0;
     bottom: 0;
     margin: auto;
-    width: 300px;
-    height: 300px;
-    border-radius: 300px;
+    width: 100%;
+    height: 100%;
 }
 
 #screen.horizontal #winAnimation {
@@ -53,6 +52,10 @@ body:not(#about) {
 
 #screen.win #winAnimation {
   display: block;
+  -webkit-animation: win .75s;
+  -moz-animation: win .75s;
+  -ms-animation: win .75s;
+  -o-animation: win .75s; 
    animation: win .75s;
 }
 
@@ -61,7 +64,7 @@ body:not(#about) {
     transform: scale(0);
   }
   50% {
-    transform: scale(3);
+    transform: scale(1);
   }
   100% {
     transform: scale(0);
@@ -194,6 +197,7 @@ button:active {
   width: 196px;
   font-family: 'Roboto Mono', monospace;
   border-radius: 0;
+  text-transform: lowercase;
 }
 
 input::-webkit-outer-spin-button,
@@ -315,6 +319,10 @@ input[type=number] {
 }
 
 #screen.match .ball.target {
+  -webkit-animation: pulse .75s infinite;
+  -moz-animation: pulse .75s infinite;
+  -ms-animation: pulse .75s infinite;
+  -o-animation: pulse .75s infinite;
   animation: pulse .75s infinite;
   z-index: 11;
 }
@@ -463,6 +471,22 @@ input[type=number] {
   margin-bottom: 0;
 }
 
+#start-buttons .subtitle.awake {
+  font-size: 14px;
+}
+
 #splash .subtitle.pretitle {
   margin-bottom: 0;
+}
+
+#interpose #motion-off {
+  display: none;
+}
+
+#interpose.motion-off #motion-off {
+  display: block;
+}
+
+#interpose.motion-off #part-1 {
+  display: none;
 }
