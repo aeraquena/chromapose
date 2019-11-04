@@ -29,7 +29,7 @@
     var screenHeight = window.innerHeight - topMargin - bottomMargin;
     var screenWidth = window.innerWidth;
 
-    var positionMatch = false;
+    //var positionMatch = false;
 
     /*var winSize = Math.max(window.innerWidth, window.innerHeight);
     $('winAnimation').css('width', winSize);
@@ -174,7 +174,7 @@
               checkMatch();
 
               // Send position to server
-              socket.emit('move', {'gameId': pairId, 'y': scaleVertical, 'z': scaleHorizontal});
+              //socket.emit('move', {'gameId': pairId, 'y': scaleVertical, 'z': scaleHorizontal});
             }
 
           }
@@ -221,7 +221,7 @@
         prevImMatching = imMatching;
       }
 
-      var isMatching = imMatching && positionMatch;
+      var isMatching = imMatching;// && positionMatch;
 
       // Only send a socket signal + change screen state if match state has changed
       if (isMatching != prevIsMatching) {
@@ -259,7 +259,7 @@
     });
 
     // Whether phones are held together
-    socket.on('positionMatch', function(thisPairId) {
+    /*socket.on('positionMatch', function(thisPairId) {
       if (thisPairId == pairId) {
         $('.instructions.top').removeClass('warning');
         positionMatch = true;
@@ -271,7 +271,7 @@
         $('.instructions.top').addClass('warning');
         positionMatch = false;
       }
-    });
+    });*/
 
     // A player moved, update their color
     /*socket.on('playerMoved', function(data) {

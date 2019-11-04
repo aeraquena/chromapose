@@ -309,7 +309,7 @@ io.on('connection', function(socket){
 
   // Player moves
   // TODO: Remove from this and client code
-  socket.on('move', function(position){
+  /*socket.on('move', function(position){
     if (engine.pairs[position.gameId] && engine.pairs[position.gameId].players[socket.id]) {
       engine.pairs[position.gameId].players[socket.id].y = position.y;
       engine.pairs[position.gameId].players[socket.id].z = position.z;
@@ -334,7 +334,7 @@ io.on('connection', function(socket){
       /*posY[1] = Math.abs(posY[1] - .75);
       posY[2] = Math.abs(posY[2] - .75);*/
 
-      if (posY[1] < .75) {
+      /*if (posY[1] < .75) {
         posY[1] = Math.min(.75 - posY[1], posY[1] + .25);
       } else if (posY[1] > .75) {
         posY[1] = posY[1] - .75;
@@ -368,7 +368,7 @@ io.on('connection', function(socket){
 
       //console.log('---');
     }
-  });
+  });*/
 });
 
 // Redirect all HTTP traffic to HTTPS
