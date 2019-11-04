@@ -59,12 +59,12 @@
           $('span.text-r').text(role);
           if (pairs[pairId].players[socket.id].role == 1) {
             $('#screen').addClass('horizontal');
-            $('.instructions .instructions-orientation').text('horizontal');
-            $('.instructions .instructions-orientation-partner').text('vertical');
+            $('.instructions .instructions-orientation').text('SIDE TO SIDE');
+            $('.instructions .instructions-orientation-partner').text('UP AND DOWN');
           } else {
             $('#screen').addClass('vertical');
-            $('.instructions .instructions-orientation').text('vertical');
-            $('.instructions .instructions-orientation-partner').text('horizontal');
+            $('.instructions .instructions-orientation').text('SIDE TO SIDE');
+            $('.instructions .instructions-orientation-partner').text('UP AND DOWN');
           }
           //$('#screen').addClass('vertical horizontal');
         }
