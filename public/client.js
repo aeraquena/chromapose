@@ -167,12 +167,12 @@
     });
 
     // Detect if browser supports orientation
-    /*var motionTimeout = setTimeout(function() {
+    var motionTimeout = setTimeout(function() {
       var orientation = screen.msOrientation || screen.mozOrientation || (screen.orientation || {}).type;
       if (orientation === undefined) {
         $('#page').addClass('motion-off');
       }
-    }, 200);*/
+    }, 200);
 
     // Detect if browser supports orientation
     //if (typeof window.orientation !== 'undefined') { 
@@ -188,7 +188,7 @@
             .then(response => {
               if (response == 'granted') {
                 window.addEventListener("deviceorientation", function(event) {
-                  //clearTimeout(motionTimeout);
+                  clearTimeout(motionTimeout);
 
                     // alpha: rotation around z-axis
                     rotDeg = event.alpha;
@@ -238,7 +238,7 @@
           } else {
             // Non iOS 13+
             window.addEventListener("deviceorientation", function(event) {
-              //clearTimeout(motionTimeout);
+              clearTimeout(motionTimeout);
 
                 // alpha: rotation around z-axis
                 rotDeg = event.alpha;
