@@ -178,6 +178,8 @@
     //if (typeof window.orientation !== 'undefined') { 
       // Mobile
 
+    $('.awake').click(function() {
+
       // Device orientation
       //if (window.DeviceOrientationEvent) {
         if (typeof DeviceOrientationEvent.requestPermission === 'function') {
@@ -281,6 +283,7 @@
               }
             }); // ,true
           }
+    });
         //}
     /*} else {
       // Desktop
