@@ -167,12 +167,12 @@
     });
 
     // Detect if browser supports orientation
-    var motionTimeout = setTimeout(function() {
+    /*var motionTimeout = setTimeout(function() {
       var orientation = screen.msOrientation || screen.mozOrientation || (screen.orientation || {}).type;
       if (orientation === undefined) {
         $('#page').addClass('motion-off');
       }
-    }, 200);
+    }, 200);*/
 
     // Detect if browser supports orientation
     if (typeof window.orientation !== 'undefined') { 
@@ -181,7 +181,7 @@
       // Device orientation
       if (window.DeviceOrientationEvent) {
           window.addEventListener("deviceorientation", function(event) {
-            clearTimeout(motionTimeout);
+            //clearTimeout(motionTimeout);
 
               // alpha: rotation around z-axis
               rotDeg = event.alpha;
@@ -235,7 +235,7 @@
 
       $("body").mousemove(function(e) {
 
-        clearTimeout(motionTimeout);
+        //clearTimeout(motionTimeout);
         
           hue = (Math.floor(map(e.pageX, 0, bodyWidth, 255, 0))) % 255;
           lightness = (Math.floor(map(e.pageY, 0, bodyHeight, 0, 80)) % 80) + 20;
