@@ -175,7 +175,7 @@
     }, 200);*/
 
     // Detect if browser supports orientation
-    if (typeof window.orientation !== 'undefined') { 
+    //if (typeof window.orientation !== 'undefined') { 
       // Mobile
 
       // Device orientation
@@ -226,7 +226,7 @@
             }
           }); // ,true
       }
-    } else {
+    /*} else {
       // Desktop
       $('#content').css('font-size', '18px');
 
@@ -260,7 +260,7 @@
           }
       })
       var e = window.event;
-    }
+    }*/
 
     // Show/hide instructions
     $('#instructionsLink').click(function() {
