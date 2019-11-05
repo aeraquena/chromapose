@@ -178,7 +178,7 @@
     //if (typeof window.orientation !== 'undefined') { 
       // Mobile
 
-    $('.awake').click(function() {
+    $('#request-permission').click(function() {
 
       // Device orientation
       //if (window.DeviceOrientationEvent) {
