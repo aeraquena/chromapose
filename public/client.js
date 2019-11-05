@@ -179,7 +179,7 @@
       // Mobile
 
       // Device orientation
-      if (window.DeviceOrientationEvent) {
+      //if (window.DeviceOrientationEvent) {
         if (typeof DeviceOrientationEvent.requestPermission === 'function') {
           // iOS 13+
           DeviceOrientationEvent.requestPermission()
@@ -281,7 +281,7 @@
               }
             }); // ,true
           }
-        }
+        //}
     /*} else {
       // Desktop
       $('#content').css('font-size', '18px');
