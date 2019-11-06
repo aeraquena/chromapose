@@ -23,15 +23,14 @@ $(function () {
       if (typeof DeviceOrientationEvent.requestPermission === 'function') {
         $('#request-permission').click(function() {
 
-          $('#page').removeClass('motion-off');
+          $('body').removeClass('motion-off');
 
-          DeviceOrientationEvent.requestPermission()
-            .then(response => {
-              if (response == 'granted') {
+          DeviceOrientationEvent.requestPermission().then(response => {
+            if (response == 'granted') {
                 window.addEventListener("deviceorientation", function(event) {
                 });
               }
-            }
+            });
           });
       }
 
