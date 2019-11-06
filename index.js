@@ -104,6 +104,37 @@ io.on('connection', function(socket){
     // Do the same for pairs
   })
 
+  // Player reconnects to game
+  socket.on('reconnect', function(gameId) {
+    console.log('reconnect game id: ' + gameId);
+
+    // Create game if it doesn't exist
+    // TODO: Remove this
+    if (!engine.games[gameId]) {
+      // Create instance of game
+      engine.games[gameId] = {
+        players: {},
+        targetColor: {
+          'hue': 0, 
+          'lightness': 0
+        }
+      };
+
+      console.log('Join, change target color');
+      engine.changeTargetColor(gameId) // TODO: For this game
+      updateInterval = setInterval(emitUpdates, 40) // necessary for each game?
+    }
+
+    // Assign player to game
+    engine.games[gameId].players[socket.id] = {
+      matching: false, // is player matching?
+      y: 0,
+      z: 0
+    }
+
+    console.log(engine.games);
+  })
+
   // Player joins game
   socket.on('join', function(gameId) {
     console.log('join game id: ' + gameId);

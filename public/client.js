@@ -32,11 +32,16 @@
       if (gameId) {
         $('#disconnection-notice-2').html('RECONNECTING');
         // MAYBE: Check if current socket id is in the game
+
+        // Reconnect to the game
+        socket.emit('reconnect', gameId);
+
       } else {
         $('#disconnection-notice-2').html('NOT RECONNECTING');
       }
     });
 
+    // TODO: Remove?
     socket.on('disconnectClient', function(socketId) {
         $('#disconnection-notice-2').html('disconnected socket id: ' + socketId);
         console.log('disconnected socket id: ' + socketId);
