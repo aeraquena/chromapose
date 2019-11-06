@@ -12,9 +12,20 @@
 
     socket.on('gameCreated', updatePairId);
 
+    // User connects
+    socket.on('userConnected', function() {
+      console.log('user connected');
+      
+      // Check whether there's an active game
+      if (pairId && role) {
+        // Reconnect to the game
+        socket.emit('reconnectPair', {'pairId': pairId, 'role': role});
+      }
+    });
+
     var pairs;
 
-    var games; //
+    var games;
     var bound = 15;
     var minBound = 12;
 
@@ -48,7 +59,7 @@
 
     function updateGameState(gameState) {
       // update local state to match state on server
-      games = gameState.games; //
+      games = gameState.games;
       pairs = gameState.pairs;
 
       if (pairs && pairs[pairId] && pairs[pairId].players[socket.id]) {

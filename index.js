@@ -133,6 +133,37 @@ io.on('connection', function(socket){
     console.log(engine.games);
   });
 
+  // Player reconnects to pair
+  socket.on('reconnectPair', function(pairInfo) {
+
+    console.log('reconnect pair id: ' + pairInfo.pairId);
+
+    // Create game if it doesn't exist
+    if (!engine.pairs[pairId]) {
+      // Create instance of game
+      engine.pairs[pairId] = {
+        players: {},
+        targetPoint: {
+          'v': 0, 
+          'h': 0
+        }
+      };
+
+      engine.changeTargetPoint(pairId)
+      updateInterval = setInterval(emitUpdates, 40) // necessary for each game?
+    }
+
+    // Assign player to game
+    engine.pairs[pairInfo.pairId].players[socket.id] = {
+      matching: false, // is player matching?
+      y: 0, // change to v
+      z: 0, // change to h
+      role: pairInfo.role
+    }
+
+    console.log(engine.pairs);
+  });
+
   // Player joins game
   socket.on('join', function(gameId) {
     console.log('join game id: ' + gameId);
