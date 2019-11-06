@@ -139,9 +139,9 @@ io.on('connection', function(socket){
     console.log('reconnect pair id: ' + pairInfo.pairId);
 
     // Create game if it doesn't exist
-    if (!engine.pairs[pairId]) {
+    if (!engine.pairs[pairInfo.pairId]) {
       // Create instance of game
-      engine.pairs[pairId] = {
+      engine.pairs[pairInfo.pairId] = {
         players: {},
         targetPoint: {
           'v': 0, 
@@ -149,7 +149,7 @@ io.on('connection', function(socket){
         }
       };
 
-      engine.changeTargetPoint(pairId)
+      engine.changeTargetPoint(pairInfo.pairId)
       updateInterval = setInterval(emitUpdates, 40) // necessary for each game?
     }
 
