@@ -7,7 +7,10 @@
 
     var socket = io();
 
+    // this may not be updated at first?
     var oldSocketId = socket.id; // used for erasing page when socket disconnects and removes id
+
+    $('#disconnection-notice').html('socket id: ' + oldSocketId);
 
     var gameId = null;
 
@@ -26,9 +29,10 @@
     });*/
 
     socket.on('disconnectClient', function(socketId) {
+        $('#disconnection-notice').html($('#disconnection-notice').html() + '<br/>disconnected socket id: ' + socketId);
       // Disconnected, go black
       if (socketId == oldSocketId) { // this doesn't work because new socket id is different from old
-        console.log('disconnected');
+        //console.log('disconnected');
         $('#page').remove();
       }
     });
