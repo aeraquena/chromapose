@@ -8,7 +8,7 @@
     var socket = io();
 
     // this may not be updated at first?
-    var oldSocketId = socket.id; // used for erasing page when socket disconnects and removes id
+    var oldSocketId;// = socket.id; // used for erasing page when socket disconnects and removes id
 
     $('#disconnection-notice').html('socket id: ' + oldSocketId);
 
@@ -74,6 +74,9 @@
       if (game.socketId == socket.id) { 
         $('#top #gameId').text('#' + game.gameId);
         gameId = game.gameId;
+
+        oldSocketId = socket.id;
+        $('#disconnection-notice').html('socket id: ' + oldSocketId);
       }
     }
 
