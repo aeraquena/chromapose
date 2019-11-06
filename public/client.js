@@ -27,10 +27,10 @@
 
     socket.on('disconnectClient', function(socketId) {
       // Disconnected, go black
-      if (socketId == oldSocketId) { 
+      //if (socketId == oldSocketId) { // this doesn't work because new socket id is different from old
         console.log('disconnected');
         $('#page').remove();
-      }
+      //}
     });
 
     var games;
