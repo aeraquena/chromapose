@@ -2,22 +2,37 @@ $(function () {
   // Intro screen
 
    // Detect if browser supports orientation
-      var motionTimeout = setTimeout(function() {
+      /*var motionTimeout = setTimeout(function() {
         var orientation = screen.msOrientation || screen.mozOrientation || (screen.orientation || {}).type;
         if (orientation === undefined) {
           $('body').addClass('motion-off');
           console.log('motion off');
         }
-      }, 200);
+      }, 200);*/
 
-      if (window.DeviceOrientationEvent) {
-        window.addEventListener("deviceorientation", function(event) {
+      //if (window.DeviceOrientationEvent) {
+        /*window.addEventListener("deviceorientation", function(event) {
           clearTimeout(motionTimeout);
           if ($('body').hasClass('motion-off')) {
             $('body').removeClass('motion-off');
             console.log('motion on');
           }
-        });
+        });*/
+      //}
+
+      if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+        $('#request-permission').click(function() {
+
+          $('#page').removeClass('motion-off');
+
+          DeviceOrientationEvent.requestPermission()
+            .then(response => {
+              if (response == 'granted') {
+                window.addEventListener("deviceorientation", function(event) {
+                });
+              }
+            }
+          });
       }
 
   var pairId;
