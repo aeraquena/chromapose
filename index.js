@@ -102,10 +102,10 @@ io.on('connection', function(socket){
     console.log(engine.pairs);
 
     // Do the same for pairs
-  })
+  });
 
   // Player reconnects to game
-  socket.on('reconnect', function(gameId) {
+  socket.on('reconnection', function(gameId) {
     console.log('reconnect game id: ' + gameId);
 
     // Create game if it doesn't exist
@@ -133,7 +133,7 @@ io.on('connection', function(socket){
     }
 
     console.log(engine.games);
-  })
+  });
 
   // Player joins game
   socket.on('join', function(gameId) {

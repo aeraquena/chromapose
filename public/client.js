@@ -34,11 +34,11 @@
         // MAYBE: Check if current socket id is in the game
 
         // Reconnect to the game
-        socket.emit('reconnect', gameId);
+        socket.emit('reconnection', gameId);
 
-      } else {
+      }/* else {
         $('#disconnection-notice-2').html('NOT RECONNECTING');
-      }
+      }*/
     });
 
     // TODO: Remove?
