@@ -16,15 +16,26 @@
 
     socket.on('gameCreated', updateGameId);
 
-    // User connected. If reconnecting, go back to main menu
-    /*socket.on('userConnected', function() {
+    // User connected. 
+      // OLD: If reconnecting, go back to main menu
+      // but needs to detect whether it's waking from sleep...
+      // is there a game? is the current socket id in it?
+    socket.on('userConnected', function() {
       console.log('user connected');
       // Not on splash screen
-      if ($('#splash').length == 0) {
+      /*if ($('#splash').length == 0) {
         console.log('reload');
         location.reload();
+      }*/
+
+      // Check whether there's an active game
+      if (gameId) {
+        $('#disconnection-notice-2').html('RECONNECTING');
+        // MAYBE: Check if current socket id is in the game
+      } else {
+        $('#disconnection-notice-2').html('NOT RECONNECTING');
       }
-    });*/
+    });
 
     socket.on('disconnectClient', function(socketId) {
         $('#disconnection-notice-2').html('disconnected socket id: ' + socketId);
