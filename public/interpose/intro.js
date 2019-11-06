@@ -32,6 +32,8 @@ $(function () {
               }
             });
           });
+      } else {
+        $('body').removeClass('motion-off');
       }
 
   var pairId;
