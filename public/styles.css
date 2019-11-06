@@ -447,3 +447,11 @@ body#about .photo-row img {
   left: 0;
   font-size: 12px;
 }
+
+#disconnection-notice-2 {
+  /*display: none;*/
+  position: fixed;
+  bottom: 0px;
+  left: 0;
+  font-size: 12px;
+}
