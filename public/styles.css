@@ -443,7 +443,7 @@ body#about .photo-row img {
 #disconnection-notice {
   /*display: none;*/
   position: fixed;
-  bottom: 0;
+  bottom: 20px;
   left: 0;
   font-size: 12px;
 }

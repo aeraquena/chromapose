@@ -10,8 +10,6 @@
     // this may not be updated at first?
     var oldSocketId;// = socket.id; // used for erasing page when socket disconnects and removes id
 
-    $('#disconnection-notice').html('socket id: ' + oldSocketId);
-
     var gameId = null;
 
     socket.on('gameStateUpdate', updateGameState);
