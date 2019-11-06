@@ -28,9 +28,11 @@
 
     socket.on('disconnectClient', function(socketId) {
         $('#disconnection-notice-2').html('disconnected socket id: ' + socketId);
+        console.log('disconnected socket id: ' + socketId);
+        console.log('old socket id: ' + oldSocketId);
       // Disconnected, go black
       if (socketId == oldSocketId) { // this doesn't work because new socket id is different from old
-        //console.log('disconnected');
+        console.log('disconnected');
         $('#page').remove();
       }
     });
