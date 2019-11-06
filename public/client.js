@@ -236,7 +236,7 @@
 
                   // Send position to server
                   //console.log('move');
-                  socket.emit('move', {'gameId': gameId, 'y': lightness, 'z': hue});
+                  //socket.emit('move', {'gameId': gameId, 'y': lightness, 'z': hue});
                 }
               }); // ,true
             }
@@ -288,8 +288,7 @@
           checkMatch(hue, lightness);
 
           // Send position to server
-          console.log('move');
-          socket.emit('move', {'gameId': gameId, 'y': lightness, 'z': hue});
+          //socket.emit('move', {'gameId': gameId, 'y': lightness, 'z': hue});
         }
       }); // ,true
     }
@@ -378,6 +377,9 @@
 
       // Add game ID to display
       $('#top #gameId').text('#' + gameId);
+
+      oldSocketId = socket.id;
+      $('#disconnection-notice').html('socket id: ' + oldSocketId);
 
       // Add user to game object players
       socket.emit('join', gameId);
