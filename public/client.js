@@ -7,49 +7,20 @@
 
     var socket = io();
 
-    // this may not be updated at first?
-    var oldSocketId;// = socket.id; // used for erasing page when socket disconnects and removes id
-
     var gameId = null;
 
     socket.on('gameStateUpdate', updateGameState);
 
     socket.on('gameCreated', updateGameId);
 
-    // User connected. 
-      // OLD: If reconnecting, go back to main menu
-      // but needs to detect whether it's waking from sleep...
-      // is there a game? is the current socket id in it?
+    // User connects
     socket.on('userConnected', function() {
       console.log('user connected');
-      // Not on splash screen
-      /*if ($('#splash').length == 0) {
-        console.log('reload');
-        location.reload();
-      }*/
-
+      
       // Check whether there's an active game
       if (gameId) {
-        $('#disconnection-notice-2').html('RECONNECTING');
-        // MAYBE: Check if current socket id is in the game
-
         // Reconnect to the game
         socket.emit('reconnection', gameId);
-
-      }/* else {
-        $('#disconnection-notice-2').html('NOT RECONNECTING');
-      }*/
-    });
-
-    // TODO: Remove?
-    socket.on('disconnectClient', function(socketId) {
-        $('#disconnection-notice-2').html('disconnected socket id: ' + socketId);
-        console.log('disconnected socket id: ' + socketId);
-        console.log('old socket id: ' + oldSocketId);
-      // Disconnected, go black
-      if (socketId == oldSocketId) { // this doesn't work because new socket id is different from old
-        console.log('disconnected');
-        $('#page').remove();
       }
     });
 
@@ -90,9 +61,6 @@
       if (game.socketId == socket.id) { 
         $('#top #gameId').text('#' + game.gameId);
         gameId = game.gameId;
-
-        oldSocketId = socket.id;
-        $('#disconnection-notice').html('socket id: ' + oldSocketId);
       }
     }
 
@@ -395,9 +363,6 @@
 
       // Add game ID to display
       $('#top #gameId').text('#' + gameId);
-
-      oldSocketId = socket.id;
-      $('#disconnection-notice').html('socket id: ' + oldSocketId);
 
       // Add user to game object players
       socket.emit('join', gameId);

@@ -34,7 +34,6 @@ io.on('connection', function(socket){
 
   // On player disconnect
   socket.on('disconnect', function() {
-    io.emit('disconnectClient', socket.id);
     console.log('disconnect, socket id: ' + socket.id);
     // Find which game the player belonged to
     var gameId;
@@ -109,7 +108,6 @@ io.on('connection', function(socket){
     console.log('reconnect game id: ' + gameId);
 
     // Create game if it doesn't exist
-    // TODO: Remove this
     if (!engine.games[gameId]) {
       // Create instance of game
       engine.games[gameId] = {
