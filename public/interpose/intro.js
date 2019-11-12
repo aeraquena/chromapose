@@ -1,40 +1,21 @@
 $(function () {
   // Intro screen
 
-   // Detect if browser supports orientation
-      /*var motionTimeout = setTimeout(function() {
-        var orientation = screen.msOrientation || screen.mozOrientation || (screen.orientation || {}).type;
-        if (orientation === undefined) {
-          $('body').addClass('motion-off');
-          console.log('motion off');
-        }
-      }, 200);*/
+  if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+    $('#request-permission').click(function() {
 
-      //if (window.DeviceOrientationEvent) {
-        /*window.addEventListener("deviceorientation", function(event) {
-          clearTimeout(motionTimeout);
-          if ($('body').hasClass('motion-off')) {
-            $('body').removeClass('motion-off');
-            console.log('motion on');
-          }
-        });*/
-      //}
+      $('body').removeClass('motion-off');
 
-      if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-        $('#request-permission').click(function() {
-
-          $('body').removeClass('motion-off');
-
-          DeviceOrientationEvent.requestPermission().then(response => {
-            if (response == 'granted') {
-                window.addEventListener("deviceorientation", function(event) {
-                });
-              }
+      DeviceOrientationEvent.requestPermission().then(response => {
+        if (response == 'granted') {
+            window.addEventListener("deviceorientation", function(event) {
             });
-          });
-      } else {
-        $('body').removeClass('motion-off');
-      }
+          }
+        });
+      });
+  } else {
+    $('body').removeClass('motion-off');
+  }
 
   var pairId;
 
@@ -69,7 +50,5 @@ $(function () {
     setTimeout(function() {
       document.location.replace('game.html#' + pairId);
     }, 750);
-
   });
-
 });
