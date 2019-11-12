@@ -1,7 +1,7 @@
   $(function () {
 
-    var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
-    console.log('hash: ' + hash);
+    // Puts hash in variable, and removes the # character
+    var hash = window.location.hash.substring(1); 
 
     var socket = io();
 
@@ -40,13 +40,6 @@
     var screenHeight = window.innerHeight - topMargin - bottomMargin;
     var screenWidth = window.innerWidth;
 
-    //var positionMatch = false;
-
-    /*var winSize = Math.max(window.innerWidth, window.innerHeight);
-    $('winAnimation').css('width', winSize);
-    $('winAnimation').css('height', winSize);
-    $('winAnimation').css('border-radius', winSize);*/
-
     var ballSize = 75;
 
     socket.emit('joinPair', hash);
@@ -77,21 +70,15 @@
             $('.instructions .instructions-orientation').text('UP AND DOWN');
             $('.instructions .instructions-orientation-partner').text('SIDE TO SIDE');
           }
-          //$('#screen').addClass('vertical horizontal');
         }
 
         if (myTargetPoint) {
           $('.ball.target.horizontal').css('left', screenWidth - (myTargetPoint.h * screenWidth) - ballSize/2);
           $('.ball.target.vertical').css('top', screenHeight - (myTargetPoint.v * screenHeight) - ballSize/2 + topMargin);
-
-          // update info
-          //$('span.text-th').text(myTargetPoint.h.toFixed(2));
-          //$('span.text-tv').text(myTargetPoint.v.toFixed(2));
         }
       }
     }
 
-    //
     function updatePairId(game) {
       console.log('-- update game id --');
       if (game.socketId == socket.id) { 
@@ -100,19 +87,17 @@
     }
 
     function gameLoop() {
-      // update game
+      // Update game
       updateGameState({
-        games: games, //
+        games: games,
         pairs: pairs
       })
     }
 
-    //
     /* Movement */
 
     // Local variables specific to player's device
     var rotDeg, leftRight, frontBack;
-    //var hue, lightness;
 
     var prevIsMatching = false;
     var prevImMatching = false;
@@ -183,37 +168,29 @@
 
             if (pairs && pairId) {
               checkMatch();
-
-              // Send position to server
-              //socket.emit('move', {'gameId': pairId, 'y': scaleVertical, 'z': scaleHorizontal});
             }
 
           }
         });
     }
 
-    $(window).bind( 'orientationchange', function(e){
+    $(window).bind('orientationchange', function(e){
         var ori = window.orientation;
-        if (ori==90 || ori==-90) {
+        if (ori == 90 || ori == -90) {
           // horizontal
           screenHeight = screen.width;
           screenWidth = screen.height;
-          console.log('changed to landscape');
         } else {
+          // vertical
           screenHeight = screen.height;
           screenWidth = screen.width;
-          console.log('changed to portrait');
         }
     });
 
     // Checks match between target and user color
     // Both v and h are matching
     function checkMatch() {
-      //console.log('check match');
-      var bound = .1; //.03 // bounding box for color matches
-
-      // both players are matching
-      //var isMatching = (diffVertical < bound) && (diffHorizontal < bound);
+      var bound = .1; // bounding box for ball matches
 
       // Player's visible axis is matching
       var imMatching = false;
@@ -232,7 +209,7 @@
         prevImMatching = imMatching;
       }
 
-      var isMatching = imMatching;// && positionMatch;
+      var isMatching = imMatching; // TODO: Remove this
 
       // Only send a socket signal + change screen state if match state has changed
       if (isMatching != prevIsMatching) {
@@ -242,13 +219,11 @@
             // Add visual match indicator
 
             // Send match to socket
-            console.log('MATCH');
             socket.emit('matchPair', pairId);
         } else {
           // Client has changed to not match colors
 
           // Send unmatch to socket
-          console.log('UNMATCH');
           socket.emit('unmatchPair', pairId);
         }
 
@@ -268,35 +243,6 @@
         }, 750);
       }
     });
-
-    // Whether phones are held together
-    /*socket.on('positionMatch', function(thisPairId) {
-      if (thisPairId == pairId) {
-        $('.instructions.top').removeClass('warning');
-        positionMatch = true;
-      }
-    });
-
-    socket.on('positionUnmatch', function(thisPairId) {
-      if (thisPairId == pairId) {
-        $('.instructions.top').addClass('warning');
-        positionMatch = false;
-      }
-    });*/
-
-    // A player moved, update their color
-    /*socket.on('playerMoved', function(data) {
-      console.log(data);
-      console.log('player moved');
-      // Same game, but not same player
-      if (data.gameId == gameId && 
-        data.socketId != socket.id) {
-        console.log('other player moved');
-        
-        $('#partnerColor').css('background-color', 'hsl(' + data.z + ', 100%, ' + data.y + '%)');
-      }
-    });*/
-
     function drawGame() {
       // draw stuff
       requestAnimationFrame(drawGame)

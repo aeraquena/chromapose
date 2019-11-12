@@ -23,12 +23,6 @@ body:not(#about) {
   background-color: #000;
 }
 
-#screen.match {
-  /*animation: pulse .75s infinite;
-  border-width: 60px 2000px;
-  background-color: #ff00ff;*/
-}
-
 #screen.win #winAnimation {
   display: none;
     z-index: 12;

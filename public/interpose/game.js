@@ -15,7 +15,8 @@ function changeTargetColor() {
 
 }
 
-if (!this.navigator) { // determine whether this is a node module or inlined via script tag
+// determine whether this is a node module or inlined via script tag
+if (!this.navigator) {
   module.exports = {
     games: games,
     pairs: pairs,

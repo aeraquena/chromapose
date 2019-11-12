@@ -18,11 +18,11 @@ function changeTargetPoint(pairId) {
   pairs[pairId].targetPoint.v = Math.random();
   pairs[pairId].targetPoint.h = Math.random();
 
-  console.log('change target point');
   console.log(pairs[pairId].targetPoint);
 }
 
-if (!this.navigator) { // determine whether this is a node module or inlined via script tag
+// determine whether this is a node module or inlined via script tag
+if (!this.navigator) {
   module.exports = {
     games: games,
     pairs: pairs,

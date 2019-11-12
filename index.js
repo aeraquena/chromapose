@@ -10,7 +10,7 @@ var gameInterval, updateInterval
 // Main server code
 // ----------------------------------------
 
-// serve css and js
+// Serve css and js
 app.use(express.static('public'))
 
 app.get('/', function(req, res){
@@ -18,7 +18,7 @@ app.get('/', function(req, res){
 });
 
 function emitUpdates() {
-  // tell everyone what's up
+  // Tell everyone what's up
   io.emit('gameStateUpdate', { 
     games: engine.games,
     pairs: engine.pairs
@@ -27,7 +27,7 @@ function emitUpdates() {
 
 // On new player connect
 io.on('connection', function(socket){
-  // set socket listeners
+  // Set socket listeners
 
   console.log('connect, socket id: ' + socket.id);
   io.emit('userConnected');
@@ -64,7 +64,7 @@ io.on('connection', function(socket){
     if (gameId && engine.games[gameId]) {
   	 delete engine.games[gameId].players[socket.id]
 
-    	// end game if there are no engine.players left
+    	// End game if there are no engine.players left
     	if (Object.keys(engine.games[gameId].players).length > 0) {
       	io.emit('gameStateUpdate', engine.games);
     	} else {
@@ -79,8 +79,7 @@ io.on('connection', function(socket){
     } else if (pairId && engine.pairs[pairId]) {
      delete engine.pairs[pairId].players[socket.id]
 
-      // end game if there are no engine.players left
-      // TODO: end game if anyone leaves?
+      // End game if there are no engine.players left
       if (Object.keys(engine.pairs[pairId].players).length > 0) {
         io.emit('gameStateUpdate', engine.pairs);
       } else {
@@ -94,13 +93,13 @@ io.on('connection', function(socket){
       }
     }
 
+    // Print games and pairs
+
     console.log('games:');
     console.log(engine.games);
 
     console.log('pairs:');
     console.log(engine.pairs);
-
-    // Do the same for pairs
   });
 
   // Player reconnects to game
@@ -119,8 +118,8 @@ io.on('connection', function(socket){
       };
 
       console.log('Join, change target color');
-      engine.changeTargetColor(gameId) // TODO: For this game
-      updateInterval = setInterval(emitUpdates, 40) // necessary for each game?
+      engine.changeTargetColor(gameId)
+      updateInterval = setInterval(emitUpdates, 40)
     }
 
     // Assign player to game
@@ -169,7 +168,6 @@ io.on('connection', function(socket){
     console.log('join game id: ' + gameId);
 
     // Create game if it doesn't exist
-    // TODO: Remove this
     if (!engine.games[gameId]) {
       // Create instance of game
       engine.games[gameId] = {
@@ -181,8 +179,8 @@ io.on('connection', function(socket){
       };
 
       console.log('Join, change target color');
-      engine.changeTargetColor(gameId) // TODO: For this game
-      updateInterval = setInterval(emitUpdates, 40) // necessary for each game?
+      engine.changeTargetColor(gameId)
+      updateInterval = setInterval(emitUpdates, 40)
     }
 
     // Assign player to game
@@ -224,7 +222,7 @@ io.on('connection', function(socket){
 
     // Assign player to game
     engine.pairs[pairId].players[socket.id] = {
-      matching: false, // is player matching? //
+      matching: false, // is player matching?
       y: 0, // change to v
       z: 0, // change to h
       role: thisRole
@@ -254,7 +252,7 @@ io.on('connection', function(socket){
       };
 
       engine.changeTargetColor(gameId) // TODO: For this game
-      updateInterval = setInterval(emitUpdates, 40) // necessary for each game?
+      updateInterval = setInterval(emitUpdates, 40)
 
       // Assign player to game
       engine.games[gameId].players[socket.id] = {
@@ -292,11 +290,6 @@ io.on('connection', function(socket){
         engine.changeTargetColor(gameId);
       }
     }
-
-    // Unmatch all players
-    /*Object.keys(engine.games[gameId].players).forEach((playerId) => {
-      engine.games[gameId].players[playerId].matching = false;
-    })*/
 
     console.log(engine.games);
   });
@@ -340,11 +333,6 @@ io.on('connection', function(socket){
       }
     }
 
-    // Unmatch all players
-    /*Object.keys(engine.games[gameId].players).forEach((playerId) => {
-      engine.games[gameId].players[playerId].matching = false;
-    })*/
-
     console.log(engine.games);
   });
 
@@ -366,84 +354,7 @@ io.on('connection', function(socket){
     console.log('change target color manually');
     io.emit('colorChanged', gameId);
   });
-
-  // Player moves
-  // TODO: Remove from this and client code
-  /*socket.on('move', function(position){
-    if (engine.pairs[position.gameId] && engine.pairs[position.gameId].players[socket.id]) {
-      engine.pairs[position.gameId].players[socket.id].y = position.y;
-      engine.pairs[position.gameId].players[socket.id].z = position.z;
-      
-      var posY = {};
-      var posZ = {};
-
-      for (var playerIndex in engine.pairs[position.gameId].players) {
-        //console.log(playerIndex);
-        //console.log(engine.pairs[position.gameId].players[playerIndex]);
-
-        posY[engine.pairs[position.gameId].players[playerIndex].role] = engine.pairs[position.gameId].players[playerIndex].y;
-        posZ[engine.pairs[position.gameId].players[playerIndex].role] = engine.pairs[position.gameId].players[playerIndex].z;
-      }
-
-      //console.log(posY);
-      //console.log(posZ);
-      
-      // Compare y and z to determine if players are face to face
-      //posZ[2] = 1 - posZ[2];
-      // need to calculate this properly
-      /*posY[1] = Math.abs(posY[1] - .75);
-      posY[2] = Math.abs(posY[2] - .75);*/
-
-      /*if (posY[1] < .75) {
-        posY[1] = Math.min(.75 - posY[1], posY[1] + .25);
-      } else if (posY[1] > .75) {
-        posY[1] = posY[1] - .75;
-      } else if (posY[1] == .75) {
-        posY[1] = 0;
-      }
-
-      if (posY[2] < .75) {
-        posY[2] = Math.min(.75 - posY[2], posY[2] + .25);
-      } else if (posY[2] > .75) {
-        posY[2] = posY[2] - .75;
-      } else if (posY[2] == .75) {
-        posY[2] = 0;
-      }
-
-      // also need to treat 0 and 1 as the same for posZ
-      var posYDiff = Math.abs(posY[2] - posY[1]);
-      var posZDiff = .5 - Math.abs(Math.abs(posZ[1] - posZ[2]) - .5);
-      //console.log('posYDiff: ' + posYDiff.toFixed(2) + ', posZDiff: ' + posZDiff.toFixed(2));
-
-      var positionBound = .3;
-
-      if (posYDiff < positionBound &&
-        posZDiff < positionBound) {
-        //console.log('position match');
-        io.emit('positionMatch', position.gameId);
-      } else {
-        //console.log('position unmatch');
-        io.emit('positionUnmatch', position.gameId);
-      }
-
-      //console.log('---');
-    }
-  });*/
 });
-
-// Redirect all HTTP traffic to HTTPS
-/*function ensureSecure(req, res, next){
-  console.log('ensure secure');
-  if(req.secure){
-    console.log('secure');
-    // OK, continue
-    return next();
-  };
-  console.log('not secure');
-  res.redirect('https://'+req.hostname+req.url); // handle port numbers if you need non defaults
-};
-
-app.all('*', ensureSecure);*/
 
 var port = process.env.PORT || 8000;
 http.listen(port, function(){

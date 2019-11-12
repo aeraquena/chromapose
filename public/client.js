@@ -1,9 +1,4 @@
   $(function () {
-    // Redirect to https
-    /*if (window.location.href == "http://chromapose.herokuapp.com/" || 
-      window.location.href == "http://www.chromapose.me/") {
-      window.location.replace('https://chromapose.herokuapp.com/');
-    }*/
 
     var socket = io();
 
@@ -36,7 +31,7 @@
       if (games && games[gameId]) {
         var playerCount = Object.keys(games[gameId].players).length
         var matchingPlayers = 0;
-        Object.values(games[gameId].players).forEach((player, index) => { // todo: get game id based on player     
+        Object.values(games[gameId].players).forEach((player, index) => {  
           if (player.matching) {
             matchingPlayers++;
           }
@@ -44,9 +39,6 @@
 
         // Show matching players and total players
         document.getElementById('playerCount').innerHTML = String(matchingPlayers) + "/" + String(playerCount)
-
-        //console.log('target color:');
-        //console.log(games[gameId].targetColor);
 
         // Change target border color
         $('#screen').css(
@@ -94,8 +86,6 @@
 
     // Checks match between target and user color
     function checkMatch() {
-      //var bound = 12; // bounding box for color matches
-
       // Is player within the target color bounds?
       var isMatching = hue > (games[gameId].targetColor.hue - bound) && hue < (games[gameId].targetColor.hue + bound) &&
         lightness > (games[gameId].targetColor.lightness - bound) && lightness < (games[gameId].targetColor.lightness + bound);
@@ -144,53 +134,23 @@
       }
     });
 
-    // A player moved, update their color
-    socket.on('playerMoved', function(data) {
-      console.log(data);
-      console.log('player moved');
-      // Same game, but not same player
-      if (data.gameId == gameId && 
-        data.socketId != socket.id) {
-        console.log('other player moved');
-        
-        $('#partnerColor').css('background-color', 'hsl(' + data.z + ', 100%, ' + data.y + '%)');
-      }
-    });
-
-    // Detect if browser supports orientation
-    /*var motionTimeout = setTimeout(function() {
-      var orientation = screen.msOrientation || screen.mozOrientation || (screen.orientation || {}).type;
-      if (orientation === undefined) {
-        $('#page').addClass('motion-off');
-      }
-    }, 200);*/
-
-    // Detect if browser supports orientation
-    //if (typeof window.orientation !== 'undefined') { 
-      // Mobile
-
     if (typeof DeviceOrientationEvent.requestPermission === 'function') {
       $('#request-permission').click(function() {
 
         $('#page').removeClass('motion-off');
 
-        // Device orientation
-        //if (window.DeviceOrientationEvent) {
-        // iOS 13+
         DeviceOrientationEvent.requestPermission()
           .then(response => {
             if (response == 'granted') {
               window.addEventListener("deviceorientation", function(event) {
-                //clearTimeout(motionTimeout);
+                // alpha: rotation around z-axis
+                rotDeg = event.alpha;
+                // gamma: left to right
+                leftRight = event.gamma;
+                // beta: front back motion
+                frontBack = event.beta;
 
-                  // alpha: rotation around z-axis
-                  rotDeg = event.alpha;
-                  // gamma: left to right
-                  leftRight = event.gamma;
-                  // beta: front back motion
-                  frontBack = event.beta;
-
-                  // Left right rotation (around X-axis)
+                // Left right rotation (around X-axis)
                 $('span.value.lr').text(leftRight.toFixed(2));
                 $('#lr').width(leftRight + 90);
 
@@ -219,12 +179,8 @@
 
                 if (games && gameId) {
                   checkMatch(hue, lightness);
-
-                  // Send position to server
-                  //console.log('move');
-                  //socket.emit('move', {'gameId': gameId, 'y': lightness, 'z': hue});
                 }
-              }); // ,true
+              });
             }
           })
           .catch(console.error);
@@ -234,14 +190,12 @@
       $('#page').removeClass('motion-off');
       
       window.addEventListener("deviceorientation", function(event) {
-        //clearTimeout(motionTimeout);
-
-          // alpha: rotation around z-axis
-          rotDeg = event.alpha;
-          // gamma: left to right
-          leftRight = event.gamma;
-          // beta: front back motion
-          frontBack = event.beta;
+        // alpha: rotation around z-axis
+        rotDeg = event.alpha;
+        // gamma: left to right
+        leftRight = event.gamma;
+        // beta: front back motion
+        frontBack = event.beta;
 
           // Left right rotation (around X-axis)
         $('span.value.lr').text(leftRight.toFixed(2));
@@ -272,48 +226,9 @@
 
         if (games && gameId) {
           checkMatch(hue, lightness);
-
-          // Send position to server
-          //socket.emit('move', {'gameId': gameId, 'y': lightness, 'z': hue});
         }
-      }); // ,true
+      });
     }
-        //}
-    /*} else {
-      // Desktop
-      $('#content').css('font-size', '18px');
-
-      var bodyWidth = $('body').width();
-      var bodyHeight = $('body').height();
-
-      $("body").mousemove(function(e) {
-
-        //clearTimeout(motionTimeout);
-        
-          hue = (Math.floor(map(e.pageX, 0, bodyWidth, 255, 0))) % 255;
-          lightness = (Math.floor(map(e.pageY, 0, bodyHeight, 0, 80)) % 80) + 20;
-
-          // Change color
-          $('#hue').text(hue);
-          $('#lightness').text(lightness);
-
-          // Change background color
-          $('#screen').css('background-color', 'hsl(' + hue + ', 100%, ' + lightness + '%)');
-
-          if ($('#page').hasClass('motion-off')) {
-            $('#page').removeClass('motion-off');
-          }
-
-          if (games && gameId) {
-            checkMatch(hue, lightness);
-
-            // Send position to server
-            console.log('move');
-            socket.emit('move', {'gameId': gameId, 'y': lightness, 'z': hue});
-          }
-      })
-      var e = window.event;
-    }*/
 
     // Show/hide instructions
     $('#instructionsLink').click(function() {
@@ -342,8 +257,8 @@
     });
 
     $('#input-number').on('blur', function() {
-        // Scroll down to bottom
-        $("#splash").animate({ scrollTop: $('#splash').height() - $('#join-game-number').height() });
+      // Scroll down to bottom
+      $("#splash").animate({scrollTop: $('#splash').height() - $('#join-game-number').height()});
     });
 
     $('#input-number').on('cut keyup paste', function() {
@@ -384,7 +299,6 @@
 
       // Create new game object
       // Add user to game object players
-      //socket.emit('join', gameId);
       socket.emit('newGame');
 
       // Expand border
