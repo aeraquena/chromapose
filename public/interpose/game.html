@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>interpose</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700" rel="stylesheet">
+    <link rel="stylesheet" href='./styles.css'>
+  </head>
+  <body>
+
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src='./game.js'></script>
+    <script src='./client.js'></script>
+
+    <div id="screen" class="game">
+      <div class="line vertical"></div>
+      <div class="line horizontal"></div>
+
+      <div class="ball target vertical"></div>
+      <div class="ball target horizontal"></div>
+
+      <div class="instructions top">
+        <span class="warning">put your phones back together</span>
+        <span class="find-target">keep your phones <strong>TOGETHER</strong>
+          <br/>and find the right <strong>POSE</strong></span></div>
+    	
+    	<div class="instructions bottom">you move <strong><span class="instructions-orientation"></span></strong><br/>
+    	your partner moves <strong><span class="instructions-orientation-partner"></span></strong></div>
+
+      <div class="ball player vertical"></div>
+      <div class="ball player horizontal"></div>
+
+      <div id="winAnimation"></div>
+
+      <div class="info">
+        V: <span class="text-v"></span>
+        H: <span class="text-h"></span><br/>
+        <!--TV: <span class="text-tv"></span>
+        TH: <span class="text-th"></span>
+        Role: <span class="text-r"></span>
+        Screen: <span class="text-screen"></span>-->
+      </div>
+
+    </div>
+  </body>
+</html>

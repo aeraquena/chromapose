@@ -1,0 +1,441 @@
+body {
+  background-color: #000;
+  height: 100vh;
+  font-family: 'Roboto Mono', monospace;
+  color: #fff;
+  overflow-x: hidden; 
+  overflow-y: hidden;
+}
+
+body:not(#about) {
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
+#screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-width: 0;
+  border-style: solid;
+}
+
+#screen.game {
+  border-width: 60px;
+}
+
+#screen.match {
+  animation: pulse .75s infinite;
+  border-width: 60px 2000px;
+}
+
+@keyframes pulse {
+  0% {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  50% {
+    top: 60px;
+    left: 60px;
+    bottom: 60px;
+    right: 60px;
+  }
+  100% {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+#screen.win {
+  animation: win .75s;
+}
+
+@keyframes win {
+  0% {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  50% {
+    top: 50%;
+    left: 50%;
+    bottom: 50%;
+    right: 50%;
+  }
+  100% {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+#top, #bottom {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+#top #gameId {
+  position: fixed;
+  top: 0;
+  left: 10px;
+}
+
+#bottom #playerCount {  
+  position: fixed;
+  bottom: 0;
+  left: 10px;
+  background-image: url('./player.png');
+  background-size: 50px;
+  padding-left: 50px;
+  background-repeat: no-repeat;
+  background-position: 0 11px;
+}
+
+#bottom #instructionsLink {
+  position: fixed;
+  bottom: 0;
+  right: 10px;
+}
+
+#instructions {
+  margin: 60px 70px;
+  font-size: 1em;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow-y: scroll;
+}
+
+#instructions.shown {
+  display: block;
+}
+
+#instructions ol {
+  padding: 0 0 0 34px;
+  margin: 0;
+}
+
+#instructions li {
+  margin: 10px 0;
+}
+
+p.centered {
+  text-align: center;
+}
+
+a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+a:hover,
+a:active {
+  text-decoration: none;
+}
+
+.btn-container {
+  width: 100%;
+  text-align: center;
+}
+
+a.kofi-button {
+  box-shadow: none !important;
+}
+
+#splash {
+  position: absolute;
+  font-size: 36px;
+  text-align: center;
+  top: 30px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: scroll;
+}
+
+#splash .title {
+  margin-bottom: 20px;
+}
+
+#splash .subtitle {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+#splash .subtitle.awake {
+  font-size: 14px;
+}
+
+#splash button,
+#splash .button {
+  color: #fff;
+  font-size: 36px;
+  border: 1px solid #fff;
+  display: block;
+  margin: 0 auto 30px;
+  background: transparent;
+  padding: 10px;
+  font-family: 'Roboto Mono', monospace;
+  width: 220px;
+  text-decoration: none;
+}
+
+#splash button:active {
+  opacity: .5;
+}
+
+#splash #input-number-container {
+  position: relative;
+  margin-top: -10px;
+  white-space: nowrap;
+}
+
+#splash #input-number-outer {
+  border-bottom: 1px solid #fff;
+  width: 220px;
+  margin: 0 auto 20px;
+  text-align: left;
+}
+
+#splash #input-number {
+  background: transparent;
+  border: 0;
+  font-size: 36px;
+  outline: none;
+  color: #fff;
+  width: 196px;
+  font-family: 'Roboto Mono', monospace;
+  border-radius: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+#splash #input-number-container #join-game-number {
+  display: none;
+}
+
+#page #splash #start-buttons {
+  display: block;
+}
+
+#page.motion-off #splash #start-buttons {
+  display: none;
+}
+
+#page #splash #motion-off {
+  display: none;
+}
+
+#page.motion-off #splash #motion-off {
+  display: block;
+}
+
+#splash #motion-off .subtitle {
+  margin-bottom: 20px;
+}
+
+/* Tutorial */
+
+#tutorial {
+  text-align: center;
+  font-size: 20px;
+  display: none;
+  line-height: 1.1em;
+}
+
+#tutorial .arrow {
+  font-size: 50px;
+  display: block;
+  padding-top: 10px;
+}
+
+#tutorial .step-1,
+#tutorial .step-3,
+#tutorial .step-4 {
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+
+#tutorial .step-1 {
+  top: 70px;
+}
+
+@media only screen 
+  and (orientation: portrait) {
+  #tutorial .step-3,
+  #tutorial .step-4 {
+    top: 200px;
+  }
+}
+
+@media only screen 
+  and (orientation: landscape) {
+    #tutorial .step-3,
+    #tutorial .step-4 {
+      top: 100px;
+    }
+}
+
+
+#tutorial .step-2 {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 70px;
+}
+
+#tutorial.shown {
+  display: block;
+}
+
+#tutorial-2,
+#tutorial-3 {
+  display: none;
+}
+
+#screen.match #tutorial-1,
+#screen.win #tutorial-1 {
+  display: none;
+}
+
+#screen.match #tutorial-2 {
+  display: block;
+}
+
+#screen.win #tutorial-2 {
+  display: none;
+}
+
+#screen.match #tutorial-3 {
+  display: none;
+}
+
+#screen.win #tutorial-3 {
+  display: block;
+}
+
+#tutorial .tutorial-large {
+  font-size: 36px;
+}
+
+#partnerColor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  display: none;
+}
+
+/* About */
+
+body#about {
+  overflow-x: scroll; 
+  overflow-y: scroll;
+  margin: 50px 100px;
+  font-family: 'Roboto Mono', monospace;
+}
+
+body#about a {
+  text-decoration: underline;
+}
+
+body#about a:hover,
+body#about a:active {
+  text-decoration: none;
+}
+
+body#about h1, h2 {
+  text-align: center;
+}
+
+body#about h1, h2, a {
+  color: #00ffff;
+  background-image: -webkit-linear-gradient(92deg, #00ffff, #00ffff);
+  -webkit-background-clip: text;
+  animation: hue 10s infinite linear;
+}
+
+@-webkit-keyframes hue {
+  from {
+    -webkit-filter: hue-rotate(0deg);
+  }
+
+  to {
+    -webkit-filter: hue-rotate(-360deg);
+  }
+}
+
+body#about h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+body#about h2 {
+  font-size: 2em;
+}
+
+body#about h3 {
+  text-align: center;
+  font-weight: normal;
+  margin: 35px 0;
+  font-size: 1.5em;
+}
+
+body#about #author {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+body#about ol {
+  padding: 0 0 0 30px;
+}
+
+body#about li {
+  padding: 5px 0;
+}
+
+body#about .photo-row {
+  white-space: nowrap;
+}
+
+body#about .photo-row img {
+  width: 49%;
+  margin-right: 2%;
+  margin-bottom: 2.4%;
+  display: inline-block;
+}
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+    body#about {
+      font-size: 18px;
+      margin: 5%;
+    }
+}

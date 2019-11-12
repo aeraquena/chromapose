@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>with you</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1">
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700" rel="stylesheet">
+		<link rel="stylesheet" href='./styles.css'>
+		<style>
+			body {
+				margin: 0px;
+				background-color: #000000;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+
+		<script src="./three.js"></script>
+		<script src="./DeviceOrientationControls.js"></script>
+		<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+	    <script src="/socket.io/socket.io.js"></script>
+	    <script src='./game.js'></script>
+	    <script src='./client.js'></script>
+
+		<div id="splash">
+	        <p class="centered title"><strong>with you</strong></p>
+	        <p class="subtitle centered">you and a partner should go to<br/>
+	          <strong>chromapose.me/withyou</strong><br/>
+	          on both phones</p>
+	        <div id="start-buttons">
+	          <!--<button id="new-game">new game</button>-->
+	          <p class="subtitle">think of a word together<br/>
+	          	and enter it on both phones to connect</p>
+	          <div id="input-number-container">
+	            <div id="input-number-outer"><input type="text" autocorrect="off" autocapitalize="none" id="input-number"></div>
+	            <button id="join-game-number">connect</button>
+	          </div>
+	        </div>
+	    </div>
+	</body>
+</html>

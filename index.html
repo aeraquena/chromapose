@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+  <head>
+    <title>chromapose</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700" rel="stylesheet">
+    <link rel="stylesheet" href='./styles.css'>
+    <meta 
+         name='viewport' 
+         content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' 
+    />
+  </head>
+  <body> 
+    <!-- Code adapted from https://github.com/sgoedecke/socket-io-game -->
+    <div id="page" class="motion-off">
+      <div id="screen">
+        <div class="tutorial" id="tutorial">
+          <div id="tutorial-1">
+            <div class="step step-1">
+              Move your phone<br/>
+              to change<br/>
+              this color<br/>
+              <span class="arrow">&darr;</span>
+            </div>
+            <div class="step step-2">
+              to match<br/>
+              this color<br/>
+              <span class="arrow">&darr;</span>
+            </div>
+          </div>
+          <div id="tutorial-2">
+            <div class="step step-3">
+              <span class="tutorial-large">Nice!</span><br/><br/>
+              Now everyone<br/>
+              must match at<br/>
+              the same time
+            </div>
+          </div>
+          <div id="tutorial-3">
+            <div class="step step-4">
+              <span class="tutorial-large">Great!</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="partnerColor"></div>
+      
+      <div id="splash">
+        <p class="centered title"><strong>chromapose</strong></p>
+        <p class="subtitle centered">anyone can join with<br/>
+          <strong>chromapose.me</strong><br/>
+          on their phone</p>
+        <div id="start-buttons">
+          <button id="new-game">new game</button>
+          <p class="subtitle">or join game</p>
+          <div id="input-number-container">
+            <div id="input-number-outer">#<input type="number" id="input-number"></div>
+            <button id="join-game-number">join</button>
+          </div>
+        </div>
+        <div id="motion-off">
+            <button id="request-permission">start</button>
+        </div>
+      </div>
+
+      <div id="instructions">
+        <ol>
+          <li>Anyone can join with <strong>chromapose.me</strong> on their phone</li>
+          <li>Start a new game, or join one by entering the # on your friends' screens</li>
+          <li>Move your phone to change the inner color and match the outer color</li>
+          <li>When everyone matches the outer color, it <span id="change-outer-color">changes</span></li>
+        </ol>
+
+       <p class="centered">
+        <a href="/about"><strong>About</strong></a>
+        <br/><br/>
+        
+        a game by
+        <a href="http://clairekwong.com"><strong>Claire Kwong</strong></a>
+
+        <script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#29abe0', 'M4M2143G6');kofiwidget2.draw();</script>
+        
+      </p>
+
+      </div>
+
+      <div id="top">
+        <div id="gameId"></div>
+      </div>
+
+      <div id="bottom">
+        <div id='playerCount'></div>
+        <div id="instructionsLink">?</div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src='./game.js'></script>
+    <script src='./client.js'></script>
+  </body>
+</html>
