@@ -42,7 +42,7 @@ body:not(#about) {
 }
 
 #screen.horizontal #winAnimation {
-  background-color: #00ffff;
+  background-color: blue;
 }
 
 #screen.vertical #winAnimation {
@@ -315,7 +315,7 @@ input[type=number] {
 }
 
 .ball.horizontal {
-  background-color: #00ffff;
+  background-color: blue;
   top: 0;
   bottom: 0;
 }
@@ -353,7 +353,7 @@ input[type=number] {
 }
 
 #screen.match .ball.target.horizontal {
-   background-color: #00ffff;
+   background-color: blue;
 }
 
 #screen.match .ball.target.vertical {
