@@ -1,7 +1,12 @@
+@font-face {
+    font-family: 'October Twilight';
+    src: url('OctoberTwilight.ttf');
+}
+
 body {
   background-color: #000;
   height: 100vh;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Roboto Condensed', sans-serif;
   color: #fff;
   overflow-x: hidden; 
   margin: 0px;
@@ -144,25 +149,37 @@ a:active {
 }
 
 #splash .title {
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   margin-top: 30px;
+  font-family: "October Twilight", sans-serif;
+  font-size: 72px;
+  background: -webkit-linear-gradient(left, red, blue);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  display: inline-block;
 }
 
 #splash .subtitle {
-  font-size: 20px;
+  font-size: 28px;
   margin-bottom: 30px;
+}
+
+#interpose-link {
+  color: red;
 }
 
 button {
   color: #fff;
-  font-size: 36px;
-  border: 1px solid #fff;
+  font-size: 40px;
+  border: none;
   display: block;
   margin: 0 auto 30px;
   background: transparent;
-  padding: 10px;
-  font-family: 'Roboto Mono', monospace;
+  padding: 5px 10px 10px 10px;
+  font-family: 'Roboto Condensed', sans-serif;
   width: 220px;
+  border-radius: 35px;
+  background: -webkit-linear-gradient(left, red, blue);
 }
 
 button:active {
@@ -171,7 +188,7 @@ button:active {
 
 #splash #input-number-container {
   position: relative;
-  margin-top: -10px;
+  margin-top: 10px;
   white-space: nowrap;
 }
 
@@ -189,9 +206,10 @@ button:active {
   outline: none;
   color: #fff;
   width: 196px;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Roboto Condensed', sans-serif;
   border-radius: 0;
   text-transform: lowercase;
+  font-weight: bold;
 }
 
 input::-webkit-outer-spin-button,
