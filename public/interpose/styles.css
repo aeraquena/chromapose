@@ -502,3 +502,7 @@ input[type=number] {
 #interpose.motion-off #part-1 {
   display: none;
 }
+
+#interpose.motion-off #motion-off button {
+  margin-top: 40px;
+}
