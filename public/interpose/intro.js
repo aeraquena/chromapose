@@ -47,6 +47,7 @@ $(function () {
     $(window).scrollTop(0);
     $('#part-3').show();
 
+    // TODO: Remove
     setTimeout(function() {
       document.location.replace('game.html#' + pairId);
     }, 750);
