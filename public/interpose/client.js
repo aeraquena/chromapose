@@ -1,4 +1,13 @@
-  $(function () {
+$(function () {
+
+    var socket = io();
+
+    var gameId = null; // todo: remove?
+    var pairId = null;
+
+    socket.on('gameStateUpdate', updateGameState);
+
+    socket.on('gameCreated', updatePairId);
 
     // Intro screen
 
@@ -18,8 +27,6 @@
       $('body').removeClass('motion-off');
     }
 
-    var pairId;
-
     // Join game
     $('#join-game').click(function() {
       $('#splash #start-buttons').hide();
@@ -38,6 +45,9 @@
     $('#join-game-number').click(function() {
       pairId = $('#input-number').val();
       pairId = pairId.toLowerCase();
+      console.log('join pair: ' + pairId);
+      socket.emit('joinPair', pairId); 
+
       $('#part-1').remove();
       $(window).scrollTop(0);
       $('#part-2').show();
@@ -61,14 +71,7 @@
     // Puts hash in variable, and removes the # character
     //var hash = window.location.hash.substring(1); // TODO: remove
 
-    var socket = io();
-
-    var gameId = null;
     //var pairId = hash; // todo: remove
-
-    socket.on('gameStateUpdate', updateGameState);
-
-    socket.on('gameCreated', updatePairId);
 
     // User connects
     socket.on('userConnected', function() {
@@ -99,8 +102,6 @@
     var screenWidth = window.innerWidth;
 
     var ballSize = 75;
-
-    socket.emit('joinPair', pairId); 
     
     // Expand border
     $('#screen').addClass('game');
