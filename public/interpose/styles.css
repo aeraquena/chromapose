@@ -213,6 +213,14 @@ button:active {
   font-weight: bold;
 }
 
+#splash #input-number-container .input-error {
+  display: none;
+  font-size: 15px;
+  margin-top: -15px;
+  margin-bottom: 15px;
+  color: red;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */

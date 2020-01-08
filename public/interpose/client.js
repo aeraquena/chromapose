@@ -43,6 +43,9 @@ $(function () {
 
     // Join game number
     $('#join-game-number').click(function() {
+      // remove error message
+      $('.input-error').hide();
+
       pairId = $('#input-number').val();
       pairId = pairId.toLowerCase();
       console.log('join pair: ' + pairId);

@@ -4,13 +4,12 @@
     <title>interpose</title>
     <meta charset="utf-8">
     <meta name="viewport" content="user-scalable=no, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href='./styles.css'>
   </head>
   <body id="interpose" class="motion-off">
 
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-    <!--<script src='./intro.js'></script>-->
     <script src="/socket.io/socket.io.js"></script>
     <script src='./game.js'></script>
     <script src='./client.js'></script>
@@ -27,7 +26,7 @@
           <p class="subtitle centered">find a dance partner<br/><br/>
 
             go to<br/>
-            <strong id="interpose-link">chromapose.me/interpose</strong><br/>
+            <strong id="interpose-link">interpose.space</strong><br/>
             on their phone too</p>
           <div id="start-buttons">
             <p class="subtitle">think of a word<br/>
@@ -35,6 +34,7 @@
               both phones to connect</p>
             <div id="input-number-container">
               <div id="input-number-outer"><input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" id="input-number"></div>
+              <div class="input-error">that word is being used - try another</div>
               <button type="button" id="join-game-number">connect</button>
             </div>
           </div>
