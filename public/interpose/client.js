@@ -33,17 +33,17 @@ $(function () {
       $('#splash #input-number-container').show();
     });
 
-    $('#input-number').on('blur', function() {
-      // Scroll down to bottom
-      $("#splash").animate({scrollTop: $('#splash').height() - $('#join-game-number').height()});
-    });
-
     $('#input-number').on('cut keyup paste', function() {
       if ($('#input-number').val()) {
         $('#join-game-number').css('display', 'block');
       } else {
         $('#join-game-number').hide();
       }
+    });
+
+    $('#input-number').on('blur', function() {
+      // Scroll down to bottom
+      $("#splash").animate({scrollTop: $('#splash').height() - $('#join-game-number').height()});
     });
 
     // Join game number
