@@ -137,15 +137,14 @@ $(function () {
             $('.instructions .instructions-orientation').text('UP AND DOWN');
             $('.instructions .instructions-orientation-partner').text('SIDE TO SIDE');
           }
-        } else {
-          // name in use
-          console.log('name in use');
         }
 
         if (myTargetPoint) {
           $('.ball.target.horizontal').css('left', screenWidth - (myTargetPoint.h * screenWidth) - ballSize/2);
           $('.ball.target.vertical').css('top', screenHeight - (myTargetPoint.v * screenHeight) - ballSize/2 + topMargin);
         }
+      } else {
+        console.log("name in use");
       }
     }
 
