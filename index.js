@@ -223,19 +223,25 @@ io.on('connection', function(socket){
       thisRole = 2;
 
       // u good
-      console.log('u good');
+      //console.log('u good');
     } else {
       // u bad
-      thisRole = 2;
-      console.log('u bad');
+      //thisRole = 2;
+      //io.emit("nameInUse");
+      //console.log('u bad'); // it works
     }
 
-    // Assign player to game
-    engine.pairs[pairId].players[socket.id] = {
-      matching: false, // is player matching?
-      y: 0, // change to v
-      z: 0, // change to h
-      role: thisRole
+    if (thisRole !== null) {
+      // Assign player to game
+      engine.pairs[pairId].players[socket.id] = {
+        matching: false, // is player matching?
+        y: 0, // change to v
+        z: 0, // change to h
+        role: thisRole
+      }
+    } else {
+      console.log('name in use');
+      //io.emit("nameInUse");
     }
 
     console.log(engine.pairs);

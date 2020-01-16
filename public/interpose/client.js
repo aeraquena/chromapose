@@ -137,6 +137,9 @@ $(function () {
             $('.instructions .instructions-orientation').text('UP AND DOWN');
             $('.instructions .instructions-orientation-partner').text('SIDE TO SIDE');
           }
+        } else {
+          // name in use
+          console.log('name in use');
         }
 
         if (myTargetPoint) {
