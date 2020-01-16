@@ -143,8 +143,6 @@ $(function () {
           $('.ball.target.horizontal').css('left', screenWidth - (myTargetPoint.h * screenWidth) - ballSize/2);
           $('.ball.target.vertical').css('top', screenHeight - (myTargetPoint.v * screenHeight) - ballSize/2 + topMargin);
         }
-      } else {
-        console.log("name in use");
       }
     }
 
@@ -259,7 +257,7 @@ $(function () {
     // Checks match between target and user color
     // Both v and h are matching
     function checkMatch() {
-      var bound = .05; // bounding box for ball matches
+      var bound = .04; // bounding box for ball matches
 
       // Player's visible axis is matching
       var imMatching = false;
