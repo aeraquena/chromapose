@@ -95,7 +95,7 @@ $(function () {
     var pairs;
 
     var games;
-    var bound = 15;
+    var bound = 15; // todo: remove - probably unused
     var minBound = 12;
 
     var role = 0;
@@ -257,7 +257,7 @@ $(function () {
     // Checks match between target and user color
     // Both v and h are matching
     function checkMatch() {
-      var bound = .1; // bounding box for ball matches
+      var bound = .05; // bounding box for ball matches
 
       // Player's visible axis is matching
       var imMatching = false;
