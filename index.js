@@ -231,7 +231,7 @@ io.on('connection', function(socket){
       //console.log('u bad'); // it works
     }
 
-    if (thisRole !== null) {
+    if (thisRole == 1 || thisRole == 2) {
       // Assign player to game
       engine.pairs[pairId].players[socket.id] = {
         matching: false, // is player matching?
