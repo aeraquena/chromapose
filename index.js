@@ -215,9 +215,19 @@ io.on('connection', function(socket){
 
       // Assign this player role: 1
       thisRole = 1;
-    } else {
+
+      // u good
+    } else if (engine.pairs[pairId] && Object.keys(engine.pairs[pairId].players).length == 1) { 
+      // if engine pairs has 1 already
       // Assign this player role: 2
       thisRole = 2;
+
+      // u good
+      console.log('u good');
+    } else {
+      // u bad
+      thisRole = 2;
+      console.log('u bad');
     }
 
     // Assign player to game
