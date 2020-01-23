@@ -24,7 +24,9 @@ $(function () {
           });
         });
     } else {
-      $('body').removeClass('motion-off');
+      $('#request-permission').click(function() {
+        $('body').removeClass('motion-off');
+      }
     }
 
     // Join game
