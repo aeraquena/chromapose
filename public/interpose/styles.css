@@ -515,3 +515,10 @@ input[type=number] {
 #interpose.motion-off #motion-off button {
   margin-top: 10px;
 }
+
+#interpose-image {
+  width: 90%;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto;
+}
