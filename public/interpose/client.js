@@ -26,7 +26,7 @@ $(function () {
     } else {
       $('#request-permission').click(function() {
         $('body').removeClass('motion-off');
-      }
+      });
     }
 
     // Join game
