@@ -134,14 +134,14 @@ $(function () {
             $('#screen').addClass('horizontal');
             $('.instructions .instructions-orientation').text('SIDE TO SIDE');
             $('.instructions .instructions-orientation-partner').text('UP AND DOWN');
-          } else {
+          } else if (pairs[pairId].players[socket.id].role == 2) {
             $('#screen').addClass('vertical');
             $('.instructions .instructions-orientation').text('UP AND DOWN');
             $('.instructions .instructions-orientation-partner').text('SIDE TO SIDE');
+          } else {
+            $('#screen').addClass('error');
           }
-        } else {
-          $('#screen').addClass('error');
-        }
+        } 
 
         if (myTargetPoint) {
           $('.ball.target.horizontal').css('left', screenWidth - (myTargetPoint.h * screenWidth) - ballSize/2);

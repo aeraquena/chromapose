@@ -464,7 +464,11 @@ input[type=number] {
   display: none;
 }
 
-.game.error .instructions.top {
+.game .instructions.error {
+  display: none;
+}
+
+.game.error .instructions.error {
   display: block;
 }
 
