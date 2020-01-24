@@ -215,20 +215,10 @@ io.on('connection', function(socket){
 
       // Assign this player role: 1
       thisRole = 1;
-
-      // u good
     } else if (engine.pairs[pairId] && Object.keys(engine.pairs[pairId].players).length == 1) { 
       // if engine pairs has 1 already
       // Assign this player role: 2
       thisRole = 2;
-
-      // u good
-      //console.log('u good');
-    } else {
-      // u bad
-      //thisRole = 2;
-      //io.emit("nameInUse");
-      //console.log('u bad'); // it works
     }
 
     if (thisRole == 1 || thisRole == 2) {
@@ -239,9 +229,6 @@ io.on('connection', function(socket){
         z: 0, // change to h
         role: thisRole
       }
-    } else {
-      console.log('name in use');
-      //io.emit("nameInUse");
     }
 
     console.log(engine.pairs);

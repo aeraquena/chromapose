@@ -53,14 +53,18 @@ $(function () {
       // remove error message
       $('.input-error').hide();
 
-      pairId = $('#input-number').val();
-      pairId = pairId.toLowerCase();
-      console.log('join pair: ' + pairId);
-      socket.emit('joinPair', pairId); 
+      if ($('.game').hasClass('horizontal') || $('.game').hasClass('vertical')) {
+        pairId = $('#input-number').val();
+        pairId = pairId.toLowerCase();
+        console.log('join pair: ' + pairId);
+        socket.emit('joinPair', pairId); 
 
-      $('#part-1').remove();
-      $(window).scrollTop(0);
-      $('#part-2').show();
+        $('#part-1').remove();
+        $(window).scrollTop(0);
+        $('#part-2').show();
+      } else {
+        $('.input-error').show();
+      }
     });
 
     $(document).on('click', '#done', function(){
