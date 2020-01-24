@@ -460,6 +460,14 @@ input[type=number] {
   padding: 5px 0;
 }
 
+.game.error .instructions {
+  display: none;
+}
+
+.game.error .instructions.top {
+  display: block;
+}
+
 .instructions.top {
   top: 0;
 }

@@ -139,6 +139,8 @@ $(function () {
             $('.instructions .instructions-orientation').text('UP AND DOWN');
             $('.instructions .instructions-orientation-partner').text('SIDE TO SIDE');
           }
+        } else {
+          $('#screen').addClass('error');
         }
 
         if (myTargetPoint) {
