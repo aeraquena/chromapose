@@ -50,21 +50,17 @@ $(function () {
 
     // Join game number
     $('#join-game-number').click(function() {
-      // remove error message
+      // remove error message - not currently being used
       $('.input-error').hide();
 
-      if ($('.game').hasClass('horizontal') || $('.game').hasClass('vertical')) {
-        pairId = $('#input-number').val();
-        pairId = pairId.toLowerCase();
-        console.log('join pair: ' + pairId);
-        socket.emit('joinPair', pairId); 
+      pairId = $('#input-number').val();
+      pairId = pairId.toLowerCase();
+      console.log('join pair: ' + pairId);
+      socket.emit('joinPair', pairId); 
 
-        $('#part-1').remove();
-        $(window).scrollTop(0);
-        $('#part-2').show();
-      } else {
-        $('.input-error').show();
-      }
+      $('#part-1').remove();
+      $(window).scrollTop(0);
+      $('#part-2').show();
     });
 
     $(document).on('click', '#done', function(){
