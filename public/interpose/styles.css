@@ -460,7 +460,7 @@ input[type=number] {
   padding: 5px 0;
 }
 
-.game.error .instructions {
+.game:not(.vertical):not(.horizontal) .instructions {
   display: none;
 }
 
@@ -468,7 +468,7 @@ input[type=number] {
   display: none;
 }
 
-.game.error .instructions.error {
+.game:not(.vertical):not(.horizontal) .instructions.error {
   display: block;
 }
 
