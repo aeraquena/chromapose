@@ -45,6 +45,7 @@ Visit [chromapose.me/interpose](http://chromapose.me/interpose) on your phone to
 - Experiments in Play, Goldsmiths, University of London, London, UK
 - Beta Public X, Camden Peoples’ Theatre, London, UK
 - Games Library Night, Goldsmiths, University of London, London, UK
+- PlayUK 2020, Kulturni centar Grad, Belgrade, RS
 
 See more at [clairekwong.com](http://clairekwong.com/portfolio/interpose/).
 
