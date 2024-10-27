@@ -143,7 +143,7 @@ $(function () {
 
         if (myTargetPoint) {
           $('.ball.target.horizontal').css('left', screenWidth - (myTargetPoint.h * screenWidth) - ballSize/2);
-          $('.ball.target.vertical').css('top', screenHeight - (myTargetPoint.v * screenHeight) - ballSize/2 + topMargin);
+          $('.ball.target.vertical').css('top', screenHeight - (myTargetPoint.v * screenHeight) - ballSize/2 + topMargin); // TODO: screenHeight * .8 + .1
         }
       }
     }
@@ -195,7 +195,7 @@ $(function () {
           // Determine how close it is to target
 
           // 0 - 1
-          var scaleVertical = map(frontBack, -180, 180, 0, 1);
+          var scaleVertical = map(frontBack, -180, 180, 0, 1); // TODO: scale here?
           var scaleHorizontal = map(rotDeg, 0, 360, 0, 1);
 
           // Front back rotation (around Y-axis)
@@ -259,7 +259,7 @@ $(function () {
     // Checks match between target and user color
     // Both v and h are matching
     function checkMatch() {
-      var bound = .04; // bounding box for ball matches
+      var bound = .04; // bounding box for ball matches // TODO: Increase?
 
       // Player's visible axis is matching
       var imMatching = false;

@@ -190,7 +190,7 @@ io.on('connection', function(socket){
       z: 0
     }
 
-    console.log(engine.games);
+    console.log(engine.games); // here is where it prints it out
   });
 
   // Player joins pair
@@ -269,7 +269,7 @@ io.on('connection', function(socket){
 
   // On match
   socket.on('match', function(gameId){
-    console.log('match, game id: ' + gameId);
+    console.log('Match, game id: ' + gameId);
 
     if (engine.games[gameId] && engine.games[gameId].players[socket.id]) {
       engine.games[gameId].players[socket.id].matching = true;

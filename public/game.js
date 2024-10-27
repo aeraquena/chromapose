@@ -3,6 +3,7 @@ var pairs = {}
 
 // Update target color
 function changeTargetColor(gameId) {
+  console.log('[I] changeTargetColor');
   // Needs to take in game id
 
   // Change target color
@@ -11,11 +12,13 @@ function changeTargetColor(gameId) {
 }
 
 // Update target color
+// TODO: Is this being used? Or is /interpose/game.js being used
 function changeTargetPoint(pairId) {
+  console.log('[I] changeTargetPoint');
   // Change target color
   // change to scale of 0-100 to keep things easy
   // rename phi and theta
-  pairs[pairId].targetPoint.v = Math.random();
+  pairs[pairId].targetPoint.v = Math.random(); // TODO: Here! between 0 and 1. clamp to .2 and .8?
   pairs[pairId].targetPoint.h = Math.random();
 
   console.log(pairs[pairId].targetPoint);
