@@ -193,7 +193,7 @@ $(function () {
             // beta: front back motion
             frontBack = event.beta;
 
-            console.log('rotDeg: ', rotDeg.toFixed(2), 'frontBack: ', frontBack.toFixed(2));
+            //console.log('rotDeg: ', rotDeg.toFixed(2), 'frontBack: ', frontBack.toFixed(2));
           
           // Determine how close it is to target
 
