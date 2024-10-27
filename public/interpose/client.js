@@ -141,10 +141,21 @@ $(function () {
           }
         }
 
+        // Calculate matching players
+        var playerCount = Object.keys(pairs[pairId].players).length
+        var matchingPlayers = 0;
+        Object.values(pairs[pairId].players).forEach((player) => {  
+          if (player.matching) {
+            matchingPlayers++;
+          }
+        })
+        // Show matching players and total players
+        document.getElementById('playerCount').innerHTML = String(matchingPlayers) + "/" + String(playerCount)
+
+        // Update ball target
         if (myTargetPoint) {
           $('.ball.target.horizontal').css('left', screenWidth - (myTargetPoint.h * screenWidth) - ballSize/2);
           $('.ball.target.vertical').css('top', screenHeight - (myTargetPoint.v * screenHeight) - ballSize/2 + topMargin); // TODO: screenHeight * .8
-          //$('.ball.target.vertical').css('top', screenHeight - ((myTargetPoint.v * screenHeight*.8)+.1) - ballSize/2 + topMargin);
         }
       }
     }

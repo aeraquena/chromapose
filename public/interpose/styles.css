@@ -534,3 +534,15 @@ input[type=number] {
   display: block;
   margin: 0 auto;
 }
+
+#playerCount {  
+  font-size: 18px;
+  position: fixed;
+  bottom: 0;
+  left: 10px;
+  background-image: url('./player.png');
+  background-size: 50px;
+  padding-left: 50px;
+  background-repeat: no-repeat;
+  background-position: 0 11px;
+}
