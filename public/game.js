@@ -1,9 +1,9 @@
 var games = {}
 var pairs = {}
 
-// Update target color
+// Chromapose: Update target color
 function changeTargetColor(gameId) {
-  console.log('[I] changeTargetColor');
+  console.log('[C] changeTargetColor');
   // Needs to take in game id
 
   // Change target color
@@ -11,10 +11,10 @@ function changeTargetColor(gameId) {
   games[gameId].targetColor.lightness = Math.floor(Math.random() * 60) + 20; // 20-80% range
 }
 
-// Update target color
-// TODO: Is this being used? Or is /interpose/game.js being used
+// Interpose: Update target point
+// TODO: This is being used - is /interpose/game.js being used?
 function changeTargetPoint(pairId) {
-  console.log('[I] changeTargetPoint');
+  console.log('[C] changeTargetPoint');
   // Change target color
   // change to scale of 0-100 to keep things easy
   // rename phi and theta

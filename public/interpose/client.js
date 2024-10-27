@@ -143,7 +143,7 @@ $(function () {
 
         if (myTargetPoint) {
           $('.ball.target.horizontal').css('left', screenWidth - (myTargetPoint.h * screenWidth) - ballSize/2);
-          $('.ball.target.vertical').css('top', screenHeight - (myTargetPoint.v * screenHeight) - ballSize/2 + topMargin); // TODO: screenHeight * .8 + .1
+          $('.ball.target.vertical').css('top', screenHeight - ((myTargetPoint.v * screenHeight*.8)+.1) - ballSize/2 + topMargin);
         }
       }
     }
