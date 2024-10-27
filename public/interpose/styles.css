@@ -538,11 +538,10 @@ input[type=number] {
 #playerCount {  
   font-size: 18px;
   position: fixed;
-  bottom: 0;
-  left: 10px;
-  background-image: url('./player.png');
-  background-size: 50px;
-  padding-left: 50px;
+  top: 5px;
+  right: 10px;
+  background-image: url('../player.png');
+  background-size: 24px;
+  padding-left: 24px;
   background-repeat: no-repeat;
-  background-position: 0 11px;
 }
