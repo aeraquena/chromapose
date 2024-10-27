@@ -18,7 +18,7 @@ function changeTargetPoint(pairId) {
   // Change target color
   // change to scale of 0-100 to keep things easy
   // rename phi and theta
-  pairs[pairId].targetPoint.v = Math.random(); // TODO: Here! between 0 and 1. clamp to .2 and .8?
+  pairs[pairId].targetPoint.v = Math.random() * .8 + .1; // TODO: Here! between 0 and 1. clamp to .2 and .8?
   pairs[pairId].targetPoint.h = Math.random();
 
   console.log(pairs[pairId].targetPoint);
