@@ -13,7 +13,7 @@ function changeTargetPoint(pairId) {
 
 // TODO: Remove this?
 function changeTargetColor() {
-
+  console.log('[C] changeTargetColor - remove this?');
 }
 
 // determine whether this is a node module or inlined via script tag
