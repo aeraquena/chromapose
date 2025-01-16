@@ -236,11 +236,13 @@
         // hide
         $('#instructions').removeClass('shown');
         $('#splash').show();
+        $('#tutorial').show();
         $(this).text('?');
       } else {
         // show
         $('#instructions').addClass('shown');
         $('#splash').hide();
+        $('#tutorial').hide();
         $(this).text('X');
       }
     });
