@@ -96,10 +96,10 @@ io.on('connection', function(socket){
     // Print games and pairs
 
     console.log('games:');
-    console.log(engine.games);
+    console.log(JSON.stringify(engine.games));
 
     console.log('pairs:');
-    console.log(engine.pairs);
+    console.log(JSON.stringify(engine.pairs));
   });
 
   // Player reconnects to game
@@ -129,7 +129,7 @@ io.on('connection', function(socket){
       z: 0
     }
 
-    console.log(engine.games);
+    console.log(JSON.stringify(engine.games));
   });
 
   // Player reconnects to pair
@@ -160,7 +160,7 @@ io.on('connection', function(socket){
       role: pairInfo.role
     }
 
-    console.log(engine.pairs);
+    console.log(JSON.stringify(engine.pairs));
   });
 
   // Player joins game
@@ -190,7 +190,7 @@ io.on('connection', function(socket){
       z: 0
     }
 
-    console.log(engine.games); // here is where it prints it out
+    console.log(JSON.stringify(engine.games)); // here is where it prints it out
   });
 
   // Player joins pair
@@ -215,7 +215,7 @@ io.on('connection', function(socket){
 
       // Assign this player role: 1
       thisRole = 1;
-    } else if (engine.pairs[pairId] && Object.keys(engine.pairs[pairId].players).length == 1) { 
+    } else if (engine.pairs[pairId] && Object.keys(engine.pairs[pairId].players).length > 0) {
       // if engine pairs has 1 already
       // Assign this player role: 2
       thisRole = 2;
@@ -231,7 +231,7 @@ io.on('connection', function(socket){
       }
     }
 
-    console.log(engine.pairs);
+    console.log(JSON.stringify(engine.pairs));
   });
 
   // Player creates new game
@@ -264,7 +264,7 @@ io.on('connection', function(socket){
         z: 0
       }
 
-      console.log(engine.games);
+      console.log(JSON.stringify(engine.games));
   });
 
   // On match
@@ -294,7 +294,7 @@ io.on('connection', function(socket){
       }
     }
 
-    console.log(engine.games);
+    console.log(JSON.stringify(engine.games));
   });
 
   // On match
@@ -306,7 +306,7 @@ io.on('connection', function(socket){
       engine.games[gameId].players[socket.id].matching = false;
     }
 
-    console.log(engine.games);
+    console.log(JSON.stringify(engine.games));
   });
 
   // On match
@@ -336,7 +336,7 @@ io.on('connection', function(socket){
       }
     }
 
-    console.log(engine.games);
+    console.log(JSON.stringify(engine.games));
   });
 
   // On unmatch
@@ -348,7 +348,7 @@ io.on('connection', function(socket){
       engine.pairs[pairId].players[socket.id].matching = false;
     }
 
-    console.log(engine.pairs);
+    console.log(JSON.stringify(engine.pairs));
   });
 
   // Change target color manually
