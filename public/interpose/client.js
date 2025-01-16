@@ -63,6 +63,13 @@ $(function () {
       $('#part-2').show();
     });
 
+    // Change outer color manually
+    $('#change-point-position').click(function() {
+      if (pairId) {
+        socket.emit('changePosition', pairId);
+      }
+    });
+
     $(document).on('click', '#done', function(){
       $('#part-2').remove();
       $(window).scrollTop(0);

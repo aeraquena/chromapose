@@ -6,9 +6,9 @@ var engine = require('./public/game')
 
 var gameInterval, updateInterval
 
-// ----------------------------------------
-// Main server code
-// ----------------------------------------
+// ---------------------------------------------
+// Main server code for Chromapose and Interpose
+// ---------------------------------------------
 
 // Serve css and js
 app.use(express.static('public'))
@@ -217,6 +217,7 @@ io.on('connection', function(socket){
       thisRole = 1;
     } else if (engine.pairs[pairId] && Object.keys(engine.pairs[pairId].players).length > 0) {
       // if engine pairs has 1 already
+      // TODO: Check the role of the existing player, and assign the other one
       // Assign this player role: 2
       thisRole = 2;
     }
@@ -330,7 +331,7 @@ io.on('connection', function(socket){
       })
 
       if (allMatching) {
-        console.log('all matching - change target color');
+        console.log('all matching - change target point');
         io.emit('pointChanged', pairId);
         engine.changeTargetPoint(pairId);
       }
@@ -356,6 +357,12 @@ io.on('connection', function(socket){
     engine.changeTargetColor(gameId);
     console.log('change target color manually');
     io.emit('colorChanged', gameId);
+  });
+
+  // Change target position manually
+  socket.on('changePosition', function(pairId){
+    engine.changeTargetPoint(pairId);
+    console.log('change target point manually');
   });
 });
 
