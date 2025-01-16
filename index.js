@@ -215,11 +215,18 @@ io.on('connection', function(socket){
 
       // Assign this player role: 1
       thisRole = 1;
-    } else if (engine.pairs[pairId] && Object.keys(engine.pairs[pairId].players).length > 0) {
+    } else if (engine.pairs[pairId] && Object.keys(engine.pairs[pairId].players).length == 1) {
       // if engine pairs has 1 already
-      // TODO: Check the role of the existing player, and assign the other one
-      // Assign this player role: 2
+      // TODO: Check the role of the existing player
+      // Assign this player role: 2 by default
       thisRole = 2;
+
+      // Check the role of the other player, and assign the other one
+      Object.keys(engine.pairs[pairId].players).forEach((playerId) => {
+        if (engine.pairs[pairId].players[playerId].role == 2) {
+          thisRole = 1;
+        }
+      })
     }
 
     if (thisRole == 1 || thisRole == 2) {
